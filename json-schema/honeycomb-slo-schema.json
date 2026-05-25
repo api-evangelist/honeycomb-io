@@ -1,0 +1,129 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb-io/main/json-schema/honeycomb-slo-schema.json",
+  "title": "Honeycomb SLO",
+  "description": "JSON Schema for the Honeycomb SLO resource. Generated from the Honeycomb API OpenAPI spec.",
+  "type": "object",
+  "required": [
+    "name",
+    "time_period_days",
+    "target_per_million",
+    "sli"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true
+    },
+    "name": {
+      "type": "string",
+      "description": "The name of the SLO.",
+      "minLength": 1,
+      "maxLength": 120,
+      "example": "My SLO"
+    },
+    "description": {
+      "type": "string",
+      "description": "A nice description of the SLO's intent and context.",
+      "minLength": 0,
+      "maxLength": 1023,
+      "example": "SLO to ensure requests succeed and are fast"
+    },
+    "sli": {
+      "type": "object",
+      "description": "Reference to the [Calculated Field](/api/calculated-fields/) used as the indicator of event success.",
+      "required": [
+        "alias"
+      ],
+      "properties": {
+        "alias": {
+          "type": "string",
+          "description": "The alias of the Calculated Field (also called Derived Column).",
+          "minLength": 1,
+          "maxLength": 255
+        }
+      },
+      "example": {
+        "alias": "error_sli"
+      }
+    },
+    "time_period_days": {
+      "type": "integer",
+      "description": "The time period, in days, over which the SLO will be evaluated.",
+      "minimum": 1,
+      "example": 30
+    },
+    "target_per_million": {
+      "type": "integer",
+      "description": "The number of events out of one million (1,000,000) that you expected qualified events to succeed.",
+      "minimum": 0,
+      "maximum": 999999,
+      "example": 990000
+    },
+    "tags": {
+      "type": "array",
+      "description": "A list of key-value pairs to help identify the SLO.",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "A key to identify the tag, lowercase letters only.",
+            "maxLength": 32
+          },
+          "value": {
+            "type": "string",
+            "description": "A value for the tag, must begin with a lowercase letter, contain only alphanumeric characters (all letters lowercase) and special characters of `/` and `-` allowed.",
+            "maxLength": 128
+          }
+        }
+      },
+      "example": [
+        {
+          "key": "team",
+          "value": "blue"
+        }
+      ]
+    },
+    "reset_at": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "format": "date-time",
+      "description": "The ISO8601-formatted time the SLO was last reset. The value will be `null` if the SLO has not yet been reset.",
+      "readOnly": true,
+      "example": "2022-011-11T09:53:04Z"
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The ISO8601-formatted time when the SLO was created.",
+      "format": "date-time",
+      "readOnly": true,
+      "example": "2022-09-22T17:32:11Z"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "The ISO8601-formatted time when the SLO was updated.",
+      "readOnly": true,
+      "example": "2022-10-31T15:08:11Z"
+    },
+    "dataset_slugs": {
+      "type": "array",
+      "description": "The dataset(s) the SLO will be evaluated against. Required if using `__all__` in the path.",
+      "readOnly": true,
+      "minItems": 1,
+      "maxItems": 10,
+      "example": [
+        "mydataset1",
+        "mydataset2"
+      ]
+    }
+  }
+}

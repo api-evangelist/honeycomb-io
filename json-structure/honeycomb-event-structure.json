@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb-io/main/json-structure/honeycomb-event-structure.json",
+  "title": "Honeycomb Event",
+  "description": "JSON Structure for a single Honeycomb event row. Events are arbitrary flat JSON objects with high-cardinality string, number, and boolean attributes. OpenTelemetry attributes are encoded with their canonical dot-separated names.",
+  "type": "object",
+  "additionalProperties": true,
+  "properties": {
+    "service.name": {
+      "type": "string",
+      "description": "OTel service.name resource attribute. Maps the event to a Honeycomb dataset."
+    },
+    "trace.trace_id": {
+      "type": "string",
+      "description": "Trace identifier shared by all spans in a single trace."
+    },
+    "trace.span_id": {
+      "type": "string",
+      "description": "Unique identifier for this span."
+    },
+    "trace.parent_id": {
+      "type": "string",
+      "description": "Parent span identifier. Empty for root spans."
+    },
+    "name": {
+      "type": "string",
+      "description": "Span name; corresponds to OTel span.name."
+    },
+    "duration_ms": {
+      "type": "number",
+      "description": "Span duration in milliseconds. Honeycomb's canonical latency field."
+    },
+    "status_code": {
+      "type": "integer",
+      "description": "Span status (0 unset, 1 ok, 2 error) per OTel."
+    },
+    "error": {
+      "type": "boolean",
+      "description": "Set to true when the span represents an error. Drives Honeycomb error highlighting."
+    },
+    "http.method":      { "type": "string" },
+    "http.target":      { "type": "string" },
+    "http.status_code": { "type": "integer" },
+    "http.route":       { "type": "string" },
+    "db.system":        { "type": "string" },
+    "db.statement":     { "type": "string" },
+    "rpc.system":       { "type": "string" },
+    "rpc.service":      { "type": "string" },
+    "rpc.method":       { "type": "string" },
+    "user.id":          { "type": "string" }
+  }
+}

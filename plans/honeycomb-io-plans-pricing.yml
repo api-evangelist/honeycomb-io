@@ -1,0 +1,170 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Honeycomb
+providerId: honeycomb-io
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Observability
+  - Tracing
+  - Metrics
+  - SLO
+description: 'Reconciled plans and event-volume pricing for the Honeycomb observability platform. Source:
+  honeycomb.io/pricing.'
+sources:
+  - https://www.honeycomb.io/pricing
+  - https://docs.honeycomb.io/get-started/best-practices/api-keys/
+plans:
+  - id: honeycomb-free
+    name: Free
+    type: free
+    description: Free tier for testing and individual projects. Up to 20M events/month and 100M metrics
+      data points/month with distributed tracing, BubbleUp, OpenTelemetry support, Canvas AI Copilot,
+      Honeycomb MCP, and 2 triggers.
+    entries:
+      - label: Monthly price
+        name: price
+        type: fixed
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Events
+        name: events
+        type: metered
+        metric: events
+        limit: 20000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Metric data points
+        name: metric_data_points
+        type: metered
+        metric: data_points
+        limit: 100000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Triggers
+        name: triggers
+        type: fixed
+        limit: 2
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+  - id: honeycomb-pro
+    name: Pro
+    type: subscription
+    description: Production-team tier starting at $130/month. Includes up to 1.5B events/month and 7.5B
+      metric data points/month, 100 triggers, 2 SLOs, SSO, and Honeycomb Support.
+    entries:
+      - label: Starting monthly price
+        name: price
+        type: fixed
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '130.00'
+        userMultiplied: false
+      - label: Events (included)
+        name: events
+        type: metered
+        metric: events
+        limit: 1500000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Metric data points (included)
+        name: metric_data_points
+        type: metered
+        metric: data_points
+        limit: 7500000000
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: Triggers
+        name: triggers
+        type: fixed
+        limit: 100
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+      - label: SLOs
+        name: slos
+        type: fixed
+        limit: 2
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+  - id: honeycomb-enterprise
+    name: Enterprise
+    type: custom
+    description: Custom-priced enterprise tier with volume discounts (base allowance 10B events/year), 300+
+      triggers, 100+ SLOs, Service Map, Query Data API, AWS PrivateLink, SLO Reporting API, Private Cloud
+      deployment, and Enterprise Support.
+    entries:
+      - label: Annual contract
+        name: price
+        type: custom
+        timeFrame: year
+        geo: global
+        unit: 1
+        userMultiplied: false
+      - label: Events (base allowance)
+        name: events
+        type: metered
+        metric: events
+        limit: 10000000000
+        timeFrame: year
+        geo: global
+        unit: 1
+        userMultiplied: false
+      - label: Triggers
+        name: triggers
+        type: fixed
+        limit: 300
+        timeFrame: usage
+        geo: global
+        unit: 1
+        userMultiplied: false
+      - label: SLOs
+        name: slos
+        type: fixed
+        limit: 100
+        timeFrame: usage
+        geo: global
+        unit: 1
+        userMultiplied: false
+  - id: honeycomb-telemetry-pipeline
+    name: Telemetry Pipeline
+    type: usage-based
+    description: Standalone Telemetry Pipeline product for collecting, filtering, sampling, and shaping
+      telemetry before downstream emission. Billed by GB processed.
+    entries:
+      - label: Telemetry processed
+        name: telemetry_gb
+        type: metered
+        metric: gigabytes
+        limit: -1
+        timeFrame: usage
+        geo: global
+        unit: 1
+        price: '0.10'
+        userMultiplied: false

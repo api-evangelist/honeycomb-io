@@ -1,0 +1,83 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb-io/main/json-schema/honeycomb-dataset-schema.json",
+  "title": "Honeycomb Dataset",
+  "description": "Datasets are a collection of events from a specific source or related source.\n",
+  "type": "object",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the dataset.",
+      "example": "My Dataset!",
+      "minLength": 1,
+      "maxLength": 255
+    },
+    "description": {
+      "type": "string",
+      "default": "",
+      "description": "A description for the dataset.",
+      "example": "A nice description of my dataset",
+      "minLength": 0,
+      "maxLength": 1024
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "delete_protected": {
+          "type": "boolean",
+          "description": "If true, the dataset cannot be deleted."
+        }
+      }
+    },
+    "expand_json_depth": {
+      "type": "integer",
+      "description": "The maximum unpacking depth of nested JSON fields.",
+      "example": 3,
+      "default": 0,
+      "minimum": 0,
+      "maximum": 10
+    },
+    "slug": {
+      "type": "string",
+      "example": "my-dataset-",
+      "description": "The 'slug' of the dataset to be used in URLs.",
+      "readOnly": true
+    },
+    "regular_columns_count": {
+      "type": [
+        "null",
+        "integer"
+      ],
+      "description": "The total number of unique fields for this Dataset. The value will be null if the dataset does not contain any fields yet.\n",
+      "example": 100,
+      "readOnly": true
+    },
+    "last_written_at": {
+      "type": [
+        "null",
+        "string"
+      ],
+      "description": "The ISO8601-formatted time when the dataset last received event data. The value will be null if no data has been received yet.\n",
+      "example": "2022-07-21T18:39:23Z",
+      "readOnly": true
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The ISO8601-formatted time when the dataset was created.",
+      "example": "2022-09-22T17:32:11Z",
+      "readOnly": true
+    },
+    "dataset_type": {
+      "type": "string",
+      "description": "The type of data contained in the dataset. Only present for time-series metrics datasets.\n",
+      "enum": [
+        "metrics"
+      ],
+      "example": "metrics",
+      "readOnly": true
+    }
+  }
+}

@@ -1,0 +1,67 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Honeycomb
+providerId: honeycomb-io
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - Observability
+  - Rate Limiting
+  - Ingest
+description: 'Rate limiting and quota structure for the Honeycomb ingest and configuration APIs.
+  Per-team event-volume quotas back the Free, Pro, and Enterprise plans; HTTP rate limits protect the
+  configuration surface.'
+sources:
+  - https://www.honeycomb.io/pricing
+  - https://docs.honeycomb.io/get-started/best-practices/api-keys/
+  - https://docs.honeycomb.io/api/
+headers:
+  retryAfter: Retry-After
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  invalidKey: 401
+algorithm: token-bucket
+quotas:
+  - tier: Free
+    scope: team
+    eventsPerMonth: 20000000
+    metricDataPointsPerMonth: 100000000
+    retentionDays: 60
+  - tier: Pro
+    scope: team
+    eventsPerMonth: 1500000000
+    metricDataPointsPerMonth: 7500000000
+    retentionDays: 60
+  - tier: Enterprise
+    scope: team
+    eventsPerYear: 10000000000
+    retentionDays: 60
+authentication:
+  ingestKey:
+    header: X-Honeycomb-Team
+    description: Ingest key for /1/events and /1/batch endpoints.
+  configurationKey:
+    header: X-Honeycomb-Team
+    description: Configuration key for /1/* configuration endpoints (datasets, columns, triggers, SLOs,
+      boards, markers, queries, recipients).
+  managementKey:
+    header: X-Honeycomb-Team
+    description: Management key for /2/teams/* endpoints (API Keys, Environments).
+limits:
+  - surface: ingest
+    description: Event ingest endpoints (/1/events, /1/batch, /1/kinesis_events). Subject to per-team
+      event-volume quotas backed by the active plan. Bursts above sustained rate are accepted within
+      reasonable bounds; sustained excess returns 429.
+  - surface: configuration
+    description: Configuration API (/1/datasets, /1/columns, /1/triggers, /1/slos, /1/boards, /1/markers,
+      /1/queries, /1/recipients) is HTTP-rate-limited; sustained high-volume programmatic use should rely
+      on Terraform-provider state rather than re-polling.
+  - surface: management
+    description: Management API (/2/teams/{teamSlug}/api-keys, /2/teams/{teamSlug}/environments) is
+      rate-limited per management key.
+  - surface: query-data
+    description: Query Data API is Enterprise-tier-only and limited to async result polling; rapid polling
+      should respect Retry-After.

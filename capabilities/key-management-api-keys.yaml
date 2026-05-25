@@ -1,0 +1,208 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Honeycomb Key Management API \u2014 API Keys"
+  description: "Honeycomb Key Management API \u2014 API Keys. 5 operations. Lead operation: List all API Keys. Self-contained Naftiko capability covering one Honeycomb business surface."
+  tags:
+  - Honeycomb
+  - Observability
+  - Key Management
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_MANAGEMENT_KEY: HONEYCOMB_MANAGEMENT_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: key-management-api-keys
+    baseUri: https://api.honeycomb.io
+    description: "Honeycomb Key Management API \u2014 API Keys business capability. Self-contained, no shared references."
+    resources:
+    - name: 2-teams-api-keys
+      path: /2/teams/{teamSlug}/api-keys
+      operations:
+      - name: listapikeys
+        method: GET
+        description: List all API Keys
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: filter[type]
+          in: query
+          type: string
+          description: "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration\
+            \ API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted."
+          required: false
+      - name: createapikey
+        method: POST
+        description: Create an API Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 2-teams-api-keys
+      path: /2/teams/{teamSlug}/api-keys/{ID}
+      operations:
+      - name: getapikey
+        method: GET
+        description: Get an API Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateapikey
+        method: PATCH
+        description: Update an API Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteapikey
+        method: DELETE
+        description: Delete an API Key
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_MANAGEMENT_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: key-management-api-keys-rest
+    port: 8080
+    description: "REST adapter for Honeycomb Key Management API \u2014 API Keys. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/2/teams/{teamSlug}/api-keys
+      name: 2-teams-api-keys
+      description: REST surface for 2-teams-api-keys.
+      operations:
+      - method: GET
+        name: listapikeys
+        description: List all API Keys
+        call: key-management-api-keys.listapikeys
+        with:
+          filter[type]: rest.filter[type]
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapikey
+        description: Create an API Key
+        call: key-management-api-keys.createapikey
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2/teams/{teamSlug}/api-keys/{ID}
+      name: 2-teams-api-keys
+      description: REST surface for 2-teams-api-keys.
+      operations:
+      - method: GET
+        name: getapikey
+        description: Get an API Key
+        call: key-management-api-keys.getapikey
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateapikey
+        description: Update an API Key
+        call: key-management-api-keys.updateapikey
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteapikey
+        description: Delete an API Key
+        call: key-management-api-keys.deleteapikey
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: key-management-api-keys-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Honeycomb Key Management API \u2014 API Keys. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: honeycomb-key-management-api-keys-listapikeys
+      description: List all API Keys
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: key-management-api-keys.listapikeys
+      with:
+        filter[type]: tools.filter[type]
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-key-management-api-keys-createapikey
+      description: Create an API Key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: key-management-api-keys.createapikey
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-key-management-api-keys-getapikey
+      description: Get an API Key
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: key-management-api-keys.getapikey
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-key-management-api-keys-updateapikey
+      description: Update an API Key
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: key-management-api-keys.updateapikey
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-key-management-api-keys-deleteapikey
+      description: Delete an API Key
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: key-management-api-keys.deleteapikey
+      outputParameters:
+      - type: object
+        mapping: $.

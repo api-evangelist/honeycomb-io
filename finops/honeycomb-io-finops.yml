@@ -1,0 +1,109 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Honeycomb
+providerId: honeycomb-io
+created: '2026-05-25'
+modified: '2026-05-25'
+reconciled: true
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - Observability
+  - Telemetry
+description: FOCUS-aligned FinOps definition for the Honeycomb observability platform. Event-volume metering
+  with included monthly allowances on Free and Pro, annual contract on Enterprise, and GB-based metering
+  for Telemetry Pipeline.
+sources:
+  - https://www.honeycomb.io/pricing
+  - https://docs.honeycomb.io/get-started/best-practices/api-keys/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Honeycomb
+serviceCategory: Management and Governance
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+    - Purchase
+    - Tax
+    - Credit
+    - Adjustment
+  primaryUnit: event
+  secondaryUnits:
+    - metric_data_point
+    - gigabyte
+    - trigger
+    - slo
+focusColumns:
+  ServiceName: Honeycomb
+  ServiceCategory: Management and Governance
+  ProviderName: Honeycomb
+  PublisherName: Honeycomb
+  InvoiceIssuerName: Honeycomb
+  PricingCategory: Usage-Based
+  PricingUnit: event
+  BillingCurrency: USD
+meters:
+  - name: events_ingested
+    unit: event
+    aggregation: sum
+    dimensions:
+      - dataset
+      - environment
+      - team
+      - plan_tier
+    description: Total events ingested through /1/events, /1/batch, /1/kinesis_events, and OpenTelemetry
+      exporters. Primary billing metric.
+  - name: metric_data_points
+    unit: data_point
+    aggregation: sum
+    dimensions:
+      - dataset
+      - environment
+      - team
+      - plan_tier
+    description: Discrete metric data points ingested. Free and Pro carry included allowances; overage
+      handled per contract.
+  - name: telemetry_pipeline_gb
+    unit: gigabyte
+    aggregation: sum
+    dimensions:
+      - pipeline
+      - environment
+    description: Volume processed by Honeycomb Telemetry Pipeline. Billed at $0.10/GB.
+  - name: triggers_configured
+    unit: trigger
+    aggregation: max
+    dimensions:
+      - team
+      - plan_tier
+    description: Count of configured Triggers, gated by plan (Free 2, Pro 100, Enterprise 300+).
+  - name: slos_configured
+    unit: slo
+    aggregation: max
+    dimensions:
+      - team
+      - plan_tier
+    description: Count of configured SLOs, gated by plan (Pro 2, Enterprise 100+).
+costAttribution:
+  - dimension: dataset
+    description: Costs map naturally to datasets, which usually equal a service or service-component.
+  - dimension: environment
+    description: Environments (v2) are the recommended cost-attribution boundary for multi-tenant or
+      multi-stage observability.
+  - dimension: team
+    description: Honeycomb teams are the top-level billing unit; one invoice per team.
+optimizationLevers:
+  - Tail-based sampling with Refinery to reduce events ingested while preserving error traces.
+  - Telemetry Pipeline filtering / dropping before downstream emit.
+  - Dynamic sampling (dynsampler) at SDK / collector layer.
+  - Dataset consolidation to reduce per-dataset overhead.
+  - Calculated fields instead of duplicated columns.

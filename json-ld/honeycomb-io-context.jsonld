@@ -1,0 +1,139 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@vocab": "https://schema.org/",
+    "honeycomb": "https://api.honeycomb.io/1/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "otel": "https://opentelemetry.io/schemas/",
+
+    "Dataset": {
+      "@id": "honeycomb:Dataset",
+      "@context": {
+        "name": "schema:name",
+        "slug": "schema:identifier",
+        "description": "schema:description",
+        "settings": "honeycomb:Dataset/settings",
+        "expand_json_depth": { "@id": "honeycomb:Dataset/expand_json_depth", "@type": "xsd:integer" },
+        "created_at": { "@id": "schema:dateCreated", "@type": "xsd:dateTime" },
+        "last_written_at": { "@id": "honeycomb:Dataset/last_written_at", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Column": {
+      "@id": "honeycomb:Column",
+      "@context": {
+        "key_name": "schema:name",
+        "type": "honeycomb:Column/type",
+        "description": "schema:description",
+        "hidden": { "@id": "honeycomb:Column/hidden", "@type": "xsd:boolean" },
+        "last_written_at": { "@id": "honeycomb:Column/last_written_at", "@type": "xsd:dateTime" }
+      }
+    },
+
+    "DerivedColumn": {
+      "@id": "honeycomb:DerivedColumn",
+      "@context": {
+        "alias": "schema:name",
+        "expression": "honeycomb:DerivedColumn/expression",
+        "description": "schema:description"
+      }
+    },
+
+    "Marker": {
+      "@id": "honeycomb:Marker",
+      "@context": {
+        "message": "schema:description",
+        "type": "honeycomb:Marker/type",
+        "url": { "@id": "schema:url", "@type": "xsd:anyURI" },
+        "start_time": { "@id": "schema:startTime", "@type": "xsd:dateTime" },
+        "end_time":   { "@id": "schema:endTime",   "@type": "xsd:dateTime" }
+      }
+    },
+
+    "Query": {
+      "@id": "honeycomb:Query",
+      "@context": {
+        "breakdowns": { "@id": "honeycomb:Query/breakdowns", "@container": "@list" },
+        "calculations": { "@id": "honeycomb:Query/calculations", "@container": "@list" },
+        "filters": { "@id": "honeycomb:Query/filters", "@container": "@list" },
+        "filter_combination": "honeycomb:Query/filter_combination",
+        "orders": { "@id": "honeycomb:Query/orders", "@container": "@list" },
+        "havings": { "@id": "honeycomb:Query/havings", "@container": "@list" },
+        "limit": { "@id": "honeycomb:Query/limit", "@type": "xsd:integer" },
+        "time_range": { "@id": "honeycomb:Query/time_range", "@type": "xsd:integer" }
+      }
+    },
+
+    "Board": {
+      "@id": "honeycomb:Board",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "type": "honeycomb:Board/type",
+        "panels": { "@id": "honeycomb:Board/panels", "@container": "@list" }
+      }
+    },
+
+    "Trigger": {
+      "@id": "honeycomb:Trigger",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "threshold": "honeycomb:Trigger/threshold",
+        "frequency": { "@id": "honeycomb:Trigger/frequency", "@type": "xsd:integer" },
+        "alert_type": "honeycomb:Trigger/alert_type",
+        "recipients": { "@id": "honeycomb:Trigger/recipients", "@container": "@list" }
+      }
+    },
+
+    "SLO": {
+      "@id": "honeycomb:SLO",
+      "@context": {
+        "name": "schema:name",
+        "description": "schema:description",
+        "sli": "honeycomb:SLO/sli",
+        "time_period_days": { "@id": "honeycomb:SLO/time_period_days", "@type": "xsd:integer" },
+        "target_per_million": { "@id": "honeycomb:SLO/target_per_million", "@type": "xsd:integer" }
+      }
+    },
+
+    "BurnAlert": {
+      "@id": "honeycomb:BurnAlert",
+      "@context": {
+        "slo_id": "honeycomb:BurnAlert/slo_id",
+        "exhaustion_minutes": { "@id": "honeycomb:BurnAlert/exhaustion_minutes", "@type": "xsd:integer" },
+        "alert_type": "honeycomb:BurnAlert/alert_type",
+        "recipients": { "@id": "honeycomb:BurnAlert/recipients", "@container": "@list" }
+      }
+    },
+
+    "Recipient": {
+      "@id": "honeycomb:Recipient",
+      "@context": {
+        "type": "honeycomb:Recipient/type",
+        "target": "honeycomb:Recipient/target"
+      }
+    },
+
+    "Environment": {
+      "@id": "honeycomb:Environment",
+      "@context": {
+        "name": "schema:name",
+        "slug": "schema:identifier",
+        "description": "schema:description",
+        "color": "honeycomb:Environment/color"
+      }
+    },
+
+    "ApiKey": {
+      "@id": "honeycomb:ApiKey",
+      "@context": {
+        "name": "schema:name",
+        "type": "honeycomb:ApiKey/type",
+        "permissions": { "@id": "honeycomb:ApiKey/permissions", "@container": "@list" },
+        "created_at": { "@id": "schema:dateCreated", "@type": "xsd:dateTime" }
+      }
+    }
+  }
+}

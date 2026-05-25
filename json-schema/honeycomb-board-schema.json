@@ -1,0 +1,247 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb-io/main/json-schema/honeycomb-board-schema.json",
+  "title": "Honeycomb Board",
+  "description": "JSON Schema for the Honeycomb Board resource. Generated from the Honeycomb API OpenAPI spec.",
+  "type": "object",
+  "required": [
+    "type",
+    "name"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "The name of the Board.",
+      "minLength": 1,
+      "maxLength": 255,
+      "example": "My Board"
+    },
+    "description": {
+      "type": "string",
+      "description": "A description of the Board.",
+      "minLength": 0,
+      "maxLength": 1024,
+      "example": "A board created via the API"
+    },
+    "type": {
+      "type": "string",
+      "description": "The type of the board. Only flexible boards are supported.",
+      "enum": [
+        "flexible"
+      ]
+    },
+    "links": {
+      "type": "object",
+      "readOnly": true,
+      "properties": {
+        "board_url": {
+          "type": "string",
+          "example": "https://ui.honeycomb.io/myteam/environments/myenvironment/board/2NeeaE9bBLd"
+        }
+      }
+    },
+    "id": {
+      "type": "string",
+      "readOnly": true,
+      "description": "Unique identifier (ID), returned in response bodies.",
+      "example": "2NeeaE9bBLd"
+    },
+    "panels": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "oneOf": [
+          {
+            "title": "Query Panel",
+            "type": "object",
+            "required": [
+              "query_panel",
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "query",
+                "description": "The type of the board panel."
+              },
+              "position": {
+                "$ref": "#/components/schemas/BoardPanelPosition"
+              },
+              "query_panel": {
+                "type": "object",
+                "required": [
+                  "query_id",
+                  "query_annotation_id"
+                ],
+                "properties": {
+                  "query_id": {
+                    "type": "string",
+                    "description": "The ID of the Query to display on the board. The Query must be in the same environment as the board.\n",
+                    "example": "abc1234e"
+                  },
+                  "query_style": {
+                    "type": "string",
+                    "description": "How the query should be displayed on the board.",
+                    "enum": [
+                      "graph",
+                      "table",
+                      "combo"
+                    ],
+                    "default": "graph"
+                  },
+                  "query_annotation_id": {
+                    "type": "string",
+                    "description": "The ID of a Query Annotation that provides a name and description for the Query. The Query Annotation must apply to the `query_id` or `query` specified.\n",
+                    "example": "e4c24a35"
+                  },
+                  "dataset": {
+                    "type": "string",
+                    "readOnly": true,
+                    "description": "The dataset name to which the query is scoped. Empty for environment-wide queries.\n",
+                    "example": "My Dataset"
+                  },
+                  "visualization_settings": {
+                    "$ref": "#/components/schemas/BoardQueryVisualizationSettings"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "title": "SLO Panel",
+            "type": "object",
+            "required": [
+              "slo_panel",
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "slo",
+                "description": "The type of the board panel."
+              },
+              "position": {
+                "$ref": "#/components/schemas/BoardPanelPosition"
+              },
+              "slo_panel": {
+                "type": "object",
+                "properties": {
+                  "slo_id": {
+                    "type": "string",
+                    "description": "The ID of the SLO to display on the board. The SLO must be in the same environment as the board.\n",
+                    "example": "BGfyxhFto"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "title": "Text Panel",
+            "type": "object",
+            "required": [
+              "text_panel",
+              "type"
+            ],
+            "properties": {
+              "type": {
+                "const": "text",
+                "description": "The type of the board panel."
+              },
+              "position": {
+                "$ref": "#/components/schemas/BoardPanelPosition"
+              },
+              "text_panel": {
+                "type": "object",
+                "required": [
+                  "content"
+                ],
+                "properties": {
+                  "content": {
+                    "type": "string",
+                    "maxLength": 10000,
+                    "description": "The text content to display on the board panel. This field supports Markdown formatting.\n",
+                    "example": "# This is a text panel with some content"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "query": "#/components/schemas/QueryPanel",
+            "slo": "#/components/schemas/SLOPanel",
+            "text": "#/components/schemas/TextPanel"
+          }
+        }
+      }
+    },
+    "layout_generation": {
+      "type": "string",
+      "description": "The layout generation mode for the board. When set to \"auto\", the board will be automatically laid out based on the panels. When set to \"manual\", the board will be laid out manually by the user.\n",
+      "enum": [
+        "auto",
+        "manual"
+      ],
+      "default": "manual",
+      "writeOnly": true
+    },
+    "tags": {
+      "type": "array",
+      "description": "A list of key-value pairs to help identify the Trigger.",
+      "maxItems": 10,
+      "items": {
+        "type": "object",
+        "required": [
+          "key",
+          "value"
+        ],
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "A key to identify the tag, lowercase letters only.",
+            "maxLength": 32
+          },
+          "value": {
+            "type": "string",
+            "description": "A value for the tag, must begin with a lowercase letter, contain only alphanumeric characters (all letters lowercase) and special characters of `/` and `-` allowed.",
+            "maxLength": 128
+          }
+        }
+      },
+      "example": [
+        {
+          "key": "team",
+          "value": "blue"
+        }
+      ]
+    },
+    "preset_filters": {
+      "description": "A list of preset filters to apply to the board. For backwards compatibility, if no preset filters are provided, the existing preset filters will be preserved. If an empty array is provided, all preset filters will be deleted.\n**Note**: Each board is limited to a maximum of 5 preset filters. Attempting to create or update a board with more than 5 preset filters will result in an error.\n",
+      "type": "array",
+      "maxItems": 5,
+      "items": {
+        "type": "object",
+        "required": [
+          "column",
+          "alias"
+        ],
+        "properties": {
+          "column": {
+            "type": "string",
+            "description": "Original name of the column to alias."
+          },
+          "alias": {
+            "type": "string",
+            "description": "The alias of the preset filter. Maximum length is 50 characters."
+          }
+        }
+      },
+      "example": [
+        {
+          "column": "app.Service",
+          "alias": "Service"
+        }
+      ]
+    }
+  }
+}

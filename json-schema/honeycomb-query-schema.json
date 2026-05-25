@@ -1,0 +1,350 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb-io/main/json-schema/honeycomb-query-schema.json",
+  "title": "Honeycomb Query",
+  "description": "JSON Schema for the Honeycomb Query resource. Generated from the Honeycomb API OpenAPI spec.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "readOnly": true
+    },
+    "breakdowns": {
+      "type": "array",
+      "default": [
+        "user_agent"
+      ],
+      "maxItems": 100,
+      "items": {
+        "type": "string"
+      },
+      "description": "the columns by which to break events down into groups"
+    },
+    "calculations": {
+      "type": "array",
+      "description": "the calculations to return as a time series and summary table",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "required": [
+          "op"
+        ],
+        "properties": {
+          "op": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/QueryOp"
+              },
+              {
+                "default": "COUNT"
+              }
+            ]
+          },
+          "column": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The name of the column"
+          },
+          "name": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The name of the calculation. This is required if using calculation filters. Only available in Metrics Beta."
+          },
+          "filters": {
+            "type": "array",
+            "maxItems": 100,
+            "items": {
+              "type": "object",
+              "required": [
+                "column",
+                "op"
+              ],
+              "properties": {
+                "op": {
+                  "$ref": "#/components/schemas/FilterOp"
+                },
+                "column": {
+                  "$ref": "#/components/schemas/FilterColumn"
+                },
+                "value": {
+                  "$ref": "#/components/schemas/FilterValue"
+                }
+              }
+            },
+            "description": "The filters with which to restrict the results of this particular calculation. Does not support relational fields. Only available in Metrics Beta."
+          },
+          "filter_combination": {
+            "type": "string",
+            "default": "AND",
+            "enum": [
+              "AND",
+              "OR"
+            ],
+            "description": "Set to \"OR\" to match ANY filter in the filter list"
+          }
+        }
+      }
+    },
+    "filters": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "required": [
+          "column",
+          "op"
+        ],
+        "properties": {
+          "op": {
+            "type": "string",
+            "enum": [
+              "=",
+              "!=",
+              ">",
+              ">=",
+              "<",
+              "<=",
+              "starts-with",
+              "does-not-start-with",
+              "ends-with",
+              "does-not-end-with",
+              "exists",
+              "does-not-exist",
+              "contains",
+              "does-not-contain",
+              "in",
+              "not-in"
+            ]
+          },
+          "column": {
+            "type": [
+              "null",
+              "string"
+            ]
+          },
+          "value": {
+            "anyOf": [
+              {
+                "type": "null"
+              },
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "array"
+              }
+            ]
+          }
+        }
+      },
+      "description": "The filters with which to restrict the considered events"
+    },
+    "filter_combination": {
+      "type": "string",
+      "default": "AND",
+      "enum": [
+        "AND",
+        "OR"
+      ],
+      "description": "Set to \"OR\" to match ANY filter in the filter list"
+    },
+    "formulas": {
+      "type": "array",
+      "description": "Mathematical formulas to be returned as a time series and summary table. Formulas operate on the results of calculations and are returned in query results instead of calculations. Only available in Metrics Beta.",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "expression"
+        ],
+        "properties": {
+          "name": {
+            "type": [
+              "string"
+            ],
+            "description": "The name of the formula"
+          },
+          "expression": {
+            "type": [
+              "string"
+            ],
+            "description": "An expression that follows the same syntax as calculated field expressions, but uses the names of items in the calculations list in place of column names."
+          }
+        }
+      }
+    },
+    "granularity": {
+      "type": "integer",
+      "minimum": 1,
+      "description": "The time resolution of the query's graph, in seconds. Given a query time range T, valid values (T/1000...T/1). If left blank, granularity may be set to a sub-second value for queries with short time ranges.\n"
+    },
+    "orders": {
+      "type": "array",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "properties": {
+          "column": {
+            "type": "string"
+          },
+          "op": {
+            "type": "string",
+            "enum": [
+              "COUNT",
+              "CONCURRENCY",
+              "SUM",
+              "AVG",
+              "COUNT_DISTINCT",
+              "HEATMAP",
+              "MAX",
+              "MIN",
+              "P001",
+              "P01",
+              "P05",
+              "P10",
+              "P20",
+              "P25",
+              "P50",
+              "P75",
+              "P80",
+              "P90",
+              "P95",
+              "P99",
+              "P999",
+              "RATE_AVG",
+              "RATE_SUM",
+              "RATE_MAX"
+            ]
+          },
+          "order": {
+            "type": "string",
+            "default": "ascending",
+            "enum": [
+              "ascending",
+              "descending"
+            ]
+          }
+        }
+      },
+      "description": "The terms on which to order the query results. Each term must appear in the `breakdowns` field, the `calculations` field, or the `formulas` field. Formulas and calculations with name properties can be referenced by putting the name in the column property.\n"
+    },
+    "limit": {
+      "type": "integer",
+      "default": 100,
+      "minimum": 1,
+      "maximum": 10000,
+      "description": "The maximum number of unique groups returned in 'results'. Aggregating many unique groups across a large time range is computationally expensive, and too high a limit with too many unique groups may cause queries to fail completely. Limiting the results to only the needed values can significantly speed up queries.\nThe normal allowed maximum value when creating a query is 1_000. When running 'disable_series' queries, this can be overridden to be up to 10_000, so the maximum value returned from the API when fetching a query may be up to 10_000.\n"
+    },
+    "start_time": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 1676399428,
+      "description": "Absolute start time of query, in seconds since UNIX epoch. Must be <= `end_time`.\n"
+    },
+    "end_time": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 1676467828,
+      "description": "Absolute end time of query, in seconds since UNIX epoch."
+    },
+    "time_range": {
+      "type": "integer",
+      "minimum": 1,
+      "default": 7200,
+      "description": "Time range of query in seconds. Can be used with either `start_time` (seconds after `start_time`), `end_time` (seconds before `end_time`), or without either (seconds before now).\n"
+    },
+    "havings": {
+      "type": "array",
+      "description": "The Having clause allows you to filter on the results table. This operation is distinct from the Where clause, which filters the underlying events. Order By allows you to order the results, and Having filters them. Formulas and calculations with name properties can be referenced by putting the name in the column property.\n",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "required": [
+          "calculate_op"
+        ],
+        "properties": {
+          "calculate_op": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HavingCalculateOp"
+              }
+            ]
+          },
+          "column": {
+            "type": [
+              "null",
+              "string"
+            ],
+            "description": "The name of the column to filter against. This can also be a calculation or formula name."
+          },
+          "op": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/HavingOp"
+              }
+            ]
+          },
+          "value": {
+            "type": "number",
+            "default": 10
+          }
+        }
+      }
+    },
+    "calculated_fields": {
+      "type": "array",
+      "description": "Computed properties that are calculated by a formula.\n",
+      "maxItems": 100,
+      "items": {
+        "type": "object",
+        "required": [
+          "name",
+          "expression"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "The field name"
+          },
+          "expression": {
+            "type": "string",
+            "description": "The formula for your Calculated Field. To learn more about syntax and available functions, and to explore some example formulas, visit [Calculated Field Formula Reference](https://docs.honeycomb.io/reference/derived-column-formula/)."
+          }
+        }
+      }
+    },
+    "compare_time_offset_seconds": {
+      "type": "integer",
+      "enum": [
+        1800,
+        3600,
+        7200,
+        28800,
+        86400,
+        604800,
+        2419200,
+        15724800
+      ],
+      "description": "When set, offsets the query's time range by this number of seconds into the past, allowing comparison with historical data from an earlier time period. For example, setting this to 86400 (24 hours) will compare current results against data from 24 hours ago.\n##### Note\n  - The offset must be greater than or equal to the query's time range duration.\n\n##### Allowed values\n- same time range as query time range\n- `1800` - 30 minutes\n- `3600` - 1 hour\n- `7200` - 2 hours\n- `28800` - 8 hours\n- `86400` - 24 hours\n- `604800` - 7 days\n- `2419200` - 28 days\n- `15724800` - 6 months\n"
+    },
+    "usage_mode": {
+      "type": "boolean",
+      "description": "If `true`, query results will return aggregates without correcting for sample rates. This is useful for understanding the actual volume of data stored rather than the estimated original event counts. By default, aggregates are adjusted to reflect the estimated original event volume based on sample rates. Note: This field is not supported for triggers.\n",
+      "default": false
+    }
+  }
+}

@@ -1,0 +1,207 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Honeycomb Queries API \u2014 Query Annotations"
+  description: "Honeycomb Queries API \u2014 Query Annotations. 5 operations. Lead operation: Create a Query Annotation. Self-contained Naftiko capability covering one Honeycomb business surface."
+  tags:
+  - Honeycomb
+  - Observability
+  - Query Annotations
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_API_KEY: HONEYCOMB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: queries-annotations
+    baseUri: https://api.honeycomb.io
+    description: "Honeycomb Queries API \u2014 Query Annotations business capability. Self-contained, no shared references."
+    resources:
+    - name: 1-query-annotations
+      path: /1/query_annotations/{datasetSlug}
+      operations:
+      - name: createqueryannotation
+        method: POST
+        description: Create a Query Annotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listqueryannotations
+        method: GET
+        description: List Query Annotations
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: include_board_annotations
+          in: query
+          type: boolean
+          description: Whether to include Query Annotations that were created from boards. By default, only Query Annotations created directly from queries are returned.
+          required: false
+    - name: 1-query-annotations
+      path: /1/query_annotations/{datasetSlug}/{queryAnnotationId}
+      operations:
+      - name: getqueryannotation
+        method: GET
+        description: Get a Query Annotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updatequeryannotation
+        method: PUT
+        description: Update a Query Annotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletequeryannotation
+        method: DELETE
+        description: Delete a Query Annotation
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: queries-annotations-rest
+    port: 8080
+    description: "REST adapter for Honeycomb Queries API \u2014 Query Annotations. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/1/query_annotations/{datasetSlug}
+      name: 1-query-annotations
+      description: REST surface for 1-query-annotations.
+      operations:
+      - method: POST
+        name: createqueryannotation
+        description: Create a Query Annotation
+        call: queries-annotations.createqueryannotation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listqueryannotations
+        description: List Query Annotations
+        call: queries-annotations.listqueryannotations
+        with:
+          include_board_annotations: rest.include_board_annotations
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/1/query_annotations/{datasetSlug}/{queryAnnotationId}
+      name: 1-query-annotations
+      description: REST surface for 1-query-annotations.
+      operations:
+      - method: GET
+        name: getqueryannotation
+        description: Get a Query Annotation
+        call: queries-annotations.getqueryannotation
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updatequeryannotation
+        description: Update a Query Annotation
+        call: queries-annotations.updatequeryannotation
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletequeryannotation
+        description: Delete a Query Annotation
+        call: queries-annotations.deletequeryannotation
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: queries-annotations-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Honeycomb Queries API \u2014 Query Annotations. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: honeycomb-queries-annotations-createqueryannotation
+      description: Create a Query Annotation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: queries-annotations.createqueryannotation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-queries-annotations-listqueryannotations
+      description: List Query Annotations
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: queries-annotations.listqueryannotations
+      with:
+        include_board_annotations: tools.include_board_annotations
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-queries-annotations-getqueryannotation
+      description: Get a Query Annotation
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: queries-annotations.getqueryannotation
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-queries-annotations-updatequeryannotation
+      description: Update a Query Annotation
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: queries-annotations.updatequeryannotation
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-queries-annotations-deletequeryannotation
+      description: Delete a Query Annotation
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: queries-annotations.deletequeryannotation
+      outputParameters:
+      - type: object
+        mapping: $.

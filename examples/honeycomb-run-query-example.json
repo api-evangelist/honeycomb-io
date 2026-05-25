@@ -1,0 +1,29 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.honeycomb.io/1/query_results/my-service",
+    "headers": {
+      "X-Honeycomb-Team": "$HONEYCOMB_API_KEY",
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "query_id": "abc123XYZ",
+      "disable_series": false,
+      "limit": 1000
+    }
+  },
+  "response": {
+    "status": 201,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "id": "qr_01HQABCDEF",
+      "complete": false,
+      "query_id": "abc123XYZ",
+      "links": {
+        "query_url": "https://ui.honeycomb.io/my-team/datasets/my-service/result/qr_01HQABCDEF"
+      }
+    }
+  }
+}

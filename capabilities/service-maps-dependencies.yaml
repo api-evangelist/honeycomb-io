@@ -1,0 +1,119 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Honeycomb Service Maps API \u2014 Dependencies"
+  description: "Honeycomb Service Maps API \u2014 Dependencies. 2 operations. Lead operation: Create a Map Dependency Request. Self-contained Naftiko capability covering one Honeycomb business surface."
+  tags:
+  - Honeycomb
+  - Observability
+  - Service Maps
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_API_KEY: HONEYCOMB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: service-maps-dependencies
+    baseUri: https://api.honeycomb.io
+    description: "Honeycomb Service Maps API \u2014 Dependencies business capability. Self-contained, no shared references."
+    resources:
+    - name: 1-maps-dependencies-requests
+      path: /1/maps/dependencies/requests
+      operations:
+      - name: createmapdependencyrequest
+        method: POST
+        description: Create a Map Dependency Request
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of dependencies to return. Default is 10000, maximum is 64000.
+          required: false
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: 1-maps-dependencies-requests
+      path: /1/maps/dependencies/requests/{requestId}
+      operations:
+      - name: getmapdependencies
+        method: GET
+        description: Get Map Dependencies
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: service-maps-dependencies-rest
+    port: 8080
+    description: "REST adapter for Honeycomb Service Maps API \u2014 Dependencies. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/1/maps/dependencies/requests
+      name: 1-maps-dependencies-requests
+      description: REST surface for 1-maps-dependencies-requests.
+      operations:
+      - method: POST
+        name: createmapdependencyrequest
+        description: Create a Map Dependency Request
+        call: service-maps-dependencies.createmapdependencyrequest
+        with:
+          limit: rest.limit
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/1/maps/dependencies/requests/{requestId}
+      name: 1-maps-dependencies-requests
+      description: REST surface for 1-maps-dependencies-requests.
+      operations:
+      - method: GET
+        name: getmapdependencies
+        description: Get Map Dependencies
+        call: service-maps-dependencies.getmapdependencies
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: service-maps-dependencies-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Honeycomb Service Maps API \u2014 Dependencies. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: honeycomb-service-maps-dependencies-createmapdependencyreque
+      description: Create a Map Dependency Request
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: service-maps-dependencies.createmapdependencyrequest
+      with:
+        limit: tools.limit
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-service-maps-dependencies-getmapdependencies
+      description: Get Map Dependencies
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: service-maps-dependencies.getmapdependencies
+      outputParameters:
+      - type: object
+        mapping: $.

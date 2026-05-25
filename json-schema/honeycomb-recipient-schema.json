@@ -1,0 +1,479 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb-io/main/json-schema/honeycomb-recipient-schema.json",
+  "title": "Honeycomb Recipient",
+  "description": "JSON Schema for the Honeycomb Recipient resource. Generated from the Honeycomb API OpenAPI spec.",
+  "type": "object",
+  "required": [
+    "type"
+  ],
+  "properties": {
+    "type": {
+      "type": "string"
+    }
+  },
+  "discriminator": {
+    "propertyName": "type",
+    "mapping": {
+      "pagerduty": "#/components/schemas/PagerDutyRecipient",
+      "email": "#/components/schemas/EmailRecipient",
+      "slack": "#/components/schemas/SlackRecipient",
+      "webhook": "#/components/schemas/WebhookRecipient",
+      "msteams": "#/components/schemas/MSTeamsRecipient",
+      "msteams_workflow": "#/components/schemas/MSTeamsWorkflowRecipient"
+    }
+  },
+  "oneOf": [
+    {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "readOnly": true,
+              "example": "yUheCUmgZ8p"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was created.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was updated.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "type": {
+              "$ref": "#/components/schemas/RecipientType"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "pagerduty"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "details": {
+              "type": "object",
+              "required": [
+                "pagerduty_integration_name",
+                "pagerduty_integration_key"
+              ],
+              "description": "Specific schema for the Pagerduty Recipient Type",
+              "properties": {
+                "pagerduty_integration_name": {
+                  "type": "string",
+                  "description": "A name for this Integration.",
+                  "example": "Example PagerDuty Service"
+                },
+                "pagerduty_integration_key": {
+                  "type": "string",
+                  "description": "Pagerduty Integration Key.",
+                  "example": "7zOwh1edS8xHGcwfb2bA4sqY8E6PJzSK",
+                  "minLength": 32,
+                  "maxLength": 32
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "readOnly": true,
+              "example": "yUheCUmgZ8p"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was created.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was updated.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "type": {
+              "$ref": "#/components/schemas/RecipientType"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "email"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "details": {
+              "type": "object",
+              "required": [
+                "email_address"
+              ],
+              "description": "Specific schema for the Email Recipient Type",
+              "properties": {
+                "email_address": {
+                  "type": "string",
+                  "description": "Email address to notify.",
+                  "example": "notify-me@example-email.com"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "readOnly": true,
+              "example": "yUheCUmgZ8p"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was created.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was updated.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "type": {
+              "$ref": "#/components/schemas/RecipientType"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "slack"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "details": {
+              "type": "object",
+              "required": [
+                "slack_channel"
+              ],
+              "description": "Specific schema for the Slack Recipient Type.",
+              "properties": {
+                "slack_channel": {
+                  "type": "string",
+                  "description": "Slack channel to notify.",
+                  "example": "#alerts-channel"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "readOnly": true,
+              "example": "yUheCUmgZ8p"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was created.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was updated.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "type": {
+              "$ref": "#/components/schemas/RecipientType"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "webhook"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "details": {
+              "type": "object",
+              "required": [
+                "webhook_name",
+                "webhook_url"
+              ],
+              "description": "Specific schema for the Webhook Recipient Type",
+              "properties": {
+                "webhook_headers": {
+                  "type": "array",
+                  "maxItems": 5,
+                  "description": "Custom headers for this webhook",
+                  "items": {
+                    "$ref": "#/components/schemas/WebhookHeader"
+                  },
+                  "example": [
+                    {
+                      "header": "Authorization",
+                      "value": "Bearer xyz123"
+                    }
+                  ]
+                },
+                "webhook_name": {
+                  "type": "string",
+                  "maxLength": 255,
+                  "description": "A name for this Integration.",
+                  "example": "Example webhook"
+                },
+                "webhook_url": {
+                  "type": "string",
+                  "description": "Webhook URL.",
+                  "maxLength": 2048,
+                  "example": "https://webhook.example.com"
+                },
+                "webhook_secret": {
+                  "type": "string",
+                  "description": "Webhook secret.",
+                  "maxLength": 255,
+                  "example": "secret"
+                },
+                "webhook_payloads": {
+                  "type": "object",
+                  "description": "Specify a custom webhook payload.",
+                  "properties": {
+                    "template_variables": {
+                      "type": "array",
+                      "maxItems": 10,
+                      "description": "Custom variable definitions for this webhook",
+                      "items": {
+                        "$ref": "#/components/schemas/TemplateVariableDefinition"
+                      },
+                      "example": [
+                        {
+                          "name": "severity",
+                          "default_value": "CRITICAL"
+                        }
+                      ]
+                    },
+                    "payload_templates": {
+                      "type": "object",
+                      "properties": {
+                        "trigger": {
+                          "$ref": "#/components/schemas/PayloadTemplate"
+                        },
+                        "budget_rate": {
+                          "$ref": "#/components/schemas/PayloadTemplate"
+                        },
+                        "exhaustion_time": {
+                          "$ref": "#/components/schemas/PayloadTemplate"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "readOnly": true,
+              "example": "yUheCUmgZ8p"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was created.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was updated.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "type": {
+              "$ref": "#/components/schemas/RecipientType"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "msteams"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "deprecated": true,
+          "properties": {
+            "details": {
+              "type": "object",
+              "required": [
+                "webhook_name",
+                "webhook_url"
+              ],
+              "description": "Specific schema for the MS Teams Recipient Type. Now deprecated, please use the `msteams_workflow` type instead.",
+              "properties": {
+                "webhook_name": {
+                  "type": "string",
+                  "description": "A name for this recipient.",
+                  "example": "My Teams Channel"
+                },
+                "webhook_url": {
+                  "type": "string",
+                  "description": "Incoming webhook URL of an Teams instance.",
+                  "example": "https://yourco.webhook.office.com/webhook/xxxx"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string",
+              "readOnly": true,
+              "example": "yUheCUmgZ8p"
+            },
+            "created_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was created.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "updated_at": {
+              "type": "string",
+              "format": "date-time",
+              "description": "ISO8601 formatted time the Recipient was updated.",
+              "example": "2022-07-26T22:38:04Z",
+              "readOnly": true
+            },
+            "type": {
+              "$ref": "#/components/schemas/RecipientType"
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string",
+              "enum": [
+                "msteams_workflow"
+              ]
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "details": {
+              "type": "object",
+              "required": [
+                "webhook_name",
+                "webhook_url"
+              ],
+              "description": "Specific schema for the MS Teams Workflow Recipient Type.",
+              "properties": {
+                "webhook_name": {
+                  "type": "string",
+                  "maxLength": 255,
+                  "description": "A name for this recipient.",
+                  "example": "My Teams Channel"
+                },
+                "webhook_url": {
+                  "type": "string",
+                  "maxLength": 2048,
+                  "description": "Incoming webhook URL of an Teams instance.",
+                  "example": "https://test-123.westus.logic.azure.com:443/workflows/54321/triggers/manual/paths/invoke"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

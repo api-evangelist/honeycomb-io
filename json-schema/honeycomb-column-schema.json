@@ -1,0 +1,72 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb-io/main/json-schema/honeycomb-column-schema.json",
+  "title": "Honeycomb Column",
+  "description": "JSON Schema for the Honeycomb Column resource. Generated from the Honeycomb API OpenAPI spec.",
+  "allOf": [
+    {
+      "type": "object",
+      "required": [
+        "key_name"
+      ],
+      "properties": {
+        "key_name": {
+          "type": "string",
+          "description": "Name of the Column.",
+          "example": "my_column",
+          "minLength": 1,
+          "maxLength": 255
+        },
+        "type": {
+          "type": "string",
+          "default": "string",
+          "enum": [
+            "string",
+            "float",
+            "integer",
+            "boolean",
+            "histogram"
+          ],
+          "description": "Type of data that the Column will contain. Histogram is in beta and only works in your Metrics dataset.",
+          "example": "integer"
+        },
+        "description": {
+          "type": "string",
+          "description": "Column description.",
+          "maxLength": 255,
+          "example": "An integer column"
+        },
+        "hidden": {
+          "type": "boolean",
+          "default": false,
+          "description": "If `true`, the column is excluded from autocomplete and raw data field lists."
+        },
+        "id": {
+          "type": "string",
+          "readOnly": true,
+          "description": "Unique identifier (ID), returned in response bodies."
+        },
+        "last_written": {
+          "type": "string",
+          "readOnly": true,
+          "description": "ISO8601 formatted time the column was last written to (received event data)."
+        },
+        "created_at": {
+          "type": "string",
+          "readOnly": true,
+          "description": "ISO8601 formatted time the column was created."
+        },
+        "updated_at": {
+          "type": "string",
+          "readOnly": true,
+          "description": "ISO8601 formatted time the column was updated."
+        }
+      }
+    }
+  ],
+  "properties": {
+    "key_name": {
+      "readOnly": true
+    }
+  }
+}

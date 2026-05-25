@@ -1,0 +1,94 @@
+extends:
+  - spectral:oas
+  - spectral:asyncapi
+
+functionsDir: ./functions
+functions: []
+
+rules:
+  # --- Honeycomb naming and structural conventions ---
+
+  honeycomb-paths-snake-case:
+    description: Honeycomb paths and path segments use snake_case (e.g. /1/dataset_definitions, /1/burn_alerts).
+    severity: warn
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: '^/[0-9]+(/[a-z][a-z0-9_]*|/\{[A-Za-z]+\})+/?$'
+
+  honeycomb-versioned-base-path:
+    description: Honeycomb APIs are versioned at the path root; every path MUST start with /1/ or /2/.
+    severity: error
+    given: $.paths[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: '^/[12]/'
+
+  honeycomb-v2-uses-jsonapi:
+    description: v2 endpoints (under /2/teams/...) return application/vnd.api+json per JSON:API spec.
+    severity: warn
+    given: $.paths[?(@property =~ /^\/2\//)][*].responses[?(@property =~ /^2/)].content
+    then:
+      field: application/vnd.api+json
+      function: truthy
+
+  honeycomb-operation-tag-required:
+    description: Every Honeycomb operation MUST be tagged for navigation in the interactive docs.
+    severity: error
+    given: $.paths[*][get,post,put,patch,delete].tags
+    then:
+      function: length
+      functionOptions:
+        min: 1
+
+  honeycomb-summary-title-case:
+    description: Operation summaries are written in Title Case (e.g. "Create A Marker", "List All SLOs").
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].summary
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[A-Z][A-Za-z0-9 ]+$'
+
+  honeycomb-camel-case-properties:
+    description: Honeycomb v1 response properties use snake_case at the wire level (id, last_written_at,
+      created_at).
+    severity: warn
+    given: $.components.schemas[*].properties[*]~
+    then:
+      function: pattern
+      functionOptions:
+        match: '^[a-z][a-z0-9_]*$'
+
+  honeycomb-securityscheme-defined:
+    description: Honeycomb requires an X-Honeycomb-Team apiKey security scheme.
+    severity: error
+    given: $.components.securitySchemes
+    then:
+      field: configuration_key
+      function: truthy
+
+  honeycomb-error-response-has-error-property:
+    description: 4xx and 5xx responses MUST surface an `error` property describing the failure.
+    severity: warn
+    given: $.paths[*][get,post,put,patch,delete].responses[?(@property =~ /^[45]/)].content.*.schema.properties
+    then:
+      field: error
+      function: truthy
+
+  honeycomb-list-endpoints-paginated-or-bounded:
+    description: List endpoints SHOULD describe pagination or boundedness in their summary or description.
+    severity: hint
+    given: $.paths[?(@property =~ /^\/1\/[a-z_]+$/)].get
+    then:
+      field: description
+      function: truthy
+
+  honeycomb-dataset-slug-path-param:
+    description: Per-dataset endpoints use {datasetSlug} as the path parameter name.
+    severity: warn
+    given: $.paths[?(@property =~ /\/[0-9]+\/[a-z_]+\/\{[A-Za-z]+\}/)]
+    then:
+      function: truthy

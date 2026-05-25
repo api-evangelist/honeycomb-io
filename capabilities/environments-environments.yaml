@@ -1,0 +1,197 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Honeycomb Environments API \u2014 Environments"
+  description: "Honeycomb Environments API \u2014 Environments. 5 operations. Lead operation: List all Environments. Self-contained Naftiko capability covering one Honeycomb business surface."
+  tags:
+  - Honeycomb
+  - Observability
+  - Environments
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_MANAGEMENT_KEY: HONEYCOMB_MANAGEMENT_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: environments-environments
+    baseUri: https://api.honeycomb.io
+    description: "Honeycomb Environments API \u2014 Environments business capability. Self-contained, no shared references."
+    resources:
+    - name: 2-teams-environments
+      path: /2/teams/{teamSlug}/environments
+      operations:
+      - name: listenvironments
+        method: GET
+        description: List all Environments
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createenvironment
+        method: POST
+        description: Create an Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: 2-teams-environments
+      path: /2/teams/{teamSlug}/environments/{ID}
+      operations:
+      - name: getenvironment
+        method: GET
+        description: Get an Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateenvironment
+        method: PATCH
+        description: Update an Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteenvironment
+        method: DELETE
+        description: Delete an Environment
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_MANAGEMENT_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: environments-environments-rest
+    port: 8080
+    description: "REST adapter for Honeycomb Environments API \u2014 Environments. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/2/teams/{teamSlug}/environments
+      name: 2-teams-environments
+      description: REST surface for 2-teams-environments.
+      operations:
+      - method: GET
+        name: listenvironments
+        description: List all Environments
+        call: environments-environments.listenvironments
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createenvironment
+        description: Create an Environment
+        call: environments-environments.createenvironment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/2/teams/{teamSlug}/environments/{ID}
+      name: 2-teams-environments
+      description: REST surface for 2-teams-environments.
+      operations:
+      - method: GET
+        name: getenvironment
+        description: Get an Environment
+        call: environments-environments.getenvironment
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: updateenvironment
+        description: Update an Environment
+        call: environments-environments.updateenvironment
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteenvironment
+        description: Delete an Environment
+        call: environments-environments.deleteenvironment
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: environments-environments-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Honeycomb Environments API \u2014 Environments. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: honeycomb-environments-environments-listenvironments
+      description: List all Environments
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: environments-environments.listenvironments
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-environments-environments-createenvironment
+      description: Create an Environment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: environments-environments.createenvironment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-environments-environments-getenvironment
+      description: Get an Environment
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: environments-environments.getenvironment
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-environments-environments-updateenvironment
+      description: Update an Environment
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: environments-environments.updateenvironment
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-environments-environments-deleteenvironment
+      description: Delete an Environment
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: environments-environments.deleteenvironment
+      outputParameters:
+      - type: object
+        mapping: $.

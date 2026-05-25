@@ -1,0 +1,172 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Honeycomb Markers API \u2014 Markers"
+  description: "Honeycomb Markers API \u2014 Markers. 4 operations. Lead operation: Create a Marker. Self-contained Naftiko capability covering one Honeycomb business surface."
+  tags:
+  - Honeycomb
+  - Observability
+  - Markers
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_API_KEY: HONEYCOMB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: markers-markers
+    baseUri: https://api.honeycomb.io
+    description: "Honeycomb Markers API \u2014 Markers business capability. Self-contained, no shared references."
+    resources:
+    - name: 1-markers
+      path: /1/markers/{datasetSlug}
+      operations:
+      - name: createmarker
+        method: POST
+        description: Create a Marker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: getmarker
+        method: GET
+        description: List All Markers
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: 1-markers
+      path: /1/markers/{datasetSlug}/{markerId}
+      operations:
+      - name: updatemarker
+        method: PUT
+        description: Update a Marker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deletemarker
+        method: DELETE
+        description: Delete a Marker
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: markers-markers-rest
+    port: 8080
+    description: "REST adapter for Honeycomb Markers API \u2014 Markers. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/1/markers/{datasetSlug}
+      name: 1-markers
+      description: REST surface for 1-markers.
+      operations:
+      - method: POST
+        name: createmarker
+        description: Create a Marker
+        call: markers-markers.createmarker
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getmarker
+        description: List All Markers
+        call: markers-markers.getmarker
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/1/markers/{datasetSlug}/{markerId}
+      name: 1-markers
+      description: REST surface for 1-markers.
+      operations:
+      - method: PUT
+        name: updatemarker
+        description: Update a Marker
+        call: markers-markers.updatemarker
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deletemarker
+        description: Delete a Marker
+        call: markers-markers.deletemarker
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: markers-markers-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Honeycomb Markers API \u2014 Markers. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: honeycomb-markers-markers-createmarker
+      description: Create a Marker
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: markers-markers.createmarker
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-markers-markers-getmarker
+      description: List All Markers
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: markers-markers.getmarker
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-markers-markers-updatemarker
+      description: Update a Marker
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: markers-markers.updatemarker
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-markers-markers-deletemarker
+      description: Delete a Marker
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: markers-markers.deletemarker
+      outputParameters:
+      - type: object
+        mapping: $.

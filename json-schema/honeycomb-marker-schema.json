@@ -1,0 +1,54 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/honeycomb-io/main/json-schema/honeycomb-marker-schema.json",
+  "title": "Honeycomb Marker",
+  "description": "JSON Schema for the Honeycomb Marker resource. Generated from the Honeycomb API OpenAPI spec.",
+  "type": "object",
+  "properties": {
+    "start_time": {
+      "type": "integer",
+      "description": "Indicates the time the Marker should be placed. If missing, defaults to the time the request arrives. Expressed in Unix Time.",
+      "example": 1471040808
+    },
+    "end_time": {
+      "type": "integer",
+      "description": "Specifies end time, and allows a Marker to be recorded as representing a time range, such as a 5 minute deploy. Expressed in Unix Time.",
+      "example": 1668453920
+    },
+    "message": {
+      "type": "string",
+      "description": "A message to describe this specific Marker.",
+      "example": "backend deploy #123"
+    },
+    "type": {
+      "type": "string",
+      "description": "Groups similar Markers. For example, `deploys`. All Markers of the same type appear with the same color on the graph. Refer to the [Marker Settings](/api/marker-settings/) API for altering the color of each type.",
+      "example": "deploy"
+    },
+    "url": {
+      "type": "string",
+      "description": "A target for the marker. Clicking the marker text will take you to this URL.",
+      "example": "http://link-to-build.here"
+    },
+    "id": {
+      "type": "string",
+      "description": "A 6 character hexadecimal string assigned on Marker creation.",
+      "readOnly": true
+    },
+    "created_at": {
+      "type": "string",
+      "description": "The ISO8601-formatted time when the Marker was created.",
+      "readOnly": true
+    },
+    "updated_at": {
+      "type": "string",
+      "description": "The ISO8601-formatted time when the Marker was updated.",
+      "readOnly": true
+    },
+    "color": {
+      "type": "string",
+      "description": "Color can be assigned to Markers using the Marker Settings endpoint. This field will be populated when List All Markers is called.",
+      "readOnly": true
+    }
+  }
+}

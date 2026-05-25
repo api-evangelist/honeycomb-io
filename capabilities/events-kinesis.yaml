@@ -1,0 +1,80 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Honeycomb Events API \u2014 Kinesis Events"
+  description: "Honeycomb Events API \u2014 Kinesis Events. 1 operations. Lead operation: Create Kinesis Events. Self-contained Naftiko capability covering one Honeycomb business surface."
+  tags:
+  - Honeycomb
+  - Observability
+  - Kinesis Events
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_API_KEY: HONEYCOMB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: events-kinesis
+    baseUri: https://api.honeycomb.io
+    description: "Honeycomb Events API \u2014 Kinesis Events business capability. Self-contained, no shared references."
+    resources:
+    - name: 1-kinesis-events
+      path: /1/kinesis_events/{datasetSlug}
+      operations:
+      - name: createkinesisevents
+        method: POST
+        description: Create Kinesis Events
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: events-kinesis-rest
+    port: 8080
+    description: "REST adapter for Honeycomb Events API \u2014 Kinesis Events. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/1/kinesis_events/{datasetSlug}
+      name: 1-kinesis-events
+      description: REST surface for 1-kinesis-events.
+      operations:
+      - method: POST
+        name: createkinesisevents
+        description: Create Kinesis Events
+        call: events-kinesis.createkinesisevents
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: events-kinesis-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Honeycomb Events API \u2014 Kinesis Events. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: honeycomb-events-kinesis-createkinesisevents
+      description: Create Kinesis Events
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: events-kinesis.createkinesisevents
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

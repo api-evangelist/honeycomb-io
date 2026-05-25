@@ -1,0 +1,1381 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Boards API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb
+    Support</a>.
+
+    '
+externalDocs:
+  url: https://docs.honeycomb.io
+servers:
+- url: https://api.honeycomb.io
+- url: https://api.eu1.honeycomb.io
+tags:
+- name: Boards
+  description: 'Boards are a place to pin and save useful queries/graphs, SLO panels, text panels, and views you want to retain for later reuse and reference.
+
+
+    Boards can contain multiple panel types:
+
+    - **Query panels**: Display saved queries/graphs
+
+    - **SLO panels**: Monitor Service Level Objectives
+
+    - **Text panels**: Add markdown-formatted text and documentation
+
+    - **Views**: Filtered perspectives of board data (limited to 50 views per board)
+
+
+    Boards also support preset filters (limited to 5 per board) to apply consistent filtering across the board.
+
+
+    This API allows you to list, create, update, and delete boards, as well as manage board views.
+
+
+    ## Authorization
+
+
+    The API key must have the **Manage Public Boards** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).
+
+    '
+paths:
+  /1/boards:
+    post:
+      security:
+      - configuration_key: []
+      summary: Create a Board
+      description: 'Create a Board comprised of one or more Panels (Query, SLO, or Text).
+
+        **Note**: Each board is limited to a maximum of 5 preset filters.
+
+        '
+      tags:
+      - Boards
+      operationId: createBoard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Board'
+            examples:
+              Simple Flexible Board with Query and Text Panels:
+                value:
+                  name: My API Board
+                  description: A board created via the API with mixed panel types
+                  type: flexible
+                  panels:
+                  - type: query
+                    query_panel:
+                      query_id: abc1234e
+                      query_annotation_id: e4c24a35
+                    position:
+                      x_coordinate: 0
+                      y_coordinate: 0
+                      height: 6
+                      width: 8
+                  - type: text
+                    text_panel:
+                      content: '# Welcome to our API Dashboard
+
+
+                        This board shows key metrics for our services.'
+                    position:
+                      x_coordinate: 8
+                      y_coordinate: 0
+                      height: 3
+                      width: 4
+                  layout_generation: manual
+                  tags:
+                  - key: team
+                    value: backend
+                  - key: environment
+                    value: production
+              Auto-Layout Board with Multiple Panel Types:
+                value:
+                  name: Service Health Overview
+                  description: Comprehensive service monitoring dashboard
+                  type: flexible
+                  panels:
+                  - type: query
+                    query_panel:
+                      query_id: def5678f
+                      query_annotation_id: a1b2c3d4
+                      dataset: frontend-logs
+                  - type: slo
+                    slo_panel:
+                      slo_id: BGfyxhFto
+                  - type: text
+                    text_panel:
+                      content: "## Service Status\n\n\u26A0\uFE0F **Note**: All services are currently operational"
+                  layout_generation: auto
+                  tags:
+                  - key: service
+                    value: user-service
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Board'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    get:
+      security:
+      - configuration_key: []
+      summary: List All Boards
+      description: 'Retrieves a list of all non-secret Boards within an environment. **Note**: For Honeycomb Classic users, all boards within Classic will be returned.
+
+        '
+      tags:
+      - Boards
+      operationId: listBoards
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Board'
+              examples:
+                Mixed Board Types:
+                  value:
+                  - id: abc123
+                    name: Production Monitoring
+                    description: Key metrics for production environment
+                    type: flexible
+                    panels:
+                    - type: query
+                      query_panel:
+                        query_id: ghi9012a
+                        query_annotation_id: f5e6d7c8
+                      position:
+                        x_coordinate: 0
+                        y_coordinate: 0
+                        height: 6
+                        width: 12
+                    - type: text
+                      text_panel:
+                        content: '# Production Status
+
+
+                          All systems operational'
+                      position:
+                        x_coordinate: 0
+                        y_coordinate: 6
+                        height: 2
+                        width: 12
+                    layout_generation: manual
+                    tags:
+                    - key: environment
+                      value: production
+                  - id: def456
+                    name: Service Health Dashboard
+                    description: SLO monitoring for critical services
+                    type: flexible
+                    panels:
+                    - type: slo
+                      slo_panel:
+                        slo_id: dF1URaPGL
+                    - type: query
+                      query_panel:
+                        query_id: jkl3456b
+                        query_annotation_id: b9c8d7e6
+                        dataset: api-logs
+                    layout_generation: auto
+                    tags:
+                    - key: team
+                      value: platform
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+  /1/boards/{boardId}:
+    parameters:
+    - name: boardId
+      description: The unique identifier (ID) of a Board.
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      security:
+      - configuration_key: []
+      summary: Get a Board
+      description: Get a single Board by ID.
+      tags:
+      - Boards
+      operationId: getBoard
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Board'
+              examples:
+                Flexible Board with All Panel Types:
+                  value:
+                    id: board789
+                    name: Comprehensive Dashboard
+                    description: Complete monitoring setup with all panel types
+                    type: flexible
+                    panels:
+                    - type: query
+                      query_panel:
+                        query_id: stu5678e
+                        query_annotation_id: e9f8g7h6
+                        dataset: application-logs
+                      position:
+                        x_coordinate: 0
+                        y_coordinate: 0
+                        height: 8
+                        width: 8
+                    - type: slo
+                      slo_panel:
+                        slo_id: BGfyxhFto
+                      position:
+                        x_coordinate: 8
+                        y_coordinate: 0
+                        height: 4
+                        width: 4
+                    - type: text
+                      text_panel:
+                        content: "## Alert Status\n\n\U0001F7E2 All systems normal\n\n**Last updated:** 2024-01-15 14:30 UTC"
+                      position:
+                        x_coordinate: 8
+                        y_coordinate: 4
+                        height: 4
+                        width: 4
+                    layout_generation: manual
+                    tags:
+                    - key: criticality
+                      value: high
+                    - key: owner
+                      value: sre-team
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    put:
+      security:
+      - configuration_key: []
+      summary: Update a Board
+      description: 'Update a Board by specifying its ID and full details.
+
+        **Note**: Queries can be added to, removed from, and re-ordered by updating the board itself. It is not possible to reference individual queries via the API.
+
+        **Note**: Each board is limited to a maximum of 5 preset filters. Attempting to update a board with more than 5 preset filters will result in an error.
+
+        '
+      tags:
+      - Boards
+      operationId: updateBoard
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Board'
+            examples:
+              Add New Panel to Existing Board:
+                value:
+                  id: board456
+                  name: Updated Production Dashboard
+                  description: Production monitoring with additional SLO panel
+                  type: flexible
+                  panels:
+                  - type: query
+                    query_panel:
+                      query_id: cdef7890
+                      query_annotation_id: h9i8j7k6
+                    position:
+                      x_coordinate: 0
+                      y_coordinate: 0
+                      height: 6
+                      width: 6
+                  - type: slo
+                    slo_panel:
+                      slo_id: BGfyxhFto
+                    position:
+                      x_coordinate: 6
+                      y_coordinate: 0
+                      height: 6
+                      width: 6
+                  - type: text
+                    text_panel:
+                      content: '## Recent Changes
+
+
+                        - Added SLO monitoring
+
+                        - Updated query filters'
+                    position:
+                      x_coordinate: 0
+                      y_coordinate: 6
+                      height: 3
+                      width: 12
+                  layout_generation: manual
+                  tags:
+                  - key: environment
+                    value: production
+                  - key: updated_by
+                    value: api
+              Reorganize Panel Layout:
+                value:
+                  id: board789
+                  name: Service Metrics Reorganized
+                  description: Restructured layout for better visibility
+                  type: flexible
+                  panels:
+                  - type: query
+                    query_panel:
+                      query_id: ghij1234
+                      query_annotation_id: i1j2k3l4
+                      dataset: service-metrics
+                  - type: query
+                    query_panel:
+                      query_id: klmn5678
+                      query_annotation_id: j5k6l7m8
+                      dataset: error-logs
+                  - type: text
+                    text_panel:
+                      content: '# Service Health Overview
+
+
+                        Monitoring key performance indicators'
+                  layout_generation: auto
+                  tags:
+                  - key: team
+                    value: backend
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Board'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    delete:
+      security:
+      - configuration_key: []
+      summary: Delete a Board
+      description: Delete a public Board by specifying its ID.
+      tags:
+      - Boards
+      operationId: deleteBoard
+      responses:
+        '204':
+          description: Success - no Content
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+  /1/boards/{boardId}/views:
+    parameters:
+    - name: boardId
+      description: The unique identifier (ID) of a Board.
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      security:
+      - configuration_key: []
+      summary: List Board Views
+      description: 'Retrieve a list of all views for a board.
+
+        **Note**: Each board is limited to a maximum of 50 views.
+
+        '
+      tags:
+      - Boards
+      operationId: listBoardViews
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                type: array
+                maxItems: 50
+                items:
+                  $ref: '#/components/schemas/BoardViewResponse'
+              examples:
+                Multiple Views:
+                  value:
+                  - id: eC_abc123
+                    name: Errors View
+                    filters:
+                    - column: status
+                      operation: '='
+                      value: error
+                  - id: yc_def456
+                    name: Slow requests view
+                    filters:
+                    - column: duration_ms
+                      operation: '>'
+                      value: 1000
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    post:
+      security:
+      - configuration_key: []
+      summary: Create a Board View
+      description: 'Create a new view for a board with the specified filters.
+
+        **Note**: Each board is limited to a maximum of 50 views. Attempting to create more than 50 views will result in an error.
+
+        '
+      tags:
+      - Boards
+      operationId: createBoardView
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBoardViewRequest'
+            examples:
+              Create board view for error statuses:
+                value:
+                  name: Errors View
+                  filters:
+                  - column: status
+                    operation: '='
+                    value: error
+      responses:
+        '201':
+          description: Created
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardViewResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+  /1/boards/{boardId}/views/{viewId}:
+    parameters:
+    - name: boardId
+      description: The unique identifier (ID) of a Board.
+      in: path
+      required: true
+      schema:
+        type: string
+    - name: viewId
+      description: The unique identifier (ID) of a Board View.
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      security:
+      - configuration_key: []
+      summary: Get a Board View
+      description: Retrieve a single Board View by ID.
+      tags:
+      - Boards
+      operationId: getBoardView
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardViewResponse'
+              examples:
+                Single View with Multiple Filters:
+                  value:
+                    id: eC_abc123
+                    name: Api and web slow requests errors
+                    filters:
+                    - column: status
+                      operation: '='
+                      value: error
+                    - column: duration_ms
+                      operation: '>'
+                      value: 100
+                    - column: service
+                      operation: in
+                      value:
+                      - api
+                      - web
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    delete:
+      security:
+      - configuration_key: []
+      summary: Delete a Board View
+      description: Delete a Board View by specifying its ID.
+      tags:
+      - Boards
+      operationId: deleteBoardView
+      responses:
+        '204':
+          description: Success - no Content
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    put:
+      security:
+      - configuration_key: []
+      summary: Update a Board View
+      description: Update a Board View by specifying its ID and full details.
+      tags:
+      - Boards
+      operationId: updateBoardView
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBoardViewRequest'
+            examples:
+              Update board view for error statuses:
+                value:
+                  name: Errors View
+                  filters:
+                  - column: status
+                    operation: '='
+                    value: error
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BoardViewResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+components:
+  schemas:
+    PresetFilter:
+      type: object
+      required:
+      - column
+      - alias
+      properties:
+        column:
+          type: string
+          description: Original name of the column to alias.
+        alias:
+          type: string
+          description: The alias of the preset filter. Maximum length is 50 characters.
+    BoardViewResponse:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the board view.
+          example: eC_abc123
+        name:
+          type: string
+          description: The name of the view.
+          example: My View
+        filters:
+          type: array
+          items:
+            $ref: '#/components/schemas/BoardViewFilter'
+    UpdateBoardViewRequest:
+      type: object
+      required:
+      - name
+      - filters
+      properties:
+        id:
+          type: string
+          description: Unique identifier for the board view.
+          example: eC_abc123
+        name:
+          type: string
+          description: The name of the view.
+          minLength: 1
+          maxLength: 255
+          example: My View
+        filters:
+          type: array
+          description: The filters to apply to this view.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/BoardViewFilter'
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    ValidationError:
+      x-tags:
+      - Errors
+      allOf:
+      - $ref: '#/components/schemas/DetailedError'
+      - type: object
+        properties:
+          status:
+            type: number
+            readOnly: true
+            default: 422
+          type:
+            type: string
+            readOnly: true
+            default: https://api.honeycomb.io/problems/validation-failed
+          title:
+            type: string
+            readOnly: true
+            default: The provided input is invalid.
+          type_detail:
+            type: array
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                  readOnly: true
+                code:
+                  type: string
+                  readOnly: true
+                  enum:
+                  - invalid
+                  - missing
+                  - incorrect_type
+                  - already_exists
+                description:
+                  type: string
+                  readOnly: true
+    BoardViewFilter:
+      type: object
+      required:
+      - column
+      - operation
+      properties:
+        column:
+          type: string
+          description: The column name to filter on.
+          example: status
+        operation:
+          type: string
+          description: The filter operation.
+          enum:
+          - '='
+          - '!='
+          - '>'
+          - '>='
+          - <
+          - <=
+          - starts-with
+          - does-not-start-with
+          - ends-with
+          - does-not-end-with
+          - exists
+          - does-not-exist
+          - contains
+          - does-not-contain
+          - in
+          - not-in
+          example: '='
+        value:
+          description: The value to filter by.
+          example: error
+    BoardType:
+      type: string
+      description: The type of the board. Only flexible boards are supported.
+      enum:
+      - flexible
+    CreateBoardViewRequest:
+      type: object
+      required:
+      - name
+      - filters
+      properties:
+        name:
+          type: string
+          description: The name of the view.
+          minLength: 1
+          maxLength: 255
+          example: My View
+        filters:
+          type: array
+          description: The filters to apply to this view.
+          minItems: 1
+          items:
+            $ref: '#/components/schemas/BoardViewFilter'
+    BoardPanel:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/QueryPanel'
+      - $ref: '#/components/schemas/SLOPanel'
+      - $ref: '#/components/schemas/TextPanel'
+      discriminator:
+        propertyName: type
+        mapping:
+          query: '#/components/schemas/QueryPanel'
+          slo: '#/components/schemas/SLOPanel'
+          text: '#/components/schemas/TextPanel'
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
+          type: string
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
+          type: string
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    QueryPanel:
+      title: Query Panel
+      type: object
+      required:
+      - query_panel
+      - type
+      properties:
+        type:
+          const: query
+          description: The type of the board panel.
+        position:
+          $ref: '#/components/schemas/BoardPanelPosition'
+        query_panel:
+          type: object
+          required:
+          - query_id
+          - query_annotation_id
+          properties:
+            query_id:
+              type: string
+              description: 'The ID of the Query to display on the board. The Query must be in the same environment as the board.
+
+                '
+              example: abc1234e
+            query_style:
+              type: string
+              description: How the query should be displayed on the board.
+              enum:
+              - graph
+              - table
+              - combo
+              default: graph
+            query_annotation_id:
+              type: string
+              description: 'The ID of a Query Annotation that provides a name and description for the Query. The Query Annotation must apply to the `query_id` or `query` specified.
+
+                '
+              example: e4c24a35
+            dataset:
+              type: string
+              readOnly: true
+              description: 'The dataset name to which the query is scoped. Empty for environment-wide queries.
+
+                '
+              example: My Dataset
+            visualization_settings:
+              $ref: '#/components/schemas/BoardQueryVisualizationSettings'
+    BoardQueryVisualizationSettings:
+      type: object
+      description: 'A map of values to control the display settings for the Query on the Board. Unspecified boolean values are assumed to be `false`. Unspecified integers are assumed to be `0`, unspecified
+        arrays are assumed to be null and unspecified strings are assumed to be empty. This is incompatible with the `graph_settings` field.
+
+        '
+      properties:
+        hide_compare:
+          type: boolean
+          default: false
+        hide_hovers:
+          type: boolean
+          default: false
+        hide_markers:
+          type: boolean
+          default: false
+        utc_xaxis:
+          type: boolean
+          default: false
+        overlaid_charts:
+          type: boolean
+          default: false
+        charts:
+          type: array
+          items:
+            type: object
+            properties:
+              chart_index:
+                type: integer
+                default: 0
+              chart_type:
+                type: string
+                enum:
+                - default
+                - line
+                - stacked
+                - stat
+                - tsbar
+                - cbar
+                - cpie
+                default: default
+              log_scale:
+                type: boolean
+                default: false
+              omit_missing_values:
+                type: boolean
+                default: false
+    BoardPanelPosition:
+      type: object
+      description: 'The position of the panel within the layout. When X and Y coordinates are not specified for any of the panels, the layout will be generated automatically.
+
+        '
+      properties:
+        x_coordinate:
+          type: integer
+          description: The x-axis origin point for placing the panel within the layout.
+          minimum: 0
+        y_coordinate:
+          type: integer
+          description: The y-axis origin point for placing the panel within the layout.
+          minimum: 0
+        height:
+          type: integer
+          description: The height of the panel. When not specified or set to 0, the height of the panel is calculated dynamically based on the panel type.
+          minimum: 0
+        width:
+          type: integer
+          description: The width of the panel. When not specified or set to 0, the width of the panel is calculated dynamically based on the panel type.
+          minimum: 0
+    Tag:
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: A key to identify the tag, lowercase letters only.
+          maxLength: 32
+        value:
+          type: string
+          description: A value for the tag, must begin with a lowercase letter, contain only alphanumeric characters (all letters lowercase) and special characters of `/` and `-` allowed.
+          maxLength: 128
+    SLOPanel:
+      title: SLO Panel
+      type: object
+      required:
+      - slo_panel
+      - type
+      properties:
+        type:
+          const: slo
+          description: The type of the board panel.
+        position:
+          $ref: '#/components/schemas/BoardPanelPosition'
+        slo_panel:
+          type: object
+          properties:
+            slo_id:
+              type: string
+              description: 'The ID of the SLO to display on the board. The SLO must be in the same environment as the board.
+
+                '
+              example: BGfyxhFto
+    Board:
+      type: object
+      required:
+      - type
+      - name
+      properties:
+        name:
+          type: string
+          description: The name of the Board.
+          minLength: 1
+          maxLength: 255
+          example: My Board
+        description:
+          type: string
+          description: A description of the Board.
+          minLength: 0
+          maxLength: 1024
+          example: A board created via the API
+        type:
+          $ref: '#/components/schemas/BoardType'
+        links:
+          type: object
+          readOnly: true
+          properties:
+            board_url:
+              type: string
+              example: https://ui.honeycomb.io/myteam/environments/myenvironment/board/2NeeaE9bBLd
+        id:
+          type: string
+          readOnly: true
+          description: Unique identifier (ID), returned in response bodies.
+          example: 2NeeaE9bBLd
+        panels:
+          type: array
+          items:
+            $ref: '#/components/schemas/BoardPanel'
+        layout_generation:
+          type: string
+          description: 'The layout generation mode for the board. When set to "auto", the board will be automatically laid out based on the panels. When set to "manual", the board will be laid out manually
+            by the user.
+
+            '
+          enum:
+          - auto
+          - manual
+          default: manual
+          writeOnly: true
+        tags:
+          type: array
+          description: A list of key-value pairs to help identify the Trigger.
+          maxItems: 10
+          items:
+            $ref: '#/components/schemas/Tag'
+          example:
+          - key: team
+            value: blue
+        preset_filters:
+          description: 'A list of preset filters to apply to the board. For backwards compatibility, if no preset filters are provided, the existing preset filters will be preserved. If an empty array is
+            provided, all preset filters will be deleted.
+
+            **Note**: Each board is limited to a maximum of 5 preset filters. Attempting to create or update a board with more than 5 preset filters will result in an error.
+
+            '
+          type: array
+          maxItems: 5
+          items:
+            $ref: '#/components/schemas/PresetFilter'
+          example:
+          - column: app.Service
+            alias: Service
+    TextPanel:
+      title: Text Panel
+      type: object
+      required:
+      - text_panel
+      - type
+      properties:
+        type:
+          const: text
+          description: The type of the board panel.
+        position:
+          $ref: '#/components/schemas/BoardPanelPosition'
+        text_panel:
+          type: object
+          required:
+          - content
+          properties:
+            content:
+              type: string
+              maxLength: 10000
+              description: 'The text content to display on the board panel. This field supports Markdown formatting.
+
+                '
+              example: '# This is a text panel with some content'
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+  responses:
+    NotFound:
+      description: Not Found
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 404
+            type: https://api.honeycomb.io/problems/not-found
+            title: The requested resource cannot be found.
+            error: Dataset not found
+            detail: Dataset not found
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    ValidationFailed:
+      description: Validation Failed
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          example:
+            status: 422
+            type: https://api.honeycomb.io/problems/validation-failed
+            error: The provided input is invalid.
+            title: The provided input is invalid
+            type_detail:
+            - field: type
+              code: invalid
+              description: 'type: must be a valid value'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    GenericError:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Rate Limited
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 429
+            type: https://api.honeycomb.io/problems/rate-limited
+            title: You have exceeded your rate limit.
+            error: You have exceeded your rate limit.
+            detail: Please try again after 2025-02-01T15:23:12Z.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          example:
+            errors:
+            - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+              code: rate-limited/may-retry
+              title: request rate limit exceeded
+              detail: Please try again after 2025-02-01T15:23:12Z.
+    Conflict:
+      description: Conflict
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 409
+            type: https://api.honeycomb.io/problems/conflict
+            title: Request could not be completed due to a conflict with the current state of the target resource.
+            error: A resource by that name already exists.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            deny-management-apis:
+              description: Team cannot access management APIs.
+              value:
+                error: Your team has been denied access to Management APIs, please contact support to be unblocked.
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    BadRequest:
+      description: The provided request body was invalid.
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          examples:
+            DetailedError:
+              value:
+                status: 400
+                type: https://api.honeycomb.io/problems/unparseable
+                title: The request body could not be parsed.
+                error: invalid gzip data
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            GenericError:
+              value:
+                error: invalid Query data
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          examples:
+            JSONAPIError:
+              value:
+                errors:
+                - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+                  code: invalid
+                  title: request body could not be parsed
+                  detail: invalid gzip data
+  headers:
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests\
+        \ allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n\
+        \ - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+    RetryAfter:
+      description: 'The RFC7231 header used to indicate when a client should retry requests.
+
+        '
+      schema:
+        type: string
+      example: Fri, 22 Mar 2024 18:37:53 GMT

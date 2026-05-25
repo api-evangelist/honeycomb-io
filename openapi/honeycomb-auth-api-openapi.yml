@@ -1,0 +1,495 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb
+    Support</a>.
+
+    '
+externalDocs:
+  url: https://docs.honeycomb.io
+servers:
+- url: https://api.honeycomb.io
+- url: https://api.eu1.honeycomb.io
+tags:
+- name: Auth
+  description: 'API Keys have various scopes permissions and belong to a specific Team or Environment.
+
+
+    Any valid Honeycomb ingest or configuration API Key will work with this endpoint. Learn more about [API keys](https://docs.honeycomb.io/get-started/best-practices/api-keys).
+
+
+    These endpoints can be used to validate authentication for a key, to determine what authorizations have been granted
+
+    to a key, and to determine the Team and Environment that a key belongs to.
+
+    '
+paths:
+  /1/auth:
+    get:
+      security:
+      - configuration_key: []
+      - ingest_key: []
+      summary: List Authorizations
+      description: 'Returns metadata about the API Key used to call the API.
+
+        Note: a Honeycomb Classic API key will return an empty string for both of the `environment` values.
+
+        '
+      tags:
+      - Auth
+      operationId: getAuth
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Auth'
+              examples:
+                environment:
+                  description: Environment API Key
+                  value:
+                    id: FL_xMM5LapLC
+                    type: configuration
+                    api_key_access:
+                      events: true
+                      markers: true
+                      triggers: false
+                      boards: false
+                      queries: false
+                      columns: false
+                      createDatasets: true
+                      slos: false
+                      recipients: false
+                      privateBoards: false
+                    environment:
+                      name: Production
+                      slug: production
+                    team:
+                      name: Honeycomb Docs
+                      slug: honeycomb-docs
+                classic:
+                  description: Classic Environment API Key
+                  value:
+                    id: A3jatwoWSxA
+                    type: configuration
+                    api_key_access:
+                      events: true
+                      markers: true
+                      triggers: false
+                      boards: false
+                      queries: false
+                      columns: false
+                      createDatasets: false
+                      slos: false
+                      recipients: false
+                      privateBoards: false
+                    environment:
+                      name: ''
+                      slug: ''
+                    team:
+                      name: Honeycomb Docs
+                      slug: honeycomb-docs
+                ingest:
+                  description: Ingest API Key
+                  value:
+                    id: hcxik_01j1824es7n4evcmv81cn392jb
+                    type: ingest
+                    api_key_access:
+                      createDatasets: true
+                    environment:
+                      name: Production
+                      slug: production
+                    team:
+                      name: Honeycomb Docs
+                      slug: honeycomb-docs
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+  /2/auth:
+    get:
+      security:
+      - bearerAuth: []
+      summary: List Authorizations V2
+      description: 'Returns metadata about the Management API Key used to call the API.
+
+        '
+      tags:
+      - Auth
+      operationId: getV2Auth
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/AuthV2Response'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  headers:
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n\
+        \ - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+    RetryAfter:
+      description: 'The RFC7231 header used to indicate when a client should retry requests.
+
+        '
+      schema:
+        type: string
+      example: Fri, 22 Mar 2024 18:37:53 GMT
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests\
+        \ allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+  schemas:
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    TeamRelationship:
+      type: object
+      required:
+      - team
+      properties:
+        team:
+          type: object
+          required:
+          - data
+          properties:
+            data:
+              type: object
+              required:
+              - id
+              - type
+              properties:
+                id:
+                  type: string
+                  description: The ID of the Team this object is associated with
+                  example: hxctm_12345678901234567890123456
+                type:
+                  type: string
+                  enum:
+                  - teams
+    AuthV2Response:
+      type: object
+      required:
+      - data
+      properties:
+        included:
+          type: array
+          items:
+            $ref: '#/components/schemas/IncludedResource'
+          example:
+          - id: hcxtm_12345678901234567890123456
+            type: teams
+            attributes:
+              name: My Team
+              slug: my-team
+        data:
+          type: object
+          required:
+          - id
+          - type
+          - attributes
+          properties:
+            id:
+              type: string
+              readOnly: true
+              description: The unique identifier of the API Key making the request
+              example: hcxik_12345678901234567890123456
+            type:
+              type: string
+              readOnly: true
+              enum:
+              - api-keys
+            relationships:
+              type: object
+              readOnly: true
+              allOf:
+              - $ref: '#/components/schemas/TeamRelationship'
+            attributes:
+              type: object
+              readOnly: true
+              properties:
+                name:
+                  type: string
+                  description: A human-readable name for the API Key
+                  example: mgmt write key
+                key_type:
+                  type: string
+                  description: The type of API Key
+                  enum:
+                  - management
+                disabled:
+                  type: boolean
+                  description: Whether the API Key is disabled
+                  default: false
+                scopes:
+                  type: array
+                  description: The scopes assigned to this API Key
+                  example:
+                  - api-keys:write
+                timestamps:
+                  type: object
+                  properties:
+                    created:
+                      type: string
+                      format: date-time
+                      description: The ISO8601-formatted time when the API Key was created.
+                      readOnly: true
+                      example: '2022-09-22T17:32:11Z'
+                    updated:
+                      type: string
+                      format: date-time
+                      description: The ISO8601-formatted time when the API Key was updated.
+                      readOnly: true
+                      example: '2022-10-31T15:08:11Z'
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
+          type: string
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
+          type: string
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    Auth:
+      type: object
+      required:
+      - id
+      - type
+      - api_key_access
+      - environment
+      - team
+      properties:
+        id:
+          type: string
+          description: Unique identifier (ID) of the API Key.
+        type:
+          type: string
+          enum:
+          - configuration
+          - ingest
+          description: The type of API Key.
+        api_key_access:
+          type: object
+          properties:
+            events:
+              type: boolean
+              default: false
+            markers:
+              type: boolean
+              default: false
+            triggers:
+              type: boolean
+              default: false
+            boards:
+              type: boolean
+              default: false
+            queries:
+              type: boolean
+              default: false
+            columns:
+              type: boolean
+              default: false
+            createDatasets:
+              type: boolean
+              default: false
+            slos:
+              type: boolean
+              default: false
+            recipients:
+              type: boolean
+              default: false
+            privateBoards:
+              type: boolean
+              default: false
+        environment:
+          type: object
+          properties:
+            name:
+              type: string
+              description: The name of the Environment. Will be empty for Classic environments.
+            slug:
+              type: string
+              description: The slug of the Environment. Will be empty for Classic environments.
+        team:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
+    IncludedResource:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: The unique identifier of the resource
+          example: hcxen_01hznmeqrcq8rz533xrvtc6mk0
+        type:
+          type: string
+          readOnly: true
+          example: environments
+        attributes:
+          type: object
+          readOnly: true
+          example:
+            name: Production
+            slug: production
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    GenericError:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    RateLimited:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Rate Limited
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 429
+            type: https://api.honeycomb.io/problems/rate-limited
+            title: You have exceeded your rate limit.
+            error: You have exceeded your rate limit.
+            detail: Please try again after 2025-02-01T15:23:12Z.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          example:
+            errors:
+            - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+              code: rate-limited/may-retry
+              title: request rate limit exceeded
+              detail: Please try again after 2025-02-01T15:23:12Z.

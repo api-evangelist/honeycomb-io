@@ -1,0 +1,207 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: "Honeycomb SLOs API \u2014 Burn Alerts"
+  description: "Honeycomb SLOs API \u2014 Burn Alerts. 5 operations. Lead operation: Create a Burn Alert. Self-contained Naftiko capability covering one Honeycomb business surface."
+  tags:
+  - Honeycomb
+  - Observability
+  - Burn Alerts
+  created: '2026-05-25'
+  modified: '2026-05-25'
+binds:
+- namespace: env
+  keys:
+    HONEYCOMB_API_KEY: HONEYCOMB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: slos-burn-alerts
+    baseUri: https://api.honeycomb.io
+    description: "Honeycomb SLOs API \u2014 Burn Alerts business capability. Self-contained, no shared references."
+    resources:
+    - name: 1-burn-alerts
+      path: /1/burn_alerts/{datasetSlug}
+      operations:
+      - name: createburnalert
+        method: POST
+        description: Create a Burn Alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: listburnalertsbyslo
+        method: GET
+        description: List All Burn Alerts for an SLO
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: slo_id
+          in: query
+          type: string
+          description: For use with the list endpoint to retrieve all burn alerts for a specified SLO.
+          required: true
+    - name: 1-burn-alerts
+      path: /1/burn_alerts/{datasetSlug}/{burnAlertId}
+      operations:
+      - name: getburnalert
+        method: GET
+        description: Get a Burn Alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: updateburnalert
+        method: PUT
+        description: Update a Burn Alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+      - name: deleteburnalert
+        method: DELETE
+        description: Delete a Burn Alert
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Honeycomb-Team
+      value: '{{env.HONEYCOMB_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: slos-burn-alerts-rest
+    port: 8080
+    description: "REST adapter for Honeycomb SLOs API \u2014 Burn Alerts. One Spectral-compliant resource per consumed operation, prefixed with /v1."
+    resources:
+    - path: /v1/1/burn_alerts/{datasetSlug}
+      name: 1-burn-alerts
+      description: REST surface for 1-burn-alerts.
+      operations:
+      - method: POST
+        name: createburnalert
+        description: Create a Burn Alert
+        call: slos-burn-alerts.createburnalert
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: listburnalertsbyslo
+        description: List All Burn Alerts for an SLO
+        call: slos-burn-alerts.listburnalertsbyslo
+        with:
+          slo_id: rest.slo_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/1/burn_alerts/{datasetSlug}/{burnAlertId}
+      name: 1-burn-alerts
+      description: REST surface for 1-burn-alerts.
+      operations:
+      - method: GET
+        name: getburnalert
+        description: Get a Burn Alert
+        call: slos-burn-alerts.getburnalert
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateburnalert
+        description: Update a Burn Alert
+        call: slos-burn-alerts.updateburnalert
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: DELETE
+        name: deleteburnalert
+        description: Delete a Burn Alert
+        call: slos-burn-alerts.deleteburnalert
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: slos-burn-alerts-mcp
+    port: 9090
+    transport: http
+    description: "MCP adapter for Honeycomb SLOs API \u2014 Burn Alerts. One tool per consumed operation, routed inline through this capability's consumes block."
+    tools:
+    - name: honeycomb-slos-burn-alerts-createburnalert
+      description: Create a Burn Alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: slos-burn-alerts.createburnalert
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-slos-burn-alerts-listburnalertsbyslo
+      description: List All Burn Alerts for an SLO
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: slos-burn-alerts.listburnalertsbyslo
+      with:
+        slo_id: tools.slo_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-slos-burn-alerts-getburnalert
+      description: Get a Burn Alert
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: slos-burn-alerts.getburnalert
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-slos-burn-alerts-updateburnalert
+      description: Update a Burn Alert
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: slos-burn-alerts.updateburnalert
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: honeycomb-slos-burn-alerts-deleteburnalert
+      description: Delete a Burn Alert
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: slos-burn-alerts.deleteburnalert
+      outputParameters:
+      - type: object
+        mapping: $.

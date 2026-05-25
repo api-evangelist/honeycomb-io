@@ -1,0 +1,134 @@
+vocabulary: Honeycomb
+version: '1.0'
+created: '2026-05-25'
+modified: '2026-05-25'
+description: Operational and capability vocabulary for the Honeycomb observability platform. Captures the
+  primitives engineers reason about when ingesting, querying, alerting, and reliability-budgeting against
+  high-cardinality telemetry.
+sources:
+  - https://docs.honeycomb.io/
+  - https://docs.honeycomb.io/api/
+domains:
+  - name: Observability
+    terms:
+      - Event
+      - Trace
+      - Span
+      - Metric
+      - Log
+      - OpenTelemetry
+      - Telemetry Pipeline
+      - High Cardinality
+      - BubbleUp
+  - name: Ingest
+    terms:
+      - Ingest Key
+      - Configuration Key
+      - Management Key
+      - Batch Ingest
+      - Kinesis Ingest
+      - Refinery
+      - Sampling
+      - Tail-Based Sampling
+      - Dynamic Sampling
+      - libhoney
+  - name: Schema
+    terms:
+      - Dataset
+      - Dataset Definition
+      - Column
+      - Calculated Field
+      - Derived Column
+      - Expression
+  - name: Analytics
+    terms:
+      - Query
+      - Saved Query
+      - Query Annotation
+      - Query Data
+      - Breakdown
+      - Calculation
+      - Filter
+      - Having
+      - Order
+      - Time Range
+      - Granularity
+  - name: Surfaces
+    terms:
+      - Board
+      - Panel
+      - View
+      - Service Map
+      - Canvas
+      - Honeycomb Intelligence
+  - name: Alerting
+    terms:
+      - Trigger
+      - Threshold
+      - Recipient
+      - PagerDuty
+      - Slack
+      - MS Teams
+      - Webhook
+      - OpsGenie
+      - Marker
+      - Marker Setting
+  - name: Reliability
+    terms:
+      - SLO
+      - SLI
+      - Error Budget
+      - Burn Alert
+      - Exhaustion Minutes
+      - SLO Reporting
+  - name: Administration
+    terms:
+      - Team
+      - Environment
+      - Workspace
+      - API Key
+      - Scope
+      - Permission
+      - Region
+      - US Region
+      - EU Region
+  - name: AI Observability
+    terms:
+      - Agent Timeline
+      - LLM Observability
+      - Canvas Copilot
+      - Honeycomb MCP
+relationships:
+  - subject: Event
+    predicate: belongsTo
+    object: Dataset
+  - subject: Span
+    predicate: groupedInto
+    object: Trace
+  - subject: Trigger
+    predicate: monitors
+    object: Query
+  - subject: Trigger
+    predicate: notifies
+    object: Recipient
+  - subject: BurnAlert
+    predicate: monitors
+    object: SLO
+  - subject: SLO
+    predicate: scopedTo
+    object: Dataset
+  - subject: Board
+    predicate: composedOf
+    object: Panel
+  - subject: View
+    predicate: belongsTo
+    object: Board
+  - subject: Dataset
+    predicate: belongsTo
+    object: Environment
+  - subject: ApiKey
+    predicate: scopedTo
+    object: Team
+  - subject: Refinery
+    predicate: samples
+    object: Trace

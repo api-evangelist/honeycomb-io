@@ -1,0 +1,32 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://api.honeycomb.io/1/events/my-service",
+    "headers": {
+      "X-Honeycomb-Team": "$HONEYCOMB_API_KEY",
+      "Content-Type": "application/json",
+      "X-Honeycomb-Event-Time": "2026-05-25T12:00:00Z"
+    },
+    "body": {
+      "service.name": "checkout-api",
+      "http.method": "POST",
+      "http.target": "/v1/orders",
+      "http.status_code": 201,
+      "duration_ms": 137,
+      "user.id": "user_8429",
+      "order.amount_cents": 4995,
+      "order.currency": "USD",
+      "trace.trace_id": "5b8aa5a2d2c872e8321cf37308d69df2",
+      "trace.span_id": "051581bf3cb55c13"
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "status": "ok"
+    }
+  }
+}
