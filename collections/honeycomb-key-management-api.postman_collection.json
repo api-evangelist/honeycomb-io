@@ -1,0 +1,2889 @@
+{
+  "item": [
+    {
+      "id": "0fc82f00-2318-4e4c-8174-2fcbfc6a6d44",
+      "name": "Key Management",
+      "description": {
+        "content": "This API allows you to list, create, update, and delete API Keys for a Team.\n\n\nLearn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n\n## Authorization\n\n This API requires a Management Key passed via the HTTP Authorization header. Join the key ID and secret with a colon, like this: `Authorization: Bearer <key ID>:<secret>`.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "32e3d0e3-a763-40fe-a21d-2eaef3f76ad2",
+          "name": "List all API Keys",
+          "request": {
+            "name": "List all API Keys",
+            "description": {
+              "content": "List all API Keys for a Team.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2",
+                "teams",
+                ":teamSlug",
+                "api-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page[after]",
+                  "value": "<string>",
+                  "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "page[size]",
+                  "value": "20",
+                  "description": "The number of entries to include per response. Maximum value is 100."
+                },
+                {
+                  "disabled": false,
+                  "key": "filter[type]",
+                  "value": "<string>",
+                  "description": "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamSlug",
+                  "description": "(Required) The slug of the Team"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "a54232b7-abef-4da5-aae6-ecc887740e0d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[after]",
+                      "value": "eyxJjcmAVhdGVkX"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[type]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"id\": \"hcxik_12345678901234567890123456\",\n      \"type\": \"api-keys\",\n      \"attributes\": {\n        \"key_type\": \"ingest\",\n        \"name\": \"us-west-2 collectors key\",\n        \"disabled\": false,\n        \"permissions\": {\n          \"create_datasets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"timestamps\": {\n          \"created\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"relationships\": {\n        \"environment\": {\n          \"data\": {\n            \"id\": \"hxenv_12345678901234567890123456\",\n            \"type\": \"environments\"\n          }\n        },\n        \"creator\": {\n          \"data\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"editor\": {\n          \"data\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"/2/teams/my-team/api-keys/hcxik_12345678901234567890123456\"\n      }\n    },\n    {\n      \"id\": \"hcxik_12345678901234567890123456\",\n      \"type\": \"api-keys\",\n      \"attributes\": {\n        \"key_type\": \"ingest\",\n        \"name\": \"us-west-2 collectors key\",\n        \"disabled\": false,\n        \"permissions\": {\n          \"create_datasets\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"timestamps\": {\n          \"created\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"updated\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      },\n      \"relationships\": {\n        \"environment\": {\n          \"data\": {\n            \"id\": \"hxenv_12345678901234567890123456\",\n            \"type\": \"environments\"\n          }\n        },\n        \"creator\": {\n          \"data\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"editor\": {\n          \"data\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"/2/teams/my-team/api-keys/hcxik_12345678901234567890123456\"\n      }\n    }\n  ],\n  \"links\": {\n    \"next\": \"/2/teams/my-team/api-keys?page[after]=3025fa645ad1100d&page[size]=10\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "90d70d73-65ce-4f1f-bc97-534843c35d1b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[after]",
+                      "value": "eyxJjcmAVhdGVkX"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[type]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2c1e580-8e93-47f3-b576-e458f480c0cc",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[after]",
+                      "value": "eyxJjcmAVhdGVkX"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[type]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f09e4909-3bb7-406b-b7b8-6194e61bfe0b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[after]",
+                      "value": "eyxJjcmAVhdGVkX"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[type]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55bf2b23-5b0e-45bb-9dcc-60fd08a0c94e",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[after]",
+                      "value": "eyxJjcmAVhdGVkX"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[type]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fb3394e-3f80-4ae0-8fc2-5fe3d0b9bd1d",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[after]",
+                      "value": "eyxJjcmAVhdGVkX"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[type]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "799c8f90-3008-4de6-8dbe-508f47403825",
+              "name": "InternalError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page[after]",
+                      "value": "eyxJjcmAVhdGVkX"
+                    },
+                    {
+                      "key": "page[size]",
+                      "value": "10"
+                    },
+                    {
+                      "key": "filter[type]",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": 4516.734600177727,\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d5019f17-d38a-4bb7-a909-bccaad53df24",
+          "name": "Create an API Key",
+          "request": {
+            "name": "Create an API Key",
+            "description": {
+              "content": "This creates an API Key, which will return the API Key components in the response. The Key ID will be found at `data.id` and\nthe Key Secret will be found at `data.attributes.secret`. For security reasons the Key Secret will only be available during creation so make sure to save it.\n\nTo use a newly-created Ingest Key it should be passed in the `X-Honeycomb-Team` header with the API Key's ID and secret\nconcatenated (and with no separator). For example, `X-Honeycomb-Team: hcxik_1234567890123456789012345612345678901234567890123456789012`\n\nCheck out our [best practices for API Keys](https://docs.honeycomb.io/get-started/best-practices/api-keys/#ingest-keys).\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2",
+                "teams",
+                ":teamSlug",
+                "api-keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamSlug",
+                  "description": "(Required) The slug of the Team"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"<string>\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"<string>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3c257404-da09-4217-accf-c73799dfec97",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"secret\": \"12345678901234567890123456789\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"2022-09-22T17:32:11Z\",\n        \"updated\": \"2022-10-31T15:08:11Z\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      },\n      \"creator\": {\n        \"data\": {\n          \"id\": \"hcxus_01hzqr5g7jg9qz40xtgx7rjwj0\",\n          \"type\": \"users\"\n        }\n      },\n      \"editor\": {\n        \"data\": {\n          \"id\": \"hcxus_01hzqr5g7jg9qz40xtgx7rjwj0\",\n          \"type\": \"users\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"/2/teams/my-team/api-keys/hcxik_12345678901234567890123456\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bde343b8-c235-4fbc-b293-ea64faaf5718",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dcbad564-b419-4636-9897-a6a988e989ef",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65d40a9a-2ae1-482a-ac18-0713f41e87ee",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b25f7157-b92d-484f-bca2-b2cb7d98e129",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77fb362e-3d52-429e-bf02-95fd98c602e2",
+              "name": "The provided request body was over the maximum allowed size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 413,\n  \"type\": \"https://api.honeycomb.io/problems/payload-too-large\",\n  \"title\": \"Request body is too large.\",\n  \"error\": \"Body size is larger than maximum size of 100000 bytes\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5762e793-dee9-4207-acfb-63c483229cb4",
+              "name": "The provided request body had an invalid Content-Type.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"header\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"header\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae86711a-3386-401d-9967-a8b79c1675ba",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "707cfd96-7736-4259-ba56-921d5a49f522",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d69b982-6347-42b7-924a-685b9803b98e",
+              "name": "InternalError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": 4516.734600177727,\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "26875684-12c9-49a4-a07c-bed669591fad",
+          "name": "Get an API Key",
+          "request": {
+            "name": "Get an API Key",
+            "description": {
+              "content": "Fetches an environment API Key, either a key of type `ingest` or type `configuration` based on the\nID given.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2",
+                "teams",
+                ":teamSlug",
+                "api-keys",
+                ":ID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamSlug",
+                  "description": "(Required) The slug of the Team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ID",
+                  "description": "(Required) A unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "f4b10cfa-fe75-4974-9d97-33c5404af2d2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"2022-09-22T17:32:11Z\",\n        \"updated\": \"2022-10-31T15:08:11Z\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      },\n      \"creator\": {\n        \"data\": {\n          \"id\": \"hcxus_01hzqr5g7jg9qz40xtgx7rjwj0\",\n          \"type\": \"users\"\n        }\n      },\n      \"editor\": {\n        \"data\": {\n          \"id\": \"hcxus_01hzqr5g7jg9qz40xtgx7rjwj0\",\n          \"type\": \"users\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"/2/teams/my-team/api-keys/hcxik_12345678901234567890123456\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8548578c-1e3e-49de-9ea2-45564601d030",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbd526b4-4088-4986-a301-7abf15fdcf2b",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "648ab106-9661-4f37-a490-dc4582837c4e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "814b04bb-d54b-46ec-9567-dd06f70ae4ba",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da0ba2ce-8529-42e1-8bef-223b9ba72161",
+              "name": "InternalError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": 4516.734600177727,\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35b141c0-1ba3-45d5-b258-3eef8dc72888",
+          "name": "Update an API Key",
+          "request": {
+            "name": "Update an API Key",
+            "description": {
+              "content": "Updates an API Key. The expected attributes depend on the key type:\n- **Ingest Keys** (prefix `hcxik_`): Support `name` and `enabled` attributes\n- **Configuration Keys** (prefix `hcxlk_`): Support `name`, `enabled`, and `permissions` attributes\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2",
+                "teams",
+                ":teamSlug",
+                "api-keys",
+                ":ID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamSlug",
+                  "description": "(Required) The slug of the Team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ID",
+                  "description": "(Required) A unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/vnd.api+json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/vnd.api+json"
+              }
+            ],
+            "method": "PATCH",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"<string>\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5a95fca7-b548-4720-8889-99e966d2d18c",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"updated name\",\n      \"disabled\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"us-west-2 collectors key\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"2022-09-22T17:32:11Z\",\n        \"updated\": \"2022-10-31T15:08:11Z\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"hxenv_12345678901234567890123456\",\n          \"type\": \"environments\"\n        }\n      },\n      \"creator\": {\n        \"data\": {\n          \"id\": \"hcxus_01hzqr5g7jg9qz40xtgx7rjwj0\",\n          \"type\": \"users\"\n        }\n      },\n      \"editor\": {\n        \"data\": {\n          \"id\": \"hcxus_01hzqr5g7jg9qz40xtgx7rjwj0\",\n          \"type\": \"users\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"/2/teams/my-team/api-keys/hcxik_12345678901234567890123456\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "336e63a7-7f01-4a12-8dfd-008c329ef5c4",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"updated name\",\n      \"disabled\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7893f24c-0cc8-43d6-a492-c01eeb84149a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"updated name\",\n      \"disabled\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "78dbb671-0a3d-4385-b5a4-4b143360358f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"updated name\",\n      \"disabled\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "741e0e67-cb6f-46b3-a9eb-69e5901dc087",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"updated name\",\n      \"disabled\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "016d77c6-75fb-4d12-84de-16089241f11c",
+              "name": "The provided request body was over the maximum allowed size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"updated name\",\n      \"disabled\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 413,\n  \"type\": \"https://api.honeycomb.io/problems/payload-too-large\",\n  \"title\": \"Request body is too large.\",\n  \"error\": \"Body size is larger than maximum size of 100000 bytes\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a092605-8d10-490f-8360-a6a033993752",
+              "name": "The provided request body had an invalid Content-Type.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"updated name\",\n      \"disabled\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unsupported Media Type",
+              "code": 415,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.api+json"
+                }
+              ],
+              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"header\": \"string\",\n        \"parameter\": \"string\"\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"code\": \"string\",\n      \"status\": \"string\",\n      \"title\": \"string\",\n      \"detail\": \"string\",\n      \"source\": {\n        \"pointer\": \"string\",\n        \"header\": \"string\",\n        \"parameter\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87078282-66b0-47a7-8b8d-46dce885bde8",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"updated name\",\n      \"disabled\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "baa32d9f-1d27-4dfc-9d53-491098edc106",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"updated name\",\n      \"disabled\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "410325cc-fd87-434c-9be3-764e2fa01e78",
+              "name": "InternalError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_12345678901234567890123456\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"updated name\",\n      \"disabled\": false\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": 4516.734600177727,\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c65e68fe-dbc3-4df0-979f-3b599d3d67a2",
+          "name": "Delete an API Key",
+          "request": {
+            "name": "Delete an API Key",
+            "description": {
+              "content": "This deletes and immediately deactivates the API Key. This is an irreversible operation.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "2",
+                "teams",
+                ":teamSlug",
+                "api-keys",
+                ":ID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "teamSlug",
+                  "description": "(Required) The slug of the Team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "ID",
+                  "description": "(Required) A unique identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/problem+json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "75a55e73-2d52-47f1-881b-a9423156c49b",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0daf9613-fc33-4ba4-87f9-406621d2b3e8",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7c42c7b-bf5a-4f42-968f-e145d4fdf5d8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "939308a9-a378-4086-94f8-be94fdba6414",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ec5846e-1183-45d4-b811-89a925ac5fc6",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9050b97-60f6-42ba-b91c-641ed9da6c1a",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1988847-fe94-4e76-8962-4e7d270f62fd",
+              "name": "InternalError",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "2",
+                    "teams",
+                    ":teamSlug",
+                    "api-keys",
+                    ":ID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "teamSlug",
+                      "description": "(Required) The slug of the Team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "ID",
+                      "description": "(Required) A unique identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": 4516.734600177727,\n  \"type\": \"string\",\n  \"title\": \"string\",\n  \"detail\": \"string\",\n  \"instance\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.honeycomb.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "4bcd53cf-bffc-426e-bb35-9e0839c2eae1",
+    "name": "Honeycomb Key Management API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+      "type": "text/plain"
+    }
+  }
+}

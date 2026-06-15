@@ -1,0 +1,2580 @@
+{
+  "item": [
+    {
+      "id": "38ac0d21-096c-414b-a70b-f1819e7ea0c6",
+      "name": "Markers",
+      "description": {
+        "content": "Markers indicate points in time on graphs where interesting things happen, such as deploys or outages.\n\nThis API allows you to list, create, update, and delete Markers.\n\n## Authorization\n\nThe API key must have the **Manage Markers** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4c8375ce-3ca9-418f-9cbe-7ea7cfb510c1",
+          "name": "Create a Marker",
+          "request": {
+            "name": "Create a Marker",
+            "description": {
+              "content": "Create a Marker in the specified dataset. To create an environment marker, use the `__all__` keyword and an API key associated with the desired environment.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "markers",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bda66a19-b3e4-47ab-b609-83ab78f5aaf1",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": 1471040808,\n  \"end_time\": 1668453920,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"url\": \"http://link-to-build.here\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2016-08-13T05:39:42Z\",\n  \"updated_at\": \"2016-08-13T05:39:42Z\",\n  \"start_time\": 1471040808,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"id\": \"d1c84ec0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6346d70-3c06-4d0b-9b8d-10bafc634168",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": 1471040808,\n  \"end_time\": 1668453920,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"url\": \"http://link-to-build.here\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4f6ef423-e5ee-4546-8970-376fbc0b3887",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": 1471040808,\n  \"end_time\": 1668453920,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"url\": \"http://link-to-build.here\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56017805-4a5c-49b7-b62d-b2015ca8745c",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": 1471040808,\n  \"end_time\": 1668453920,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"url\": \"http://link-to-build.here\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ed5c6cc-e75a-43cf-9ab1-d81e087b1a50",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": 1471040808,\n  \"end_time\": 1668453920,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"url\": \"http://link-to-build.here\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b34da4d-ca68-438f-8425-f6ff705d0e55",
+          "name": "List All Markers",
+          "request": {
+            "name": "List All Markers",
+            "description": {
+              "content": "Lists all Markers for a dataset.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "markers",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "3b85bdd6-6387-4f5a-9076-d283bc4189c7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"created_at\": \"2016-08-13T05:39:42Z\",\n    \"updated_at\": \"2016-08-13T05:39:42Z\",\n    \"start_time\": 1471040808,\n    \"message\": \"backend deploy #123\",\n    \"type\": \"deploy\",\n    \"id\": \"d1c84ec0\"\n  },\n  {\n    \"created_at\": \"2016-08-14T05:39:42Z\",\n    \"updated_at\": \"2016-08-14T05:39:42Z\",\n    \"start_time\": 1471040808,\n    \"message\": \"frontend deploy #123\",\n    \"type\": \"deploy\",\n    \"id\": \"c2b52fa0\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "572c476f-8e18-46d3-97f9-878fa759277d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "759e47cf-ccdc-4ce5-a132-3e5a0186b3f4",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34545cad-a980-4ba3-bd81-524310d845ab",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2ddb5df3-64dc-4600-a6b1-7887e02adeaf",
+          "name": "Update a Marker",
+          "request": {
+            "name": "Update a Marker",
+            "description": {
+              "content": "Update a Marker in the specified dataset. To update an environment marker, use the `__all__` keyword and an API key associated with the desired environment.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "markers",
+                ":datasetSlug",
+                ":markerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "markerId",
+                  "description": "(Required) The unique identifier (ID) of a Marker."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\",\n  \"message\": \"<string>\",\n  \"type\": \"<string>\",\n  \"url\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16f3bfd8-cce0-4170-b81c-e08aa1aa24c1",
+              "name": "Updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug",
+                    ":markerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerId",
+                      "description": "(Required) The unique identifier (ID) of a Marker."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": 1471040808,\n  \"end_time\": 1668453920,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"url\": \"http://link-to-build.here\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2016-08-13T05:39:42Z\",\n  \"updated_at\": \"2016-08-13T05:39:42Z\",\n  \"start_time\": 1471040808,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"id\": \"d1c84ec0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64cbb41a-3108-4659-a754-18d25ad23fea",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug",
+                    ":markerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerId",
+                      "description": "(Required) The unique identifier (ID) of a Marker."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": 1471040808,\n  \"end_time\": 1668453920,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"url\": \"http://link-to-build.here\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e0dba19c-cdb3-4a8d-93a6-7843048c393b",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug",
+                    ":markerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerId",
+                      "description": "(Required) The unique identifier (ID) of a Marker."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": 1471040808,\n  \"end_time\": 1668453920,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"url\": \"http://link-to-build.here\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1a1d64e-7173-4880-a278-ff471dc7b690",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug",
+                    ":markerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerId",
+                      "description": "(Required) The unique identifier (ID) of a Marker."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": 1471040808,\n  \"end_time\": 1668453920,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"url\": \"http://link-to-build.here\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b010bb16-b7a2-499d-83af-343299ef52b1",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug",
+                    ":markerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerId",
+                      "description": "(Required) The unique identifier (ID) of a Marker."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"start_time\": 1471040808,\n  \"end_time\": 1668453920,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"url\": \"http://link-to-build.here\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4edf0aba-78f7-45be-b458-07da456adccb",
+          "name": "Delete a Marker",
+          "request": {
+            "name": "Delete a Marker",
+            "description": {},
+            "url": {
+              "path": [
+                "1",
+                "markers",
+                ":datasetSlug",
+                ":markerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "markerId",
+                  "description": "(Required) The unique identifier (ID) of a Marker."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "c306428a-6b51-4397-b8f3-0019641aca7e",
+              "name": "Success\nThe deleted Marker will be in the body of the response.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug",
+                    ":markerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerId",
+                      "description": "(Required) The unique identifier (ID) of a Marker."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"created_at\": \"2016-08-13T05:39:42Z\",\n  \"updated_at\": \"2016-08-13T05:39:42Z\",\n  \"start_time\": 1471040808,\n  \"message\": \"backend deploy #123\",\n  \"type\": \"deploy\",\n  \"id\": \"d1c84ec0\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7e6138e-f6fc-42f5-b1fa-772a0ec58008",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug",
+                    ":markerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerId",
+                      "description": "(Required) The unique identifier (ID) of a Marker."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a00d9fba-131b-4b4f-9153-2c1675df2866",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug",
+                    ":markerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerId",
+                      "description": "(Required) The unique identifier (ID) of a Marker."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59679dbf-4397-4266-9093-a47d35564a0a",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug",
+                    ":markerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerId",
+                      "description": "(Required) The unique identifier (ID) of a Marker."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1e1f8241-c3b7-49c0-9391-d1ba48cec018",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "markers",
+                    ":datasetSlug",
+                    ":markerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerId",
+                      "description": "(Required) The unique identifier (ID) of a Marker."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cbee117e-6850-4859-8a89-1f9554e0d743",
+      "name": "Marker Settings",
+      "description": {
+        "content": "Marker Settings apply to groups of similar Markers.\nFor example, \"deploys\" markers appear with the same color on a graph.\n\nThis API allows you to list, create, update, and delete Marker Settings.\n\n## Authorization\n\nThe API key must have the **Manage Markers** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "66d82b32-0c06-4caf-b7cc-bfb6c80ed26b",
+          "name": "Create a Marker Setting",
+          "request": {
+            "name": "Create a Marker Setting",
+            "description": {},
+            "url": {
+              "path": [
+                "1",
+                "marker_settings",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7d34cd64-00d1-4c55-98ee-7c7c084d3e65",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"deploy\",\n  \"color\": \"#7b1fa2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"deploy\",\n  \"color\": \"#7b1fa2\",\n  \"id\": \"gwAHiE5TS4j\",\n  \"created_at\": \"2022-09-15T05:39:42Z\",\n  \"updated_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c5fbc7a2-4f5b-4856-a04c-a9c9e0f3da50",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"deploy\",\n  \"color\": \"#7b1fa2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "35c6f2dd-c4c9-43ff-8ee3-1cee123545cf",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"deploy\",\n  \"color\": \"#7b1fa2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c536828-8ee5-4ec5-aade-f08f143054df",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"deploy\",\n  \"color\": \"#7b1fa2\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a21ba479-5aac-4876-8f06-0ad6ba1fa303",
+          "name": "Get a Marker Setting",
+          "request": {
+            "name": "Get a Marker Setting",
+            "description": {},
+            "url": {
+              "path": [
+                "1",
+                "marker_settings",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "f575cdad-133a-42f0-95a3-c85f19324b6e",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"type\": \"deploy\",\n    \"color\": \"#7b1fa2\",\n    \"id\": \"gwAHiE5TS4j\",\n    \"created_at\": \"2022-09-15T05:39:42Z\",\n    \"updated_at\": null\n  },\n  {\n    \"type\": \"deploy\",\n    \"color\": \"#7b1fa2\",\n    \"id\": \"gwAHiE5TS4j\",\n    \"created_at\": \"2022-09-15T05:39:42Z\",\n    \"updated_at\": null\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2c3015a-d34e-49a6-bad5-2dcd26bff1e8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "714ffb21-4e25-40bf-8c3f-179925b0bce4",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "32e76fc0-9b43-4b6d-b09f-5d0635476aa3",
+          "name": "Update a Marker Setting",
+          "request": {
+            "name": "Update a Marker Setting",
+            "description": {
+              "content": "A marker setting's `type` may not be changed after creation.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "marker_settings",
+                ":datasetSlug",
+                ":markerSettingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "markerSettingId",
+                  "description": "(Required) The unique identifier (ID) of a marker setting."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3a99a63b-7ecd-4738-a66c-0e09cb860643",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug",
+                    ":markerSettingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier (ID) of a marker setting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"deploy\",\n  \"color\": \"#1fa297\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"deploy\",\n  \"color\": \"#1fa297\",\n  \"id\": \"gwAHiE5TS4j\",\n  \"created_at\": \"2022-09-15T05:39:42Z\",\n  \"updated_at\": \"2022-12-20T08:10:05Z\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2e81eff9-5beb-47d7-89f2-819af1e5891d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug",
+                    ":markerSettingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier (ID) of a marker setting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"deploy\",\n  \"color\": \"#1fa297\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "462c61c9-f8b3-461c-b8be-0f2569ff6238",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug",
+                    ":markerSettingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier (ID) of a marker setting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"deploy\",\n  \"color\": \"#1fa297\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bcfef087-7503-4101-bef6-62d1deb7451b",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug",
+                    ":markerSettingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier (ID) of a marker setting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"type\": \"deploy\",\n  \"color\": \"#1fa297\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4e1e7e24-9f97-4ade-a9c9-8b8c2df33004",
+          "name": "Delete a Marker Setting",
+          "request": {
+            "name": "Delete a Marker Setting",
+            "description": {},
+            "url": {
+              "path": [
+                "1",
+                "marker_settings",
+                ":datasetSlug",
+                ":markerSettingId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "markerSettingId",
+                  "description": "(Required) The unique identifier (ID) of a marker setting."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "32c4fac7-7508-4b05-843a-acd0262dd8d0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug",
+                    ":markerSettingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier (ID) of a marker setting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"deploy\",\n  \"color\": \"#7b1fa2\",\n  \"id\": \"gwAHiE5TS4j\",\n  \"created_at\": \"2022-09-15T05:39:42Z\",\n  \"updated_at\": null\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d0134f23-7c22-430a-a383-96004e4ddf18",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug",
+                    ":markerSettingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier (ID) of a marker setting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "643a6d86-893a-45ae-9118-cf6cbd22b705",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "marker_settings",
+                    ":datasetSlug",
+                    ":markerSettingId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "markerSettingId",
+                      "description": "(Required) The unique identifier (ID) of a marker setting."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.honeycomb.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "a9ee80c5-ca13-4302-a96a-d723e57996d6",
+    "name": "Honeycomb Markers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+      "type": "text/plain"
+    }
+  }
+}

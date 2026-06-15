@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Datasets API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Datasets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Datasets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/datasets"
+          },
+          "docs": "Lists all Datasets for an environment.\n**Note**: For Honeycomb Classic users, all datasets in Classic are returned.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/datasets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Dataset in the environment associated with your API key.\nIf a Dataset already exists by that name (or slug), then the existing dataset will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/datasets/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ]
+          },
+          "docs": "Get a single Dataset by slug.\n"
+        },
+        {
+          "info": {
+            "name": "Update a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/datasets/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Dataset's settings.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Dataset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/datasets/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ]
+          },
+          "docs": "Deletes the Dataset. This is an irreversible operation.\nIt may take several minutes for the deletion process to complete.\n\n\n**WARNING**: This endpoint will allow anyone with an API key that has the\nmanage dataset permission to delete any dataset in the environment (or\nany dataset in the whole team for Classic customers).\n\n\nDatasets with Deletion Protection enabled cannot be deleted.\n\nTo delete a Dataset with Deletion Protection enabled, first disable Deletion Protection by updating the Dataset w"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Dataset Definitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all Dataset Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/dataset_definitions/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ]
+          },
+          "docs": "Get all definitions for a Dataset.\nThe response returns an object with a Dataset Definition for each set Dataset Definition type.\n"
+        },
+        {
+          "info": {
+            "name": "Set or Update Dataset Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.honeycomb.io/1/dataset_definitions/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set or update one or more definitions for a Dataset.\n**Note**: While the PATCH payload can include the `column_type`, Honeycomb does not use this field when updating Dataset Definitions.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

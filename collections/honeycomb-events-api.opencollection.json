@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Events API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/batch/:datasetSlug",
+            "headers": [
+              {
+                "name": "Content-Encoding",
+                "value": "plaintext"
+              }
+            ],
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Supports batch creation of events.\n\nDataset names are case insensitive. `POST` requests to \"MyDatasET\" will land in the same dataset as \"mydataset\". Names may contain URL-encoded spaces or other special characters, but not URL-encoded slashes. For example, \"My%20Dataset\" will show up in the UI as \"My Dataset\".\n\nThe first event received for a dataset determines the casing of the displayed name. All subsequent variations in casing will use the originally specified case.\n"
+        },
+        {
+          "info": {
+            "name": "Create an Event",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/events/:datasetSlug",
+            "headers": [
+              {
+                "name": "X-Honeycomb-Event-Time",
+                "value": ""
+              },
+              {
+                "name": "X-Honeycomb-Samplerate",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Using this endpoint for anything more than testing is highly discouraged.\n\nSending events in batches will be much more efficient and should be preferred if at all possible.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Kinesis Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Kinesis Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/kinesis_events/:datasetSlug",
+            "headers": [
+              {
+                "name": "X-Amz-Firehose-Request-Id",
+                "value": "33658b45-a8f1-4007-92e8-f601ae33db14"
+              }
+            ],
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint processes events and metrics coming from AWS through Kinesis Firehose.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

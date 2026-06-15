@@ -1,0 +1,151 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Environments API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Environments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/2/teams/:teamSlug/environments",
+            "params": [
+              {
+                "name": "teamSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the Team"
+              },
+              {
+                "name": "page[after]",
+                "value": "eyxJjcmAVhdGVkX",
+                "type": "query",
+                "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n"
+              },
+              {
+                "name": "page[size]",
+                "value": "10",
+                "type": "query",
+                "description": "The number of entries to include per response. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "List all Environments"
+        },
+        {
+          "info": {
+            "name": "Create an Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/2/teams/:teamSlug/environments",
+            "params": [
+              {
+                "name": "teamSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the Team"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Environment"
+        },
+        {
+          "info": {
+            "name": "Get an Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/2/teams/:teamSlug/environments/:ID",
+            "params": [
+              {
+                "name": "teamSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the Team"
+              },
+              {
+                "name": "ID",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier"
+              }
+            ]
+          },
+          "docs": "Get an Environment"
+        },
+        {
+          "info": {
+            "name": "Update an Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.honeycomb.io/2/teams/:teamSlug/environments/:ID",
+            "params": [
+              {
+                "name": "teamSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the Team"
+              },
+              {
+                "name": "ID",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an Environment"
+        },
+        {
+          "info": {
+            "name": "Delete an Environment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/2/teams/:teamSlug/environments/:ID",
+            "params": [
+              {
+                "name": "teamSlug",
+                "value": "",
+                "type": "path",
+                "description": "The slug of the Team"
+              },
+              {
+                "name": "ID",
+                "value": "",
+                "type": "path",
+                "description": "A unique identifier"
+              }
+            ]
+          },
+          "docs": "This deletes and immediately deactivates the Environment. This is an irreversible operation.\n\nEnvironments with Deletion Protection enabled cannot be deleted. To delete an Environment with Deletion Protection enabled, first disable Deletion Protection by updating the Environment with `settings.delete_protected = false`.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

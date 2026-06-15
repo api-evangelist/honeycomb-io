@@ -1,0 +1,4266 @@
+{
+  "item": [
+    {
+      "id": "746c911c-b801-49e1-90f8-96456e73f33c",
+      "name": "Boards",
+      "description": {
+        "content": "Boards are a place to pin and save useful queries/graphs, SLO panels, text panels, and views you want to retain for later reuse and reference.\n\nBoards can contain multiple panel types:\n- **Query panels**: Display saved queries/graphs\n- **SLO panels**: Monitor Service Level Objectives\n- **Text panels**: Add markdown-formatted text and documentation\n- **Views**: Filtered perspectives of board data (limited to 50 views per board)\n\nBoards also support preset filters (limited to 5 per board) to apply consistent filtering across the board.\n\nThis API allows you to list, create, update, and delete boards, as well as manage board views.\n\n## Authorization\n\nThe API key must have the **Manage Public Boards** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d5fd7b83-3445-4b10-abaa-adf85a12ec3b",
+          "name": "Create a Board",
+          "request": {
+            "name": "Create a Board",
+            "description": {
+              "content": "Create a Board comprised of one or more Panels (Query, SLO, or Text).\n**Note**: Each board is limited to a maximum of 5 preset filters.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"panels\": [\n    {\n      \"query_panel\": {\n        \"query_id\": \"<string>\",\n        \"query_annotation_id\": \"<string>\",\n        \"query_style\": \"graph\",\n        \"visualization_settings\": {\n          \"hide_compare\": false,\n          \"hide_hovers\": false,\n          \"hide_markers\": false,\n          \"utc_xaxis\": false,\n          \"overlaid_charts\": false,\n          \"charts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"type\": {},\n      \"position\": {\n        \"x_coordinate\": \"<integer>\",\n        \"y_coordinate\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\"\n      }\n    },\n    {\n      \"query_panel\": {\n        \"query_id\": \"<string>\",\n        \"query_annotation_id\": \"<string>\",\n        \"query_style\": \"graph\",\n        \"visualization_settings\": {\n          \"hide_compare\": false,\n          \"hide_hovers\": false,\n          \"hide_markers\": false,\n          \"utc_xaxis\": false,\n          \"overlaid_charts\": false,\n          \"charts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"type\": {},\n      \"position\": {\n        \"x_coordinate\": \"<integer>\",\n        \"y_coordinate\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\"\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"preset_filters\": [\n    {\n      \"column\": \"<string>\",\n      \"alias\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"alias\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "993ab880-ba90-4df1-a90e-edbbbaddc008",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My API Board\",\n  \"description\": \"A board created via the API with mixed panel types\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 8\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"# Welcome to our API Dashboard\\n\\nThis board shows key metrics for our services.\"\n      },\n      \"position\": {\n        \"x_coordinate\": 8,\n        \"y_coordinate\": 0,\n        \"height\": 3,\n        \"width\": 4\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"backend\"\n    },\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"flexible\",\n  \"name\": \"My Board\",\n  \"description\": \"A board created via the API\",\n  \"links\": {\n    \"board_url\": \"https://ui.honeycomb.io/myteam/environments/myenvironment/board/2NeeaE9bBLd\"\n  },\n  \"id\": \"2NeeaE9bBLd\",\n  \"panels\": [\n    {\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\",\n        \"query_style\": \"graph\",\n        \"dataset\": \"My Dataset\",\n        \"visualization_settings\": {\n          \"hide_compare\": false,\n          \"hide_hovers\": false,\n          \"hide_markers\": false,\n          \"utc_xaxis\": false,\n          \"overlaid_charts\": false,\n          \"charts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"type\": {},\n      \"position\": {\n        \"x_coordinate\": 7,\n        \"y_coordinate\": 7078,\n        \"height\": 487,\n        \"width\": 1625\n      }\n    },\n    {\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\",\n        \"query_style\": \"graph\",\n        \"dataset\": \"My Dataset\",\n        \"visualization_settings\": {\n          \"hide_compare\": false,\n          \"hide_hovers\": false,\n          \"hide_markers\": false,\n          \"utc_xaxis\": false,\n          \"overlaid_charts\": false,\n          \"charts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"type\": {},\n      \"position\": {\n        \"x_coordinate\": 8423,\n        \"y_coordinate\": 2254,\n        \"height\": 5267,\n        \"width\": 6215\n      }\n    }\n  ],\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"preset_filters\": [\n    {\n      \"column\": \"app.Service\",\n      \"alias\": \"Service\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b615cd65-fb0a-486e-bfa0-4b4137340ab1",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My API Board\",\n  \"description\": \"A board created via the API with mixed panel types\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 8\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"# Welcome to our API Dashboard\\n\\nThis board shows key metrics for our services.\"\n      },\n      \"position\": {\n        \"x_coordinate\": 8,\n        \"y_coordinate\": 0,\n        \"height\": 3,\n        \"width\": 4\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"backend\"\n    },\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5fcf5a23-910d-49f6-b67f-5f1f1e7c525f",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My API Board\",\n  \"description\": \"A board created via the API with mixed panel types\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 8\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"# Welcome to our API Dashboard\\n\\nThis board shows key metrics for our services.\"\n      },\n      \"position\": {\n        \"x_coordinate\": 8,\n        \"y_coordinate\": 0,\n        \"height\": 3,\n        \"width\": 4\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"backend\"\n    },\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19137c5a-f234-4df0-9061-351fdfb9aa22",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My API Board\",\n  \"description\": \"A board created via the API with mixed panel types\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 8\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"# Welcome to our API Dashboard\\n\\nThis board shows key metrics for our services.\"\n      },\n      \"position\": {\n        \"x_coordinate\": 8,\n        \"y_coordinate\": 0,\n        \"height\": 3,\n        \"width\": 4\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"backend\"\n    },\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "76601268-4ffb-4290-a262-e8d2ba1c6c02",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My API Board\",\n  \"description\": \"A board created via the API with mixed panel types\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 8\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"# Welcome to our API Dashboard\\n\\nThis board shows key metrics for our services.\"\n      },\n      \"position\": {\n        \"x_coordinate\": 8,\n        \"y_coordinate\": 0,\n        \"height\": 3,\n        \"width\": 4\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"backend\"\n    },\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "307c9801-d809-4bb5-aa2d-22c6cb4bb721",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My API Board\",\n  \"description\": \"A board created via the API with mixed panel types\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 8\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"# Welcome to our API Dashboard\\n\\nThis board shows key metrics for our services.\"\n      },\n      \"position\": {\n        \"x_coordinate\": 8,\n        \"y_coordinate\": 0,\n        \"height\": 3,\n        \"width\": 4\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"backend\"\n    },\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3c4fffb3-8b7a-4d67-b498-0be37cdcd170",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My API Board\",\n  \"description\": \"A board created via the API with mixed panel types\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 8\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"# Welcome to our API Dashboard\\n\\nThis board shows key metrics for our services.\"\n      },\n      \"position\": {\n        \"x_coordinate\": 8,\n        \"y_coordinate\": 0,\n        \"height\": 3,\n        \"width\": 4\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"backend\"\n    },\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "09729fbe-49bd-40b0-ae7c-8257ad2f5d73",
+          "name": "List All Boards",
+          "request": {
+            "name": "List All Boards",
+            "description": {
+              "content": "Retrieves a list of all non-secret Boards within an environment. **Note**: For Honeycomb Classic users, all boards within Classic will be returned.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "5f12e8d0-b327-41c2-9914-89efc4c620d2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"abc123\",\n    \"name\": \"Production Monitoring\",\n    \"description\": \"Key metrics for production environment\",\n    \"type\": \"flexible\",\n    \"panels\": [\n      {\n        \"type\": \"query\",\n        \"query_panel\": {\n          \"query_id\": \"ghi9012a\",\n          \"query_annotation_id\": \"f5e6d7c8\"\n        },\n        \"position\": {\n          \"x_coordinate\": 0,\n          \"y_coordinate\": 0,\n          \"height\": 6,\n          \"width\": 12\n        }\n      },\n      {\n        \"type\": \"text\",\n        \"text_panel\": {\n          \"content\": \"# Production Status\\n\\nAll systems operational\"\n        },\n        \"position\": {\n          \"x_coordinate\": 0,\n          \"y_coordinate\": 6,\n          \"height\": 2,\n          \"width\": 12\n        }\n      }\n    ],\n    \"layout_generation\": \"manual\",\n    \"tags\": [\n      {\n        \"key\": \"environment\",\n        \"value\": \"production\"\n      }\n    ]\n  },\n  {\n    \"id\": \"def456\",\n    \"name\": \"Service Health Dashboard\",\n    \"description\": \"SLO monitoring for critical services\",\n    \"type\": \"flexible\",\n    \"panels\": [\n      {\n        \"type\": \"slo\",\n        \"slo_panel\": {\n          \"slo_id\": \"dF1URaPGL\"\n        }\n      },\n      {\n        \"type\": \"query\",\n        \"query_panel\": {\n          \"query_id\": \"jkl3456b\",\n          \"query_annotation_id\": \"b9c8d7e6\",\n          \"dataset\": \"api-logs\"\n        }\n      }\n    ],\n    \"layout_generation\": \"auto\",\n    \"tags\": [\n      {\n        \"key\": \"team\",\n        \"value\": \"platform\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6ec77d70-ab2c-4bb0-acd0-0a32e22276d1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad06a1eb-90ca-4361-b3c3-f9055893269a",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a7aa00d-66f6-46dc-bef8-453afdd6e46f",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f1fec9a-6d89-4d14-b84f-77738e11f4f7",
+          "name": "Get a Board",
+          "request": {
+            "name": "Get a Board",
+            "description": {
+              "content": "Get a single Board by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier (ID) of a Board."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "9fff3d45-fbfc-450b-a764-b565b24b9d5a",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"board789\",\n  \"name\": \"Comprehensive Dashboard\",\n  \"description\": \"Complete monitoring setup with all panel types\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"stu5678e\",\n        \"query_annotation_id\": \"e9f8g7h6\",\n        \"dataset\": \"application-logs\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 8,\n        \"width\": 8\n      }\n    },\n    {\n      \"type\": \"slo\",\n      \"slo_panel\": {\n        \"slo_id\": \"BGfyxhFto\"\n      },\n      \"position\": {\n        \"x_coordinate\": 8,\n        \"y_coordinate\": 0,\n        \"height\": 4,\n        \"width\": 4\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"## Alert Status\\n\\n🟢 All systems normal\\n\\n**Last updated:** 2024-01-15 14:30 UTC\"\n      },\n      \"position\": {\n        \"x_coordinate\": 8,\n        \"y_coordinate\": 4,\n        \"height\": 4,\n        \"width\": 4\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"criticality\",\n      \"value\": \"high\"\n    },\n    {\n      \"key\": \"owner\",\n      \"value\": \"sre-team\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5e28d09-a39f-40f3-b3a6-f62c9e057337",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fd636e2a-bdcc-4b96-9a2d-937ccbe4a3c2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c05cd7f-cede-4482-a35b-70bf859d2732",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b8e22b3-d34d-41e4-bef0-20775a3f6633",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5913928-e488-40fd-8293-71c7ee3b34cc",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "952cb574-702a-4785-a552-cd35da95891c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8f00a968-af08-44aa-9008-5f694a8fdc1b",
+          "name": "Update a Board",
+          "request": {
+            "name": "Update a Board",
+            "description": {
+              "content": "Update a Board by specifying its ID and full details.\n**Note**: Queries can be added to, removed from, and re-ordered by updating the board itself. It is not possible to reference individual queries via the API.\n**Note**: Each board is limited to a maximum of 5 preset filters. Attempting to update a board with more than 5 preset filters will result in an error.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier (ID) of a Board."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"type\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"panels\": [\n    {\n      \"query_panel\": {\n        \"query_id\": \"<string>\",\n        \"query_annotation_id\": \"<string>\",\n        \"query_style\": \"graph\",\n        \"visualization_settings\": {\n          \"hide_compare\": false,\n          \"hide_hovers\": false,\n          \"hide_markers\": false,\n          \"utc_xaxis\": false,\n          \"overlaid_charts\": false,\n          \"charts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"type\": {},\n      \"position\": {\n        \"x_coordinate\": \"<integer>\",\n        \"y_coordinate\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\"\n      }\n    },\n    {\n      \"query_panel\": {\n        \"query_id\": \"<string>\",\n        \"query_annotation_id\": \"<string>\",\n        \"query_style\": \"graph\",\n        \"visualization_settings\": {\n          \"hide_compare\": false,\n          \"hide_hovers\": false,\n          \"hide_markers\": false,\n          \"utc_xaxis\": false,\n          \"overlaid_charts\": false,\n          \"charts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"type\": {},\n      \"position\": {\n        \"x_coordinate\": \"<integer>\",\n        \"y_coordinate\": \"<integer>\",\n        \"height\": \"<integer>\",\n        \"width\": \"<integer>\"\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"preset_filters\": [\n    {\n      \"column\": \"<string>\",\n      \"alias\": \"<string>\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"alias\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe9b6215-245b-495e-a7fb-8ade4e75c3eb",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"board456\",\n  \"name\": \"Updated Production Dashboard\",\n  \"description\": \"Production monitoring with additional SLO panel\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"cdef7890\",\n        \"query_annotation_id\": \"h9i8j7k6\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"slo\",\n      \"slo_panel\": {\n        \"slo_id\": \"BGfyxhFto\"\n      },\n      \"position\": {\n        \"x_coordinate\": 6,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"## Recent Changes\\n\\n- Added SLO monitoring\\n- Updated query filters\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 6,\n        \"height\": 3,\n        \"width\": 12\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    },\n    {\n      \"key\": \"updated_by\",\n      \"value\": \"api\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type\": \"flexible\",\n  \"name\": \"My Board\",\n  \"description\": \"A board created via the API\",\n  \"links\": {\n    \"board_url\": \"https://ui.honeycomb.io/myteam/environments/myenvironment/board/2NeeaE9bBLd\"\n  },\n  \"id\": \"2NeeaE9bBLd\",\n  \"panels\": [\n    {\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\",\n        \"query_style\": \"graph\",\n        \"dataset\": \"My Dataset\",\n        \"visualization_settings\": {\n          \"hide_compare\": false,\n          \"hide_hovers\": false,\n          \"hide_markers\": false,\n          \"utc_xaxis\": false,\n          \"overlaid_charts\": false,\n          \"charts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"type\": {},\n      \"position\": {\n        \"x_coordinate\": 7,\n        \"y_coordinate\": 7078,\n        \"height\": 487,\n        \"width\": 1625\n      }\n    },\n    {\n      \"query_panel\": {\n        \"query_id\": \"abc1234e\",\n        \"query_annotation_id\": \"e4c24a35\",\n        \"query_style\": \"graph\",\n        \"dataset\": \"My Dataset\",\n        \"visualization_settings\": {\n          \"hide_compare\": false,\n          \"hide_hovers\": false,\n          \"hide_markers\": false,\n          \"utc_xaxis\": false,\n          \"overlaid_charts\": false,\n          \"charts\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        }\n      },\n      \"type\": {},\n      \"position\": {\n        \"x_coordinate\": 8423,\n        \"y_coordinate\": 2254,\n        \"height\": 5267,\n        \"width\": 6215\n      }\n    }\n  ],\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"preset_filters\": [\n    {\n      \"column\": \"app.Service\",\n      \"alias\": \"Service\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "afa87035-90cd-4b2b-be2e-cd11d1ab44c8",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"board456\",\n  \"name\": \"Updated Production Dashboard\",\n  \"description\": \"Production monitoring with additional SLO panel\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"cdef7890\",\n        \"query_annotation_id\": \"h9i8j7k6\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"slo\",\n      \"slo_panel\": {\n        \"slo_id\": \"BGfyxhFto\"\n      },\n      \"position\": {\n        \"x_coordinate\": 6,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"## Recent Changes\\n\\n- Added SLO monitoring\\n- Updated query filters\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 6,\n        \"height\": 3,\n        \"width\": 12\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    },\n    {\n      \"key\": \"updated_by\",\n      \"value\": \"api\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b06c215-b6c7-406c-bcc4-a1f4a0bb7272",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"board456\",\n  \"name\": \"Updated Production Dashboard\",\n  \"description\": \"Production monitoring with additional SLO panel\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"cdef7890\",\n        \"query_annotation_id\": \"h9i8j7k6\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"slo\",\n      \"slo_panel\": {\n        \"slo_id\": \"BGfyxhFto\"\n      },\n      \"position\": {\n        \"x_coordinate\": 6,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"## Recent Changes\\n\\n- Added SLO monitoring\\n- Updated query filters\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 6,\n        \"height\": 3,\n        \"width\": 12\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    },\n    {\n      \"key\": \"updated_by\",\n      \"value\": \"api\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6785eb0-75fe-495e-9338-1e7ed15dfdc5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"board456\",\n  \"name\": \"Updated Production Dashboard\",\n  \"description\": \"Production monitoring with additional SLO panel\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"cdef7890\",\n        \"query_annotation_id\": \"h9i8j7k6\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"slo\",\n      \"slo_panel\": {\n        \"slo_id\": \"BGfyxhFto\"\n      },\n      \"position\": {\n        \"x_coordinate\": 6,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"## Recent Changes\\n\\n- Added SLO monitoring\\n- Updated query filters\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 6,\n        \"height\": 3,\n        \"width\": 12\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    },\n    {\n      \"key\": \"updated_by\",\n      \"value\": \"api\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2b307317-fe32-4d9c-8b75-4faf1dfd1b6d",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"board456\",\n  \"name\": \"Updated Production Dashboard\",\n  \"description\": \"Production monitoring with additional SLO panel\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"cdef7890\",\n        \"query_annotation_id\": \"h9i8j7k6\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"slo\",\n      \"slo_panel\": {\n        \"slo_id\": \"BGfyxhFto\"\n      },\n      \"position\": {\n        \"x_coordinate\": 6,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"## Recent Changes\\n\\n- Added SLO monitoring\\n- Updated query filters\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 6,\n        \"height\": 3,\n        \"width\": 12\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    },\n    {\n      \"key\": \"updated_by\",\n      \"value\": \"api\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b6c56247-0780-470f-b43c-0cdd0c7fd886",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"board456\",\n  \"name\": \"Updated Production Dashboard\",\n  \"description\": \"Production monitoring with additional SLO panel\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"cdef7890\",\n        \"query_annotation_id\": \"h9i8j7k6\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"slo\",\n      \"slo_panel\": {\n        \"slo_id\": \"BGfyxhFto\"\n      },\n      \"position\": {\n        \"x_coordinate\": 6,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"## Recent Changes\\n\\n- Added SLO monitoring\\n- Updated query filters\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 6,\n        \"height\": 3,\n        \"width\": 12\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    },\n    {\n      \"key\": \"updated_by\",\n      \"value\": \"api\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3faaa236-c049-465a-968c-b63f473c442e",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"board456\",\n  \"name\": \"Updated Production Dashboard\",\n  \"description\": \"Production monitoring with additional SLO panel\",\n  \"type\": \"flexible\",\n  \"panels\": [\n    {\n      \"type\": \"query\",\n      \"query_panel\": {\n        \"query_id\": \"cdef7890\",\n        \"query_annotation_id\": \"h9i8j7k6\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"slo\",\n      \"slo_panel\": {\n        \"slo_id\": \"BGfyxhFto\"\n      },\n      \"position\": {\n        \"x_coordinate\": 6,\n        \"y_coordinate\": 0,\n        \"height\": 6,\n        \"width\": 6\n      }\n    },\n    {\n      \"type\": \"text\",\n      \"text_panel\": {\n        \"content\": \"## Recent Changes\\n\\n- Added SLO monitoring\\n- Updated query filters\"\n      },\n      \"position\": {\n        \"x_coordinate\": 0,\n        \"y_coordinate\": 6,\n        \"height\": 3,\n        \"width\": 12\n      }\n    }\n  ],\n  \"layout_generation\": \"manual\",\n  \"tags\": [\n    {\n      \"key\": \"environment\",\n      \"value\": \"production\"\n    },\n    {\n      \"key\": \"updated_by\",\n      \"value\": \"api\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe4cedee-086e-4da9-a3d2-24da7bda9aa6",
+          "name": "Delete a Board",
+          "request": {
+            "name": "Delete a Board",
+            "description": {
+              "content": "Delete a public Board by specifying its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier (ID) of a Board."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "b4960261-1974-4b02-8eae-2118bad012bf",
+              "name": "Success - no Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e7368d75-3818-4696-9bab-9e61b1ecfac2",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f6a03c7-309b-40fa-93b9-0a9baa617e61",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "39c12faa-2fc6-4008-a03e-32259c790f0c",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4bbd8e5d-8b06-4d53-9a6a-2a0c1fdb47e0",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b42262eb-49e6-4a7d-ba32-f3aa59f9e681",
+          "name": "List Board Views",
+          "request": {
+            "name": "List Board Views",
+            "description": {
+              "content": "Retrieve a list of all views for a board.\n**Note**: Each board is limited to a maximum of 50 views.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId",
+                "views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier (ID) of a Board."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "08c67fc4-bd71-41c0-888c-bcb113c383b4",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"eC_abc123\",\n    \"name\": \"Errors View\",\n    \"filters\": [\n      {\n        \"column\": \"status\",\n        \"operation\": \"=\",\n        \"value\": \"error\"\n      }\n    ]\n  },\n  {\n    \"id\": \"yc_def456\",\n    \"name\": \"Slow requests view\",\n    \"filters\": [\n      {\n        \"column\": \"duration_ms\",\n        \"operation\": \">\",\n        \"value\": 1000\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b5316f62-1b6c-458b-b757-9942628cf45d",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "92722277-2169-4dbf-817c-bf0320e07902",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eca66b9e-361f-4e94-8eef-3383891d26a7",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1869751-c59e-4e38-b9d9-cd668f8a14b8",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9ec62002-6972-4c8f-b37e-b1ad7d161b9a",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e955d9e4-6422-4cd5-8404-8016b303406f",
+          "name": "Create a Board View",
+          "request": {
+            "name": "Create a Board View",
+            "description": {
+              "content": "Create a new view for a board with the specified filters.\n**Note**: Each board is limited to a maximum of 50 views. Attempting to create more than 50 views will result in an error.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId",
+                "views"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier (ID) of a Board."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"operation\": \"<string>\",\n      \"value\": {}\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4fe4f85e-c4c5-4938-ae04-63900b840ff2",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"eC_abc123\",\n  \"name\": \"My View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4618796-6659-43da-aa21-e9d6e0b788f5",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c66291fc-675e-4af8-9954-dae5e3c53656",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aaa17a0b-5b71-4493-907e-c7d7518c239c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "250ba9fa-c2b3-4326-bc33-a1ec53b8146d",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "99527deb-7f7b-48de-9dd1-68b68ad8762f",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "73c80f84-4ed9-41f6-be2a-3a1c32130fe6",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e05ba87d-3a63-4c53-a168-84e92abc0820",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bab46961-09c1-48af-9d2e-159daff5bb36",
+          "name": "Get a Board View",
+          "request": {
+            "name": "Get a Board View",
+            "description": {
+              "content": "Retrieve a single Board View by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId",
+                "views",
+                ":viewId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier (ID) of a Board."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) The unique identifier (ID) of a Board View."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "49447360-6316-419a-ae97-1da4fc23d30b",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"eC_abc123\",\n  \"name\": \"Api and web slow requests errors\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    },\n    {\n      \"column\": \"duration_ms\",\n      \"operation\": \">\",\n      \"value\": 100\n    },\n    {\n      \"column\": \"service\",\n      \"operation\": \"in\",\n      \"value\": [\n        \"api\",\n        \"web\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "671adb74-598a-45dd-9b1e-d6715b5225d7",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fce2572-6a89-450d-a651-87f78264a34a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32ae39b9-2b67-4a63-9aa0-472ad7859c80",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fbb27d3e-a5a5-45d4-a649-7f83c4ab6838",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3fd95f4-3924-4b71-a791-d4fdb4710dc3",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "797d1401-a010-4f76-8313-d82ffdaba9e3",
+          "name": "Delete a Board View",
+          "request": {
+            "name": "Delete a Board View",
+            "description": {
+              "content": "Delete a Board View by specifying its ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId",
+                "views",
+                ":viewId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier (ID) of a Board."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) The unique identifier (ID) of a Board View."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "4ebc1a1d-bfd7-4725-a669-a8a5c33ef8f9",
+              "name": "Success - no Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "dd301e39-83c4-4d6b-ae77-9342107cfc36",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29ece73d-4605-40b1-9b5e-5b3e96bd4988",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "68e0efa7-190e-4a3c-8015-d6ce4adf4bea",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "79b74bce-569b-44cf-bf52-28a599c34af5",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "206f5b12-b7ec-43b4-a4df-18c29622e70c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c2f5ddd9-2a27-4616-872c-3585532024bc",
+          "name": "Update a Board View",
+          "request": {
+            "name": "Update a Board View",
+            "description": {
+              "content": "Update a Board View by specifying its ID and full details.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "boards",
+                ":boardId",
+                "views",
+                ":viewId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "boardId",
+                  "description": "(Required) The unique identifier (ID) of a Board."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "viewId",
+                  "description": "(Required) The unique identifier (ID) of a Board View."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"filters\": [\n    {\n      \"column\": \"<string>\",\n      \"operation\": \"<string>\",\n      \"value\": {}\n    }\n  ],\n  \"id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "65b7c3f0-7b54-40db-97fc-f83503046dbe",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"eC_abc123\",\n  \"name\": \"My View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": {}\n    },\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": {}\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13ac935a-80d9-485d-bed8-506bdb93a3a1",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2334f00e-1cb1-4adb-89de-c9877eb87c21",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91c0e296-0b4a-4e07-90e6-122c24d56532",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ded3886-1b89-4397-9350-9378919273ca",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f6d47982-1721-4b78-94f0-93c2c918c677",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "17eee5a9-ca93-48f2-ba79-535dde867292",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbb4ba83-3d9a-46b9-8866-35a003b87b2c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "boards",
+                    ":boardId",
+                    "views",
+                    ":viewId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "boardId",
+                      "description": "(Required) The unique identifier (ID) of a Board."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "viewId",
+                      "description": "(Required) The unique identifier (ID) of a Board View."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"Errors View\",\n  \"filters\": [\n    {\n      \"column\": \"status\",\n      \"operation\": \"=\",\n      \"value\": \"error\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.honeycomb.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "fac11c56-f84f-4b60-bda5-d3cd9ee7cfdf",
+    "name": "Honeycomb Boards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+      "type": "text/plain"
+    }
+  }
+}

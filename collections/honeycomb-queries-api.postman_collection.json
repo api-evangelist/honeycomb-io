@@ -1,0 +1,3205 @@
+{
+  "item": [
+    {
+      "id": "d5fc3e93-b868-4379-87e7-be995047435e",
+      "name": "Queries",
+      "description": {
+        "content": "Queries in Honeycomb are specifications for queries, and are used to identify queries in other parts of the API - in particular: boards, triggers, and query annotations.\n\nThis API allows you to create and get query objects.\n\n## Authorization\n\nThe API key must have the **Manage Queries and Columns** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "5bb066bd-dbcf-4bee-ade7-b40d23caed32",
+          "name": "Create a Query",
+          "request": {
+            "name": "Create a Query",
+            "description": {
+              "content": "Create a query from a specification. DOES NOT run the query to retrieve results.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "queries",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"breakdowns\": [\n    \"user_agent\"\n  ],\n  \"calculations\": [\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"<string>\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<null>\"\n    },\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"<string>\",\n      \"value\": \"<null>\"\n    }\n  ],\n  \"filter_combination\": \"AND\",\n  \"formulas\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"granularity\": \"<integer>\",\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"ascending\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"<string>\",\n      \"order\": \"ascending\"\n    }\n  ],\n  \"limit\": 100,\n  \"start_time\": 1676399428,\n  \"end_time\": 1676467828,\n  \"time_range\": 7200,\n  \"havings\": [\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<null,string>\",\n      \"op\": \"<string>\",\n      \"value\": 10\n    },\n    {\n      \"calculate_op\": \"<string>\",\n      \"column\": \"<null,string>\",\n      \"op\": \"<string>\",\n      \"value\": 10\n    }\n  ],\n  \"calculated_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"compare_time_offset_seconds\": \"<integer>\",\n  \"usage_mode\": false\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "da169b18-adfd-4dea-80ab-c83d819853a0",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\"\n    }\n  ],\n  \"orders\": [\n    {\n      \"op\": \"COUNT\",\n      \"order\": \"descending\"\n    }\n  ],\n  \"time_range\": 7200\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc3419d\",\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\"\n    }\n  ],\n  \"orders\": [\n    {\n      \"op\": \"COUNT\",\n      \"order\": \"descending\"\n    }\n  ],\n  \"time_range\": 7200\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c4387788-6a17-4ddc-8c71-5394c16023b0",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\"\n    }\n  ],\n  \"orders\": [\n    {\n      \"op\": \"COUNT\",\n      \"order\": \"descending\"\n    }\n  ],\n  \"time_range\": 7200\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "db383735-b449-476c-97e4-da14dbf5bc3f",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\"\n    }\n  ],\n  \"orders\": [\n    {\n      \"op\": \"COUNT\",\n      \"order\": \"descending\"\n    }\n  ],\n  \"time_range\": 7200\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5c58d1e1-4be4-4ce1-a1b6-ca75d8a8c119",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\"\n    }\n  ],\n  \"orders\": [\n    {\n      \"op\": \"COUNT\",\n      \"order\": \"descending\"\n    }\n  ],\n  \"time_range\": 7200\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "532f97a1-efea-46b7-9ee2-bf433b85cc04",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\"\n    }\n  ],\n  \"orders\": [\n    {\n      \"op\": \"COUNT\",\n      \"order\": \"descending\"\n    }\n  ],\n  \"time_range\": 7200\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c24511dc-f7e5-47fe-b549-ba6085659a5d",
+          "name": "Get a Query",
+          "request": {
+            "name": "Get a Query",
+            "description": {
+              "content": "Retrieve a query by its ID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "queries",
+                ":datasetSlug",
+                ":queryId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryId",
+                  "description": "(Required) The unique identifier (ID) of a query."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "2e83610d-3b90-4848-b542-f44e883d6bef",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier (ID) of a query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"abc3419d\",\n  \"breakdowns\": [\n    \"user_agent\"\n  ],\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\"\n    }\n  ],\n  \"orders\": [\n    {\n      \"op\": \"COUNT\",\n      \"order\": \"descending\"\n    }\n  ],\n  \"limit\": 10,\n  \"time_range\": 7200,\n  \"end_time\": 1676467828\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b1e7cce7-1a35-443b-8dde-22a9389df169",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier (ID) of a query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b66d21ea-bd67-493c-bcba-dab6a7478203",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier (ID) of a query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85145883-b71e-4eed-8bc9-3d107e244272",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "queries",
+                    ":datasetSlug",
+                    ":queryId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryId",
+                      "description": "(Required) The unique identifier (ID) of a query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "50fb4d58-ab60-4499-910b-c3e6836118eb",
+      "name": "Query Annotations",
+      "description": {
+        "content": "Query Annotations in Honeycomb allow you to associate names and descriptions to queries to add additional information in collaboration features.\n\nThis API allows you to list, create, update, and delete Query Annotations.\n\n## Authorization\n\nThe API key must have the **Manage Queries and Columns** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "043375cb-1744-4eb5-a704-0217eb37cb50",
+          "name": "Create a Query Annotation",
+          "request": {
+            "name": "Create a Query Annotation",
+            "description": {
+              "content": "Create a Query Annotation for the specified query ID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_annotations",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "765bba36-fc43-45d9-a215-0d8a62d4f650",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Named Query\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"description\": \"A nice description of My Named Query\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"My Named Query\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"description\": \"A nice description of My Named Query\",\n  \"id\": \"sGUnkBHgRFN\",\n  \"created_at\": \"2022-10-26T21:36:04Z\",\n  \"updated_at\": \"2022-12-04T08:14:26Z\",\n  \"source\": \"query\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10ddcfe8-babd-4798-bf37-e918cb4303d4",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Named Query\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"description\": \"A nice description of My Named Query\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Query ID included in body is invalid\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfaf673c-1f57-4bdc-a4b3-119b8d30df67",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Named Query\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"description\": \"A nice description of My Named Query\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d129b28-6ae4-4561-b99b-e1a7f2061ebc",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Named Query\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"description\": \"A nice description of My Named Query\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22f092cd-2245-42b5-8879-5c021d802914",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Named Query\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"description\": \"A nice description of My Named Query\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a916771-0632-40de-aed6-c9752a602144",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Named Query\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"description\": \"A nice description of My Named Query\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3ef4d1a2-2e54-4a82-bcbb-0ec5b50a7233",
+          "name": "List Query Annotations",
+          "request": {
+            "name": "List Query Annotations",
+            "description": {
+              "content": "List all Query Annotations in the specified dataset.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_annotations",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "include_board_annotations",
+                  "value": "false",
+                  "description": "Whether to include Query Annotations that were created from boards. By default, only Query Annotations created directly from queries are returned.\n"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "fbc1d2d2-db5a-486f-ad55-df8173716940",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_board_annotations",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"My Named Query\",\n    \"query_id\": \"mabAMpSPDjH\",\n    \"description\": \"A nice description of My Named Query\",\n    \"id\": \"sGUnkBHgRFN\",\n    \"created_at\": \"2022-10-26T21:36:04Z\",\n    \"updated_at\": \"2022-12-04T08:14:26Z\",\n    \"source\": \"query\"\n  },\n  {\n    \"name\": \"My Named Query\",\n    \"query_id\": \"mabAMpSPDjH\",\n    \"description\": \"A nice description of My Named Query\",\n    \"id\": \"sGUnkBHgRFN\",\n    \"created_at\": \"2022-10-26T21:36:04Z\",\n    \"updated_at\": \"2022-12-04T08:14:26Z\",\n    \"source\": \"query\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d92518f-99e1-47eb-a8f5-bfdfd2d9f89e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_board_annotations",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6957f0cb-62d8-474b-9f18-bb3a12dcdaa0",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_board_annotations",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25b4c66a-2e4c-4ab2-8d66-6b8b98ad491d",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "include_board_annotations",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ee8d6958-6da8-421e-b4a6-60b6eb1b51c9",
+          "name": "Get a Query Annotation",
+          "request": {
+            "name": "Get a Query Annotation",
+            "description": {
+              "content": "Get a Query Annotation by its ID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_annotations",
+                ":datasetSlug",
+                ":queryAnnotationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryAnnotationId",
+                  "description": "(Required) The unique identifier (ID) of the annotation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "9eea8975-a7dd-4df8-bb10-5febd9872fe2",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"My Named Query\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"description\": \"A nice description of My Named Query\",\n  \"id\": \"sGUnkBHgRFN\",\n  \"created_at\": \"2022-10-26T21:36:04Z\",\n  \"updated_at\": \"2022-12-04T08:14:26Z\",\n  \"source\": \"query\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8f86df4-0dd6-48a5-bcd8-72f7f4e02a64",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5b19c93c-ff3d-4fdd-9650-753003228669",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fab383d1-4d38-4f5f-9bfc-740a7754041c",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9552bf0c-1c62-458e-a011-d3e8ee183188",
+          "name": "Update a Query Annotation",
+          "request": {
+            "name": "Update a Query Annotation",
+            "description": {
+              "content": "Update a Query Annotation by specifying its ID. The Query ID associated with the Query Annotation cannot be updated. Partial updates are not supported.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_annotations",
+                ":datasetSlug",
+                ":queryAnnotationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryAnnotationId",
+                  "description": "(Required) The unique identifier (ID) of the annotation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "f03c88b9-5c7e-4bda-8995-aa2bfb6a8cb7",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Updated Annotation\",\n  \"description\": \"A nice description of My Update Annotation\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"id\": \"sGUnkBHgRFN\",\n  \"created_at\": \"2022-10-26T21:36:04Z\",\n  \"updated_at\": \"2022-12-16T10:44:08Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"My Updated Annotation\",\n  \"description\": \"A nice description of My Update Annotation\",\n  \"query_id\": \"mabAMpSPDjH\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5593b43-6e09-434a-ba57-8898b1cad148",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Updated Annotation\",\n  \"description\": \"A nice description of My Update Annotation\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"id\": \"sGUnkBHgRFN\",\n  \"created_at\": \"2022-10-26T21:36:04Z\",\n  \"updated_at\": \"2022-12-16T10:44:08Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Query annotation id included in body does not match URL\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4de63a96-5ffd-4a5c-97c8-9bc9d20bedfd",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Updated Annotation\",\n  \"description\": \"A nice description of My Update Annotation\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"id\": \"sGUnkBHgRFN\",\n  \"created_at\": \"2022-10-26T21:36:04Z\",\n  \"updated_at\": \"2022-12-16T10:44:08Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9858a877-6cd8-4991-b233-14ea2696eeb9",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Updated Annotation\",\n  \"description\": \"A nice description of My Update Annotation\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"id\": \"sGUnkBHgRFN\",\n  \"created_at\": \"2022-10-26T21:36:04Z\",\n  \"updated_at\": \"2022-12-16T10:44:08Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4dc5310c-e3ec-4a3d-9727-922ba8a57127",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"My Updated Annotation\",\n  \"description\": \"A nice description of My Update Annotation\",\n  \"query_id\": \"mabAMpSPDjH\",\n  \"id\": \"sGUnkBHgRFN\",\n  \"created_at\": \"2022-10-26T21:36:04Z\",\n  \"updated_at\": \"2022-12-16T10:44:08Z\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b27da9a-acee-45e3-9839-5024263fa6e6",
+          "name": "Delete a Query Annotation",
+          "request": {
+            "name": "Delete a Query Annotation",
+            "description": {
+              "content": "Delete a Query Annotation by specifying its ID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_annotations",
+                ":datasetSlug",
+                ":queryAnnotationId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryAnnotationId",
+                  "description": "(Required) The unique identifier (ID) of the annotation."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "12809d4e-74fb-48a5-80ac-7fa4a99a2ba4",
+              "name": "Success - no content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a5f0f46f-533f-48ba-a776-31818a66f89a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10c9f0c1-4c5b-41fc-870f-b5314d69eff5",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3330d6fb-f27c-41d5-9212-6b56bf36830b",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_annotations",
+                    ":datasetSlug",
+                    ":queryAnnotationId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryAnnotationId",
+                      "description": "(Required) The unique identifier (ID) of the annotation."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "252facf6-a6dd-4b19-983e-6aa2a161bd1b",
+      "name": "Query Data",
+      "description": {
+        "content": "This feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).\n\nQuery Results are the aggregated data from a Query, similar to what is displayed in graphs or heatmaps within the Honeycomb UI. Receiving results from a Query is a three-step process:\n\nCreate the Query (or Query Spec), which validates that the query parameters are valid. Creating a query does not actually run the query to get results.\nRun the query asynchronously by creating a Query Result referencing the Query’s ID. This returns a Query Result ID.\nPoll the query result endpoint (with the Query Result ID) until the data is ready.\n\nNote that many Query Results can be created from a single Query. This is particularly useful when using a relative time_range parameter in the Query.\nFor example, a Query with `time_range: 7200` and no explicit `start_time` or `end_time` can be re-run over and over, with each resulting Query Result containing the most recent 2 hours of data.\nThis is conceptually similar to clicking Run Query in the Honeycomb UI without changing any query parameters.\n\n**IMPORTANT API RESTRICTIONS:**\n\nTo ensure the stability of Honeycomb systems, we have enabled the following API restrictions. These restrictions may change over time.\n\n* Query Results can only be created for events with timestamps within the past 7 days.\n\n* When creating a Query Result, the time ranges from the Query are truncated according to the following rules. For queries with a time range of:\n\n    * less than or equal to 6 hours, results are truncated to the nearest 1 minute. For example, a start/end time of 2021-04-22T05:28:12Z will be truncated to 2021-04-22T05:28:00Z.\n\n    * greater than 6 hours and less than or equal to 2 days, results are truncated to the nearest 5 minutes. For example, a start/end time of 2021-04-22T05:28:12Z will be truncated to 2021-04-22T05:25:00Z.\n\n    * greater than 2 days and less than or equal to 7 days, results are truncated to the nearest 30 minutes. For example, a start/end time of 2021-04-22T05:28:12Z will be truncated to 2021-04-22T05:00:00Z.\n\n* Creating a Query Result is rate limited to 10 requests per minute. Status code 429 will be returned when rate limited.\n\n* Query Results cannot take longer than 10 seconds to run.\n\n* Creating a Query Result that contains Relational Fields is rate limited to 1 request per minute. Status code 429 will be returned when rate limited.\n\n  * Query Results with Relational Fields may be more likely to take longer to run.\n\n* Regardless of whether the `compare_time_offset_seconds` field is populated on a query, query run responses will not include comparison results.\n\n## Authorization\n\nThe API key must have the **Manage Queries and Columns** and **Run Queries** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "12c4693a-d6e3-4254-b1d8-9d6244c6505e",
+          "name": "Create a Query Result",
+          "request": {
+            "name": "Create a Query Result",
+            "description": {
+              "content": "Kick off processing of a Query to then get back the Query Results.\nOnce the Query Result has been created, the query will be run asynchronously, allowing the result data to be fetched from the GET query result endpoint.\nA maximum duration of 7 days of data can be queried. Any queries with a `start_time`, `end_time`, or `time_range` resulting in a duration longer than 7 days will result in a `400` error response.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_results",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query_id\": \"<string>\",\n  \"disable_series\": false,\n  \"disable_total_by_aggregate\": true,\n  \"disable_other_by_aggregate\": true,\n  \"limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b9498d73-94f4-4019-8c82-fbb66e113381",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"mabAMpSPDjH\",\n  \"disable_series\": false,\n  \"disable_total_by_aggregate\": true,\n  \"disable_other_by_aggregate\": true,\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The Location header will contain the URL where the results can be fetched.",
+                  "key": "Location",
+                  "value": "https://api.honeycomb.io/1/query_results/test-via-curl/HprJhV1fYyr"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"COUNT\"\n      }\n    ],\n    \"orders\": [\n      {\n        \"op\": \"COUNT\",\n        \"order\": \"descending\"\n      }\n    ],\n    \"limit\": 10000,\n    \"time_range\": 7200\n  },\n  \"complete\": false,\n  \"id\": \"dfg456\",\n  \"links\": {\n    \"query_url\": \"https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/dfg456\",\n    \"graph_image_url\": \"https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/dfg456/snapshot\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a4fd58e6-217a-446d-8c4f-0ff3aed96c3e",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"mabAMpSPDjH\",\n  \"disable_series\": false,\n  \"disable_total_by_aggregate\": true,\n  \"disable_other_by_aggregate\": true,\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "19b5e44f-bdf5-475d-9ab9-ad1ed4a7e018",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"mabAMpSPDjH\",\n  \"disable_series\": false,\n  \"disable_total_by_aggregate\": true,\n  \"disable_other_by_aggregate\": true,\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7d7985c7-212d-48dc-979a-d64b82a737f1",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"mabAMpSPDjH\",\n  \"disable_series\": false,\n  \"disable_total_by_aggregate\": true,\n  \"disable_other_by_aggregate\": true,\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d5f31964-e4fe-46e2-9c52-a5235859f728",
+              "name": "Validation Failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"mabAMpSPDjH\",\n  \"disable_series\": false,\n  \"disable_total_by_aggregate\": true,\n  \"disable_other_by_aggregate\": true,\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"error\": \"The provided input is invalid.\",\n  \"title\": \"The provided input is invalid\",\n  \"type_detail\": [\n    {\n      \"field\": \"type\",\n      \"code\": \"invalid\",\n      \"description\": \"type: must be a valid value\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0409fb1c-bea8-432e-84ac-c95b2e2d8f51",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"mabAMpSPDjH\",\n  \"disable_series\": false,\n  \"disable_total_by_aggregate\": true,\n  \"disable_other_by_aggregate\": true,\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 429,\n  \"type\": \"https://api.honeycomb.io/problems/rate-limited\",\n  \"title\": \"You have exceeded your rate limit.\",\n  \"error\": \"You have exceeded your rate limit.\",\n  \"detail\": \"This endpoint allows 10 requests per minute.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48694f94-9eb4-4fb0-ba4b-cca779f18fc8",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query_id\": \"mabAMpSPDjH\",\n  \"disable_series\": false,\n  \"disable_total_by_aggregate\": true,\n  \"disable_other_by_aggregate\": true,\n  \"limit\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81736279-aa4d-4c7d-bdd3-0bf0b65af270",
+          "name": "Get Query Result",
+          "request": {
+            "name": "Get Query Result",
+            "description": {
+              "content": "Get the Query Result details for a specific Query Result ID.\nThis endpoint is used to fetch the results of a query that had previously been created. It is recommended to follow the Location header included in the Create Query Result output, but the URL can also be constructed manually with the &lt;query-result-id&gt;.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "query_results",
+                ":datasetSlug",
+                ":queryResultId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "queryResultId",
+                  "description": "(Required) The unique identifier (ID) of the query result."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "c6068f78-25c9-4c85-8765-5744688cc966",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug",
+                    ":queryResultId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryResultId",
+                      "description": "(Required) The unique identifier (ID) of the query result."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The Last-Modified response HTTP header contains a date and time when the origin server believes the resource was last modified.",
+                  "key": "Last-Modified",
+                  "value": "Mon, 02 Jan 2006 15:04:05 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The max-age=N response directive indicates that the response remains fresh until N seconds after the response is generated.",
+                  "key": "Cache-Control",
+                  "value": "private, max-age=86400"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"query\": {\n    \"calculations\": [\n      {\n        \"op\": \"COUNT\"\n      }\n    ],\n    \"orders\": [\n      {\n        \"op\": \"COUNT\",\n        \"order\": \"descending\"\n      }\n    ],\n    \"limit\": 10000,\n    \"time_range\": 7200\n  },\n  \"complete\": true,\n  \"id\": \"dfg456\",\n  \"data\": {\n    \"series\": [],\n    \"results\": [\n      {\n        \"data\": {\n          \"COUNT\": 20769\n        }\n      }\n    ]\n  },\n  \"links\": {\n    \"query_url\": \"https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/dfg456\",\n    \"graph_image_url\": \"https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/dfg456/snapshot\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "960ab3a8-0f54-4a09-b63f-92fe2b7f822e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug",
+                    ":queryResultId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryResultId",
+                      "description": "(Required) The unique identifier (ID) of the query result."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab9fd93d-fab2-4b20-9254-0cff8cf333f2",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "query_results",
+                    ":datasetSlug",
+                    ":queryResultId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "queryResultId",
+                      "description": "(Required) The unique identifier (ID) of the query result."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.honeycomb.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "0ed206c5-a689-44fe-8427-4ce64bff94c2",
+    "name": "Honeycomb Queries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+      "type": "text/plain"
+    }
+  }
+}

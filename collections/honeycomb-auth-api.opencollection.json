@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Auth API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Auth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Authorizations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/auth"
+          },
+          "docs": "Returns metadata about the API Key used to call the API.\nNote: a Honeycomb Classic API key will return an empty string for both of the `environment` values.\n"
+        },
+        {
+          "info": {
+            "name": "List Authorizations V2",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/2/auth"
+          },
+          "docs": "Returns metadata about the Management API Key used to call the API.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

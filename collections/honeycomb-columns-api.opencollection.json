@@ -1,0 +1,280 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Columns API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Calculated Fields",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Calculated Fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/derived_columns/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "alias",
+                "value": "",
+                "type": "query",
+                "description": "The Calculated Field `alias`."
+              }
+            ]
+          },
+          "docs": "Get all the Calculated Fields (also called Derived Columns) in a dataset or environment. With the `?alias=X` query parameter, can return a single Calculated Field by its `alias`."
+        },
+        {
+          "info": {
+            "name": "Create a Calculated Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/derived_columns/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Calculated Field (also called a Derived Column). Calculated Fields allow you to run queries based on the value of an expression that is calculated from the fields in an event.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Calculated Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/derived_columns/:datasetSlug/:derivedColumnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "derivedColumnId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a Calculated Field (also called a Derived Column)."
+              }
+            ]
+          },
+          "docs": "Get a Calculated Field"
+        },
+        {
+          "info": {
+            "name": "Update a Calculated Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/derived_columns/:datasetSlug/:derivedColumnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "derivedColumnId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a Calculated Field (also called a Derived Column)."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Calculated Field (also called a Derived Column).\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Calculated Field",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/derived_columns/:datasetSlug/:derivedColumnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "derivedColumnId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a Calculated Field (also called a Derived Column)."
+              }
+            ]
+          },
+          "docs": "Delete a Calculated Field (also called a Derived Column). **Note**: A Calculated Field used by a SLO, Trigger, or Board cannot be deleted without removing or modifying the SLO, Trigger, or Board first.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Columns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Columns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "key_name",
+                "value": "",
+                "type": "query",
+                "description": "the column key name"
+              }
+            ]
+          },
+          "docs": "Get all the Columns in a dataset or environment.\nUse `__all__`  as the dataset slug to retrieve all Columns across all datasets in the environment (not available for classic environments).\n"
+        },
+        {
+          "info": {
+            "name": "Create a Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a column by providing corresponding details for that type.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a column."
+              }
+            ]
+          },
+          "docs": "Get a Column"
+        },
+        {
+          "info": {
+            "name": "Update a Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a column."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a column\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a column."
+              }
+            ]
+          },
+          "docs": "Delete a column. **Note**: Deleted columns are no longer queryable, but data in existing permalinks (query results and trace views) will remain stored and available at those links.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

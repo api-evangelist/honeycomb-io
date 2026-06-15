@@ -1,0 +1,226 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Boards API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Boards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Boards",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/boards"
+          },
+          "docs": "Retrieves a list of all non-secret Boards within an environment. **Note**: For Honeycomb Classic users, all boards within Classic will be returned.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Board",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/boards",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Board comprised of one or more Panels (Query, SLO, or Text).\n**Note**: Each board is limited to a maximum of 5 preset filters.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Board",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/boards/:boardId",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board."
+              }
+            ]
+          },
+          "docs": "Get a single Board by ID."
+        },
+        {
+          "info": {
+            "name": "Update a Board",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/boards/:boardId",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Board by specifying its ID and full details.\n**Note**: Queries can be added to, removed from, and re-ordered by updating the board itself. It is not possible to reference individual queries via the API.\n**Note**: Each board is limited to a maximum of 5 preset filters. Attempting to update a board with more than 5 preset filters will result in an error.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Board",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/boards/:boardId",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board."
+              }
+            ]
+          },
+          "docs": "Delete a public Board by specifying its ID."
+        },
+        {
+          "info": {
+            "name": "List Board Views",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/boards/:boardId/views",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board."
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all views for a board.\n**Note**: Each board is limited to a maximum of 50 views.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Board View",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/boards/:boardId/views",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new view for a board with the specified filters.\n**Note**: Each board is limited to a maximum of 50 views. Attempting to create more than 50 views will result in an error.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Board View",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/boards/:boardId/views/:viewId",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board."
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board View."
+              }
+            ]
+          },
+          "docs": "Retrieve a single Board View by ID."
+        },
+        {
+          "info": {
+            "name": "Update a Board View",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/boards/:boardId/views/:viewId",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board."
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board View."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Board View by specifying its ID and full details."
+        },
+        {
+          "info": {
+            "name": "Delete a Board View",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/boards/:boardId/views/:viewId",
+            "params": [
+              {
+                "name": "boardId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board."
+              },
+              {
+                "name": "viewId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Board View."
+              }
+            ]
+          },
+          "docs": "Delete a Board View by specifying its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

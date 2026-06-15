@@ -1,0 +1,257 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Queries API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Queries",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/queries/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a query from a specification. DOES NOT run the query to retrieve results.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Query",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/queries/:datasetSlug/:queryId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "queryId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a query."
+              }
+            ]
+          },
+          "docs": "Retrieve a query by its ID.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query Annotations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Query Annotations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "include_board_annotations",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include Query Annotations that were created from boards. By default, only Query Annotations created directly from queries are returned.\n"
+              }
+            ]
+          },
+          "docs": "List all Query Annotations in the specified dataset.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Query Annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Query Annotation for the specified query ID.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Query Annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug/:queryAnnotationId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "queryAnnotationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of the annotation."
+              }
+            ]
+          },
+          "docs": "Get a Query Annotation by its ID.\n"
+        },
+        {
+          "info": {
+            "name": "Update a Query Annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug/:queryAnnotationId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "queryAnnotationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of the annotation."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Query Annotation by specifying its ID. The Query ID associated with the Query Annotation cannot be updated. Partial updates are not supported.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Query Annotation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/query_annotations/:datasetSlug/:queryAnnotationId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "queryAnnotationId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of the annotation."
+              }
+            ]
+          },
+          "docs": "Delete a Query Annotation by specifying its ID.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Query Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Query Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/query_results/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Kick off processing of a Query to then get back the Query Results.\nOnce the Query Result has been created, the query will be run asynchronously, allowing the result data to be fetched from the GET query result endpoint.\nA maximum duration of 7 days of data can be queried. Any queries with a `start_time`, `end_time`, or `time_range` resulting in a duration longer than 7 days will result in a `400` error response.\n"
+        },
+        {
+          "info": {
+            "name": "Get Query Result",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/query_results/:datasetSlug/:queryResultId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "queryResultId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of the query result."
+              }
+            ]
+          },
+          "docs": "Get the Query Result details for a specific Query Result ID.\nThis endpoint is used to fetch the results of a query that had previously been created. It is recommended to follow the Location header included in the Create Query Result output, but the URL can also be constructed manually with the &lt;query-result-id&gt;.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

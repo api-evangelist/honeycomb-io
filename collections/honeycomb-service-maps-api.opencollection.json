@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Service Maps API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Service Maps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Map Dependency Request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/maps/dependencies/requests",
+            "params": [
+              {
+                "name": "limit",
+                "value": "5000",
+                "type": "query",
+                "description": "Maximum number of dependencies to return. Default is 10000, maximum is 64000.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Map Dependency Request.\n"
+        },
+        {
+          "info": {
+            "name": "Get Map Dependencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/maps/dependencies/requests/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Map Dependencies Request."
+              },
+              {
+                "name": "page[after]",
+                "value": "eyxJjcmAVhdGVkX",
+                "type": "query",
+                "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n"
+              },
+              {
+                "name": "page[size]",
+                "value": "10",
+                "type": "query",
+                "description": "The number of entries to include per response. Maximum value is 100."
+              }
+            ]
+          },
+          "docs": "Get the dependencies for a previously created Map Dependencies Request. Note: This endpoint returns a single page of results and uses pagination. Even if you specified a large limit in the initial POST request, you will receive up to the page size limit per request and must use the pagination links to retrieve additional results.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
