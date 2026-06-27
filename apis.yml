@@ -314,28 +314,28 @@ common:
     type: OpenSource
   - url: https://github.com/honeycombio/honeycomb-opentelemetry-web
     name: Honeycomb OpenTelemetry Web SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/honeycombio/honeycomb-opentelemetry-go
     name: Honeycomb OpenTelemetry Go SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/honeycombio/honeycomb-opentelemetry-java
     name: Honeycomb OpenTelemetry Java SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/honeycombio/honeycomb-opentelemetry-dotnet
     name: Honeycomb OpenTelemetry .NET SDK
-    type: SDK
+    type: SDKs
   - url: https://github.com/honeycombio/libhoney-py
     name: libhoney-py
-    type: SDK
+    type: SDKs
   - url: https://github.com/honeycombio/libhoney-go
     name: libhoney-go
-    type: SDK
+    type: SDKs
   - url: https://github.com/honeycombio/libhoney-js
     name: libhoney-js
-    type: SDK
+    type: SDKs
   - url: https://github.com/honeycombio/libhoney-dotnet
     name: libhoney-dotnet
-    type: SDK
+    type: SDKs
   - url: https://github.com/honeycombio/terraform-provider-honeycombio
     name: Honeycomb Terraform Provider
     type: Tools
