@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://trust.honeycomb.io/
+url: https://trust.honeycomb.io/
+certifications:
+- SOC 2
+- ISO 27001
+- ISO 27017
+- ISO 27018
+- HIPAA
+- FedRAMP
+- GDPR
+- CSA STAR
+evidence:
+- source: https://trust.honeycomb.io/
+  keywords:
+  - soc 2
+  - soc2
+  - hipaa
+  - fedramp
+  - trust center
+  - gdpr
+  - csa star

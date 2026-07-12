@@ -249,6 +249,10 @@ kind: contract
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 access: 3rd-Party
 common:
+  - type: TrustCenter
+    url: security/honeycomb-io-trust-center.yml
+  - type: DomainSecurity
+    url: security/honeycomb-io-domain-security.yml
   - url: https://docs.honeycomb.io/api/
     name: Honeycomb API Reference
     type: Documentation
