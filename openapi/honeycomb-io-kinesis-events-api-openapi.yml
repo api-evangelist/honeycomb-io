@@ -1,0 +1,190 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Kinesis Events API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb Support</a>.
+
+    '
+servers:
+- url: https://api.honeycomb.io
+- url: https://api.eu1.honeycomb.io
+tags:
+- name: Kinesis Events
+  description: 'The Kinesis Events API endpoints allow Honeycomb to process streaming events from Amazon Kinesis.
+
+
+    Refer to the [Honeycomb AWS integrations](https://docs.honeycomb.io/integrations/aws/how-aws-integrations-work/) documentation for more information.
+
+
+    ## Authorization
+
+
+    It is recommended that an Ingest API key is used for sending events.
+
+
+    A Configuration API key will work, and must have the **Send Events** permission.
+
+    Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).
+
+    '
+paths:
+  /1/kinesis_events/{datasetSlug}:
+    parameters:
+    - in: header
+      name: X-Amz-Firehose-Request-Id
+      description: 'AWS Request ID associated with the Kinesis Firehose.
+
+        '
+      schema:
+        type: string
+      required: true
+      example: 33658b45-a8f1-4007-92e8-f601ae33db14
+    - $ref: '#/components/parameters/datasetSlug'
+    post:
+      summary: Create Kinesis Events
+      description: 'This endpoint processes events and metrics coming from AWS through Kinesis Firehose.
+
+        '
+      tags:
+      - Kinesis Events
+      operationId: createKinesisEvents
+      security:
+      - firehose_access_key: []
+      requestBody:
+        description: 'The request body expected from Amazon Kinesis Firehose. Events and metrics have the same shape but the base64 encoded data blob for metrics is expected to be Protowire-encoded as well. CloudWatch Logs data coming through Amazon Kinesis Firehose is expected to have a gzip Content-Encoding.
+
+          '
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/KinesisEvent'
+        required: true
+      responses:
+        '200':
+          description: Events queued for processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KinesisResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        default:
+          $ref: '#/components/responses/GenericError'
+components:
+  responses:
+    GenericError:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      description: 'The dataset slug.
+
+        '
+      in: path
+      required: true
+      schema:
+        type: string
+  schemas:
+    KinesisEventRecord:
+      type: object
+      properties:
+        data:
+          type: string
+          description: Base64 encoded Kinesis record from AWS
+    KinesisResponse:
+      type: object
+      properties:
+        requestId:
+          type: string
+        timestamp:
+          type: integer
+        errorMessage:
+          type: string
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+    KinesisEvent:
+      type: object
+      properties:
+        requestId:
+          type: string
+        timestamp:
+          type: integer
+        records:
+          type: array
+          items:
+            $ref: '#/components/schemas/KinesisEventRecord'
+externalDocs:
+  url: https://docs.honeycomb.io

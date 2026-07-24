@@ -1,0 +1,838 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Queries API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb Support</a>.
+
+    '
+servers:
+- url: https://api.honeycomb.io
+- url: https://api.eu1.honeycomb.io
+tags:
+- name: Queries
+  description: 'Queries in Honeycomb are specifications for queries, and are used to identify queries in other parts of the API - in particular: boards, triggers, and query annotations.
+
+
+    This API allows you to create and get query objects.
+
+
+    ## Authorization
+
+
+    The API key must have the **Manage Queries and Columns** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).
+
+    '
+paths:
+  /1/queries/{datasetSlug}:
+    parameters:
+    - $ref: '#/components/parameters/datasetSlugOrAll'
+    post:
+      security:
+      - configuration_key: []
+      summary: Create a Query
+      description: 'Create a query from a specification. DOES NOT run the query to retrieve results.
+
+        '
+      tags:
+      - Queries
+      operationId: createQuery
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Query'
+            examples:
+              Simple Query:
+                value:
+                  calculations:
+                  - op: COUNT
+                  orders:
+                  - op: COUNT
+                    order: descending
+                  time_range: 7200
+              Query With Filter and Group By:
+                value:
+                  calculations:
+                  - op: COUNT
+                  breakdowns:
+                  - user_agent
+                  filters:
+                  - op: '>='
+                    column: response.status_code
+                    value: 400
+                  orders:
+                  - op: COUNT
+                    order: descending
+                  time_range: 7200
+              Query With Filter and Calculated Fields:
+                value:
+                  calculations:
+                  - op: COUNT
+                  breakdowns:
+                  - response.status_code
+                  filters:
+                  - op: '='
+                    column: adhoc_check
+                    value: true
+                  calculated_fields:
+                  - name: adhoc_check
+                    expression: GT($response.status_code, 200)
+                  orders:
+                  - op: COUNT
+                    order: descending
+                  time_range: 7200
+              Query With Relational Fields:
+                value:
+                  calculations:
+                  - op: COUNT
+                  breakdowns:
+                  - name
+                  - root.response.status_code
+                  filters:
+                  - op: '='
+                    column: child.response.status_code
+                    value: 400
+                  orders:
+                  - op: COUNT
+                    order: descending
+                  time_range: 3600
+                  compare_time_offset_seconds: 86400
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+              examples:
+                Simple Query:
+                  value:
+                    id: abc3419d
+                    calculations:
+                    - op: COUNT
+                    orders:
+                    - op: COUNT
+                      order: descending
+                    time_range: 7200
+                Query With Filter and Group By:
+                  value:
+                    id: xyz321a
+                    calculations:
+                    - op: COUNT
+                    breakdowns:
+                    - user_agent
+                    filters:
+                    - op: '>='
+                      column: response.status_code
+                      value: 400
+                    orders:
+                    - op: COUNT
+                      order: descending
+                    time_range: 7200
+                Query With Filter and Calculated Fields:
+                  value:
+                    id: lmn098p
+                    calculations:
+                    - op: COUNT
+                    breakdowns:
+                    - response.status_code
+                    filters:
+                    - op: '='
+                      column: adhoc_check
+                      value: true
+                    calculated_fields:
+                    - name: adhoc_check
+                      expression: GT($response.status_code, 200)
+                    orders:
+                    - op: COUNT
+                      order: descending
+                    time_range: 7200
+                Query With Relational Fields:
+                  value:
+                    id: abc3419d
+                    calculations:
+                    - op: COUNT
+                    breakdowns:
+                    - name
+                    - root.response.status_code
+                    filters:
+                    - op: '='
+                      column: child.response.status_code
+                      value: 400
+                    orders:
+                    - op: COUNT
+                      order: descending
+                    time_range: 3600
+                    compare_time_offset_seconds: 86400
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+  /1/queries/{datasetSlug}/{queryId}:
+    parameters:
+    - $ref: '#/components/parameters/datasetSlugOrAll'
+    - name: queryId
+      description: The unique identifier (ID) of a query.
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      security:
+      - configuration_key: []
+      summary: Get a Query
+      description: 'Retrieve a query by its ID.
+
+        '
+      tags:
+      - Queries
+      operationId: getQuery
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Query'
+              example:
+                id: abc3419d
+                breakdowns:
+                - user_agent
+                calculations:
+                - op: COUNT
+                orders:
+                - op: COUNT
+                  order: descending
+                limit: 10
+                time_range: 7200
+                end_time: 1676467828
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            deny-management-apis:
+              description: Team cannot access management APIs.
+              value:
+                error: Your team has been denied access to Management APIs, please contact support to be unblocked.
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    RateLimited:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Rate Limited
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 429
+            type: https://api.honeycomb.io/problems/rate-limited
+            title: You have exceeded your rate limit.
+            error: You have exceeded your rate limit.
+            detail: Please try again after 2025-02-01T15:23:12Z.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          example:
+            errors:
+            - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+              code: rate-limited/may-retry
+              title: request rate limit exceeded
+              detail: Please try again after 2025-02-01T15:23:12Z.
+    ValidationFailed:
+      description: Validation Failed
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          example:
+            status: 422
+            type: https://api.honeycomb.io/problems/validation-failed
+            error: The provided input is invalid.
+            title: The provided input is invalid
+            type_detail:
+            - field: type
+              code: invalid
+              description: 'type: must be a valid value'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    NotFound:
+      description: Not Found
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 404
+            type: https://api.honeycomb.io/problems/not-found
+            title: The requested resource cannot be found.
+            error: Dataset not found
+            detail: Dataset not found
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    BadRequest:
+      description: The provided request body was invalid.
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          examples:
+            DetailedError:
+              value:
+                status: 400
+                type: https://api.honeycomb.io/problems/unparseable
+                title: The request body could not be parsed.
+                error: invalid gzip data
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            GenericError:
+              value:
+                error: invalid Query data
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          examples:
+            JSONAPIError:
+              value:
+                errors:
+                - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+                  code: invalid
+                  title: request body could not be parsed
+                  detail: invalid gzip data
+  headers:
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+    RetryAfter:
+      description: 'The RFC7231 header used to indicate when a client should retry requests.
+
+        '
+      schema:
+        type: string
+      example: Fri, 22 Mar 2024 18:37:53 GMT
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+  schemas:
+    HavingOp:
+      type: string
+      enum:
+      - '='
+      - '!='
+      - '>'
+      - '>='
+      - <
+      - <=
+    FilterValue:
+      anyOf:
+      - type: 'null'
+      - type: integer
+      - type: number
+      - type: string
+      - type: boolean
+      - type: array
+    FilterOp:
+      type: string
+      enum:
+      - '='
+      - '!='
+      - '>'
+      - '>='
+      - <
+      - <=
+      - starts-with
+      - does-not-start-with
+      - ends-with
+      - does-not-end-with
+      - exists
+      - does-not-exist
+      - contains
+      - does-not-contain
+      - in
+      - not-in
+    Query:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        breakdowns:
+          type: array
+          default:
+          - user_agent
+          maxItems: 100
+          items:
+            type: string
+          description: the columns by which to break events down into groups
+        calculations:
+          type: array
+          description: the calculations to return as a time series and summary table
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - op
+            properties:
+              op:
+                allOf:
+                - $ref: '#/components/schemas/QueryOp'
+                - default: COUNT
+              column:
+                type:
+                - 'null'
+                - string
+                description: The name of the column
+              name:
+                type:
+                - 'null'
+                - string
+                description: The name of the calculation. This is required if using calculation filters. Only available in Metrics Beta.
+              filters:
+                type: array
+                maxItems: 100
+                items:
+                  type: object
+                  required:
+                  - column
+                  - op
+                  properties:
+                    op:
+                      $ref: '#/components/schemas/FilterOp'
+                    column:
+                      $ref: '#/components/schemas/FilterColumn'
+                    value:
+                      $ref: '#/components/schemas/FilterValue'
+                description: The filters with which to restrict the results of this particular calculation. Does not support relational fields. Only available in Metrics Beta.
+              filter_combination:
+                $ref: '#/components/schemas/FilterCombination'
+        filters:
+          type: array
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - column
+            - op
+            properties:
+              op:
+                $ref: '#/components/schemas/FilterOp'
+              column:
+                $ref: '#/components/schemas/FilterColumn'
+              value:
+                $ref: '#/components/schemas/FilterValue'
+          description: The filters with which to restrict the considered events
+        filter_combination:
+          $ref: '#/components/schemas/FilterCombination'
+        formulas:
+          type: array
+          description: Mathematical formulas to be returned as a time series and summary table. Formulas operate on the results of calculations and are returned in query results instead of calculations. Only available in Metrics Beta.
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - name
+            - expression
+            properties:
+              name:
+                type:
+                - string
+                description: The name of the formula
+              expression:
+                type:
+                - string
+                description: An expression that follows the same syntax as calculated field expressions, but uses the names of items in the calculations list in place of column names.
+        granularity:
+          type: integer
+          minimum: 1
+          description: 'The time resolution of the query''s graph, in seconds. Given a query time range T, valid values (T/1000...T/1). If left blank, granularity may be set to a sub-second value for queries with short time ranges.
+
+            '
+        orders:
+          type: array
+          maxItems: 100
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+              op:
+                $ref: '#/components/schemas/QueryOp'
+              order:
+                type: string
+                default: ascending
+                enum:
+                - ascending
+                - descending
+          description: 'The terms on which to order the query results. Each term must appear in the `breakdowns` field, the `calculations` field, or the `formulas` field. Formulas and calculations with name properties can be referenced by putting the name in the column property.
+
+            '
+        limit:
+          type: integer
+          default: 100
+          minimum: 1
+          maximum: 10000
+          description: 'The maximum number of unique groups returned in ''results''. Aggregating many unique groups across a large time range is computationally expensive, and too high a limit with too many unique groups may cause queries to fail completely. Limiting the results to only the needed values can significantly speed up queries.
+
+            The normal allowed maximum value when creating a query is 1_000. When running ''disable_series'' queries, this can be overridden to be up to 10_000, so the maximum value returned from the API when fetching a query may be up to 10_000.
+
+            '
+        start_time:
+          type: integer
+          minimum: 1
+          default: 1676399428
+          description: 'Absolute start time of query, in seconds since UNIX epoch. Must be <= `end_time`.
+
+            '
+        end_time:
+          type: integer
+          minimum: 1
+          default: 1676467828
+          description: Absolute end time of query, in seconds since UNIX epoch.
+        time_range:
+          type: integer
+          minimum: 1
+          default: 7200
+          description: 'Time range of query in seconds. Can be used with either `start_time` (seconds after `start_time`), `end_time` (seconds before `end_time`), or without either (seconds before now).
+
+            '
+        havings:
+          type: array
+          description: 'The Having clause allows you to filter on the results table. This operation is distinct from the Where clause, which filters the underlying events. Order By allows you to order the results, and Having filters them. Formulas and calculations with name properties can be referenced by putting the name in the column property.
+
+            '
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - calculate_op
+            properties:
+              calculate_op:
+                allOf:
+                - $ref: '#/components/schemas/HavingCalculateOp'
+              column:
+                type:
+                - 'null'
+                - string
+                description: The name of the column to filter against. This can also be a calculation or formula name.
+              op:
+                allOf:
+                - $ref: '#/components/schemas/HavingOp'
+              value:
+                type: number
+                default: 10
+        calculated_fields:
+          type: array
+          description: 'Computed properties that are calculated by a formula.
+
+            '
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - name
+            - expression
+            properties:
+              name:
+                type: string
+                description: The field name
+              expression:
+                type: string
+                description: The formula for your Calculated Field. To learn more about syntax and available functions, and to explore some example formulas, visit [Calculated Field Formula Reference](https://docs.honeycomb.io/reference/derived-column-formula/).
+        compare_time_offset_seconds:
+          type: integer
+          enum:
+          - 1800
+          - 3600
+          - 7200
+          - 28800
+          - 86400
+          - 604800
+          - 2419200
+          - 15724800
+          description: "When set, offsets the query's time range by this number of seconds into the past, allowing comparison with historical data from an earlier time period. For example, setting this to 86400 (24 hours) will compare current results against data from 24 hours ago.\n##### Note\n  - The offset must be greater than or equal to the query's time range duration.\n\n##### Allowed values\n- same time range as query time range\n- `1800` - 30 minutes\n- `3600` - 1 hour\n- `7200` - 2 hours\n- `28800` - 8 hours\n- `86400` - 24 hours\n- `604800` - 7 days\n- `2419200` - 28 days\n- `15724800` - 6 months\n"
+        usage_mode:
+          type: boolean
+          description: 'If `true`, query results will return aggregates without correcting for sample rates. This is useful for understanding the actual volume of data stored rather than the estimated original event counts. By default, aggregates are adjusted to reflect the estimated original event volume based on sample rates. Note: This field is not supported for triggers.
+
+            '
+          default: false
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+    HavingCalculateOp:
+      type: string
+      enum:
+      - COUNT
+      - CONCURRENCY
+      - SUM
+      - AVG
+      - COUNT_DISTINCT
+      - MAX
+      - MIN
+      - P001
+      - P01
+      - P05
+      - P10
+      - P20
+      - P25
+      - P50
+      - P75
+      - P80
+      - P90
+      - P95
+      - P99
+      - P999
+      - RATE_AVG
+      - RATE_SUM
+      - RATE_MAX
+    QueryOp:
+      type: string
+      enum:
+      - COUNT
+      - CONCURRENCY
+      - SUM
+      - AVG
+      - COUNT_DISTINCT
+      - HEATMAP
+      - MAX
+      - MIN
+      - P001
+      - P01
+      - P05
+      - P10
+      - P20
+      - P25
+      - P50
+      - P75
+      - P80
+      - P90
+      - P95
+      - P99
+      - P999
+      - RATE_AVG
+      - RATE_SUM
+      - RATE_MAX
+    ValidationError:
+      x-tags:
+      - Errors
+      allOf:
+      - $ref: '#/components/schemas/DetailedError'
+      - type: object
+        properties:
+          status:
+            type: number
+            readOnly: true
+            default: 422
+          type:
+            type: string
+            readOnly: true
+            default: https://api.honeycomb.io/problems/validation-failed
+          title:
+            type: string
+            readOnly: true
+            default: The provided input is invalid.
+          type_detail:
+            type: array
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                  readOnly: true
+                code:
+                  type: string
+                  readOnly: true
+                  enum:
+                  - invalid
+                  - missing
+                  - incorrect_type
+                  - already_exists
+                description:
+                  type: string
+                  readOnly: true
+    FilterColumn:
+      type:
+      - 'null'
+      - string
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
+          type: string
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
+          type: string
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    FilterCombination:
+      type: string
+      default: AND
+      enum:
+      - AND
+      - OR
+      description: Set to "OR" to match ANY filter in the filter list
+  parameters:
+    datasetSlugOrAll:
+      name: datasetSlug
+      description: 'The dataset slug or use `__all__` for endpoints that support environment-wide operations.
+
+        '
+      in: path
+      required: true
+      schema:
+        type: string
+externalDocs:
+  url: https://docs.honeycomb.io

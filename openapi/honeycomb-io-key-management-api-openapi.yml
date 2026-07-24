@@ -1,0 +1,1127 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Key Management API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb Support</a>.
+
+    '
+servers:
+- url: https://api.honeycomb.io
+- url: https://api.eu1.honeycomb.io
+tags:
+- name: Key Management
+  description: "This API allows you to list, create, update, and delete API Keys for a Team.\n\n\nLearn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n\n## Authorization\n\n This API requires a Management Key passed via the HTTP Authorization header. Join the key ID and secret with a colon, like this: `Authorization: Bearer <key ID>:<secret>`.\n"
+paths:
+  /2/teams/{teamSlug}/api-keys:
+    parameters:
+    - $ref: '#/components/parameters/teamSlug'
+    get:
+      security:
+      - bearerAuth:
+        - api-keys:read
+      tags:
+      - Key Management
+      summary: List all API Keys
+      description: 'List all API Keys for a Team.
+
+        '
+      operationId: listApiKeys
+      parameters:
+      - $ref: '#/components/parameters/PaginationCursor'
+      - $ref: '#/components/parameters/PaginationSize'
+      - name: filter[type]
+        in: query
+        schema:
+          type: string
+          enum:
+          - configuration
+          - ingest
+        description: "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted.\n"
+        required: false
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyListResponse'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    post:
+      security:
+      - bearerAuth:
+        - api-keys:write
+      tags:
+      - Key Management
+      summary: Create an API Key
+      description: 'This creates an API Key, which will return the API Key components in the response. The Key ID will be found at `data.id` and
+
+        the Key Secret will be found at `data.attributes.secret`. For security reasons the Key Secret will only be available during creation so make sure to save it.
+
+
+        To use a newly-created Ingest Key it should be passed in the `X-Honeycomb-Team` header with the API Key''s ID and secret
+
+        concatenated (and with no separator). For example, `X-Honeycomb-Team: hcxik_1234567890123456789012345612345678901234567890123456789012`
+
+
+        Check out our [best practices for API Keys](https://docs.honeycomb.io/get-started/best-practices/api-keys/#ingest-keys).
+
+        '
+      operationId: createApiKey
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyCreateRequest'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyCreateResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/InternalError'
+  /2/teams/{teamSlug}/api-keys/{ID}:
+    parameters:
+    - $ref: '#/components/parameters/teamSlug'
+    - $ref: '#/components/parameters/ID'
+    get:
+      security:
+      - bearerAuth:
+        - api-keys:read
+      tags:
+      - Key Management
+      summary: Get an API Key
+      description: 'Fetches an environment API Key, either a key of type `ingest` or type `configuration` based on the
+
+        ID given.
+
+        '
+      operationId: getApiKey
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    patch:
+      security:
+      - bearerAuth:
+        - api-keys:write
+      tags:
+      - Key Management
+      summary: Update an API Key
+      description: 'Updates an API Key. The expected attributes depend on the key type:
+
+        - **Ingest Keys** (prefix `hcxik_`): Support `name` and `enabled` attributes
+
+        - **Configuration Keys** (prefix `hcxlk_`): Support `name`, `enabled`, and `permissions` attributes
+
+        '
+      operationId: updateApiKey
+      requestBody:
+        required: true
+        content:
+          application/vnd.api+json:
+            schema:
+              $ref: '#/components/schemas/ApiKeyUpdateRequest'
+            examples:
+              ingestKey:
+                summary: Update an Ingest Key
+                value:
+                  data:
+                    id: hcxik_12345678901234567890123456
+                    type: api-keys
+                    attributes:
+                      name: updated name
+                      disabled: false
+              configurationKey:
+                summary: Update a Configuration Key
+                value:
+                  data:
+                    id: hcxlk_12345678901234567890123456
+                    type: api-keys
+                    attributes:
+                      name: updated name
+                      disabled: false
+                      permissions:
+                        create_datasets: true
+                        send_events: true
+                        manage_markers: true
+                        manage_triggers: true
+                        manage_boards: true
+                        run_queries: true
+                        manage_columns: true
+                        manage_slos: true
+                        manage_recipients: true
+                        manage_privateBoards: false
+                        read_service_maps: true
+                        visible_team_members: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/vnd.api+json:
+              schema:
+                $ref: '#/components/schemas/ApiKeyResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '413':
+          $ref: '#/components/responses/PayloadTooLarge'
+        '415':
+          $ref: '#/components/responses/UnsupportedMediaType'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/InternalError'
+    delete:
+      security:
+      - bearerAuth:
+        - api-keys:write
+      tags:
+      - Key Management
+      summary: Delete an API Key
+      description: 'This deletes and immediately deactivates the API Key. This is an irreversible operation.
+
+        '
+      operationId: deleteApiKey
+      responses:
+        '204':
+          description: No Content
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        '500':
+          $ref: '#/components/responses/InternalError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            deny-management-apis:
+              description: Team cannot access management APIs.
+              value:
+                error: Your team has been denied access to Management APIs, please contact support to be unblocked.
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    RateLimited:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Rate Limited
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 429
+            type: https://api.honeycomb.io/problems/rate-limited
+            title: You have exceeded your rate limit.
+            error: You have exceeded your rate limit.
+            detail: Please try again after 2025-02-01T15:23:12Z.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          example:
+            errors:
+            - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+              code: rate-limited/may-retry
+              title: request rate limit exceeded
+              detail: Please try again after 2025-02-01T15:23:12Z.
+    PayloadTooLarge:
+      description: The provided request body was over the maximum allowed size.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 413
+            type: https://api.honeycomb.io/problems/payload-too-large
+            title: Request body is too large.
+            error: Body size is larger than maximum size of 100000 bytes
+    UnsupportedMediaType:
+      description: The provided request body had an invalid Content-Type.
+      content:
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    ValidationFailed:
+      description: Validation Failed
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          example:
+            status: 422
+            type: https://api.honeycomb.io/problems/validation-failed
+            error: The provided input is invalid.
+            title: The provided input is invalid
+            type_detail:
+            - field: type
+              code: invalid
+              description: 'type: must be a valid value'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    NotFound:
+      description: Not Found
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 404
+            type: https://api.honeycomb.io/problems/not-found
+            title: The requested resource cannot be found.
+            error: Dataset not found
+            detail: Dataset not found
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    InternalError:
+      description: InternalError
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    BadRequest:
+      description: The provided request body was invalid.
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          examples:
+            DetailedError:
+              value:
+                status: 400
+                type: https://api.honeycomb.io/problems/unparseable
+                title: The request body could not be parsed.
+                error: invalid gzip data
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            GenericError:
+              value:
+                error: invalid Query data
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          examples:
+            JSONAPIError:
+              value:
+                errors:
+                - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+                  code: invalid
+                  title: request body could not be parsed
+                  detail: invalid gzip data
+  schemas:
+    ConfigurationKeyAttributes:
+      title: Configuration Key
+      type: object
+      required:
+      - key_type
+      - name
+      properties:
+        key_type:
+          type: string
+          description: The type of API Key
+          enum:
+          - configuration
+          example: configuration
+        name:
+          type: string
+          description: A human-readable name for the API Key
+          example: us-west-2 collectors key
+          maxLength: 100
+        disabled:
+          type: boolean
+          description: Whether the API Key is disabled
+          default: false
+          example: false
+        permissions:
+          type: object
+          description: The permissions granted to this Configuration API Key
+          properties:
+            create_datasets:
+              type: boolean
+              description: Whether this API Key can create new Datasets
+              default: false
+            send_events:
+              type: boolean
+              description: Whether this API Key can send Events
+              default: false
+            manage_markers:
+              type: boolean
+              description: Whether this API Key can manage Markers
+              default: false
+            manage_triggers:
+              type: boolean
+              description: Whether this API Key can manage Triggers
+              default: false
+            manage_boards:
+              type: boolean
+              description: Whether this API Key can manage Boards
+              default: false
+            run_queries:
+              type: boolean
+              description: Whether this API Key can run Queries
+              default: false
+            manage_columns:
+              type: boolean
+              description: Whether this API Key can manage Columns and Queries
+              default: false
+            manage_slos:
+              type: boolean
+              description: Whether this API Key can manage SLOs
+              default: false
+            manage_recipients:
+              type: boolean
+              description: Whether this API Key can manage Recipients
+              default: false
+            manage_privateBoards:
+              type: boolean
+              description: Whether this API Key can manage Private Boards
+              default: false
+            read_service_maps:
+              type: boolean
+              description: Whether this API Key can read Service Maps
+              default: false
+            visible_team_members:
+              type: boolean
+              description: 'Whether this API Key secret can be accessed by members in the Honeycomb dashboard. The user will only
+
+                see a redacted key if they aren''t an owner when this setting is enabled.
+
+
+                This parameter has no effect when used through the API since the API never returns the configuration
+
+                key secret except at creation.
+
+                '
+              default: false
+        timestamps:
+          type: object
+          readOnly: true
+          properties:
+            created:
+              type: string
+              format: date-time
+              description: The ISO8601-formatted time when the API Key was created.
+              readOnly: true
+              example: '2022-09-22T17:32:11Z'
+            updated:
+              type: string
+              format: date-time
+              description: The ISO8601-formatted time when the API Key was updated.
+              readOnly: true
+              example: '2022-10-31T15:08:11Z'
+    IngestKeyType:
+      type: object
+      required:
+      - key_type
+      properties:
+        key_type:
+          type: string
+          description: The type of API Key
+          enum:
+          - ingest
+          example: ingest
+    PaginationLinks:
+      type: object
+      description: Links to iterate through the pages of results.
+      required:
+      - next
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL for the next page of results.
+          readOnly: true
+          example: /2/teams/my-team/api-keys?page[after]=3025fa645ad1100d&page[size]=10
+    ApiKeyCreateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - type
+          - attributes
+          - relationships
+          properties:
+            type:
+              type: string
+              enum:
+              - api-keys
+            attributes:
+              $ref: '#/components/schemas/ApiKeyAttributes'
+            relationships:
+              type: object
+              required:
+              - environment
+              properties:
+                environment:
+                  $ref: '#/components/schemas/EnvironmentRelationship'
+    ApiKeyUpdateRequest:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          oneOf:
+          - $ref: '#/components/schemas/IngestKeyRequest'
+          - $ref: '#/components/schemas/ConfigurationKeyRequest'
+    ApiKeyResponse:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          $ref: '#/components/schemas/ApiKeyObject'
+    ApiKeyCreateResponse:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - id
+          - type
+          - attributes
+          - relationships
+          - links
+          properties:
+            id:
+              type: string
+              readOnly: true
+              description: The unique identifier of the API Key
+              example: hcxik_12345678901234567890123456
+            type:
+              type: string
+              readOnly: true
+              enum:
+              - api-keys
+            attributes:
+              allOf:
+              - $ref: '#/components/schemas/ApiKeyAttributes'
+              - type: object
+                required:
+                - secret
+                properties:
+                  secret:
+                    type: string
+                    description: The API Key secret. This is the only time it will be returned.
+                    readOnly: true
+                    example: '12345678901234567890123456789'
+            relationships:
+              type: object
+              required:
+              - environment
+              properties:
+                environment:
+                  $ref: '#/components/schemas/EnvironmentRelationship'
+                creator:
+                  $ref: '#/components/schemas/CreatorRelationship'
+                editor:
+                  $ref: '#/components/schemas/EditorRelationship'
+            links:
+              type: object
+              properties:
+                self:
+                  type: string
+                  description: The URL of this resource
+                  readOnly: true
+                  example: /2/teams/my-team/api-keys/hcxik_12345678901234567890123456
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+    IngestKeyRequest:
+      type: object
+      title: Ingest Key
+      required:
+      - id
+      - type
+      - attributes
+      properties:
+        id:
+          type: string
+          pattern: ^hcxik_[a-zA-Z0-9]{26}$
+          description: The unique identifier of the Ingest Key ID with hcxik_ prefix
+          example: hcxik_12345678901234567890123456
+        type:
+          type: string
+          enum:
+          - api-keys
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              description: A human-readable name for the Ingest Key
+              example: updated key name
+            disabled:
+              type: boolean
+              description: Whether the Ingest Key is disabled
+              example: false
+    ApiKeyAttributes:
+      type: object
+      oneOf:
+      - $ref: '#/components/schemas/IngestKeyAttributes'
+      - $ref: '#/components/schemas/ConfigurationKeyAttributes'
+      discriminator:
+        propertyName: key_type
+        mapping:
+          ingest: '#/components/schemas/IngestKeyAttributes'
+          configuration: '#/components/schemas/ConfigurationKeyAttributes'
+    ValidationError:
+      x-tags:
+      - Errors
+      allOf:
+      - $ref: '#/components/schemas/DetailedError'
+      - type: object
+        properties:
+          status:
+            type: number
+            readOnly: true
+            default: 422
+          type:
+            type: string
+            readOnly: true
+            default: https://api.honeycomb.io/problems/validation-failed
+          title:
+            type: string
+            readOnly: true
+            default: The provided input is invalid.
+          type_detail:
+            type: array
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                  readOnly: true
+                code:
+                  type: string
+                  readOnly: true
+                  enum:
+                  - invalid
+                  - missing
+                  - incorrect_type
+                  - already_exists
+                description:
+                  type: string
+                  readOnly: true
+    UserRelationship:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              description: 'The ID of this user.
+
+                '
+              examples:
+              - hcxus_01hzqr5g7jg9qz40xtgx7rjwj0
+            type:
+              type: string
+              enum:
+              - users
+    EnvironmentRelationship:
+      type: object
+      required:
+      - data
+      description: The Environment this object is associated with.
+      properties:
+        data:
+          type: object
+          required:
+          - id
+          - type
+          properties:
+            id:
+              type: string
+              description: The ID of the Environment this object is associated with.
+              example: hxenv_12345678901234567890123456
+            type:
+              type: string
+              enum:
+              - environments
+    CreatorRelationship:
+      readOnly: true
+      description: The User who initially created this resource.
+      oneOf:
+      - $ref: '#/components/schemas/UserRelationship'
+      - type: 'null'
+    ConfigurationKeyRequest:
+      type: object
+      title: Configuration Key
+      required:
+      - id
+      - type
+      - attributes
+      properties:
+        id:
+          type: string
+          pattern: ^hcxlk_[a-zA-Z0-9]{26}$
+          description: The unique identifier of the Configuration Key ID with hcxlk_ prefix
+          example: hcxlk_12345678901234567890123456
+        type:
+          type: string
+          enum:
+          - api-keys
+        attributes:
+          type: object
+          properties:
+            name:
+              type: string
+              description: A human-readable name for the API Key
+              example: updated key name
+            disabled:
+              type: boolean
+              description: Whether the API Key is enabled
+              example: false
+            permissions:
+              type: object
+              description: The permissions granted to this Configuration API Key. Values omitted will not be replaced.
+              properties:
+                create_datasets:
+                  type: boolean
+                  description: Whether this API Key can create new Datasets
+                send_events:
+                  type: boolean
+                  description: Whether this API Key can send Events
+                manage_markers:
+                  type: boolean
+                  description: Whether this API Key can manage Markers
+                manage_triggers:
+                  type: boolean
+                  description: Whether this API Key can manage Triggers
+                manage_boards:
+                  type: boolean
+                  description: Whether this API Key can manage Boards
+                run_queries:
+                  type: boolean
+                  description: Whether this API Key can run Queries
+                manage_columns:
+                  type: boolean
+                  description: Whether this API Key can manage Columns and Queries
+                manage_slos:
+                  type: boolean
+                  description: Whether this API Key can manage SLOs
+                manage_recipients:
+                  type: boolean
+                  description: Whether this API Key can manage Recipients
+                manage_privateBoards:
+                  type: boolean
+                  description: Whether this API Key can manage Private Boards
+                read_service_maps:
+                  type: boolean
+                  description: Whether this API Key can read Service Maps
+                visible_team_members:
+                  type: boolean
+                  description: 'Whether this API Key can be accessed by members.
+
+                    This value is not checked when fetching API keys through the API, there are no permissions check in the
+
+                    API.
+
+                    '
+    ApiKeyObject:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          description: 'The unique identifier of the API Key.
+
+
+            The last two characters of the prefix define the type of key. `ik` for Ingest Keys and `lk` for
+
+            Configuration Keys.
+
+            '
+          example: hcxik_12345678901234567890123456
+        type:
+          type: string
+          readOnly: true
+          enum:
+          - api-keys
+        attributes:
+          $ref: '#/components/schemas/ApiKeyAttributes'
+        relationships:
+          type: object
+          required:
+          - environment
+          properties:
+            environment:
+              $ref: '#/components/schemas/EnvironmentRelationship'
+            creator:
+              $ref: '#/components/schemas/CreatorRelationship'
+            editor:
+              $ref: '#/components/schemas/EditorRelationship'
+        links:
+          type: object
+          properties:
+            self:
+              type: string
+              description: The URL of this resource
+              readOnly: true
+              example: /2/teams/my-team/api-keys/hcxik_12345678901234567890123456
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
+          type: string
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
+          type: string
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    EditorRelationship:
+      readOnly: true
+      description: The User who last edited this resource.
+      oneOf:
+      - $ref: '#/components/schemas/UserRelationship'
+      - type: 'null'
+    IngestKeyAttributes:
+      title: Ingest Key
+      allOf:
+      - $ref: '#/components/schemas/IngestKeyType'
+      - type: object
+        required:
+        - key_type
+        - name
+        properties:
+          key_type:
+            type: string
+            description: The type of API Key
+            enum:
+            - ingest
+            example: ingest
+          name:
+            type: string
+            description: A human-readable name for the API Key
+            example: us-west-2 collectors key
+            maxLength: 100
+          disabled:
+            type: boolean
+            description: Whether the API Key is disabled
+            default: false
+            example: false
+          permissions:
+            type: object
+            description: The permissions granted to this Ingest API Key
+            properties:
+              create_datasets:
+                type: boolean
+                description: Whether this API Key can create new Datasets
+                default: false
+          timestamps:
+            type: object
+            readOnly: true
+            properties:
+              created:
+                type: string
+                format: date-time
+                description: The ISO8601-formatted time when the API Key was created.
+                readOnly: true
+                example: '2022-09-22T17:32:11Z'
+              updated:
+                type: string
+                format: date-time
+                description: The ISO8601-formatted time when the API Key was updated.
+                readOnly: true
+                example: '2022-10-31T15:08:11Z'
+    ApiKeyListResponse:
+      type: object
+      required:
+      - data
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApiKeyObject'
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+  headers:
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+    RetryAfter:
+      description: 'The RFC7231 header used to indicate when a client should retry requests.
+
+        '
+      schema:
+        type: string
+      example: Fri, 22 Mar 2024 18:37:53 GMT
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+  parameters:
+    PaginationCursor:
+      name: page[after]
+      description: 'The string value of the `next` attribute from a previous result page.
+
+        The cursor value must be empty or omitted for the first request of a cursor-paginated query.
+
+        '
+      in: query
+      schema:
+        type: string
+      example: eyxJjcmAVhdGVkX
+    teamSlug:
+      name: teamSlug
+      description: The slug of the Team
+      in: path
+      required: true
+      schema:
+        type: string
+    ID:
+      name: ID
+      description: A unique identifier
+      in: path
+      required: true
+      schema:
+        type: string
+    PaginationSize:
+      name: page[size]
+      description: The number of entries to include per response. Maximum value is 100.
+      in: query
+      schema:
+        type: number
+        minimum: 1
+        maximum: 100
+        default: 20
+      example: 10
+externalDocs:
+  url: https://docs.honeycomb.io

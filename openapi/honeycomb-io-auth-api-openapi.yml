@@ -10,12 +10,9 @@ info:
   description: 'The API allows programmatic management of many resources within Honeycomb.
 
 
-    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb
-    Support</a>.
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb Support</a>.
 
     '
-externalDocs:
-  url: https://docs.honeycomb.io
 servers:
 - url: https://api.honeycomb.io
 - url: https://api.eu1.honeycomb.io
@@ -153,11 +150,15 @@ paths:
 components:
   headers:
     RateLimitPolicy:
-      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n\
-        \ - Y is the size of the window in seconds\n"
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
       schema:
         type: string
       example: 100;w=60
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
     RetryAfter:
       description: 'The RFC7231 header used to indicate when a client should retry requests.
 
@@ -165,56 +166,125 @@ components:
       schema:
         type: string
       example: Fri, 22 Mar 2024 18:37:53 GMT
-    RateLimit:
-      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests\
-        \ allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
-      schema:
-        type: string
-      example: limit=100, remaining=50, reset=60
+  responses:
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    RateLimited:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Rate Limited
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 429
+            type: https://api.honeycomb.io/problems/rate-limited
+            title: You have exceeded your rate limit.
+            error: You have exceeded your rate limit.
+            detail: Please try again after 2025-02-01T15:23:12Z.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          example:
+            errors:
+            - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+              code: rate-limited/may-retry
+              title: request rate limit exceeded
+              detail: Please try again after 2025-02-01T15:23:12Z.
+    GenericError:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
   schemas:
-    JSONAPIError:
-      x-tags:
-      - Errors
+    Auth:
       type: object
-      description: A JSONAPI-formatted error message.
+      required:
+      - id
+      - type
+      - api_key_access
+      - environment
+      - team
       properties:
-        errors:
-          type: array
-          items:
-            type: object
-            readOnly: true
-            required:
-            - id
-            - code
-            properties:
-              id:
-                type: string
-                readOnly: true
-              status:
-                type: string
-                readOnly: true
-              code:
-                type: string
-                readOnly: true
-              title:
-                type: string
-                readOnly: true
-              detail:
-                type: string
-                readOnly: true
-              source:
-                type: object
-                readOnly: true
-                properties:
-                  pointer:
-                    type: string
-                    readOnly: true
-                  header:
-                    type: string
-                    readOnly: true
-                  parameter:
-                    type: string
-                    readOnly: true
+        id:
+          type: string
+          description: Unique identifier (ID) of the API Key.
+        type:
+          type: string
+          enum:
+          - configuration
+          - ingest
+          description: The type of API Key.
+        api_key_access:
+          type: object
+          properties:
+            events:
+              type: boolean
+              default: false
+            markers:
+              type: boolean
+              default: false
+            triggers:
+              type: boolean
+              default: false
+            boards:
+              type: boolean
+              default: false
+            queries:
+              type: boolean
+              default: false
+            columns:
+              type: boolean
+              default: false
+            createDatasets:
+              type: boolean
+              default: false
+            slos:
+              type: boolean
+              default: false
+            recipients:
+              type: boolean
+              default: false
+            privateBoards:
+              type: boolean
+              default: false
+        environment:
+          type: object
+          properties:
+            name:
+              type: string
+              description: The name of the Environment. Will be empty for Classic environments.
+            slug:
+              type: string
+              description: The slug of the Environment. Will be empty for Classic environments.
+        team:
+          type: object
+          properties:
+            name:
+              type: string
+            slug:
+              type: string
     TeamRelationship:
       type: object
       required:
@@ -348,73 +418,58 @@ components:
           type: string
           readOnly: true
           description: The unique identifier (ID) for this specific error.
-    Auth:
+    JSONAPIError:
+      x-tags:
+      - Errors
       type: object
-      required:
-      - id
-      - type
-      - api_key_access
-      - environment
-      - team
+      description: A JSONAPI-formatted error message.
       properties:
-        id:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
           type: string
-          description: Unique identifier (ID) of the API Key.
-        type:
-          type: string
-          enum:
-          - configuration
-          - ingest
-          description: The type of API Key.
-        api_key_access:
-          type: object
-          properties:
-            events:
-              type: boolean
-              default: false
-            markers:
-              type: boolean
-              default: false
-            triggers:
-              type: boolean
-              default: false
-            boards:
-              type: boolean
-              default: false
-            queries:
-              type: boolean
-              default: false
-            columns:
-              type: boolean
-              default: false
-            createDatasets:
-              type: boolean
-              default: false
-            slos:
-              type: boolean
-              default: false
-            recipients:
-              type: boolean
-              default: false
-            privateBoards:
-              type: boolean
-              default: false
-        environment:
-          type: object
-          properties:
-            name:
-              type: string
-              description: The name of the Environment. Will be empty for Classic environments.
-            slug:
-              type: string
-              description: The slug of the Environment. Will be empty for Classic environments.
-        team:
-          type: object
-          properties:
-            name:
-              type: string
-            slug:
-              type: string
+          readOnly: true
     IncludedResource:
       type: object
       properties:
@@ -433,63 +488,5 @@ components:
           example:
             name: Production
             slug: production
-    Error:
-      x-tags:
-      - Errors
-      type: object
-      description: A legacy error, containing only a textual description.
-      properties:
-        error:
-          type: string
-          readOnly: true
-  responses:
-    Unauthorized:
-      description: Unauthorized
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: unknown API key - check your credentials
-        application/vnd.api+json:
-          schema:
-            $ref: '#/components/schemas/JSONAPIError'
-    GenericError:
-      description: Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-    RateLimited:
-      description: Rate Limit Exceeded
-      headers:
-        Retry-After:
-          $ref: '#/components/headers/RetryAfter'
-        Ratelimit:
-          $ref: '#/components/headers/RateLimit'
-        RateLimitPolicy:
-          $ref: '#/components/headers/RateLimitPolicy'
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
-          example:
-            error: Rate Limited
-        application/problem+json:
-          schema:
-            $ref: '#/components/schemas/DetailedError'
-          example:
-            status: 429
-            type: https://api.honeycomb.io/problems/rate-limited
-            title: You have exceeded your rate limit.
-            error: You have exceeded your rate limit.
-            detail: Please try again after 2025-02-01T15:23:12Z.
-        application/vnd.api+json:
-          schema:
-            $ref: '#/components/schemas/JSONAPIError'
-          example:
-            errors:
-            - id: 06dcdd6508ca822f0e7e2bb4121c1f52
-              code: rate-limited/may-retry
-              title: request rate limit exceeded
-              detail: Please try again after 2025-02-01T15:23:12Z.
+externalDocs:
+  url: https://docs.honeycomb.io

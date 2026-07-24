@@ -1,0 +1,776 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Recipients API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb Support</a>.
+
+    '
+servers:
+- url: https://api.honeycomb.io
+- url: https://api.eu1.honeycomb.io
+tags:
+- name: Recipients
+  description: 'Honeycomb Recipients allow you to define and manage the Recipients that will get notified by a Trigger or Burn Alert.
+
+
+    The types of Recipients supported are: PagerDuty, Email, Webhook, Microsoft Teams, and Slack.
+
+
+    ## Authorization
+
+
+    The API key must have the **Manage Recipients** permission. Recipients are team-wide and NOT environment-specific.
+
+    API Keys with the **Manage Recipients** permission can modify recipients used by ALL environments for a given team.
+
+
+    Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).
+
+    '
+paths:
+  /1/recipients:
+    post:
+      security:
+      - configuration_key: []
+      summary: Create a Recipient
+      description: 'Unlike many resources, Recipients are not linked to a specific Environment or Dataset. The Recipient will be created for the Team associated with your API key.
+
+        The `details` fields will vary depending on the `type` of Recipient. Use the drop-down to view the specific fields for each `type` value.
+
+        Before Slack Recipients can be created, the Slack OAuth flow in the Integration Center must be completed.
+
+        '
+      tags:
+      - Recipients
+      operationId: createRecipient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recipient'
+        required: true
+      responses:
+        '201':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+    get:
+      security:
+      - configuration_key: []
+      summary: List all Recipients
+      description: 'Retrieve all recipients for a team.
+
+        '
+      tags:
+      - Recipients
+      operationId: listRecipients
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Recipient'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: unknown API key - check your credentials
+  /1/recipients/{recipientId}:
+    parameters:
+    - $ref: '#/components/parameters/recipientId'
+    get:
+      security:
+      - configuration_key: []
+      summary: Get a single Recipient
+      description: 'Retrieve a Recipient by recipient ID.
+
+        '
+      tags:
+      - Recipients
+      operationId: getRecipient
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+    put:
+      security:
+      - configuration_key: []
+      summary: Update a Recipient
+      description: 'Update a Recipient by specifying the recipient ID and full recipient details. (Partial PUT is not supported.)
+
+        Updates to the Recipient Type is not supported. For example, changing an existing Recipient from PagerDuty to Email is not allowed.
+
+        **Important**: Modifying an existing recipient will change the destination of all triggers/burn alerts that use that recipient.
+
+        '
+      tags:
+      - Recipients
+      operationId: updateRecipient
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Recipient'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recipient'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+    delete:
+      security:
+      - configuration_key: []
+      summary: Delete a Recipient
+      description: 'Delete a recipient by specifying the recipient ID.
+
+        A Recipient can only be deleted if it is NOT in use by any Triggers or Burn Alerts associated to the team.
+
+        '
+      tags:
+      - Recipients
+      operationId: deleteRecipient
+      responses:
+        '204':
+          description: Success - no content
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                error: unknown API key - check your credentials
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '409':
+          $ref: '#/components/responses/Conflict'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            deny-management-apis:
+              description: Team cannot access management APIs.
+              value:
+                error: Your team has been denied access to Management APIs, please contact support to be unblocked.
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    ValidationFailed:
+      description: Validation Failed
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          example:
+            status: 422
+            type: https://api.honeycomb.io/problems/validation-failed
+            error: The provided input is invalid.
+            title: The provided input is invalid
+            type_detail:
+            - field: type
+              code: invalid
+              description: 'type: must be a valid value'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    NotFound:
+      description: Not Found
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 404
+            type: https://api.honeycomb.io/problems/not-found
+            title: The requested resource cannot be found.
+            error: Dataset not found
+            detail: Dataset not found
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    Conflict:
+      description: Conflict
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 409
+            type: https://api.honeycomb.io/problems/conflict
+            title: Request could not be completed due to a conflict with the current state of the target resource.
+            error: A resource by that name already exists.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    BadRequest:
+      description: The provided request body was invalid.
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          examples:
+            DetailedError:
+              value:
+                status: 400
+                type: https://api.honeycomb.io/problems/unparseable
+                title: The request body could not be parsed.
+                error: invalid gzip data
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            GenericError:
+              value:
+                error: invalid Query data
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          examples:
+            JSONAPIError:
+              value:
+                errors:
+                - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+                  code: invalid
+                  title: request body could not be parsed
+                  detail: invalid gzip data
+  schemas:
+    RecipientProperties:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: yUheCUmgZ8p
+        created_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the Recipient was created.
+          example: '2022-07-26T22:38:04Z'
+          readOnly: true
+        updated_at:
+          type: string
+          format: date-time
+          description: ISO8601 formatted time the Recipient was updated.
+          example: '2022-07-26T22:38:04Z'
+          readOnly: true
+        type:
+          $ref: '#/components/schemas/RecipientType'
+    PagerDutyRecipient:
+      allOf:
+      - $ref: '#/components/schemas/RecipientProperties'
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - pagerduty
+      - type: object
+        properties:
+          details:
+            type: object
+            required:
+            - pagerduty_integration_name
+            - pagerduty_integration_key
+            description: Specific schema for the Pagerduty Recipient Type
+            properties:
+              pagerduty_integration_name:
+                type: string
+                description: A name for this Integration.
+                example: Example PagerDuty Service
+              pagerduty_integration_key:
+                type: string
+                description: Pagerduty Integration Key.
+                example: 7zOwh1edS8xHGcwfb2bA4sqY8E6PJzSK
+                minLength: 32
+                maxLength: 32
+    WebhookHeader:
+      type: object
+      required:
+      - header
+      properties:
+        header:
+          type: string
+          maxLength: 64
+        value:
+          type: string
+          maxLength: 750
+    MSTeamsRecipient:
+      allOf:
+      - $ref: '#/components/schemas/RecipientProperties'
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - msteams
+      - type: object
+        deprecated: true
+        properties:
+          details:
+            type: object
+            required:
+            - webhook_name
+            - webhook_url
+            description: Specific schema for the MS Teams Recipient Type. Now deprecated, please use the `msteams_workflow` type instead.
+            properties:
+              webhook_name:
+                type: string
+                description: A name for this recipient.
+                example: My Teams Channel
+              webhook_url:
+                type: string
+                description: Incoming webhook URL of an Teams instance.
+                example: https://yourco.webhook.office.com/webhook/xxxx
+    RecipientType:
+      type: string
+      description: One of the supported Recipient Types
+      enum:
+      - pagerduty
+      - email
+      - slack
+      - webhook
+      - msteams
+      - msteams_workflow
+    EmailRecipient:
+      allOf:
+      - $ref: '#/components/schemas/RecipientProperties'
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - email
+      - type: object
+        properties:
+          details:
+            type: object
+            required:
+            - email_address
+            description: Specific schema for the Email Recipient Type
+            properties:
+              email_address:
+                type: string
+                description: Email address to notify.
+                example: notify-me@example-email.com
+    PayloadTemplate:
+      type: object
+      properties:
+        body:
+          type: string
+          example: '{ \"alert\": \"{{.Alert.Description}}\" }'
+    Recipient:
+      type: object
+      required:
+      - type
+      properties:
+        type:
+          type: string
+      discriminator:
+        propertyName: type
+        mapping:
+          pagerduty: '#/components/schemas/PagerDutyRecipient'
+          email: '#/components/schemas/EmailRecipient'
+          slack: '#/components/schemas/SlackRecipient'
+          webhook: '#/components/schemas/WebhookRecipient'
+          msteams: '#/components/schemas/MSTeamsRecipient'
+          msteams_workflow: '#/components/schemas/MSTeamsWorkflowRecipient'
+      oneOf:
+      - $ref: '#/components/schemas/PagerDutyRecipient'
+      - $ref: '#/components/schemas/EmailRecipient'
+      - $ref: '#/components/schemas/SlackRecipient'
+      - $ref: '#/components/schemas/WebhookRecipient'
+      - $ref: '#/components/schemas/MSTeamsRecipient'
+      - $ref: '#/components/schemas/MSTeamsWorkflowRecipient'
+    TemplateVariableDefinition:
+      type: object
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          pattern: ^[a-z](?:[a-zA-Z0-9]+$)?$
+          maxLength: 64
+          example: severity
+        default_value:
+          type: string
+          maxLength: 256
+          example: CRITICAL
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+    ValidationError:
+      x-tags:
+      - Errors
+      allOf:
+      - $ref: '#/components/schemas/DetailedError'
+      - type: object
+        properties:
+          status:
+            type: number
+            readOnly: true
+            default: 422
+          type:
+            type: string
+            readOnly: true
+            default: https://api.honeycomb.io/problems/validation-failed
+          title:
+            type: string
+            readOnly: true
+            default: The provided input is invalid.
+          type_detail:
+            type: array
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                  readOnly: true
+                code:
+                  type: string
+                  readOnly: true
+                  enum:
+                  - invalid
+                  - missing
+                  - incorrect_type
+                  - already_exists
+                description:
+                  type: string
+                  readOnly: true
+    MSTeamsWorkflowRecipient:
+      allOf:
+      - $ref: '#/components/schemas/RecipientProperties'
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - msteams_workflow
+      - type: object
+        properties:
+          details:
+            type: object
+            required:
+            - webhook_name
+            - webhook_url
+            description: Specific schema for the MS Teams Workflow Recipient Type.
+            properties:
+              webhook_name:
+                type: string
+                maxLength: 255
+                description: A name for this recipient.
+                example: My Teams Channel
+              webhook_url:
+                type: string
+                maxLength: 2048
+                description: Incoming webhook URL of an Teams instance.
+                example: https://test-123.westus.logic.azure.com:443/workflows/54321/triggers/manual/paths/invoke
+    SlackRecipient:
+      allOf:
+      - $ref: '#/components/schemas/RecipientProperties'
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - slack
+      - type: object
+        properties:
+          details:
+            type: object
+            required:
+            - slack_channel
+            description: Specific schema for the Slack Recipient Type.
+            properties:
+              slack_channel:
+                type: string
+                description: Slack channel to notify.
+                example: '#alerts-channel'
+    WebhookRecipient:
+      allOf:
+      - $ref: '#/components/schemas/RecipientProperties'
+      - type: object
+        properties:
+          type:
+            type: string
+            enum:
+            - webhook
+      - type: object
+        properties:
+          details:
+            type: object
+            required:
+            - webhook_name
+            - webhook_url
+            description: Specific schema for the Webhook Recipient Type
+            properties:
+              webhook_headers:
+                type: array
+                maxItems: 5
+                description: Custom headers for this webhook
+                items:
+                  $ref: '#/components/schemas/WebhookHeader'
+                example:
+                - header: Authorization
+                  value: Bearer xyz123
+              webhook_name:
+                type: string
+                maxLength: 255
+                description: A name for this Integration.
+                example: Example webhook
+              webhook_url:
+                type: string
+                description: Webhook URL.
+                maxLength: 2048
+                example: https://webhook.example.com
+              webhook_secret:
+                type: string
+                description: Webhook secret.
+                maxLength: 255
+                example: secret
+              webhook_payloads:
+                type: object
+                description: Specify a custom webhook payload.
+                properties:
+                  template_variables:
+                    type: array
+                    maxItems: 10
+                    description: Custom variable definitions for this webhook
+                    items:
+                      $ref: '#/components/schemas/TemplateVariableDefinition'
+                    example:
+                    - name: severity
+                      default_value: CRITICAL
+                  payload_templates:
+                    type: object
+                    properties:
+                      trigger:
+                        $ref: '#/components/schemas/PayloadTemplate'
+                      budget_rate:
+                        $ref: '#/components/schemas/PayloadTemplate'
+                      exhaustion_time:
+                        $ref: '#/components/schemas/PayloadTemplate'
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
+          type: string
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
+          type: string
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+  headers:
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+  parameters:
+    recipientId:
+      name: recipientId
+      description: Unique identifier (ID) of a Recipient.
+      in: path
+      required: true
+      schema:
+        type: string
+externalDocs:
+  url: https://docs.honeycomb.io

@@ -1,0 +1,944 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Burn Alerts API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb Support</a>.
+
+    '
+servers:
+- url: https://api.honeycomb.io
+- url: https://api.eu1.honeycomb.io
+tags:
+- name: Burn Alerts
+  description: 'This feature is available as part of the [Honeycomb Pro and Enterprise plans](https://www.honeycomb.io/pricing/).
+
+
+    Burn Alerts notify you when issues impact your SLO budget. Learn more about [Burn Alerts here](https://docs.honeycomb.io/notify/alert/slos/monitor/).
+
+
+    This API allows you to list, create, update, and delete burn alerts.
+
+
+    ## Authorization
+
+
+    The API key must have the **Manage SLOs** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).
+
+    '
+paths:
+  /1/burn_alerts/{datasetSlug}:
+    parameters:
+    - $ref: '#/components/parameters/datasetSlugOrAll'
+    post:
+      security:
+      - configuration_key: []
+      summary: Create a Burn Alert
+      description: 'Create a Burn Alert against a specified SLO.
+
+        '
+      tags:
+      - Burn Alerts
+      operationId: createBurnAlert
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBurnAlertRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlertDetailResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    get:
+      security:
+      - configuration_key: []
+      summary: List All Burn Alerts for an SLO
+      description: 'Get all burn alerts associated with the SLO specified in the `slo_id` query param. It is not currently possible to retrieve all burn alerts for a dataset, environment, or team.
+
+        '
+      tags:
+      - Burn Alerts
+      operationId: listBurnAlertsBySlo
+      parameters:
+      - in: query
+        name: slo_id
+        schema:
+          type: string
+        description: For use with the list endpoint to retrieve all burn alerts for a specified SLO.
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/BurnAlertListResponse'
+                example:
+                - id: fS7vfB81Wcy
+                  alert_type: exhaustion_time
+                  description: Use this runbook (link) if this alert fires.
+                  triggered: true
+                  exhaustion_minutes: 120
+                  slo:
+                    id: 2LBq9LckbcA
+                  created_at: '2022-09-22T17:32:11Z'
+                  updated_at: '2022-10-22T17:32:11Z'
+                - id: gT7wgC82Xcz
+                  alert_type: budget_rate
+                  description: Use this runbook (link) if this alert fires.
+                  triggered: true
+                  budget_rate_window_minutes: 60
+                  budget_rate_decrease_threshold_per_million: 1000
+                  slo:
+                    id: 2LBq9LckbcA
+                  created_at: '2022-09-22T17:32:11Z'
+                  updated_at: '2022-10-22T17:32:11Z'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+  /1/burn_alerts/{datasetSlug}/{burnAlertId}:
+    parameters:
+    - $ref: '#/components/parameters/datasetSlugOrAll'
+    - name: burnAlertId
+      description: The unique identifier (ID) of a Burn Alert.
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      security:
+      - configuration_key: []
+      summary: Get a Burn Alert
+      description: 'Get a single Burn Alert by ID.
+
+        '
+      tags:
+      - Burn Alerts
+      operationId: getBurnAlert
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlertDetailResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    put:
+      security:
+      - configuration_key: []
+      summary: Update a Burn Alert
+      description: 'Update a Burn Alert by specifying its ID and full details.
+
+        '
+      tags:
+      - Burn Alerts
+      operationId: updateBurnAlert
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateBurnAlertRequest'
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BurnAlertDetailResponse'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    delete:
+      security:
+      - configuration_key: []
+      summary: Delete a Burn Alert
+      description: Delete a Burn Alert by specifying its ID.
+      tags:
+      - Burn Alerts
+      operationId: deleteBurnAlert
+      responses:
+        '204':
+          description: Success - no content
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            deny-management-apis:
+              description: Team cannot access management APIs.
+              value:
+                error: Your team has been denied access to Management APIs, please contact support to be unblocked.
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    RateLimited:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Rate Limited
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 429
+            type: https://api.honeycomb.io/problems/rate-limited
+            title: You have exceeded your rate limit.
+            error: You have exceeded your rate limit.
+            detail: Please try again after 2025-02-01T15:23:12Z.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          example:
+            errors:
+            - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+              code: rate-limited/may-retry
+              title: request rate limit exceeded
+              detail: Please try again after 2025-02-01T15:23:12Z.
+    ValidationFailed:
+      description: Validation Failed
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          example:
+            status: 422
+            type: https://api.honeycomb.io/problems/validation-failed
+            error: The provided input is invalid.
+            title: The provided input is invalid
+            type_detail:
+            - field: type
+              code: invalid
+              description: 'type: must be a valid value'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    NotFound:
+      description: Not Found
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 404
+            type: https://api.honeycomb.io/problems/not-found
+            title: The requested resource cannot be found.
+            error: Dataset not found
+            detail: Dataset not found
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    GenericError:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  headers:
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+    RetryAfter:
+      description: 'The RFC7231 header used to indicate when a client should retry requests.
+
+        '
+      schema:
+        type: string
+      example: Fri, 22 Mar 2024 18:37:53 GMT
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+  schemas:
+    RecipientType:
+      type: string
+      description: One of the supported Recipient Types
+      enum:
+      - pagerduty
+      - email
+      - slack
+      - webhook
+      - msteams
+      - msteams_workflow
+    ExhaustionTimeBurnAlertDetailResponse:
+      title: Exhaustion Time
+      allOf:
+      - $ref: '#/components/schemas/ExhaustionTimeBurnAlertListResponse'
+      - type: object
+        properties:
+          recipients:
+            type: array
+            minItems: 1
+            description: 'A list of [Recipients](/api/recipients/) to notify when an alert fires. Using `type`+`target` is deprecated. First, create the Recipient via the Recipients API, and then specify the ID.
+
+              '
+            items:
+              $ref: '#/components/schemas/NotificationRecipient'
+            example:
+            - id: abcd123
+              type: email
+              target: alerts@example.com
+    BurnAlertDetailResponse:
+      type: object
+      required:
+      - alert_type
+      properties:
+        alert_type:
+          type: string
+      oneOf:
+      - $ref: '#/components/schemas/ExhaustionTimeBurnAlertDetailResponse'
+      - $ref: '#/components/schemas/BudgetRateBurnAlertDetailResponse'
+      discriminator:
+        propertyName: alert_type
+        mapping:
+          exhaustion_time: '#/components/schemas/ExhaustionTimeBurnAlertDetailResponse'
+          budget_rate: '#/components/schemas/BudgetRateBurnAlertDetailResponse'
+    UpdateBurnAlertRequest:
+      type: object
+      required:
+      - alert_type
+      properties:
+        alert_type:
+          type: string
+      oneOf:
+      - $ref: '#/components/schemas/UpdateExhaustionTimeBurnAlertRequest'
+      - $ref: '#/components/schemas/UpdateBudgetRateBurnAlertRequest'
+      discriminator:
+        propertyName: alert_type
+        mapping:
+          exhaustion_time: '#/components/schemas/UpdateExhaustionTimeBurnAlertRequest'
+          budget_rate: '#/components/schemas/UpdateBudgetRateBurnAlertRequest'
+    ExhaustionTimeBurnAlert:
+      title: Exhaustion Time
+      allOf:
+      - $ref: '#/components/schemas/BurnAlertSharedParams'
+      - type: object
+        required:
+        - exhaustion_minutes
+        properties:
+          alert_type:
+            type: string
+            description: 'One of the supported alert types:
+
+              1. `exhaustion_time`: Notifies when you are about to run out of SLO budget within a specified number of hours.
+
+              1. `budget_rate`: Notifies when budget drops by at least a specified percentage within a defined time window.
+
+              '
+            default: exhaustion_time
+            enum:
+            - exhaustion_time
+            - budget_rate
+            example: exhaustion_time
+          exhaustion_minutes:
+            type: integer
+            minimum: 0
+            description: 'Required when `alert_type` is `exhaustion_time`.
+
+
+              Must not be specified when `alert_type` is `budget_rate`.
+
+
+              Amount of time (in minutes) left until your projected SLO budget is exhausted.
+
+              The alert will fire when this exhaustion threshold is reached.
+
+              '
+            example: 120
+    CreateBudgetRateBurnAlertRequest:
+      allOf:
+      - $ref: '#/components/schemas/BudgetRateBurnAlert'
+      - type: object
+        required:
+        - slo
+        - recipients
+        properties:
+          slo:
+            type: object
+            description: Details about the SLO associated with the burn alert.
+            required:
+            - id
+            properties:
+              id:
+                type: string
+                description: Unique identifier (ID) of a SLO.
+            example:
+              id: 2LBq9LckbcA
+          recipients:
+            type: array
+            minItems: 1
+            description: 'A list of [Recipients](/api/recipients/) to notify when an alert fires. Using `type`+`target` is deprecated. First, create the Recipient via the Recipients API, and then specify the ID.
+
+              '
+            items:
+              $ref: '#/components/schemas/NotificationRecipient'
+            example:
+            - id: abcd123
+              type: email
+              target: alerts@example.com
+    BudgetRateBurnAlertDetailResponse:
+      allOf:
+      - $ref: '#/components/schemas/BudgetRateBurnAlertListResponse'
+      - type: object
+        properties:
+          recipients:
+            type: array
+            minItems: 1
+            description: 'A list of [Recipients](/api/recipients/) to notify when an alert fires. Using `type`+`target` is deprecated. First, create the Recipient via the Recipients API, and then specify the ID.
+
+              '
+            items:
+              $ref: '#/components/schemas/NotificationRecipient'
+            example:
+            - id: abcd123
+              type: email
+              target: alerts@example.com
+    BudgetRateBurnAlertListResponse:
+      title: Budget Rate
+      allOf:
+      - $ref: '#/components/schemas/BudgetRateBurnAlert'
+      - type: object
+        properties:
+          slo:
+            type: object
+            description: Details about the SLO associated with the burn alert.
+            properties:
+              id:
+                type: string
+                description: Unique identifier (ID) of a SLO.
+            example:
+              id: 2LBq9LckbcA
+    BudgetRateBurnAlert:
+      title: Budget Rate
+      allOf:
+      - $ref: '#/components/schemas/BurnAlertSharedParams'
+      - type: object
+        required:
+        - alert_type
+        - budget_rate_window_minutes
+        - budget_rate_decrease_threshold_per_million
+        properties:
+          alert_type:
+            type: string
+            description: 'One of the supported alert types:
+
+              1. `exhaustion_time`: Notifies when you are about to run out of SLO budget within a specified number of hours.
+
+              1. `budget_rate`: Notifies when budget drops by at least a specified percentage within a defined time window.
+
+              '
+            default: exhaustion_time
+            enum:
+            - exhaustion_time
+            - budget_rate
+            example: budget_rate
+          budget_rate_window_minutes:
+            type: integer
+            minimum: 60
+            description: 'Required when `alert_type` is `budget_rate`.
+
+
+              Must not be specified when `alert_type` is `exhaustion_time`.
+
+
+              Time period (in minutes) over which a budget rate will be calculated.
+
+
+              Must be no greater than the associated SLO''s time period.
+
+              '
+            example: 120
+          budget_rate_decrease_threshold_per_million:
+            type: integer
+            minimum: 1
+            maximum: 1000000
+            description: 'Required when `alert_type` is `budget_rate`.
+
+
+              Must not be specified when `alert_type` is `exhaustion_time`.
+
+
+              The percent the budget has decreased over the budget rate window, represented as a value out of one million.
+
+              The alert will fire when this budget decrease threshold is reached.
+
+
+              See the table below for some example conversions from desired budget decrease percent to the representation as a value out of one million
+
+              | Desired percent | Value per million |
+
+              |-----------------|-------------------|
+
+              | 0.001%          | 1                 |
+
+              | 1%              | 10,000            |
+
+              | 5%              | 50,000            |
+
+              | 99.99%          | 999,900           |
+
+              '
+            example: 1000
+    CreateExhaustionTimeBurnAlertRequest:
+      allOf:
+      - $ref: '#/components/schemas/ExhaustionTimeBurnAlert'
+      - type: object
+        required:
+        - slo
+        - recipients
+        properties:
+          slo:
+            type: object
+            description: Details about the SLO associated with the burn alert.
+            required:
+            - id
+            properties:
+              id:
+                type: string
+                description: Unique identifier (ID) of a SLO.
+            example:
+              id: 2LBq9LckbcA
+          recipients:
+            type: array
+            minItems: 1
+            description: 'A list of [Recipients](/api/recipients/) to notify when an alert fires. Using `type`+`target` is deprecated. First, create the Recipient via the Recipients API, and then specify the ID.
+
+              '
+            items:
+              $ref: '#/components/schemas/NotificationRecipient'
+            example:
+            - id: abcd123
+              type: email
+              target: alerts@example.com
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+    ValidationError:
+      x-tags:
+      - Errors
+      allOf:
+      - $ref: '#/components/schemas/DetailedError'
+      - type: object
+        properties:
+          status:
+            type: number
+            readOnly: true
+            default: 422
+          type:
+            type: string
+            readOnly: true
+            default: https://api.honeycomb.io/problems/validation-failed
+          title:
+            type: string
+            readOnly: true
+            default: The provided input is invalid.
+          type_detail:
+            type: array
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                  readOnly: true
+                code:
+                  type: string
+                  readOnly: true
+                  enum:
+                  - invalid
+                  - missing
+                  - incorrect_type
+                  - already_exists
+                description:
+                  type: string
+                  readOnly: true
+    NotificationRecipientDetails:
+      type: object
+      properties:
+        pagerduty_severity:
+          description: 'When using a Recipient of `type = "pagerduty"`, the severity of the alert can be specified.
+
+            '
+          type: string
+          default: critical
+          enum:
+          - critical
+          - error
+          - warning
+          - info
+        variables:
+          description: 'When using a Recipient of `type = "webhook"`, the alert-level variables can be specified.
+
+            '
+          type: array
+          items:
+            type: object
+            required:
+            - name
+            properties:
+              name:
+                type: string
+                pattern: ^[a-z](?:[a-zA-Z0-9]+$)?$
+                maxLength: 64
+                example: severity
+              value:
+                type: string
+                maxLength: 256
+                example: warning
+    UpdateExhaustionTimeBurnAlertRequest:
+      allOf:
+      - $ref: '#/components/schemas/ExhaustionTimeBurnAlert'
+      - type: object
+        required:
+        - recipients
+        properties:
+          recipients:
+            type: array
+            minItems: 1
+            description: 'A list of [Recipients](/api/recipients/) to notify when an alert fires. Using `type`+`target` is deprecated. First, create the Recipient via the Recipients API, and then specify the ID.
+
+              '
+            items:
+              $ref: '#/components/schemas/NotificationRecipient'
+            example:
+            - id: abcd123
+              type: email
+              target: alerts@example.com
+    BurnAlertSharedParams:
+      type: object
+      properties:
+        id:
+          type: string
+          description: Unique identifier (ID) of a Burn alert.
+          readOnly: true
+          example: fS7vfB81Wcy
+        description:
+          type: string
+          description: A description of the Burn Alert.
+          maxLength: 1023
+          example: Use this runbook if this alert fires.
+        triggered:
+          type: boolean
+          description: 'Indicates if the Burn Alert has been triggered. This field is read-only and is set to `true` when the alert is triggered.
+
+            '
+          readOnly: true
+          example: false
+        created_at:
+          type: string
+          format: date-time
+          description: The ISO8601-formatted time when the Burn Alert was created.
+          readOnly: true
+          example: '2022-09-22T17:32:11Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: The ISO8601-formatted time when the Burn Alert was updated.
+          readOnly: true
+          example: '2022-10-31T15:08:11Z'
+        auto_investigate:
+          x-internal: true
+          type: boolean
+          description: 'When true, Honeycomb will automatically start an investigation when this Burn Alert fires.
+
+            '
+          default: false
+          example: false
+    NotificationRecipient:
+      type: object
+      properties:
+        id:
+          type: string
+        type:
+          deprecated: true
+          description: 'One of the allowed Recipient types.
+
+            Deprecated: Use the Recipients API first, then pass the Recipient ID.
+
+            '
+          allOf:
+          - $ref: '#/components/schemas/RecipientType'
+        target:
+          type: string
+          deprecated: true
+          description: 'The target of the notification. For example, the specific Slack channel or email address.
+
+            For Recipients of `type = "webhook"` or `type = "msteams_workflow"`,
+
+            this will be the Name in the UI and `webhook_name` in the Recipients API.
+
+            Deprecated: Use the Recipients API first, then pass the Recipient ID.
+
+            '
+        details:
+          $ref: '#/components/schemas/NotificationRecipientDetails'
+    BurnAlertListResponse:
+      type: object
+      required:
+      - alert_type
+      properties:
+        alert_type:
+          type: string
+      oneOf:
+      - $ref: '#/components/schemas/ExhaustionTimeBurnAlertListResponse'
+      - $ref: '#/components/schemas/BudgetRateBurnAlertListResponse'
+      discriminator:
+        propertyName: alert_type
+        mapping:
+          exhaustion_time: '#/components/schemas/ExhaustionTimeBurnAlertListResponse'
+          budget_rate: '#/components/schemas/BudgetRateBurnAlertListResponse'
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
+          type: string
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
+          type: string
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    ExhaustionTimeBurnAlertListResponse:
+      allOf:
+      - $ref: '#/components/schemas/ExhaustionTimeBurnAlert'
+      - type: object
+        properties:
+          slo:
+            type: object
+            description: Details about the SLO associated with the burn alert.
+            properties:
+              id:
+                type: string
+                description: Unique identifier (ID) of a SLO.
+            example:
+              id: 2LBq9LckbcA
+    UpdateBudgetRateBurnAlertRequest:
+      title: Budget Rate
+      allOf:
+      - $ref: '#/components/schemas/BudgetRateBurnAlert'
+      - type: object
+        required:
+        - recipients
+        properties:
+          recipients:
+            type: array
+            minItems: 1
+            description: 'A list of [Recipients](/api/recipients/) to notify when an alert fires. Using `type`+`target` is deprecated. First, create the Recipient via the Recipients API, and then specify the ID.
+
+              '
+            items:
+              $ref: '#/components/schemas/NotificationRecipient'
+            example:
+            - id: abcd123
+              type: email
+              target: alerts@example.com
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    CreateBurnAlertRequest:
+      type: object
+      required:
+      - alert_type
+      properties:
+        alert_type:
+          type: string
+      oneOf:
+      - $ref: '#/components/schemas/CreateExhaustionTimeBurnAlertRequest'
+      - $ref: '#/components/schemas/CreateBudgetRateBurnAlertRequest'
+      discriminator:
+        propertyName: alert_type
+        mapping:
+          exhaustion_time: '#/components/schemas/CreateExhaustionTimeBurnAlertRequest'
+          budget_rate: '#/components/schemas/CreateBudgetRateBurnAlertRequest'
+  parameters:
+    datasetSlugOrAll:
+      name: datasetSlug
+      description: 'The dataset slug or use `__all__` for endpoints that support environment-wide operations.
+
+        '
+      in: path
+      required: true
+      schema:
+        type: string
+externalDocs:
+  url: https://docs.honeycomb.io

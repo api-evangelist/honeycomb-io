@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Honeycomb Events API
+  title: Honeycomb Auth Events API
   version: 1.0.0
   license:
     name: Apache 2.0
@@ -10,12 +10,9 @@ info:
   description: 'The API allows programmatic management of many resources within Honeycomb.
 
 
-    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb
-    Support</a>.
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb Support</a>.
 
     '
-externalDocs:
-  url: https://docs.honeycomb.io
 servers:
 - url: https://api.honeycomb.io
 - url: https://api.eu1.honeycomb.io
@@ -44,24 +41,6 @@ tags:
     Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).
 
     '
-- name: Kinesis Events
-  description: 'The Kinesis Events API endpoints allow Honeycomb to process streaming events from Amazon Kinesis.
-
-
-    Refer to the [Honeycomb AWS integrations](https://docs.honeycomb.io/integrations/aws/how-aws-integrations-work/) documentation for more information.
-
-
-    ## Authorization
-
-
-    It is recommended that an Ingest API key is used for sending events.
-
-
-    A Configuration API key will work, and must have the **Send Events** permission.
-
-    Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).
-
-    '
 paths:
   /1/batch/{datasetSlug}:
     parameters:
@@ -74,8 +53,7 @@ paths:
       description: 'Supports batch creation of events.
 
 
-        Dataset names are case insensitive. `POST` requests to "MyDatasET" will land in the same dataset as "mydataset". Names may contain URL-encoded spaces or other special characters, but not URL-encoded
-        slashes. For example, "My%20Dataset" will show up in the UI as "My Dataset".
+        Dataset names are case insensitive. `POST` requests to "MyDatasET" will land in the same dataset as "mydataset". Names may contain URL-encoded spaces or other special characters, but not URL-encoded slashes. For example, "My%20Dataset" will show up in the UI as "My Dataset".
 
 
         The first event received for a dataset determines the casing of the displayed name. All subsequent variations in casing will use the originally specified case.
@@ -87,8 +65,7 @@ paths:
       parameters:
       - in: header
         name: Content-Encoding
-        description: 'Included when sending events in a file. Size limitations may be addressed by compressing request bodies with gzip or zstd compression. Be sure to set the Content-Encoding to `gzip`
-          or `zstd` when compressing the request body. If sending plaintext, omit this header; "plaintext" is included to simplify the example with curl.
+        description: 'Included when sending events in a file. Size limitations may be addressed by compressing request bodies with gzip or zstd compression. Be sure to set the Content-Encoding to `gzip` or `zstd` when compressing the request body. If sending plaintext, omit this header; "plaintext" is included to simplify the example with curl.
 
           '
         schema:
@@ -99,9 +76,7 @@ paths:
         example: plaintext
       requestBody:
         required: true
-        description: "The array should contain one or more JSON objects representing Events. Each Event contains its payload under the `data` key. Values of `time` and/or `samplerate` can be included as\
-          \ well.\n\nThe JSON payload should have the structure:\n\n  `[{ \"data\": { \"key1\": \"value1\", \"key2\": 2.0 } }, ... ]`\n\nSize limitations may be addressed by compressing request bodies with\
-          \ `gzip` or `zstd` compression.\n\nAn empty `202` response indicates that the event has been queued for processing.\n"
+        description: "The array should contain one or more JSON objects representing Events. Each Event contains its payload under the `data` key. Values of `time` and/or `samplerate` can be included as well.\n\nThe JSON payload should have the structure:\n\n  `[{ \"data\": { \"key1\": \"value1\", \"key2\": 2.0 } }, ... ]`\n\nSize limitations may be addressed by compressing request bodies with `gzip` or `zstd` compression.\n\nAn empty `202` response indicates that the event has been queued for processing.\n"
         content:
           application/json:
             schema:
@@ -294,50 +269,28 @@ paths:
                 deny-list:
                   value:
                     error: Event dropped due to administrative denylist
-  /1/kinesis_events/{datasetSlug}:
-    parameters:
-    - in: header
-      name: X-Amz-Firehose-Request-Id
-      description: 'AWS Request ID associated with the Kinesis Firehose.
-
-        '
+components:
+  headers:
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
       schema:
         type: string
-      required: true
-      example: 33658b45-a8f1-4007-92e8-f601ae33db14
-    - $ref: '#/components/parameters/datasetSlug'
-    post:
-      summary: Create Kinesis Events
-      description: 'This endpoint processes events and metrics coming from AWS through Kinesis Firehose.
+      example: 100;w=60
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+  parameters:
+    datasetSlug:
+      name: datasetSlug
+      description: 'The dataset slug.
 
         '
-      tags:
-      - Kinesis Events
-      operationId: createKinesisEvents
-      security:
-      - firehose_access_key: []
-      requestBody:
-        description: 'The request body expected from Amazon Kinesis Firehose. Events and metrics have the same shape but the base64 encoded data blob for metrics is expected to be Protowire-encoded as well.
-          CloudWatch Logs data coming through Amazon Kinesis Firehose is expected to have a gzip Content-Encoding.
-
-          '
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/KinesisEvent'
-        required: true
-      responses:
-        '200':
-          description: Events queued for processing
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/KinesisResponse'
-        '401':
-          $ref: '#/components/responses/Unauthorized'
-        default:
-          $ref: '#/components/responses/GenericError'
-components:
+      in: path
+      required: true
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Unauthorized
@@ -350,12 +303,6 @@ components:
         application/vnd.api+json:
           schema:
             $ref: '#/components/schemas/JSONAPIError'
-    GenericError:
-      description: Error
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/Error'
     NotFound:
       description: Not Found
       headers:
@@ -381,20 +328,24 @@ components:
         application/vnd.api+json:
           schema:
             $ref: '#/components/schemas/JSONAPIError'
-  headers:
-    RateLimit:
-      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests\
-        \ allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
-      schema:
-        type: string
-      example: limit=100, remaining=50, reset=60
-    RateLimitPolicy:
-      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n\
-        \ - Y is the size of the window in seconds\n"
-      schema:
-        type: string
-      example: 100;w=60
   schemas:
+    BatchEvent:
+      type: object
+      properties:
+        data:
+          type: object
+          allOf:
+          - $ref: '#/components/schemas/Event'
+        time:
+          type: string
+          description: 'Should be in RFC3339 high precision format (for example, YYYY-MM-DDTHH:MM:SS.mmmZ). May be a Unix epoch (seconds since 1970) with second or greater precision (for example, 1452759330927). Optional. If not set, defaults to the time that the API receives the event.
+
+            '
+        samplerate:
+          type: integer
+          description: 'An integer representing the denominator in the fraction 1/n when client-side sampling has been applied. Optional. If not set, defaults to `1`, meaning "not sampled". Refer to [Sampling](https://docs.honeycomb.io/manage-data-volume/sample/sampled-data-in-honeycomb/) for more detail.
+
+            '
     DetailedError:
       x-tags:
       - Errors
@@ -473,45 +424,15 @@ components:
                   parameter:
                     type: string
                     readOnly: true
-    KinesisEvent:
+    Error:
+      x-tags:
+      - Errors
       type: object
+      description: A legacy error, containing only a textual description.
       properties:
-        requestId:
+        error:
           type: string
-        timestamp:
-          type: integer
-        records:
-          type: array
-          items:
-            $ref: '#/components/schemas/KinesisEventRecord'
-    BatchEvent:
-      type: object
-      properties:
-        data:
-          type: object
-          allOf:
-          - $ref: '#/components/schemas/Event'
-        time:
-          type: string
-          description: 'Should be in RFC3339 high precision format (for example, YYYY-MM-DDTHH:MM:SS.mmmZ). May be a Unix epoch (seconds since 1970) with second or greater precision (for example, 1452759330927).
-            Optional. If not set, defaults to the time that the API receives the event.
-
-            '
-        samplerate:
-          type: integer
-          description: 'An integer representing the denominator in the fraction 1/n when client-side sampling has been applied. Optional. If not set, defaults to `1`, meaning "not sampled". Refer to [Sampling](https://docs.honeycomb.io/manage-data-volume/sample/sampled-data-in-honeycomb/)
-            for more detail.
-
-            '
-    KinesisResponse:
-      type: object
-      properties:
-        requestId:
-          type: string
-        timestamp:
-          type: integer
-        errorMessage:
-          type: string
+          readOnly: true
     Event:
       type: object
       minProperties: 1
@@ -533,28 +454,5 @@ components:
         - string
         - number
         - boolean
-    KinesisEventRecord:
-      type: object
-      properties:
-        data:
-          type: string
-          description: Base64 encoded Kinesis record from AWS
-    Error:
-      x-tags:
-      - Errors
-      type: object
-      description: A legacy error, containing only a textual description.
-      properties:
-        error:
-          type: string
-          readOnly: true
-  parameters:
-    datasetSlug:
-      name: datasetSlug
-      description: 'The dataset slug.
-
-        '
-      in: path
-      required: true
-      schema:
-        type: string
+externalDocs:
+  url: https://docs.honeycomb.io

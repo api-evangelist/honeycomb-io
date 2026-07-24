@@ -1,0 +1,637 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Service Maps API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb Support</a>.
+
+    '
+servers:
+- url: https://api.honeycomb.io
+- url: https://api.eu1.honeycomb.io
+tags:
+- name: Service Maps
+  description: 'The Service Maps API endpoints allow you to visualize the relationships between your services in Honeycomb.
+
+
+    This API allows you to create and retrieve service Dependency Requests, which are used to generate maps of dependencies between services.
+
+
+    ## Authorization
+
+
+    The API key must have the **Read Service Maps** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).
+
+    '
+paths:
+  /1/maps/dependencies/requests:
+    post:
+      security:
+      - configuration_key: []
+      summary: Create a Map Dependency Request
+      description: 'Create a Map Dependency Request.
+
+        '
+      tags:
+      - Service Maps
+      operationId: createMapDependencyRequest
+      parameters:
+      - name: limit
+        in: query
+        required: false
+        description: 'Maximum number of dependencies to return. Default is 10000, maximum is 64000.
+
+          '
+        schema:
+          type: integer
+          minimum: 1
+          maximum: 64000
+          default: 10000
+        example: 5000
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMapDependenciesRequest'
+            examples:
+              Get all depenedencies for last 2 hours for the user-service:
+                value:
+                  time_range: 7200
+                  filters:
+                  - name: user-service
+                    type: service
+              Get dependencies for last 1 day starting from 2025-07-01:
+                value:
+                  time_range: 86400
+                  start_time: 1751328000
+        required: false
+      responses:
+        '200':
+          description: Success - Results are ready or request has failed (see `status` field)
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+            Location:
+              schema:
+                type: string
+              description: The Location header will contain the URL where the results can be fetched.
+              example: https://api.honeycomb.io/1/maps/dependencies/requests/HprJhV1fYyr
+            Last-Modified:
+              schema:
+                type: string
+              description: The Last-Modified response HTTP header contains a date and time when the origin server believes the resource was last modified.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateMapDependenciesResponse'
+        '201':
+          description: Created - Request is pending
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+            Location:
+              schema:
+                type: string
+              description: The Location header will contain the URL where the results can be fetched.
+              example: https://api.honeycomb.io/1/maps/dependencies/requests/HprJhV1fYyr
+            Last-Modified:
+              schema:
+                type: string
+              description: The Last-Modified response HTTP header contains a date and time when the origin server believes the resource was last modified.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateMapDependenciesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+  /1/maps/dependencies/requests/{requestId}:
+    parameters:
+    - name: requestId
+      description: The unique identifier (ID) of a Map Dependencies Request.
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      security:
+      - configuration_key: []
+      summary: Get Map Dependencies
+      description: 'Get the dependencies for a previously created Map Dependencies Request. Note: This endpoint returns a single page of results and uses pagination. Even if you specified a large limit in the initial POST request, you will receive up to the page size limit per request and must use the pagination links to retrieve additional results.
+
+        '
+      tags:
+      - Service Maps
+      operationId: getMapDependencies
+      parameters:
+      - $ref: '#/components/parameters/PaginationCursor'
+      - $ref: '#/components/parameters/PaginationSize'
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+            Last-Modified:
+              schema:
+                type: string
+              description: The Last-Modified response HTTP header contains a date and time when the origin server believes the resource was last modified.
+            Cache-Control:
+              schema:
+                type: string
+              description: Cache-Control header is set for ready responses.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetMapDependenciesResponse'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            deny-management-apis:
+              description: Team cannot access management APIs.
+              value:
+                error: Your team has been denied access to Management APIs, please contact support to be unblocked.
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    RateLimited:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Rate Limited
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 429
+            type: https://api.honeycomb.io/problems/rate-limited
+            title: You have exceeded your rate limit.
+            error: You have exceeded your rate limit.
+            detail: Please try again after 2025-02-01T15:23:12Z.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          example:
+            errors:
+            - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+              code: rate-limited/may-retry
+              title: request rate limit exceeded
+              detail: Please try again after 2025-02-01T15:23:12Z.
+    ValidationFailed:
+      description: Validation Failed
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          example:
+            status: 422
+            type: https://api.honeycomb.io/problems/validation-failed
+            error: The provided input is invalid.
+            title: The provided input is invalid
+            type_detail:
+            - field: type
+              code: invalid
+              description: 'type: must be a valid value'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    NotFound:
+      description: Not Found
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 404
+            type: https://api.honeycomb.io/problems/not-found
+            title: The requested resource cannot be found.
+            error: Dataset not found
+            detail: Dataset not found
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    BadRequest:
+      description: The provided request body was invalid.
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          examples:
+            DetailedError:
+              value:
+                status: 400
+                type: https://api.honeycomb.io/problems/unparseable
+                title: The request body could not be parsed.
+                error: invalid gzip data
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            GenericError:
+              value:
+                error: invalid Query data
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          examples:
+            JSONAPIError:
+              value:
+                errors:
+                - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+                  code: invalid
+                  title: request body could not be parsed
+                  detail: invalid gzip data
+    GenericError:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  headers:
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+    RetryAfter:
+      description: 'The RFC7231 header used to indicate when a client should retry requests.
+
+        '
+      schema:
+        type: string
+      example: Fri, 22 Mar 2024 18:37:53 GMT
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+  parameters:
+    PaginationCursor:
+      name: page[after]
+      description: 'The string value of the `next` attribute from a previous result page.
+
+        The cursor value must be empty or omitted for the first request of a cursor-paginated query.
+
+        '
+      in: query
+      schema:
+        type: string
+      example: eyxJjcmAVhdGVkX
+    PaginationSize:
+      name: page[size]
+      description: The number of entries to include per response. Maximum value is 100.
+      in: query
+      schema:
+        type: number
+        minimum: 1
+        maximum: 100
+        default: 20
+      example: 10
+  schemas:
+    CreateMapDependenciesResponse:
+      type: object
+      description: Response for a Map Dependency Request.
+      properties:
+        request_id:
+          type: string
+          description: 'Unique identifier for the Map Dependency Request.
+
+            '
+          example: abc123
+        status:
+          type: string
+          description: 'Status of the Map Dependency Request.
+
+            '
+          enum:
+          - pending
+          - ready
+          - error
+          example: pending
+    PaginationLinks:
+      type: object
+      description: Links to iterate through the pages of results.
+      required:
+      - next
+      properties:
+        next:
+          type:
+          - string
+          - 'null'
+          description: The URL for the next page of results.
+          readOnly: true
+          example: /2/teams/my-team/api-keys?page[after]=3025fa645ad1100d&page[size]=10
+    MapNode:
+      type: object
+      description: A node in the service map (typically a service).
+      required:
+      - name
+      properties:
+        name:
+          type: string
+          description: 'Name of the service or node.
+
+            '
+          example: user-service
+        type:
+          type: string
+          description: 'Type of the node. Currently only "service" is supported. Defaults to "service" if not specified.
+
+            '
+          enum:
+          - service
+          example: service
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+    MapDependency:
+      type: object
+      description: A dependency relationship between two services.
+      properties:
+        parent_node:
+          $ref: '#/components/schemas/MapNode'
+        child_node:
+          $ref: '#/components/schemas/MapNode'
+        call_count:
+          type: integer
+          description: 'Number of calls between the parent and child services.
+
+            '
+          example: 142
+    ValidationError:
+      x-tags:
+      - Errors
+      allOf:
+      - $ref: '#/components/schemas/DetailedError'
+      - type: object
+        properties:
+          status:
+            type: number
+            readOnly: true
+            default: 422
+          type:
+            type: string
+            readOnly: true
+            default: https://api.honeycomb.io/problems/validation-failed
+          title:
+            type: string
+            readOnly: true
+            default: The provided input is invalid.
+          type_detail:
+            type: array
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                  readOnly: true
+                code:
+                  type: string
+                  readOnly: true
+                  enum:
+                  - invalid
+                  - missing
+                  - incorrect_type
+                  - already_exists
+                description:
+                  type: string
+                  readOnly: true
+    CreateMapDependenciesRequest:
+      type: object
+      description: Create a Map Dependency Request.
+      properties:
+        start_time:
+          type: integer
+          description: 'Absolute start time to evaluate dependencies, in seconds since UNIX epoch. Must be <= `end_time` (when `time_range` is not provided).
+
+            '
+          example: 1622548800
+        end_time:
+          type: integer
+          description: 'Absolute end time to evaluate dependencies, in seconds since UNIX epoch. Must be >= `start_time` (when `time_range` is not provided).
+
+            '
+          example: 1622635200
+        time_range:
+          type: integer
+          default: 7200
+          minimum: 1
+          description: 'Time range in seconds (minimum 1). Can be used with either `start_time` (seconds after `start_time`), `end_time` (seconds before `end_time`), or without either (seconds before now).
+
+            '
+          example: 7200
+        filters:
+          type: array
+          description: 'Optional list of service nodes to filter dependencies by. Only dependencies involving these nodes will be returned.
+
+            '
+          items:
+            $ref: '#/components/schemas/MapNode'
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
+          type: string
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
+          type: string
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    GetMapDependenciesResponse:
+      type: object
+      description: Response containing map dependencies data.
+      properties:
+        request_id:
+          type: string
+          description: 'Unique identifier for the Map Dependency Request.
+
+            '
+          example: abc123
+        status:
+          type: string
+          description: 'Status of the Map Dependency Request.
+
+            '
+          enum:
+          - pending
+          - ready
+          - error
+          example: ready
+        dependencies:
+          oneOf:
+          - type: array
+            items:
+              $ref: '#/components/schemas/MapDependency'
+          - type: 'null'
+          description: 'Array of service dependencies. Null when status is "pending" or "error".
+
+            '
+        links:
+          $ref: '#/components/schemas/PaginationLinks'
+externalDocs:
+  url: https://docs.honeycomb.io

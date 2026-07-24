@@ -1,0 +1,1119 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth SLOs API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb Support</a>.
+
+    '
+servers:
+- url: https://api.honeycomb.io
+- url: https://api.eu1.honeycomb.io
+tags:
+- name: SLOs
+  description: 'This feature is available as part of the [Honeycomb Pro and Enterprise plans](https://www.honeycomb.io/pricing).
+
+
+    Honeycomb SLOs allow you to define and monitor Service Level Objectives (SLOs) for your organization.
+
+
+    This API allows you to list, create, update, and delete SLO objects.
+
+
+    You can also access historical reporting for your SLOs to analyze long-term performance trends. For more information, see [Get SLO History](https://api-docs.honeycomb.io/api/reporting/getslohistory)
+
+
+    ## Authorization
+
+
+    The API key must have the **Manage SLOs** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).
+
+    '
+paths:
+  /1/slos/{datasetSlug}:
+    parameters:
+    - $ref: '#/components/parameters/datasetSlugOrAll'
+    post:
+      security:
+      - configuration_key: []
+      summary: Create an SLO
+      description: 'Create an SLO on the provided dataset.
+
+        '
+      tags:
+      - SLOs
+      operationId: createSlo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLOCreate'
+        required: true
+      responses:
+        '201':
+          description: Success - SLO created
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLOCreate'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    get:
+      security:
+      - configuration_key: []
+      summary: Get all SLOs
+      description: 'Get all SLOs for a dataset or environment (using  `__all__`). This action returns any SLOs, including those applied with multiple datasets.
+
+        '
+      tags:
+      - SLOs
+      operationId: listSlos
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/SLO'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+  /1/slos/{datasetSlug}/{sloId}:
+    parameters:
+    - $ref: '#/components/parameters/datasetSlugOrAll'
+    - name: sloId
+      description: Unique identifier (ID) of the SLO.
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      security:
+      - configuration_key: []
+      summary: Get an SLO
+      description: 'Get an SLO by ID.
+
+        '
+      tags:
+      - SLOs
+      operationId: getSlo
+      parameters:
+      - in: query
+        name: detailed
+        schema:
+          type: boolean
+        description: 'Allows SLO reporting data (`status`, `burn_rate`, `budget_remaining` and `compliance`) to be returned when retrieving a single SLO.
+
+
+          This feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).
+
+
+          **Note:** `burn_rate` is calculated based on the last 4 hours of data.
+
+          '
+        required: false
+        allowEmptyValue: true
+        example: ''
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - $ref: '#/components/schemas/SLO'
+                - $ref: '#/components/schemas/SLODetailedResponse'
+              examples:
+                get-slo:
+                  description: Get an SLO by ID
+                  value:
+                    id: bZ1aRHAUsjG
+                    name: My SLO
+                    description: My SLO description
+                    sli:
+                      alias: my-sli
+                    time_period_days: 30
+                    target_per_million: 989900
+                    reset_at: '2022-10-15T13:53:11Z'
+                    created_at: '2022-09-15T05:39:42Z'
+                    updated_at: '2022-12-20T08:10:05Z'
+                    dataset_slugs:
+                    - mydataset1
+                get-slo-detailed:
+                  description: Get SLO by ID with detailed response
+                  value:
+                    id: bZ1aRHAUsjG
+                    name: My SLO
+                    description: My SLO description
+                    sli:
+                      alias: my-sli
+                    time_period_days: 30
+                    target_per_million: 989900
+                    compliance: 95.39
+                    budget_remaining: 7.73
+                    status: normal
+                    burn_rate: 5.39
+                    reset_at: '2022-10-15T13:53:11Z'
+                    created_at: '2022-09-15T05:39:42Z'
+                    updated_at: '2022-12-20T08:10:05Z'
+                    dataset_slugs:
+                    - mydataset1
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    put:
+      security:
+      - configuration_key: []
+      summary: Update an SLO
+      description: 'Update an SLO by specifying its ID and full SLO details.
+
+        '
+      tags:
+      - SLOs
+      operationId: updateSlo
+      requestBody:
+        description: 'Partial updates are not supported.
+
+          '
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SLO'
+        required: true
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLO'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+    delete:
+      security:
+      - configuration_key: []
+      summary: Delete an SLO
+      description: 'Delete an SLO by specifying its ID.
+
+        '
+      tags:
+      - SLOs
+      operationId: deleteSlo
+      responses:
+        '204':
+          description: Success - no content
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+  /1/slos/{datasetSlug}/{sloId}/counts:
+    parameters:
+    - $ref: '#/components/parameters/datasetSlugOrAll'
+    - name: sloId
+      description: Unique identifier (ID) of the SLO.
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      security:
+      - configuration_key: []
+      summary: Get SLO Realtime Counts
+      description: "Get per-minute success and failure event counts for an SLO, updated approximately once per minute from a rolling 24-hour window.\n\nThis endpoint is intended for near-real-time integrations such as external SLO dashboards and alerting tools (e.g. nobl9). For weekly compliance history, use the [Get SLO History endpoint](https://api-docs.honeycomb.io/api/reporting/getSloHistory/).\n\n**Requirements:**\n- Available on the [Enterprise plan](https://www.honeycomb.io/pricing/) only.\n- This feature must be enabled for your team. Contact your account team\n  to request access.\n\n\n**Gaps:** Some minutes may have no entry in the `windows` array. The first window after a gap may contain a larger-than-usual delta. Treat missing timestamps as unavailable data, not zero-event periods.\n\n**Epoch:** The response includes an `epoch` field — a hash of the SLO's SLI expression and dataset configuration. If this value changes between responses, the underlying SLO definition has changed and any client-side cache should be invalidated.\n\n**Partial windows:** Windows marked `is_partial: true` may still receive additional events. This occurs for the most recent 10 minutes (late-arriving data settlement) or when no prior snapshot exists to compute a delta from.\n"
+      tags:
+      - SLOs
+      operationId: getSloRealtimeCounts
+      parameters:
+      - in: query
+        name: start_time
+        required: true
+        schema:
+          type: integer
+        description: 'Start of the time range as a Unix timestamp (seconds). Must be within the last 24 hours and no later than `end_time`.
+
+          '
+        example: 1745251200
+      - in: query
+        name: end_time
+        required: true
+        schema:
+          type: integer
+        description: 'End of the time range as a Unix timestamp (seconds). Must be greater than `start_time` and within the same clock hour as `start_time`. Realtime counts accumulate from the start of each hour and reset at hour boundaries; use the [Get SLO Hourly Counts History endpoint](https://api-docs.honeycomb.io/api/slos/getSloHourlyCountsHistory/) for completed hours.
+
+          '
+        example: 1745254740
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLOCountsResponse'
+              example:
+                slo_id: bZ1aRHAUsjG
+                resolution_seconds: 60
+                epoch: a3f9c2d1e8b74056
+                period_start: 1745251200
+                windows:
+                - window_start: 1745251200
+                  window_end: 1745251260
+                  total_count: 1243
+                  error_count: 3
+                  is_partial: false
+                - window_start: 1745251260
+                  window_end: 1745251320
+                  total_count: 1188
+                  error_count: 1
+                  is_partial: false
+                - window_start: 1745251320
+                  window_end: 1745251380
+                  total_count: 1301
+                  error_count: 0
+                  is_partial: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+  /1/slos/{datasetSlug}/{sloId}/counts/history:
+    parameters:
+    - $ref: '#/components/parameters/datasetSlugOrAll'
+    - name: sloId
+      description: Unique identifier (ID) of the SLO.
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      security:
+      - configuration_key: []
+      summary: Get SLO Hourly Counts History
+      description: "Get hourly-bucketed total and error event counts for an SLO from the persistent historical store. Use this endpoint to retrieve completed historical hours; pair with the [Get SLO Realtime Counts endpoint](https://api-docs.honeycomb.io/api/slos/getslorealtimecounts/) for the current in-progress hour.\n\n**Requirements:**\n- Available on the [Enterprise plan](https://www.honeycomb.io/pricing/) only.\n- This feature must be enabled for your team. Contact your account team\n  to request access.\n\n\n**Partial buckets:** The most recent bucket may be marked `is_partial: true` if it covers the current in-progress hour. Counts for that bucket will increase until the hour completes.\n"
+      tags:
+      - SLOs
+      operationId: getSloHourlyCountsHistory
+      parameters:
+      - in: query
+        name: start_time
+        required: true
+        schema:
+          type: integer
+        description: 'Start of the time range as a Unix timestamp (seconds).
+
+          '
+        example: 1745168400
+      - in: query
+        name: end_time
+        required: true
+        schema:
+          type: integer
+        description: 'End of the time range as a Unix timestamp (seconds). Must be greater than `start_time`.
+
+          '
+        example: 1745254800
+      responses:
+        '200':
+          description: Success
+          headers:
+            Ratelimit:
+              $ref: '#/components/headers/RateLimit'
+            RateLimitPolicy:
+              $ref: '#/components/headers/RateLimitPolicy'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SLOHourlyCountsResponse'
+              example:
+                slo_id: bZ1aRHAUsjG
+                resolution_seconds: 3600
+                buckets:
+                - start_time: 1745168400
+                  end_time: 1745172000
+                  total_count: 74520
+                  error_count: 182
+                  is_partial: false
+                - start_time: 1745172000
+                  end_time: 1745175600
+                  total_count: 71043
+                  error_count: 97
+                  is_partial: false
+                - start_time: 1745251200
+                  end_time: 1745254800
+                  total_count: 12300
+                  error_count: 14
+                  is_partial: true
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '429':
+          $ref: '#/components/responses/RateLimited'
+        default:
+          $ref: '#/components/responses/GenericError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            deny-management-apis:
+              description: Team cannot access management APIs.
+              value:
+                error: Your team has been denied access to Management APIs, please contact support to be unblocked.
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    RateLimited:
+      description: Rate Limit Exceeded
+      headers:
+        Retry-After:
+          $ref: '#/components/headers/RetryAfter'
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: Rate Limited
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 429
+            type: https://api.honeycomb.io/problems/rate-limited
+            title: You have exceeded your rate limit.
+            error: You have exceeded your rate limit.
+            detail: Please try again after 2025-02-01T15:23:12Z.
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          example:
+            errors:
+            - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+              code: rate-limited/may-retry
+              title: request rate limit exceeded
+              detail: Please try again after 2025-02-01T15:23:12Z.
+    ValidationFailed:
+      description: Validation Failed
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          example:
+            status: 422
+            type: https://api.honeycomb.io/problems/validation-failed
+            error: The provided input is invalid.
+            title: The provided input is invalid
+            type_detail:
+            - field: type
+              code: invalid
+              description: 'type: must be a valid value'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    NotFound:
+      description: Not Found
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 404
+            type: https://api.honeycomb.io/problems/not-found
+            title: The requested resource cannot be found.
+            error: Dataset not found
+            detail: Dataset not found
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: unknown API key - check your credentials
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    BadRequest:
+      description: The provided request body was invalid.
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          examples:
+            DetailedError:
+              value:
+                status: 400
+                type: https://api.honeycomb.io/problems/unparseable
+                title: The request body could not be parsed.
+                error: invalid gzip data
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            GenericError:
+              value:
+                error: invalid Query data
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          examples:
+            JSONAPIError:
+              value:
+                errors:
+                - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+                  code: invalid
+                  title: request body could not be parsed
+                  detail: invalid gzip data
+    GenericError:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  schemas:
+    Tag:
+      type: object
+      required:
+      - key
+      - value
+      properties:
+        key:
+          type: string
+          description: A key to identify the tag, lowercase letters only.
+          maxLength: 32
+        value:
+          type: string
+          description: A value for the tag, must begin with a lowercase letter, contain only alphanumeric characters (all letters lowercase) and special characters of `/` and `-` allowed.
+          maxLength: 128
+    SLODetailedResponse:
+      allOf:
+      - $ref: '#/components/schemas/SLO'
+      type: object
+      properties:
+        compliance:
+          type: number
+          description: 'Reporting data to express historical compliance of the SLO. Only included when the `?detailed` query param is passed.
+
+            '
+          format: double
+          readOnly: true
+          example: 95.39
+        budget_remaining:
+          type: number
+          description: 'Reporting data to express how much error budget remains for the time period of the SLO. Only included when the `?detailed` query param is passed.
+
+            '
+          format: double
+          readOnly: true
+          example: 7.73
+        status:
+          type: string
+          description: 'Reporting data to express the status of the SLO.
+
+
+            Status can be one of the following:
+
+            - `normal`   : The SLO has no burn alerts triggered.
+
+            - `triggered`: The SLO has at least one burn alert triggered.
+
+            - `no_alerts`: The SLO has no burn alerts associated with it.
+
+            - `no_events`: The SLO has no events streaming in.
+
+
+            Only included when the `?detailed` query param is passed.
+
+            '
+          enum:
+          - normal
+          - triggered
+          - no_alerts
+          - no_events
+          readOnly: true
+          example: normal
+        burn_rate:
+          type: number
+          description: 'Reporting data to express the ratio of actual failures in the SLO
+
+            to expected failures in the given time window.
+
+
+            The time window defaults to 4 hours for the API response.
+
+
+            Only included when the `?detailed` query param is passed.
+
+            '
+          format: double
+          readOnly: true
+          example: 5.39
+    SLOHourBucket:
+      type: object
+      properties:
+        start_time:
+          type: integer
+          format: int64
+          description: Start of the hour as a Unix timestamp (seconds).
+          readOnly: true
+          example: 1745168400
+        end_time:
+          type: integer
+          format: int64
+          description: 'End of the hour as a Unix timestamp (seconds). Always `start_time + 3600`.
+
+            '
+          readOnly: true
+          example: 1745172000
+        total_count:
+          type: integer
+          description: Total number of events (good + bad) in this hour.
+          readOnly: true
+          example: 74520
+        error_count:
+          type: integer
+          description: Number of failed (bad) events in this hour.
+          readOnly: true
+          example: 182
+        is_partial:
+          type: boolean
+          description: 'When `true`, this bucket covers the current in-progress hour and its counts will increase until the hour completes. Clients should treat `is_partial: true` buckets as provisional.
+
+            '
+          readOnly: true
+          example: false
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+    SLOCountWindow:
+      type: object
+      properties:
+        window_start:
+          type: integer
+          description: Start of the window as a Unix timestamp (seconds).
+          readOnly: true
+          example: 1745251200
+        window_end:
+          type: integer
+          description: 'End of the window as a Unix timestamp (seconds). Always `window_start + 60`.
+
+            '
+          readOnly: true
+          example: 1745254260
+        total_count:
+          type: integer
+          description: Total number of events (good + bad) in this window.
+          readOnly: true
+          example: 1243
+        error_count:
+          type: integer
+          description: Number of failed (bad) events in this window.
+          readOnly: true
+          example: 3
+        is_partial:
+          type: boolean
+          description: "When `true`, the data for this window may be incomplete. This occurs in three cases:\n1. **No prior anchor**: The first window has no preceding snapshot\n   to delta from, so the value is a raw cumulative total rather\n   than a true per-minute delta.\n\n2. **Settlement window**: The window started within the last 10\n   minutes. Late-arriving events from client buffering or\n   ingestion lag may still appear in a subsequent snapshot.\n\n3. **Hour boundary reset**: Cumulative totals reset to zero at\n   each hour boundary. A request spanning a boundary will see\n   the new hour's counts start near zero while the anchor came\n   from the prior hour's larger total. Both `total_count` and\n   `error_count` are zeroed for this window. Use `period_start`\n   to detect this and avoid requesting ranges that cross a\n   boundary.\n\nClients building alerting on top of this data should treat `is_partial: true` windows as provisional.\n"
+          readOnly: true
+          example: false
+    ValidationError:
+      x-tags:
+      - Errors
+      allOf:
+      - $ref: '#/components/schemas/DetailedError'
+      - type: object
+        properties:
+          status:
+            type: number
+            readOnly: true
+            default: 422
+          type:
+            type: string
+            readOnly: true
+            default: https://api.honeycomb.io/problems/validation-failed
+          title:
+            type: string
+            readOnly: true
+            default: The provided input is invalid.
+          type_detail:
+            type: array
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                  readOnly: true
+                code:
+                  type: string
+                  readOnly: true
+                  enum:
+                  - invalid
+                  - missing
+                  - incorrect_type
+                  - already_exists
+                description:
+                  type: string
+                  readOnly: true
+    SLOHourlyCountsResponse:
+      type: object
+      properties:
+        slo_id:
+          type: string
+          description: The unique identifier of the SLO.
+          readOnly: true
+          example: bZ1aRHAUsjG
+        resolution_seconds:
+          type: integer
+          description: The width of each bucket in seconds. Always `3600`.
+          readOnly: true
+          example: 3600
+        buckets:
+          type: array
+          description: 'Ordered list of hourly count buckets within the requested time range. Gaps indicate hours with no recorded data. An empty array means no data exists for the requested range.
+
+            '
+          items:
+            $ref: '#/components/schemas/SLOHourBucket'
+    SLO:
+      type: object
+      required:
+      - name
+      - time_period_days
+      - target_per_million
+      - sli
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: The name of the SLO.
+          minLength: 1
+          maxLength: 120
+          example: My SLO
+        description:
+          type: string
+          description: A nice description of the SLO's intent and context.
+          minLength: 0
+          maxLength: 1023
+          example: SLO to ensure requests succeed and are fast
+        sli:
+          type: object
+          description: Reference to the [Calculated Field](/api/calculated-fields/) used as the indicator of event success.
+          required:
+          - alias
+          properties:
+            alias:
+              type: string
+              description: The alias of the Calculated Field (also called Derived Column).
+              minLength: 1
+              maxLength: 255
+          example:
+            alias: error_sli
+        time_period_days:
+          type: integer
+          description: The time period, in days, over which the SLO will be evaluated.
+          minimum: 1
+          example: 30
+        target_per_million:
+          type: integer
+          description: The number of events out of one million (1,000,000) that you expected qualified events to succeed.
+          minimum: 0
+          maximum: 999999
+          example: 990000
+        tags:
+          type: array
+          description: A list of key-value pairs to help identify the SLO.
+          maxItems: 10
+          items:
+            $ref: '#/components/schemas/Tag'
+          example:
+          - key: team
+            value: blue
+        reset_at:
+          type:
+          - 'null'
+          - string
+          format: date-time
+          description: The ISO8601-formatted time the SLO was last reset. The value will be `null` if the SLO has not yet been reset.
+          readOnly: true
+          example: 2022-011-11T09:53:04Z
+        created_at:
+          type: string
+          description: The ISO8601-formatted time when the SLO was created.
+          format: date-time
+          readOnly: true
+          example: '2022-09-22T17:32:11Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: The ISO8601-formatted time when the SLO was updated.
+          readOnly: true
+          example: '2022-10-31T15:08:11Z'
+        dataset_slugs:
+          type: array
+          description: The dataset(s) the SLO will be evaluated against. Required if using `__all__` in the path.
+          readOnly: true
+          minItems: 1
+          maxItems: 10
+          example:
+          - mydataset1
+          - mydataset2
+    SLOCreate:
+      type: object
+      required:
+      - name
+      - time_period_days
+      - target_per_million
+      - sli
+      properties:
+        id:
+          type: string
+          readOnly: true
+        name:
+          type: string
+          description: The name of the SLO.
+          minLength: 1
+          maxLength: 120
+          example: My SLO
+        description:
+          type: string
+          description: A nice description of the SLO's intent and context.
+          minLength: 0
+          maxLength: 1023
+          example: SLO to ensure requests succeed and are fast
+        sli:
+          type: object
+          description: Reference to the [Calculated Field (also called Derived Column)](/api/calculated-fields/) used as the indicator of event success.
+          required:
+          - alias
+          properties:
+            alias:
+              type: string
+              description: The alias of the Calculated Field (also called Derived Column).
+              minLength: 1
+              maxLength: 255
+          example:
+            alias: error_sli
+        time_period_days:
+          type: integer
+          description: The time period, in days, over which the SLO will be evaluated.
+          minimum: 1
+          example: 30
+        target_per_million:
+          type: integer
+          description: The number of events out of one million (1,000,000) that you expected qualified events to succeed.
+          minimum: 0
+          maximum: 999999
+          example: 990000
+        tags:
+          type: array
+          description: A list of key-value pairs to help identify the SLO.
+          maxItems: 10
+          items:
+            $ref: '#/components/schemas/Tag'
+          example:
+          - key: team
+            value: blue
+        reset_at:
+          type:
+          - 'null'
+          - string
+          format: date-time
+          description: The ISO8601-formatted time the SLO was last reset. The value will be `null` if the SLO has not yet been reset.
+          readOnly: true
+          example: 2022-011-11T09:53:04Z
+        created_at:
+          type: string
+          description: The ISO8601-formatted time when the SLO was created.
+          format: date-time
+          readOnly: true
+          example: '2022-09-22T17:32:11Z'
+        updated_at:
+          type: string
+          format: date-time
+          description: The ISO8601-formatted time when the SLO was updated.
+          readOnly: true
+          example: '2022-10-31T15:08:11Z'
+        dataset_slugs:
+          type: array
+          description: The dataset(s) the SLO will be evaluated against. Required if using `__all__` in the path.
+          minItems: 1
+          maxItems: 10
+          example:
+          - mydataset1
+          - mydataset2
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
+          type: string
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
+          type: string
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    SLOCountsResponse:
+      type: object
+      properties:
+        slo_id:
+          type: string
+          description: The unique identifier of the SLO.
+          readOnly: true
+          example: bZ1aRHAUsjG
+        resolution_seconds:
+          type: integer
+          description: The width of each window in seconds. Always `60`.
+          readOnly: true
+          example: 60
+        epoch:
+          type: string
+          description: 'A hash of the SLO''s SLI expression and dataset configuration. This value changes whenever the SLO definition changes in a way that affects count computation (e.g. a derived column expression update). Clients should compare this value across responses: a change means counts have reset under a new key and any client-side cache should be invalidated.
+
+            '
+          readOnly: true
+          example: a3f9c2d1e8b74056
+        period_start:
+          type: integer
+          format: int64
+          description: 'Unix timestamp of the start of the current accumulation period (the most recent hour boundary). The cumulative totals used to compute deltas reset to zero at this point. Clients should re-baseline their delta computations whenever this value changes between responses.
+
+            '
+          readOnly: true
+          example: 1745251200
+        windows:
+          type: array
+          description: 'Ordered list of per-minute count windows within the requested time range. Gaps between windows indicate minutes with no recorded snapshot. An empty array means no data exists for the requested range.
+
+            '
+          items:
+            $ref: '#/components/schemas/SLOCountWindow'
+  headers:
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+    RetryAfter:
+      description: 'The RFC7231 header used to indicate when a client should retry requests.
+
+        '
+      schema:
+        type: string
+      example: Fri, 22 Mar 2024 18:37:53 GMT
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+  parameters:
+    datasetSlugOrAll:
+      name: datasetSlug
+      description: 'The dataset slug or use `__all__` for endpoints that support environment-wide operations.
+
+        '
+      in: path
+      required: true
+      schema:
+        type: string
+externalDocs:
+  url: https://docs.honeycomb.io

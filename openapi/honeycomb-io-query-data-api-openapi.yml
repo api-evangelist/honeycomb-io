@@ -1,0 +1,950 @@
+openapi: 3.1.0
+info:
+  title: Honeycomb Auth Query Data API
+  version: 1.0.0
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  contact:
+    email: support@honeycomb.io
+  description: 'The API allows programmatic management of many resources within Honeycomb.
+
+
+    Please report any discrepancies with actual API behavior in <a href="https://docs.honeycomb.io/troubleshoot/community/">Pollinators Slack</a> or to <a href="https://support.honeycomb.io/">Honeycomb Support</a>.
+
+    '
+servers:
+- url: https://api.honeycomb.io
+- url: https://api.eu1.honeycomb.io
+tags:
+- name: Query Data
+  description: "This feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).\n\nQuery Results are the aggregated data from a Query, similar to what is displayed in graphs or heatmaps within the Honeycomb UI. Receiving results from a Query is a three-step process:\n\nCreate the Query (or Query Spec), which validates that the query parameters are valid. Creating a query does not actually run the query to get results.\nRun the query asynchronously by creating a Query Result referencing the Query’s ID. This returns a Query Result ID.\nPoll the query result endpoint (with the Query Result ID) until the data is ready.\n\nNote that many Query Results can be created from a single Query. This is particularly useful when using a relative time_range parameter in the Query.\nFor example, a Query with `time_range: 7200` and no explicit `start_time` or `end_time` can be re-run over and over, with each resulting Query Result containing the most recent 2 hours of data.\nThis is conceptually similar to clicking Run Query in the Honeycomb UI without changing any query parameters.\n\n**IMPORTANT API RESTRICTIONS:**\n\nTo ensure the stability of Honeycomb systems, we have enabled the following API restrictions. These restrictions may change over time.\n\n* Query Results can only be created for events with timestamps within the past 7 days.\n\n* When creating a Query Result, the time ranges from the Query are truncated according to the following rules. For queries with a time range of:\n\n    * less than or equal to 6 hours, results are truncated to the nearest 1 minute. For example, a start/end time of 2021-04-22T05:28:12Z will be truncated to 2021-04-22T05:28:00Z.\n\n    * greater than 6 hours and less than or equal to 2 days, results are truncated to the nearest 5 minutes. For example, a start/end time of 2021-04-22T05:28:12Z will be truncated to 2021-04-22T05:25:00Z.\n\n    * greater than 2 days and less than or equal to 7 days, results are truncated to the nearest 30 minutes. For example, a start/end time of 2021-04-22T05:28:12Z will be truncated to 2021-04-22T05:00:00Z.\n\n* Creating a Query Result is rate limited to 10 requests per minute. Status code 429 will be returned when rate limited.\n\n* Query Results cannot take longer than 10 seconds to run.\n\n* Creating a Query Result that contains Relational Fields is rate limited to 1 request per minute. Status code 429 will be returned when rate limited.\n\n  * Query Results with Relational Fields may be more likely to take longer to run.\n\n* Regardless of whether the `compare_time_offset_seconds` field is populated on a query, query run responses will not include comparison results.\n\n## Authorization\n\nThe API key must have the **Manage Queries and Columns** and **Run Queries** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n"
+paths:
+  /1/query_results/{datasetSlug}:
+    parameters:
+    - $ref: '#/components/parameters/datasetSlugOrAll'
+    post:
+      security:
+      - configuration_key: []
+      summary: Create a Query Result
+      description: 'Kick off processing of a Query to then get back the Query Results.
+
+        Once the Query Result has been created, the query will be run asynchronously, allowing the result data to be fetched from the GET query result endpoint.
+
+        A maximum duration of 7 days of data can be queried. Any queries with a `start_time`, `end_time`, or `time_range` resulting in a duration longer than 7 days will result in a `400` error response.
+
+        '
+      tags:
+      - Query Data
+      operationId: createQueryResult
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateQueryResultRequest'
+        required: true
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+              description: The Location header will contain the URL where the results can be fetched.
+              example: https://api.honeycomb.io/1/query_results/test-via-curl/HprJhV1fYyr
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResult'
+              examples:
+                Simple Query:
+                  value:
+                    query:
+                      calculations:
+                      - op: COUNT
+                      orders:
+                      - op: COUNT
+                        order: descending
+                      limit: 10000
+                      time_range: 7200
+                    complete: false
+                    id: dfg456
+                    links:
+                      query_url: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/dfg456
+                      graph_image_url: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/dfg456/snapshot
+                Query with Filter and Group By:
+                  value:
+                    query:
+                      calculations:
+                      - op: COUNT
+                      breakdowns:
+                      - user_agent
+                      filters:
+                      - op: '>='
+                        column: response.status_code
+                        value: 400
+                      orders:
+                      - op: COUNT
+                        order: descending
+                      limit: 10000
+                      time_range: 7200
+                    complete: false
+                    id: hij678a
+                    links:
+                      query_url: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/hij678a
+                      graph_image_url: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/hij678a/snapshot
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '422':
+          $ref: '#/components/responses/ValidationFailed'
+        '429':
+          description: Rate Limit Exceeded
+          content:
+            application/problem+json:
+              schema:
+                $ref: '#/components/schemas/DetailedError'
+              example:
+                status: 429
+                type: https://api.honeycomb.io/problems/rate-limited
+                title: You have exceeded your rate limit.
+                error: You have exceeded your rate limit.
+                detail: This endpoint allows 10 requests per minute.
+        default:
+          $ref: '#/components/responses/GenericError'
+  /1/query_results/{datasetSlug}/{queryResultId}:
+    parameters:
+    - $ref: '#/components/parameters/datasetSlugOrAll'
+    - name: queryResultId
+      description: The unique identifier (ID) of the query result.
+      in: path
+      required: true
+      schema:
+        type: string
+    get:
+      security:
+      - configuration_key: []
+      summary: Get Query Result
+      description: 'Get the Query Result details for a specific Query Result ID.
+
+        This endpoint is used to fetch the results of a query that had previously been created. It is recommended to follow the Location header included in the Create Query Result output, but the URL can also be constructed manually with the &lt;query-result-id&gt;.
+
+        '
+      tags:
+      - Query Data
+      operationId: getQueryResult
+      responses:
+        '200':
+          description: Success
+          headers:
+            Last-Modified:
+              schema:
+                type: string
+              description: The Last-Modified response HTTP header contains a date and time when the origin server believes the resource was last modified.
+              example: Mon, 02 Jan 2006 15:04:05 GMT
+            Cache-Control:
+              schema:
+                type: string
+              description: The max-age=N response directive indicates that the response remains fresh until N seconds after the response is generated.
+              example: private, max-age=86400
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryResultDetails'
+              examples:
+                Simple Query:
+                  value:
+                    query:
+                      calculations:
+                      - op: COUNT
+                      orders:
+                      - op: COUNT
+                        order: descending
+                      limit: 10000
+                      time_range: 7200
+                    complete: true
+                    id: dfg456
+                    data:
+                      series: []
+                      results:
+                      - data:
+                          COUNT: 20769
+                    links:
+                      query_url: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/dfg456
+                      graph_image_url: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/dfg456/snapshot
+                Query with Filter and Group By:
+                  value:
+                    query:
+                      calculations:
+                      - op: COUNT
+                      breakdowns:
+                      - user_agent
+                      filters:
+                      - op: '>='
+                        column: response.status_code
+                        value: 400
+                      orders:
+                      - op: COUNT
+                        order: descending
+                      limit: 10000
+                      time_range: 7200
+                    complete: false
+                    id: hij678a
+                    data:
+                      series: []
+                      results:
+                      - data:
+                          COUNT: 2728
+                          user_agent: Mozilla/5.0 (X11; Linux x86_64)
+                      - data:
+                          COUNT: 4
+                          user_agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+                      - data:
+                          COUNT: 7
+                          user_agent: Mozilla/5.0 (Linux; Android 7.1.2; AFTMM Build/NS6265; wv)
+                    links:
+                      query_url: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/hij678a
+                      graph_image_url: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/hij678a/snapshot
+        '404':
+          $ref: '#/components/responses/NotFound'
+        default:
+          $ref: '#/components/responses/GenericError'
+components:
+  responses:
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            deny-management-apis:
+              description: Team cannot access management APIs.
+              value:
+                error: Your team has been denied access to Management APIs, please contact support to be unblocked.
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    ValidationFailed:
+      description: Validation Failed
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+          example:
+            status: 422
+            type: https://api.honeycomb.io/problems/validation-failed
+            error: The provided input is invalid.
+            title: The provided input is invalid
+            type_detail:
+            - field: type
+              code: invalid
+              description: 'type: must be a valid value'
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    NotFound:
+      description: Not Found
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          example:
+            error: dataset not found
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          example:
+            status: 404
+            type: https://api.honeycomb.io/problems/not-found
+            title: The requested resource cannot be found.
+            error: Dataset not found
+            detail: Dataset not found
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+    BadRequest:
+      description: The provided request body was invalid.
+      headers:
+        Ratelimit:
+          $ref: '#/components/headers/RateLimit'
+        RateLimitPolicy:
+          $ref: '#/components/headers/RateLimitPolicy'
+      content:
+        application/problem+json:
+          schema:
+            $ref: '#/components/schemas/DetailedError'
+          examples:
+            DetailedError:
+              value:
+                status: 400
+                type: https://api.honeycomb.io/problems/unparseable
+                title: The request body could not be parsed.
+                error: invalid gzip data
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+          examples:
+            GenericError:
+              value:
+                error: invalid Query data
+        application/vnd.api+json:
+          schema:
+            $ref: '#/components/schemas/JSONAPIError'
+          examples:
+            JSONAPIError:
+              value:
+                errors:
+                - id: 06dcdd6508ca822f0e7e2bb4121c1f52
+                  code: invalid
+                  title: request body could not be parsed
+                  detail: invalid gzip data
+    GenericError:
+      description: Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Error'
+  headers:
+    RateLimit:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n"
+      schema:
+        type: string
+      example: limit=100, remaining=50, reset=60
+    RateLimitPolicy:
+      description: "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n"
+      schema:
+        type: string
+      example: 100;w=60
+  schemas:
+    HavingOp:
+      type: string
+      enum:
+      - '='
+      - '!='
+      - '>'
+      - '>='
+      - <
+      - <=
+    FilterValue:
+      anyOf:
+      - type: 'null'
+      - type: integer
+      - type: number
+      - type: string
+      - type: boolean
+      - type: array
+    QueryResultsSeries:
+      type: object
+      allOf:
+      - $ref: '#/components/schemas/QueryResultsData'
+      properties:
+        time:
+          type: string
+          example: '2021-04-09T14:16:00Z'
+    FilterOp:
+      type: string
+      enum:
+      - '='
+      - '!='
+      - '>'
+      - '>='
+      - <
+      - <=
+      - starts-with
+      - does-not-start-with
+      - ends-with
+      - does-not-end-with
+      - exists
+      - does-not-exist
+      - contains
+      - does-not-contain
+      - in
+      - not-in
+    QueryResult:
+      type: object
+      description: A Query Result is created with the Query ID.
+      properties:
+        query:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/Query'
+        id:
+          type: string
+          description: The unique identifier (ID) of a Query Result.
+          readOnly: true
+          example: sGUnkBHgRFN
+        complete:
+          type: boolean
+          description: Indicates if the query results are available yet or not. For example, is the query still being processed or complete?
+          readOnly: true
+          example: false
+        links:
+          type: object
+          description: An object containing UI links to the query result and query result graph
+          readOnly: true
+          properties:
+            query_url:
+              type: string
+              example: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/HprJhV1fYy
+            graph_image_url:
+              type: string
+              example: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/HprJhV1fYy/snapshot
+    Query:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+        breakdowns:
+          type: array
+          default:
+          - user_agent
+          maxItems: 100
+          items:
+            type: string
+          description: the columns by which to break events down into groups
+        calculations:
+          type: array
+          description: the calculations to return as a time series and summary table
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - op
+            properties:
+              op:
+                allOf:
+                - $ref: '#/components/schemas/QueryOp'
+                - default: COUNT
+              column:
+                type:
+                - 'null'
+                - string
+                description: The name of the column
+              name:
+                type:
+                - 'null'
+                - string
+                description: The name of the calculation. This is required if using calculation filters. Only available in Metrics Beta.
+              filters:
+                type: array
+                maxItems: 100
+                items:
+                  type: object
+                  required:
+                  - column
+                  - op
+                  properties:
+                    op:
+                      $ref: '#/components/schemas/FilterOp'
+                    column:
+                      $ref: '#/components/schemas/FilterColumn'
+                    value:
+                      $ref: '#/components/schemas/FilterValue'
+                description: The filters with which to restrict the results of this particular calculation. Does not support relational fields. Only available in Metrics Beta.
+              filter_combination:
+                $ref: '#/components/schemas/FilterCombination'
+        filters:
+          type: array
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - column
+            - op
+            properties:
+              op:
+                $ref: '#/components/schemas/FilterOp'
+              column:
+                $ref: '#/components/schemas/FilterColumn'
+              value:
+                $ref: '#/components/schemas/FilterValue'
+          description: The filters with which to restrict the considered events
+        filter_combination:
+          $ref: '#/components/schemas/FilterCombination'
+        formulas:
+          type: array
+          description: Mathematical formulas to be returned as a time series and summary table. Formulas operate on the results of calculations and are returned in query results instead of calculations. Only available in Metrics Beta.
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - name
+            - expression
+            properties:
+              name:
+                type:
+                - string
+                description: The name of the formula
+              expression:
+                type:
+                - string
+                description: An expression that follows the same syntax as calculated field expressions, but uses the names of items in the calculations list in place of column names.
+        granularity:
+          type: integer
+          minimum: 1
+          description: 'The time resolution of the query''s graph, in seconds. Given a query time range T, valid values (T/1000...T/1). If left blank, granularity may be set to a sub-second value for queries with short time ranges.
+
+            '
+        orders:
+          type: array
+          maxItems: 100
+          items:
+            type: object
+            properties:
+              column:
+                type: string
+              op:
+                $ref: '#/components/schemas/QueryOp'
+              order:
+                type: string
+                default: ascending
+                enum:
+                - ascending
+                - descending
+          description: 'The terms on which to order the query results. Each term must appear in the `breakdowns` field, the `calculations` field, or the `formulas` field. Formulas and calculations with name properties can be referenced by putting the name in the column property.
+
+            '
+        limit:
+          type: integer
+          default: 100
+          minimum: 1
+          maximum: 10000
+          description: 'The maximum number of unique groups returned in ''results''. Aggregating many unique groups across a large time range is computationally expensive, and too high a limit with too many unique groups may cause queries to fail completely. Limiting the results to only the needed values can significantly speed up queries.
+
+            The normal allowed maximum value when creating a query is 1_000. When running ''disable_series'' queries, this can be overridden to be up to 10_000, so the maximum value returned from the API when fetching a query may be up to 10_000.
+
+            '
+        start_time:
+          type: integer
+          minimum: 1
+          default: 1676399428
+          description: 'Absolute start time of query, in seconds since UNIX epoch. Must be <= `end_time`.
+
+            '
+        end_time:
+          type: integer
+          minimum: 1
+          default: 1676467828
+          description: Absolute end time of query, in seconds since UNIX epoch.
+        time_range:
+          type: integer
+          minimum: 1
+          default: 7200
+          description: 'Time range of query in seconds. Can be used with either `start_time` (seconds after `start_time`), `end_time` (seconds before `end_time`), or without either (seconds before now).
+
+            '
+        havings:
+          type: array
+          description: 'The Having clause allows you to filter on the results table. This operation is distinct from the Where clause, which filters the underlying events. Order By allows you to order the results, and Having filters them. Formulas and calculations with name properties can be referenced by putting the name in the column property.
+
+            '
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - calculate_op
+            properties:
+              calculate_op:
+                allOf:
+                - $ref: '#/components/schemas/HavingCalculateOp'
+              column:
+                type:
+                - 'null'
+                - string
+                description: The name of the column to filter against. This can also be a calculation or formula name.
+              op:
+                allOf:
+                - $ref: '#/components/schemas/HavingOp'
+              value:
+                type: number
+                default: 10
+        calculated_fields:
+          type: array
+          description: 'Computed properties that are calculated by a formula.
+
+            '
+          maxItems: 100
+          items:
+            type: object
+            required:
+            - name
+            - expression
+            properties:
+              name:
+                type: string
+                description: The field name
+              expression:
+                type: string
+                description: The formula for your Calculated Field. To learn more about syntax and available functions, and to explore some example formulas, visit [Calculated Field Formula Reference](https://docs.honeycomb.io/reference/derived-column-formula/).
+        compare_time_offset_seconds:
+          type: integer
+          enum:
+          - 1800
+          - 3600
+          - 7200
+          - 28800
+          - 86400
+          - 604800
+          - 2419200
+          - 15724800
+          description: "When set, offsets the query's time range by this number of seconds into the past, allowing comparison with historical data from an earlier time period. For example, setting this to 86400 (24 hours) will compare current results against data from 24 hours ago.\n##### Note\n  - The offset must be greater than or equal to the query's time range duration.\n\n##### Allowed values\n- same time range as query time range\n- `1800` - 30 minutes\n- `3600` - 1 hour\n- `7200` - 2 hours\n- `28800` - 8 hours\n- `86400` - 24 hours\n- `604800` - 7 days\n- `2419200` - 28 days\n- `15724800` - 6 months\n"
+        usage_mode:
+          type: boolean
+          description: 'If `true`, query results will return aggregates without correcting for sample rates. This is useful for understanding the actual volume of data stored rather than the estimated original event counts. By default, aggregates are adjusted to reflect the estimated original event volume based on sample rates. Note: This field is not supported for triggers.
+
+            '
+          default: false
+    Error:
+      x-tags:
+      - Errors
+      type: object
+      description: A legacy error, containing only a textual description.
+      properties:
+        error:
+          type: string
+          readOnly: true
+    HavingCalculateOp:
+      type: string
+      enum:
+      - COUNT
+      - CONCURRENCY
+      - SUM
+      - AVG
+      - COUNT_DISTINCT
+      - MAX
+      - MIN
+      - P001
+      - P01
+      - P05
+      - P10
+      - P20
+      - P25
+      - P50
+      - P75
+      - P80
+      - P90
+      - P95
+      - P99
+      - P999
+      - RATE_AVG
+      - RATE_SUM
+      - RATE_MAX
+    QueryOp:
+      type: string
+      enum:
+      - COUNT
+      - CONCURRENCY
+      - SUM
+      - AVG
+      - COUNT_DISTINCT
+      - HEATMAP
+      - MAX
+      - MIN
+      - P001
+      - P01
+      - P05
+      - P10
+      - P20
+      - P25
+      - P50
+      - P75
+      - P80
+      - P90
+      - P95
+      - P99
+      - P999
+      - RATE_AVG
+      - RATE_SUM
+      - RATE_MAX
+    CreateQueryResultRequest:
+      type: object
+      description: A Query Result is created with the Query ID.
+      required:
+      - query_id
+      properties:
+        query_id:
+          type: string
+          writeOnly: true
+          description: 'The ID of a query returned from the [Queries endpoint](/api/queries/).
+
+            '
+          example: mabAMpSPDjH
+        disable_series:
+          type: boolean
+          writeOnly: true
+          description: 'If `true`, timeseries data will not be returned in the `series` response field, and only summarized data will be returned in the `results` response field.
+
+            '
+          default: false
+        disable_total_by_aggregate:
+          type: boolean
+          writeOnly: true
+          description: 'If `true`, data representing each aggregate in the query''s total value will not be returned. Ensure `disable_series` is false to return the timeseries data.
+
+            '
+          default: true
+        disable_other_by_aggregate:
+          type: boolean
+          default: true
+          writeOnly: true
+          description: 'If true, the "other_by_aggregate" data is excluded from the query result.
+
+            '
+        limit:
+          type: integer
+          writeOnly: true
+          maximum: 10000
+          description: 'If `disable_series` is `true`, a limit may be optionally given. The limit will override the default limit of 1_000 results with a maximum available limit of 10_000. If `disable_series` is `false`, this field will be ignored.
+
+            '
+    ValidationError:
+      x-tags:
+      - Errors
+      allOf:
+      - $ref: '#/components/schemas/DetailedError'
+      - type: object
+        properties:
+          status:
+            type: number
+            readOnly: true
+            default: 422
+          type:
+            type: string
+            readOnly: true
+            default: https://api.honeycomb.io/problems/validation-failed
+          title:
+            type: string
+            readOnly: true
+            default: The provided input is invalid.
+          type_detail:
+            type: array
+            items:
+              type: object
+              properties:
+                field:
+                  type: string
+                  readOnly: true
+                code:
+                  type: string
+                  readOnly: true
+                  enum:
+                  - invalid
+                  - missing
+                  - incorrect_type
+                  - already_exists
+                description:
+                  type: string
+                  readOnly: true
+    QueryResultsData:
+      type: object
+      description: Query result details
+      properties:
+        data:
+          type: object
+          examples:
+          - COUNT: 1
+            P99(duration_ms): 210
+            name: TestGoogleCallbackLogin
+            test.classname: github.com/honeycombio/hound/cmd/poodle/handlers
+            test.status: passed
+          - COUNT: 77481
+            P99(duration_ms): 857.0309715273646
+            name: TestGoogleCallbackLogin
+            test.classname: github.com/honeycombio/hound/cmd/poodle/handlers
+            test.status: passed
+          - FormulaName: 0.85
+            test.status: passed
+          - CalculationName: 77481
+            test.status: passed
+          additionalProperties:
+            type:
+            - string
+            - boolean
+            - number
+    QueryResultDetails:
+      type: object
+      description: 'Query Results for the Query ID.
+
+        The response body will be a JSON object with "complete": true and the results populated once the query is complete. The response body will contain caching headers to indicate that once complete, and the Query Result may be cached, as it will not change.
+
+        '
+      properties:
+        query:
+          readOnly: true
+          allOf:
+          - $ref: '#/components/schemas/Query'
+        id:
+          type: string
+          description: The unique identifier (ID) of a Query Result
+          readOnly: true
+          example: sGUnkBHgRFN
+        complete:
+          type: boolean
+          description: Indicates if the query results are available yet or not. For example, is the query still being processed or complete?
+          readOnly: true
+          example: true
+        data:
+          type: object
+          description: An object containing the query result data
+          properties:
+            series:
+              type: array
+              description: Timeseries data from the query result (equivalent to the graph data in the Honeycomb UI)
+              items:
+                $ref: '#/components/schemas/QueryResultsSeries'
+            results:
+              type: array
+              description: Query results data (equivalent to the Overview in the Honeycomb UI below the graph)
+              items:
+                $ref: '#/components/schemas/QueryResultsData'
+            total_by_aggregate:
+              $ref: '#/components/schemas/QueryResultsData'
+              description: 'An object containing each aggregate in the query mapped to its total value across all groups. Aggregate values do not respect any Having clauses included in a query. Only available if query was run with `disable_total_by_aggregate` set to `false`.
+
+                '
+            total_by_aggregate_series:
+              type: array
+              description: 'Timeseries data showing the total value of each aggregate returned in `total_by_aggregate` across the time range. Aggregate values returned do not respect any Having clauses included in a query. Only available if both `disable_total_by_aggregate` and `disable_series` are set to `false`.
+
+                '
+              items:
+                $ref: '#/components/schemas/QueryResultsSeries'
+            other_by_aggregate:
+              $ref: '#/components/schemas/QueryResultsData'
+              description: 'An object containing each aggregate in the query mapped to its value for the groups not included in the query limit. Aggregate values do not respect any Having clauses included in a query. Only available if query was run with `disable_other_by_aggregate` set to `false`.
+
+                '
+        links:
+          type: object
+          description: An object containing UI links to the query result and query result graph
+          properties:
+            query_url:
+              type: string
+              description: A link to the query result in the Honeycomb UI
+              example: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/HprJhV1fYy
+            graph_image_url:
+              type: string
+              description: A direct link to the graph image from the query result
+              example: https://ui.honeycomb.io/myteam/datasets/test-via-curl/result/HprJhV1fYy/snapshot
+    FilterColumn:
+      type:
+      - 'null'
+      - string
+    DetailedError:
+      x-tags:
+      - Errors
+      description: An RFC7807 'Problem Detail' formatted error message.
+      type: object
+      required:
+      - error
+      - status
+      - type
+      - title
+      properties:
+        error:
+          type: string
+          readOnly: true
+          default: something went wrong!
+        status:
+          type: number
+          readOnly: true
+          description: The HTTP status code of the error.
+        type:
+          type: string
+          readOnly: true
+          description: Type is a URI used to uniquely identify the type of error.
+        title:
+          type: string
+          readOnly: true
+          description: Title is a human-readable summary that explains the `type` of the problem.
+        detail:
+          type: string
+          readOnly: true
+          description: The general, human-readable error message.
+        instance:
+          type: string
+          readOnly: true
+          description: The unique identifier (ID) for this specific error.
+    JSONAPIError:
+      x-tags:
+      - Errors
+      type: object
+      description: A JSONAPI-formatted error message.
+      properties:
+        errors:
+          type: array
+          items:
+            type: object
+            readOnly: true
+            required:
+            - id
+            - code
+            properties:
+              id:
+                type: string
+                readOnly: true
+              status:
+                type: string
+                readOnly: true
+              code:
+                type: string
+                readOnly: true
+              title:
+                type: string
+                readOnly: true
+              detail:
+                type: string
+                readOnly: true
+              source:
+                type: object
+                readOnly: true
+                properties:
+                  pointer:
+                    type: string
+                    readOnly: true
+                  header:
+                    type: string
+                    readOnly: true
+                  parameter:
+                    type: string
+                    readOnly: true
+    FilterCombination:
+      type: string
+      default: AND
+      enum:
+      - AND
+      - OR
+      description: Set to "OR" to match ANY filter in the filter list
+  parameters:
+    datasetSlugOrAll:
+      name: datasetSlug
+      description: 'The dataset slug or use `__all__` for endpoints that support environment-wide operations.
+
+        '
+      in: path
+      required: true
+      schema:
+        type: string
+externalDocs:
+  url: https://docs.honeycomb.io
