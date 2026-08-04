@@ -1,0 +1,2230 @@
+{
+  "info": {
+    "_postman_id": "0cdf8d65-055f-4e70-ae87-62a05abe28f4",
+    "name": "Honeycomb Auth Burn Alerts API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:37.000Z",
+    "updatedAt": "2026-07-28T01:56:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0cdf8d65-055f-4e70-ae87-62a05abe28f4"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "burn_alerts",
+          "item": [
+            {
+              "name": "{datasetSlug}",
+              "item": [
+                {
+                  "name": "{burnAlertId}",
+                  "item": [
+                    {
+                      "name": "Get a Burn Alert",
+                      "id": "6cef325e-093f-4414-9723-ba07b22e3d46",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug",
+                            ":burnAlertId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ba418937-1f9d-401c-89a2-c4f2bf3eb67b",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "dae7a1de-3fd0-4229-ad67-c8f3298ba1e7",
+                              "key": "burnAlertId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of a Burn Alert."
+                            }
+                          ]
+                        },
+                        "description": "Get a single Burn Alert by ID.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "83f8893d-3cc1-476f-9504-3c613ed89d6a",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\",\n  \"slo\": {\n    \"id\": \"<string>\"\n  },\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"email\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"m\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"v\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-83f8893d-3cc1-476f-9504-3c613ed89d6a"
+                        },
+                        {
+                          "id": "67e03ff2-3385-4817-88af-a27897a9f385",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-67e03ff2-3385-4817-88af-a27897a9f385"
+                        },
+                        {
+                          "id": "9f7fbe87-3401-44d1-a04d-88a6d08439f3",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-9f7fbe87-3401-44d1-a04d-88a6d08439f3"
+                        },
+                        {
+                          "id": "3f940385-8ba8-4578-9ead-0817ecaece5c",
+                          "name": "Validation Failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-3f940385-8ba8-4578-9ead-0817ecaece5c"
+                        },
+                        {
+                          "id": "91690396-0cf6-4976-b51d-b154f486d27f",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-91690396-0cf6-4976-b51d-b154f486d27f"
+                        },
+                        {
+                          "id": "72390e8a-68c7-4696-9274-b28ec81cc30f",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-72390e8a-68c7-4696-9274-b28ec81cc30f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-6cef325e-093f-4414-9723-ba07b22e3d46"
+                    },
+                    {
+                      "name": "Update a Burn Alert",
+                      "id": "58fd3025-3ebc-460b-a0bc-720aa4265628",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"slack\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"j\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug",
+                            ":burnAlertId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "7b65c7a6-f920-47e3-96d0-0553c7d7d5d6",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "b2fd84fd-de33-4802-b0a7-a2640538591d",
+                              "key": "burnAlertId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of a Burn Alert."
+                            }
+                          ]
+                        },
+                        "description": "Update a Burn Alert by specifying its ID and full details.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "54a4b283-8d84-4168-a7a2-c327c971c241",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"slack\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"j\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\",\n  \"slo\": {\n    \"id\": \"<string>\"\n  },\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"email\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"m\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"v\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-54a4b283-8d84-4168-a7a2-c327c971c241"
+                        },
+                        {
+                          "id": "ddc837f1-556c-4dbc-87e9-0bae4e5b01e4",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"slack\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"j\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-ddc837f1-556c-4dbc-87e9-0bae4e5b01e4"
+                        },
+                        {
+                          "id": "d973468a-5820-4f99-8f14-57e43d111d2c",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"slack\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"j\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-d973468a-5820-4f99-8f14-57e43d111d2c"
+                        },
+                        {
+                          "id": "9e4b2932-e42c-4eb5-a196-8c9e2cd7d701",
+                          "name": "Validation Failed",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"slack\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"j\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-9e4b2932-e42c-4eb5-a196-8c9e2cd7d701"
+                        },
+                        {
+                          "id": "86a97501-6355-422b-a63d-c01bcedd9492",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"slack\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"j\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-86a97501-6355-422b-a63d-c01bcedd9492"
+                        },
+                        {
+                          "id": "d42844c7-7ce3-46ee-b82d-82dfaf66fd9d",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"slack\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"j\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-d42844c7-7ce3-46ee-b82d-82dfaf66fd9d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-58fd3025-3ebc-460b-a0bc-720aa4265628"
+                    },
+                    {
+                      "name": "Delete a Burn Alert",
+                      "id": "dd6c0b12-c8cd-4f3a-9514-bd7a8033393e",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug",
+                            ":burnAlertId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9f606dcf-8991-4e85-a6cb-621aab627f09",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "d8f222b3-14e5-4fcc-a279-1accf4204b6e",
+                              "key": "burnAlertId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of a Burn Alert."
+                            }
+                          ]
+                        },
+                        "description": "Delete a Burn Alert by specifying its ID."
+                      },
+                      "response": [
+                        {
+                          "id": "7fee9b2e-bcf8-496d-b5cb-497f49b37c8b",
+                          "name": "Success - no content",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-7fee9b2e-bcf8-496d-b5cb-497f49b37c8b"
+                        },
+                        {
+                          "id": "35067be1-ece5-4a71-97a8-19cedd74da95",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-35067be1-ece5-4a71-97a8-19cedd74da95"
+                        },
+                        {
+                          "id": "47f5ec58-d480-45a6-9bd8-e1b084473d4b",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-47f5ec58-d480-45a6-9bd8-e1b084473d4b"
+                        },
+                        {
+                          "id": "6ecb913d-4835-4c78-a2d4-a81e7c563e47",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-6ecb913d-4835-4c78-a2d4-a81e7c563e47"
+                        },
+                        {
+                          "id": "f7f4e33e-4065-44c0-ad58-725813a7e08b",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug/:burnAlertId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "burn_alerts",
+                                ":datasetSlug",
+                                ":burnAlertId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "burnAlertId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:38.000Z",
+                          "updatedAt": "2026-07-28T01:56:38.000Z",
+                          "uid": "35240-f7f4e33e-4065-44c0-ad58-725813a7e08b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-dd6c0b12-c8cd-4f3a-9514-bd7a8033393e"
+                    }
+                  ],
+                  "id": "c9b0ac2c-2734-4df6-8bb9-135af0f5c65e",
+                  "createdAt": "2026-07-28T01:56:38.000Z",
+                  "updatedAt": "2026-07-28T01:56:38.000Z",
+                  "uid": "35240-c9b0ac2c-2734-4df6-8bb9-135af0f5c65e"
+                },
+                {
+                  "name": "Create a Burn Alert",
+                  "id": "1e6f2aa5-c5f3-4266-9707-80adf9db1d36",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"txoz4utyumYR\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"c\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"slo\": {\n    \"id\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "burn_alerts",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "ad15f141-46f6-43a6-8c17-7af63420638c",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "Create a Burn Alert against a specified SLO.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "d7c029ef-4415-4946-aa75-cefb26b91672",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"txoz4utyumYR\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"c\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"slo\": {\n    \"id\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\",\n  \"slo\": {\n    \"id\": \"<string>\"\n  },\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"email\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"m\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"v\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-d7c029ef-4415-4946-aa75-cefb26b91672"
+                    },
+                    {
+                      "id": "c28e3251-bce8-4ba3-ac8b-4e5acdbbc82e",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"txoz4utyumYR\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"c\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"slo\": {\n    \"id\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-c28e3251-bce8-4ba3-ac8b-4e5acdbbc82e"
+                    },
+                    {
+                      "id": "b1c4fb0a-64bc-4bf5-ae79-1ea36245e744",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"txoz4utyumYR\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"c\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"slo\": {\n    \"id\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-b1c4fb0a-64bc-4bf5-ae79-1ea36245e744"
+                    },
+                    {
+                      "id": "82059199-d194-49f0-98cf-b7c442b67a8c",
+                      "name": "Validation Failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"txoz4utyumYR\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"c\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"slo\": {\n    \"id\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-82059199-d194-49f0-98cf-b7c442b67a8c"
+                    },
+                    {
+                      "id": "4b09193d-2cea-42ee-97fc-a7fdadfa0e4c",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"txoz4utyumYR\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"c\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"slo\": {\n    \"id\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-4b09193d-2cea-42ee-97fc-a7fdadfa0e4c"
+                    },
+                    {
+                      "id": "622a4641-1f55-4620-a929-5fe30f42baa7",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"exhaustion_minutes\": \"<integer>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"txoz4utyumYR\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"c\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"slo\": {\n    \"id\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"triggered\": \"<boolean>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"auto_investigate\": false,\n  \"alert_type\": \"exhaustion_time\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-622a4641-1f55-4620-a929-5fe30f42baa7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:38.000Z",
+                  "updatedAt": "2026-07-28T01:56:38.000Z",
+                  "uid": "35240-1e6f2aa5-c5f3-4266-9707-80adf9db1d36"
+                },
+                {
+                  "name": "List All Burn Alerts for an SLO",
+                  "id": "8b444cf4-a4e8-42a1-900e-18a08e11d605",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug?slo_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "burn_alerts",
+                        ":datasetSlug"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) For use with the list endpoint to retrieve all burn alerts for a specified SLO.",
+                          "key": "slo_id",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "e7b43a02-4369-4612-9f59-764e469da858",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "Get all burn alerts associated with the SLO specified in the `slo_id` query param. It is not currently possible to retrieve all burn alerts for a dataset, environment, or team.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "44dc2a0c-ad85-445f-af78-3e42b3cf09e8",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug?slo_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) For use with the list endpoint to retrieve all burn alerts for a specified SLO.",
+                              "key": "slo_id",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"exhaustion_minutes\": \"<integer>\",\n    \"id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"triggered\": \"<boolean>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"auto_investigate\": false,\n    \"alert_type\": \"exhaustion_time\",\n    \"slo\": {\n      \"id\": \"<string>\"\n    }\n  },\n  {\n    \"exhaustion_minutes\": \"<integer>\",\n    \"id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"triggered\": \"<boolean>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"auto_investigate\": false,\n    \"alert_type\": \"exhaustion_time\",\n    \"slo\": {\n      \"id\": \"<string>\"\n    }\n  }\n]",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-44dc2a0c-ad85-445f-af78-3e42b3cf09e8"
+                    },
+                    {
+                      "id": "05dae3e0-71d5-4b9a-a6e5-25c84f788f09",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug?slo_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) For use with the list endpoint to retrieve all burn alerts for a specified SLO.",
+                              "key": "slo_id",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-05dae3e0-71d5-4b9a-a6e5-25c84f788f09"
+                    },
+                    {
+                      "id": "e44abc2c-f415-4b89-a3da-060934eab1a2",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug?slo_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) For use with the list endpoint to retrieve all burn alerts for a specified SLO.",
+                              "key": "slo_id",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-e44abc2c-f415-4b89-a3da-060934eab1a2"
+                    },
+                    {
+                      "id": "bb1c888f-e318-402e-ab9e-0b384f2ee4aa",
+                      "name": "Validation Failed",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug?slo_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) For use with the list endpoint to retrieve all burn alerts for a specified SLO.",
+                              "key": "slo_id",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-bb1c888f-e318-402e-ab9e-0b384f2ee4aa"
+                    },
+                    {
+                      "id": "2f34a6dd-2f4d-41ef-ad5a-0ad861bd255d",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug?slo_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) For use with the list endpoint to retrieve all burn alerts for a specified SLO.",
+                              "key": "slo_id",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-2f34a6dd-2f4d-41ef-ad5a-0ad861bd255d"
+                    },
+                    {
+                      "id": "9c8f4308-64ef-4e01-adea-2967ec5e461a",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/burn_alerts/:datasetSlug?slo_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "burn_alerts",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) For use with the list endpoint to retrieve all burn alerts for a specified SLO.",
+                              "key": "slo_id",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:38.000Z",
+                      "updatedAt": "2026-07-28T01:56:38.000Z",
+                      "uid": "35240-9c8f4308-64ef-4e01-adea-2967ec5e461a"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:38.000Z",
+                  "updatedAt": "2026-07-28T01:56:38.000Z",
+                  "uid": "35240-8b444cf4-a4e8-42a1-900e-18a08e11d605"
+                }
+              ],
+              "id": "e083214a-c0ff-4d45-9984-eaf2ea00f4f4",
+              "createdAt": "2026-07-28T01:56:38.000Z",
+              "updatedAt": "2026-07-28T01:56:38.000Z",
+              "uid": "35240-e083214a-c0ff-4d45-9984-eaf2ea00f4f4"
+            }
+          ],
+          "id": "e6bf1767-be63-4679-8611-d4d5e3c9d27e",
+          "createdAt": "2026-07-28T01:56:38.000Z",
+          "updatedAt": "2026-07-28T01:56:38.000Z",
+          "uid": "35240-e6bf1767-be63-4679-8611-d4d5e3c9d27e"
+        }
+      ],
+      "id": "e3c9f648-d97f-494c-bf93-283bae4f6c7c",
+      "createdAt": "2026-07-28T01:56:38.000Z",
+      "updatedAt": "2026-07-28T01:56:38.000Z",
+      "uid": "35240-e3c9f648-d97f-494c-bf93-283bae4f6c7c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

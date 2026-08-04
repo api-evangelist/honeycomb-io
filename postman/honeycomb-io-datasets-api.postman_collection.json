@@ -1,0 +1,1941 @@
+{
+  "info": {
+    "_postman_id": "8446635f-89cc-49da-a880-f11c14814f19",
+    "name": "Honeycomb Auth Datasets API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:42.000Z",
+    "updatedAt": "2026-07-28T01:56:42.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8446635f-89cc-49da-a880-f11c14814f19"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "datasets",
+          "item": [
+            {
+              "name": "{datasetSlug}",
+              "item": [
+                {
+                  "name": "Get a Dataset",
+                  "id": "9be76fcb-8a6c-4dd4-bf9a-653540d1078b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f2d9f028-bc3a-4eed-93a7-543a06449854",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug.\n"
+                        }
+                      ]
+                    },
+                    "description": "Get a single Dataset by slug.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "60d3ff45-6ec8-46bf-8b5a-84833525a5be",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"settings\": {\n    \"delete_protected\": \"<boolean>\"\n  },\n  \"expand_json_depth\": 0,\n  \"slug\": \"<string>\",\n  \"regular_columns_count\": \"<null,integer>\",\n  \"last_written_at\": \"<null,string>\",\n  \"created_at\": \"<string>\",\n  \"dataset_type\": \"metrics\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-60d3ff45-6ec8-46bf-8b5a-84833525a5be"
+                    },
+                    {
+                      "id": "6bfa5a06-ac5e-4d6b-b57f-2e95842bfe92",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-6bfa5a06-ac5e-4d6b-b57f-2e95842bfe92"
+                    },
+                    {
+                      "id": "0ab2573d-c4fb-4dc2-b77a-6419f1e0cfda",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-0ab2573d-c4fb-4dc2-b77a-6419f1e0cfda"
+                    },
+                    {
+                      "id": "66cae783-f779-4dd6-bce4-9d2209054915",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-66cae783-f779-4dd6-bce4-9d2209054915"
+                    },
+                    {
+                      "id": "6dbbb49d-27c3-4114-8b12-4cc963dae0af",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-6dbbb49d-27c3-4114-8b12-4cc963dae0af"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-9be76fcb-8a6c-4dd4-bf9a-653540d1078b"
+                },
+                {
+                  "name": "Delete a Dataset",
+                  "id": "4473504f-8c63-4c12-9204-247a65fd4a06",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "5b774922-cf6e-4d7f-b4a6-8d2e0335f14d",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug.\n"
+                        }
+                      ]
+                    },
+                    "description": "Deletes the Dataset. This is an irreversible operation.\nIt may take several minutes for the deletion process to complete.\n\n\n**WARNING**: This endpoint will allow anyone with an API key that has the\nmanage dataset permission to delete any dataset in the environment (or\nany dataset in the whole team for Classic customers).\n\n\nDatasets with Deletion Protection enabled cannot be deleted.\n\nTo delete a Dataset with Deletion Protection enabled, first disable Deletion Protection by updating the Dataset with `settings.delete_protected = false`.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "3fdb9e25-89ef-4ea2-bb28-68c9b4694076",
+                      "name": "Deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Accepted",
+                      "code": 202,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-3fdb9e25-89ef-4ea2-bb28-68c9b4694076"
+                    },
+                    {
+                      "id": "f7472915-408c-4005-a863-d238755ce9f3",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-f7472915-408c-4005-a863-d238755ce9f3"
+                    },
+                    {
+                      "id": "9beed5eb-2244-40ee-bc53-10de004a6255",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-9beed5eb-2244-40ee-bc53-10de004a6255"
+                    },
+                    {
+                      "id": "8d1b0938-0a48-455c-92ce-a498085577a6",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-8d1b0938-0a48-455c-92ce-a498085577a6"
+                    },
+                    {
+                      "id": "8afa3397-d402-45b8-a524-a267be57a8f4",
+                      "name": "Conflict",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-8afa3397-d402-45b8-a524-a267be57a8f4"
+                    },
+                    {
+                      "id": "fba23cbf-29b2-43d6-9b74-dae0c279e955",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-fba23cbf-29b2-43d6-9b74-dae0c279e955"
+                    },
+                    {
+                      "id": "c2835284-0eff-42c1-81f4-4dd671cba922",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-c2835284-0eff-42c1-81f4-4dd671cba922"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-4473504f-8c63-4c12-9204-247a65fd4a06"
+                },
+                {
+                  "name": "Update a Dataset",
+                  "id": "86626355-506a-48e7-9eb5-b56f7a8a5cfe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"description\": \"\",\n  \"expand_json_depth\": 0,\n  \"settings\": {\n    \"delete_protected\": \"<boolean>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3422b62f-a8ef-460b-8b29-e00334c44412",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug.\n"
+                        }
+                      ]
+                    },
+                    "description": "Update a Dataset's settings.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "da925aa3-e6ab-4980-8952-fe8bf223c674",
+                      "name": "Updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"\",\n  \"expand_json_depth\": 0,\n  \"settings\": {\n    \"delete_protected\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"settings\": {\n    \"delete_protected\": \"<boolean>\"\n  },\n  \"expand_json_depth\": 0,\n  \"slug\": \"<string>\",\n  \"regular_columns_count\": \"<null,integer>\",\n  \"last_written_at\": \"<null,string>\",\n  \"created_at\": \"<string>\",\n  \"dataset_type\": \"metrics\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-da925aa3-e6ab-4980-8952-fe8bf223c674"
+                    },
+                    {
+                      "id": "02ca2dfb-4288-4d60-beac-93e8e38f7c46",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"\",\n  \"expand_json_depth\": 0,\n  \"settings\": {\n    \"delete_protected\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-02ca2dfb-4288-4d60-beac-93e8e38f7c46"
+                    },
+                    {
+                      "id": "9d272778-cead-4bda-a03d-b6cb10fc6e54",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"\",\n  \"expand_json_depth\": 0,\n  \"settings\": {\n    \"delete_protected\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-9d272778-cead-4bda-a03d-b6cb10fc6e54"
+                    },
+                    {
+                      "id": "118df85a-7774-48af-a10b-3a9b7fe1cb84",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"description\": \"\",\n  \"expand_json_depth\": 0,\n  \"settings\": {\n    \"delete_protected\": \"<boolean>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/datasets/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "datasets",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:43.000Z",
+                      "updatedAt": "2026-07-28T01:56:43.000Z",
+                      "uid": "35240-118df85a-7774-48af-a10b-3a9b7fe1cb84"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-86626355-506a-48e7-9eb5-b56f7a8a5cfe"
+                }
+              ],
+              "id": "67c0b16f-b3b6-48d6-a7c2-ea2b327378d7",
+              "createdAt": "2026-07-28T01:56:43.000Z",
+              "updatedAt": "2026-07-28T01:56:43.000Z",
+              "uid": "35240-67c0b16f-b3b6-48d6-a7c2-ea2b327378d7"
+            },
+            {
+              "name": "Create a Dataset",
+              "id": "af0fce11-6160-4371-ad0a-794c6176f1df",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"expand_json_depth\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/1/datasets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "1",
+                    "datasets"
+                  ]
+                },
+                "description": "Create a Dataset in the environment associated with your API key.\nIf a Dataset already exists by that name (or slug), then the existing dataset will be returned.\n"
+              },
+              "response": [
+                {
+                  "id": "6d3d1f8e-3583-4d5e-8c9c-add5db577f9b",
+                  "name": "OK - Dataset already exists",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"expand_json_depth\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"settings\": {\n    \"delete_protected\": \"<boolean>\"\n  },\n  \"expand_json_depth\": 0,\n  \"slug\": \"<string>\",\n  \"regular_columns_count\": \"<null,integer>\",\n  \"last_written_at\": \"<null,string>\",\n  \"created_at\": \"<string>\",\n  \"dataset_type\": \"metrics\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-6d3d1f8e-3583-4d5e-8c9c-add5db577f9b"
+                },
+                {
+                  "id": "03f6c07e-4397-4faf-950d-78228b497450",
+                  "name": "Created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"expand_json_depth\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"settings\": {\n    \"delete_protected\": \"<boolean>\"\n  },\n  \"expand_json_depth\": 0,\n  \"slug\": \"<string>\",\n  \"regular_columns_count\": \"<null,integer>\",\n  \"last_written_at\": \"<null,string>\",\n  \"created_at\": \"<string>\",\n  \"dataset_type\": \"metrics\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-03f6c07e-4397-4faf-950d-78228b497450"
+                },
+                {
+                  "id": "969b199a-44b7-44b1-8174-f84fd1892dc4",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"expand_json_depth\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-969b199a-44b7-44b1-8174-f84fd1892dc4"
+                },
+                {
+                  "id": "4b246a80-f444-4cc5-9336-408e4a803e87",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"expand_json_depth\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-4b246a80-f444-4cc5-9336-408e4a803e87"
+                },
+                {
+                  "id": "9a834065-4cdf-443a-9254-8ba019ee5d63",
+                  "name": "Conflict",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"expand_json_depth\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-9a834065-4cdf-443a-9254-8ba019ee5d63"
+                },
+                {
+                  "id": "2f99b6df-ad19-46df-8bb4-fb2946b83a27",
+                  "name": "Validation Failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"expand_json_depth\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-2f99b6df-ad19-46df-8bb4-fb2946b83a27"
+                },
+                {
+                  "id": "1707fef4-470d-4f4c-8f90-b31ce9d5f2c3",
+                  "name": "Rate Limit Exceeded",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"expand_json_depth\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-1707fef4-470d-4f4c-8f90-b31ce9d5f2c3"
+                },
+                {
+                  "id": "a9702220-8a2d-4441-983d-00d56abf4b4b",
+                  "name": "Error",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"\",\n  \"expand_json_depth\": 0\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-a9702220-8a2d-4441-983d-00d56abf4b4b"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:43.000Z",
+              "updatedAt": "2026-07-28T01:56:43.000Z",
+              "uid": "35240-af0fce11-6160-4371-ad0a-794c6176f1df"
+            },
+            {
+              "name": "List All Datasets",
+              "id": "caa28ed0-6e53-4f86-8c81-a6a585af57d6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/1/datasets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "1",
+                    "datasets"
+                  ]
+                },
+                "description": "Lists all Datasets for an environment.\n**Note**: For Honeycomb Classic users, all datasets in Classic are returned.\n"
+              },
+              "response": [
+                {
+                  "id": "3586d0d8-32ca-442c-967a-03f16c8cbafc",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"name\": \"<string>\",\n    \"description\": \"\",\n    \"settings\": {\n      \"delete_protected\": \"<boolean>\"\n    },\n    \"expand_json_depth\": 0,\n    \"slug\": \"<string>\",\n    \"regular_columns_count\": \"<null,integer>\",\n    \"last_written_at\": \"<null,string>\",\n    \"created_at\": \"<string>\",\n    \"dataset_type\": \"metrics\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"description\": \"\",\n    \"settings\": {\n      \"delete_protected\": \"<boolean>\"\n    },\n    \"expand_json_depth\": 0,\n    \"slug\": \"<string>\",\n    \"regular_columns_count\": \"<null,integer>\",\n    \"last_written_at\": \"<null,string>\",\n    \"created_at\": \"<string>\",\n    \"dataset_type\": \"metrics\"\n  }\n]",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-3586d0d8-32ca-442c-967a-03f16c8cbafc"
+                },
+                {
+                  "id": "a888fa5d-5b8b-45b8-aa5f-a4dd891d01df",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-a888fa5d-5b8b-45b8-aa5f-a4dd891d01df"
+                },
+                {
+                  "id": "a374f196-83e0-434e-8e69-aecce59487e1",
+                  "name": "Rate Limit Exceeded",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-a374f196-83e0-434e-8e69-aecce59487e1"
+                },
+                {
+                  "id": "36b19a9a-0af1-4984-9c9c-26e59e105b43",
+                  "name": "Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/datasets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "datasets"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:43.000Z",
+                  "updatedAt": "2026-07-28T01:56:43.000Z",
+                  "uid": "35240-36b19a9a-0af1-4984-9c9c-26e59e105b43"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:43.000Z",
+              "updatedAt": "2026-07-28T01:56:43.000Z",
+              "uid": "35240-caa28ed0-6e53-4f86-8c81-a6a585af57d6"
+            }
+          ],
+          "id": "c8ee949d-c7d7-4b8b-9bd5-cd518221ea42",
+          "createdAt": "2026-07-28T01:56:43.000Z",
+          "updatedAt": "2026-07-28T01:56:43.000Z",
+          "uid": "35240-c8ee949d-c7d7-4b8b-9bd5-cd518221ea42"
+        }
+      ],
+      "id": "dbed317a-6dd2-4d4d-a945-2ba7ec081f8c",
+      "createdAt": "2026-07-28T01:56:43.000Z",
+      "updatedAt": "2026-07-28T01:56:43.000Z",
+      "uid": "35240-dbed317a-6dd2-4d4d-a945-2ba7ec081f8c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

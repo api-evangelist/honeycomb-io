@@ -1,0 +1,2630 @@
+{
+  "info": {
+    "_postman_id": "41d685d8-cf2a-4f55-8728-6cba8fbdef7f",
+    "name": "Honeycomb Auth Triggers API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:23.000Z",
+    "updatedAt": "2026-07-28T01:57:23.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-41d685d8-cf2a-4f55-8728-6cba8fbdef7f"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "triggers",
+          "item": [
+            {
+              "name": "{datasetSlug}",
+              "item": [
+                {
+                  "name": "{triggerId}",
+                  "item": [
+                    {
+                      "name": "Get a Trigger",
+                      "id": "eb085822-f57d-4e40-8167-0006cf046617",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug",
+                            ":triggerId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4f02375c-1d69-4463-b432-d6394f8166a0",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "fbf56cb3-5ecf-4d60-a9d9-752309b184b3",
+                              "key": "triggerId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of a Trigger."
+                            }
+                          ]
+                        },
+                        "description": "Fetch details for a single Trigger by Trigger ID.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "494a051b-fdc3-4777-98aa-2f8f93f157b7",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-494a051b-fdc3-4777-98aa-2f8f93f157b7"
+                        },
+                        {
+                          "id": "3a6f96a8-b3ef-42fb-b963-47ceb67865f6",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-3a6f96a8-b3ef-42fb-b963-47ceb67865f6"
+                        },
+                        {
+                          "id": "72e3d3d0-bb91-4a9c-9e93-cf1d97a673db",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-72e3d3d0-bb91-4a9c-9e93-cf1d97a673db"
+                        },
+                        {
+                          "id": "6ecde987-3520-454d-bcf7-701b66363755",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-6ecde987-3520-454d-bcf7-701b66363755"
+                        },
+                        {
+                          "id": "168fba91-f046-496a-ad76-a774ba9be15a",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-168fba91-f046-496a-ad76-a774ba9be15a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-eb085822-f57d-4e40-8167-0006cf046617"
+                    },
+                    {
+                      "name": "Update a Trigger",
+                      "id": "48f77adc-fd04-42e4-9e78-27c043299d2b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug",
+                            ":triggerId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b4b05943-2fd5-4ea8-85ab-1e526feb3a3b",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "361fc54f-9936-4afb-8a13-c84f0c38ef2a",
+                              "key": "triggerId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of a Trigger."
+                            }
+                          ]
+                        },
+                        "description": "Update a trigger by specifying the trigger ID and the same fields used when creating a new trigger.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "aa514595-4bf0-4830-92aa-f0a0609f783f",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-aa514595-4bf0-4830-92aa-f0a0609f783f"
+                        },
+                        {
+                          "id": "6755a0f2-2089-462c-9086-4761d0100b80",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-6755a0f2-2089-462c-9086-4761d0100b80"
+                        },
+                        {
+                          "id": "cb0fc1f6-9c63-4fff-a75b-1fcbbf510c88",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-cb0fc1f6-9c63-4fff-a75b-1fcbbf510c88"
+                        },
+                        {
+                          "id": "9a53cb7d-65f3-44e8-9cbd-f7c2cd7514a2",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-9a53cb7d-65f3-44e8-9cbd-f7c2cd7514a2"
+                        },
+                        {
+                          "id": "2aacda0f-629a-4457-a508-ebb4f2991829",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-2aacda0f-629a-4457-a508-ebb4f2991829"
+                        },
+                        {
+                          "id": "5fa8926e-733e-4bc7-9bfd-338a7c12afe0",
+                          "name": "Invalid request",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-5fa8926e-733e-4bc7-9bfd-338a7c12afe0"
+                        },
+                        {
+                          "id": "3d35ee8b-44fa-4c79-8efd-91c12b26be3e",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-3d35ee8b-44fa-4c79-8efd-91c12b26be3e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-48f77adc-fd04-42e4-9e78-27c043299d2b"
+                    },
+                    {
+                      "name": "Delete a Trigger",
+                      "id": "bdecd8f2-8660-4705-b0df-65de883f9c89",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug",
+                            ":triggerId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d298baa8-da22-485b-b0a0-962c7704e9d2",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "c68f4a57-4a74-4f3c-a2a7-f63af07a62c2",
+                              "key": "triggerId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of a Trigger."
+                            }
+                          ]
+                        },
+                        "description": "Delete a trigger by specifying the trigger ID. The body of the DELETE request should be empty.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "f485246e-9d87-41e8-b656-0b9648448861",
+                          "name": "Success - no content",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-f485246e-9d87-41e8-b656-0b9648448861"
+                        },
+                        {
+                          "id": "c3dc2af8-6dc1-4f1f-bc3b-afbd9f2a7c5d",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-c3dc2af8-6dc1-4f1f-bc3b-afbd9f2a7c5d"
+                        },
+                        {
+                          "id": "429b5c87-a82c-4bb0-a19b-d1d5cf669395",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-429b5c87-a82c-4bb0-a19b-d1d5cf669395"
+                        },
+                        {
+                          "id": "19bb0acd-7ef1-447c-8e00-4e4861fc7d2a",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/triggers/:datasetSlug/:triggerId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "triggers",
+                                ":datasetSlug",
+                                ":triggerId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "triggerId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-19bb0acd-7ef1-447c-8e00-4e4861fc7d2a"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-bdecd8f2-8660-4705-b0df-65de883f9c89"
+                    }
+                  ],
+                  "id": "0ff46e6c-1b5f-4f72-a659-eeeb5fda43f8",
+                  "createdAt": "2026-07-28T01:57:23.000Z",
+                  "updatedAt": "2026-07-28T01:57:23.000Z",
+                  "uid": "35240-0ff46e6c-1b5f-4f72-a659-eeeb5fda43f8"
+                },
+                {
+                  "name": "List All Triggers",
+                  "id": "c175c9aa-439d-4370-a045-7d917d7ef912",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "triggers",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "754a2fea-d202-448c-b6a2-f7abde33bd3d",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "List all triggers on the provided dataset or environment.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "943269b3-d696-44a6-af07-7d87c144a961",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"dataset_slug\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"threshold\": {\n      \"op\": \">\",\n      \"value\": \"<number>\",\n      \"exceeded_limit\": 1\n    },\n    \"frequency\": \"<integer>\",\n    \"alert_type\": \"on_change\",\n    \"disabled\": false,\n    \"triggered\": \"<boolean>\",\n    \"recipients\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"email\",\n        \"target\": \"<string>\",\n        \"details\": {\n          \"pagerduty_severity\": \"critical\",\n          \"variables\": [\n            {\n              \"name\": \"rqk\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"kKsd9I\",\n              \"value\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"pagerduty\",\n        \"target\": \"<string>\",\n        \"details\": {\n          \"pagerduty_severity\": \"critical\",\n          \"variables\": [\n            {\n              \"name\": \"nk472hy\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"zbiQF15YscP\",\n              \"value\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"evaluation_schedule_type\": \"frequency\",\n    \"evaluation_schedule\": {\n      \"window\": {\n        \"days_of_week\": [\n          \"tuesday\"\n        ],\n        \"start_time\": \"21:19\",\n        \"end_time\": \"03:28\"\n      }\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"baseline_details\": {\n      \"offset_minutes\": 60,\n      \"type\": \"percentage\"\n    },\n    \"auto_investigate\": false,\n    \"query\": {},\n    \"query_id\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"dataset_slug\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"threshold\": {\n      \"op\": \">\",\n      \"value\": \"<number>\",\n      \"exceeded_limit\": 1\n    },\n    \"frequency\": \"<integer>\",\n    \"alert_type\": \"on_change\",\n    \"disabled\": false,\n    \"triggered\": \"<boolean>\",\n    \"recipients\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"slack\",\n        \"target\": \"<string>\",\n        \"details\": {\n          \"pagerduty_severity\": \"critical\",\n          \"variables\": [\n            {\n              \"name\": \"vQgC\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"eiR\",\n              \"value\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"email\",\n        \"target\": \"<string>\",\n        \"details\": {\n          \"pagerduty_severity\": \"critical\",\n          \"variables\": [\n            {\n              \"name\": \"d\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"tO0SH\",\n              \"value\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"evaluation_schedule_type\": \"window\",\n    \"evaluation_schedule\": {\n      \"window\": {\n        \"days_of_week\": [\n          \"thursday\"\n        ],\n        \"start_time\": \"22:03\",\n        \"end_time\": \"23:18\"\n      }\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"baseline_details\": {\n      \"offset_minutes\": 10080,\n      \"type\": \"value\"\n    },\n    \"auto_investigate\": false,\n    \"query\": {},\n    \"query_id\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-943269b3-d696-44a6-af07-7d87c144a961"
+                    },
+                    {
+                      "id": "f0acabae-4280-4835-a36e-048003857abe",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-f0acabae-4280-4835-a36e-048003857abe"
+                    },
+                    {
+                      "id": "bc5c160e-5138-4f3a-8d4c-68d315c2f915",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-bc5c160e-5138-4f3a-8d4c-68d315c2f915"
+                    },
+                    {
+                      "id": "8ce1097e-5f08-4819-b13b-7b6176b91f16",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-8ce1097e-5f08-4819-b13b-7b6176b91f16"
+                    },
+                    {
+                      "id": "116f343a-dd10-4814-8992-5d155bdf9de2",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-116f343a-dd10-4814-8992-5d155bdf9de2"
+                    },
+                    {
+                      "id": "50f0e35c-0193-4c40-8dec-b5db9d212945",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-50f0e35c-0193-4c40-8dec-b5db9d212945"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:23.000Z",
+                  "updatedAt": "2026-07-28T01:57:23.000Z",
+                  "uid": "35240-c175c9aa-439d-4370-a045-7d917d7ef912"
+                },
+                {
+                  "name": "Create a Trigger",
+                  "id": "b3adfcd5-6169-4318-b58b-96983dd2774c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"vqdFl0Q\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"webhook\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"t\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"nhjfIDjpjEl\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"21:26\",\n      \"end_time\": \"8:00\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 40320,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "triggers",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fdbbc669-9b99-45e7-8dd2-185da8d1cc26",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "Create a trigger on the provided dataset or environment.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "20ac6a73-2ae9-486d-a53a-62a8302750f8",
+                      "name": "Success - trigger created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"vqdFl0Q\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"webhook\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"t\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"nhjfIDjpjEl\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"21:26\",\n      \"end_time\": \"8:00\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 40320,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "Relative path to fetch this trigger via API.",
+                            "type": "text/plain"
+                          },
+                          "key": "Location",
+                          "value": "<string>"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"y\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"niCp7OXdm3\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"rHcLWs1\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"pJp\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"1:13\",\n      \"end_time\": \"23:04\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-20ac6a73-2ae9-486d-a53a-62a8302750f8"
+                    },
+                    {
+                      "id": "daa67575-d93c-497b-90a3-57fad588876a",
+                      "name": "The provided request body was invalid.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"vqdFl0Q\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"webhook\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"t\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"nhjfIDjpjEl\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"21:26\",\n      \"end_time\": \"8:00\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 40320,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-daa67575-d93c-497b-90a3-57fad588876a"
+                    },
+                    {
+                      "id": "538fef2c-dfa7-4e34-8876-86f207fe3760",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"vqdFl0Q\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"webhook\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"t\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"nhjfIDjpjEl\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"21:26\",\n      \"end_time\": \"8:00\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 40320,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-538fef2c-dfa7-4e34-8876-86f207fe3760"
+                    },
+                    {
+                      "id": "2d7dcbfc-fa25-4c35-a488-cbf649dcf6de",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"vqdFl0Q\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"webhook\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"t\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"nhjfIDjpjEl\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"21:26\",\n      \"end_time\": \"8:00\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 40320,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-2d7dcbfc-fa25-4c35-a488-cbf649dcf6de"
+                    },
+                    {
+                      "id": "45936a2b-b49d-4abe-bca9-02ece55241e7",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"vqdFl0Q\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"webhook\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"t\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"nhjfIDjpjEl\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"21:26\",\n      \"end_time\": \"8:00\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 40320,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-45936a2b-b49d-4abe-bca9-02ece55241e7"
+                    },
+                    {
+                      "id": "03410fb2-0c87-4e0f-a133-099b4975eb47",
+                      "name": "The provided request body was over the maximum allowed size.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"vqdFl0Q\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"webhook\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"t\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"nhjfIDjpjEl\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"21:26\",\n      \"end_time\": \"8:00\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 40320,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Request Entity Too Large",
+                      "code": 413,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": \"<number>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-03410fb2-0c87-4e0f-a133-099b4975eb47"
+                    },
+                    {
+                      "id": "427f2a0c-231c-4f69-a6a8-15772e798f59",
+                      "name": "Invalid request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"vqdFl0Q\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"webhook\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"t\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"nhjfIDjpjEl\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"21:26\",\n      \"end_time\": \"8:00\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 40320,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-427f2a0c-231c-4f69-a6a8-15772e798f59"
+                    },
+                    {
+                      "id": "813eed40-3278-4657-8db1-6da8bbd6671c",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"dataset_slug\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">=\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": \"<boolean>\",\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"msteams_workflow\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"vqdFl0Q\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"u\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"webhook\",\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": \"critical\",\n        \"variables\": [\n          {\n            \"name\": \"t\",\n            \"value\": \"<string>\"\n          },\n          {\n            \"name\": \"nhjfIDjpjEl\",\n            \"value\": \"<string>\"\n          }\n        ]\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"21:26\",\n      \"end_time\": \"8:00\"\n    }\n  },\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"baseline_details\": {\n    \"offset_minutes\": 40320,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/triggers/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "triggers",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-813eed40-3278-4657-8db1-6da8bbd6671c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:23.000Z",
+                  "updatedAt": "2026-07-28T01:57:23.000Z",
+                  "uid": "35240-b3adfcd5-6169-4318-b58b-96983dd2774c"
+                }
+              ],
+              "id": "edae9fa4-5aa2-48bb-ae08-15f066cd4471",
+              "createdAt": "2026-07-28T01:57:23.000Z",
+              "updatedAt": "2026-07-28T01:57:23.000Z",
+              "uid": "35240-edae9fa4-5aa2-48bb-ae08-15f066cd4471"
+            }
+          ],
+          "id": "37beadb6-e015-4626-a45d-b641d3c455b9",
+          "createdAt": "2026-07-28T01:57:23.000Z",
+          "updatedAt": "2026-07-28T01:57:23.000Z",
+          "uid": "35240-37beadb6-e015-4626-a45d-b641d3c455b9"
+        },
+        {
+          "name": "recipients",
+          "item": [
+            {
+              "name": "{recipientId}",
+              "item": [
+                {
+                  "name": "triggers",
+                  "item": [
+                    {
+                      "name": "Get Triggers Associated with a Recipient",
+                      "id": "8169239b-7f42-4c8e-963b-f6029c903b7b",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId/triggers",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId",
+                            "triggers"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0d0e8875-c279-41b0-87a9-eefd9594593f",
+                              "key": "recipientId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier (ID) of a Recipient."
+                            }
+                          ]
+                        },
+                        "description": "List all triggers that will alert a given Recipient. **Important:** This request will return all Triggers associated with the specific Recipient across your entire Honeycomb team rather than being scoped to a dataset or environment.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "f44178aa-1182-4eb5-ade8-577aab69610a",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/recipients/:recipientId/triggers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "recipients",
+                                ":recipientId",
+                                "triggers"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recipientId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "[\n  {\n    \"id\": \"<string>\",\n    \"dataset_slug\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"threshold\": {\n      \"op\": \">\",\n      \"value\": \"<number>\",\n      \"exceeded_limit\": 1\n    },\n    \"frequency\": \"<integer>\",\n    \"alert_type\": \"on_change\",\n    \"disabled\": false,\n    \"triggered\": \"<boolean>\",\n    \"recipients\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"email\",\n        \"target\": \"<string>\",\n        \"details\": {\n          \"pagerduty_severity\": \"critical\",\n          \"variables\": [\n            {\n              \"name\": \"rqk\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"kKsd9I\",\n              \"value\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"pagerduty\",\n        \"target\": \"<string>\",\n        \"details\": {\n          \"pagerduty_severity\": \"critical\",\n          \"variables\": [\n            {\n              \"name\": \"nk472hy\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"zbiQF15YscP\",\n              \"value\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"evaluation_schedule_type\": \"frequency\",\n    \"evaluation_schedule\": {\n      \"window\": {\n        \"days_of_week\": [\n          \"tuesday\"\n        ],\n        \"start_time\": \"21:19\",\n        \"end_time\": \"03:28\"\n      }\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"baseline_details\": {\n      \"offset_minutes\": 60,\n      \"type\": \"percentage\"\n    },\n    \"auto_investigate\": false,\n    \"query\": {},\n    \"query_id\": \"<string>\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"dataset_slug\": \"<string>\",\n    \"name\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"threshold\": {\n      \"op\": \">\",\n      \"value\": \"<number>\",\n      \"exceeded_limit\": 1\n    },\n    \"frequency\": \"<integer>\",\n    \"alert_type\": \"on_change\",\n    \"disabled\": false,\n    \"triggered\": \"<boolean>\",\n    \"recipients\": [\n      {\n        \"id\": \"<string>\",\n        \"type\": \"slack\",\n        \"target\": \"<string>\",\n        \"details\": {\n          \"pagerduty_severity\": \"critical\",\n          \"variables\": [\n            {\n              \"name\": \"vQgC\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"eiR\",\n              \"value\": \"<string>\"\n            }\n          ]\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"type\": \"email\",\n        \"target\": \"<string>\",\n        \"details\": {\n          \"pagerduty_severity\": \"critical\",\n          \"variables\": [\n            {\n              \"name\": \"d\",\n              \"value\": \"<string>\"\n            },\n            {\n              \"name\": \"tO0SH\",\n              \"value\": \"<string>\"\n            }\n          ]\n        }\n      }\n    ],\n    \"evaluation_schedule_type\": \"window\",\n    \"evaluation_schedule\": {\n      \"window\": {\n        \"days_of_week\": [\n          \"thursday\"\n        ],\n        \"start_time\": \"22:03\",\n        \"end_time\": \"23:18\"\n      }\n    },\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"baseline_details\": {\n      \"offset_minutes\": 10080,\n      \"type\": \"value\"\n    },\n    \"auto_investigate\": false,\n    \"query\": {},\n    \"query_id\": \"<string>\"\n  }\n]",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-f44178aa-1182-4eb5-ade8-577aab69610a"
+                        },
+                        {
+                          "id": "3b2129fb-bbbf-4e96-a5cb-2399d4d97cdf",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/recipients/:recipientId/triggers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "recipients",
+                                ":recipientId",
+                                "triggers"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recipientId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-3b2129fb-bbbf-4e96-a5cb-2399d4d97cdf"
+                        },
+                        {
+                          "id": "5088a935-5521-4fd9-a45b-b0d87b45bf65",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/recipients/:recipientId/triggers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "recipients",
+                                ":recipientId",
+                                "triggers"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recipientId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-5088a935-5521-4fd9-a45b-b0d87b45bf65"
+                        },
+                        {
+                          "id": "bf65e6d0-28bb-43b0-bd5d-673e763954de",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/recipients/:recipientId/triggers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "recipients",
+                                ":recipientId",
+                                "triggers"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recipientId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-bf65e6d0-28bb-43b0-bd5d-673e763954de"
+                        },
+                        {
+                          "id": "ad4fdcbc-dd48-41ab-839f-7d504e8dfd1b",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/recipients/:recipientId/triggers",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "recipients",
+                                ":recipientId",
+                                "triggers"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "recipientId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:23.000Z",
+                          "updatedAt": "2026-07-28T01:57:23.000Z",
+                          "uid": "35240-ad4fdcbc-dd48-41ab-839f-7d504e8dfd1b"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:23.000Z",
+                      "updatedAt": "2026-07-28T01:57:23.000Z",
+                      "uid": "35240-8169239b-7f42-4c8e-963b-f6029c903b7b"
+                    }
+                  ],
+                  "id": "2aae9d0c-a90c-4809-bfb8-f83e3f74a552",
+                  "createdAt": "2026-07-28T01:57:23.000Z",
+                  "updatedAt": "2026-07-28T01:57:23.000Z",
+                  "uid": "35240-2aae9d0c-a90c-4809-bfb8-f83e3f74a552"
+                }
+              ],
+              "id": "f3ad7bb4-a128-424a-bcf8-dca68476892b",
+              "createdAt": "2026-07-28T01:57:23.000Z",
+              "updatedAt": "2026-07-28T01:57:23.000Z",
+              "uid": "35240-f3ad7bb4-a128-424a-bcf8-dca68476892b"
+            }
+          ],
+          "id": "e6748fc5-6720-48ca-923e-de713f1743c4",
+          "createdAt": "2026-07-28T01:57:23.000Z",
+          "updatedAt": "2026-07-28T01:57:23.000Z",
+          "uid": "35240-e6748fc5-6720-48ca-923e-de713f1743c4"
+        }
+      ],
+      "id": "1ad6e301-8e36-4383-8263-2d1b53a60515",
+      "createdAt": "2026-07-28T01:57:23.000Z",
+      "updatedAt": "2026-07-28T01:57:23.000Z",
+      "uid": "35240-1ad6e301-8e36-4383-8263-2d1b53a60515"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

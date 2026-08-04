@@ -1,0 +1,2327 @@
+{
+  "info": {
+    "_postman_id": "e96c49c9-176b-4c47-bfa5-c640f8fc58fb",
+    "name": "Honeycomb Auth Calculated Fields API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:39.000Z",
+    "updatedAt": "2026-07-28T01:56:39.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e96c49c9-176b-4c47-bfa5-c640f8fc58fb"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "derived_columns",
+          "item": [
+            {
+              "name": "{datasetSlug}",
+              "item": [
+                {
+                  "name": "{derivedColumnId}",
+                  "item": [
+                    {
+                      "name": "Get a Calculated Field",
+                      "id": "08a2d96d-cb71-44bd-abff-77a883b5bb12",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug",
+                            ":derivedColumnId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "80fb772c-6590-4b2d-b83e-3d823a3cfe6b",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "040689cd-5495-46da-bc15-1aed49082cb4",
+                              "key": "derivedColumnId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier (ID) of a Calculated Field (also called a Derived Column)."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "1f509623-8859-44eb-8a25-a4ffe3779e8e",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-1f509623-8859-44eb-8a25-a4ffe3779e8e"
+                        },
+                        {
+                          "id": "ec14b27b-fc13-4235-ba84-5f1a485801ec",
+                          "name": "The provided request body was invalid.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-ec14b27b-fc13-4235-ba84-5f1a485801ec"
+                        },
+                        {
+                          "id": "68899d01-060c-4b3d-a24a-aa7b34fb20d5",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-68899d01-060c-4b3d-a24a-aa7b34fb20d5"
+                        },
+                        {
+                          "id": "5d2fb5bf-993c-449c-9309-5a459999e8a2",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-5d2fb5bf-993c-449c-9309-5a459999e8a2"
+                        },
+                        {
+                          "id": "33940d1d-5a94-4aa0-8e0d-eba45e0ef35e",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-33940d1d-5a94-4aa0-8e0d-eba45e0ef35e"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-08a2d96d-cb71-44bd-abff-77a883b5bb12"
+                    },
+                    {
+                      "name": "Update a Calculated Field",
+                      "id": "5a2df4a6-6840-4856-943d-f6f25aed6517",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug",
+                            ":derivedColumnId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9ae42cca-4e78-4abe-98b6-e310070fc6b8",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "ada1d7d1-6894-4a8c-8b03-cc80def574cc",
+                              "key": "derivedColumnId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier (ID) of a Calculated Field (also called a Derived Column)."
+                            }
+                          ]
+                        },
+                        "description": "Update a Calculated Field (also called a Derived Column).\n"
+                      },
+                      "response": [
+                        {
+                          "id": "7c8da651-59ef-413f-b8b5-0b979886d38b",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-7c8da651-59ef-413f-b8b5-0b979886d38b"
+                        },
+                        {
+                          "id": "2e6a3b2e-163f-4ab3-a30a-1f5d9649e60b",
+                          "name": "The provided request body was invalid.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-2e6a3b2e-163f-4ab3-a30a-1f5d9649e60b"
+                        },
+                        {
+                          "id": "5e3ad5d0-941c-4bb6-ac81-84acd4b733f8",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-5e3ad5d0-941c-4bb6-ac81-84acd4b733f8"
+                        },
+                        {
+                          "id": "77b7c809-882a-4bf5-91c5-4d10a86edf0c",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-77b7c809-882a-4bf5-91c5-4d10a86edf0c"
+                        },
+                        {
+                          "id": "5bebba10-fada-431c-abad-f6b616e545e0",
+                          "name": "Conflict",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-5bebba10-fada-431c-abad-f6b616e545e0"
+                        },
+                        {
+                          "id": "a422c523-ef68-45d9-9edd-9f0f69423b2c",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-a422c523-ef68-45d9-9edd-9f0f69423b2c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-5a2df4a6-6840-4856-943d-f6f25aed6517"
+                    },
+                    {
+                      "name": "Delete a Calculated Field",
+                      "id": "462be6be-d4e0-4c35-b169-5952cc7ddf88",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug",
+                            ":derivedColumnId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "5567e818-8c30-4b2e-87ef-686fe4e863e9",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "d9f2cc31-273e-41be-a83d-9bb93bc84971",
+                              "key": "derivedColumnId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier (ID) of a Calculated Field (also called a Derived Column)."
+                            }
+                          ]
+                        },
+                        "description": "Delete a Calculated Field (also called a Derived Column). **Note**: A Calculated Field used by a SLO, Trigger, or Board cannot be deleted without removing or modifying the SLO, Trigger, or Board first.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "5568a555-4d07-46fa-a39f-952327c96ee4",
+                          "name": "Success - no content",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-5568a555-4d07-46fa-a39f-952327c96ee4"
+                        },
+                        {
+                          "id": "0f8d8279-8bfc-4d95-bda7-ce7a9eab1883",
+                          "name": "The provided request body was invalid.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-0f8d8279-8bfc-4d95-bda7-ce7a9eab1883"
+                        },
+                        {
+                          "id": "7905682b-1ab7-41c5-9468-9004e033e156",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-7905682b-1ab7-41c5-9468-9004e033e156"
+                        },
+                        {
+                          "id": "918b3582-3cf0-4154-8876-7ef90ae6ca02",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-918b3582-3cf0-4154-8876-7ef90ae6ca02"
+                        },
+                        {
+                          "id": "78d78766-3ace-4690-bf9a-44670043374b",
+                          "name": "Conflict",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Conflict",
+                          "code": 409,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-78d78766-3ace-4690-bf9a-44670043374b"
+                        },
+                        {
+                          "id": "9ee82900-abe3-44d4-88e6-a292831869f7",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug/:derivedColumnId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "derived_columns",
+                                ":datasetSlug",
+                                ":derivedColumnId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "derivedColumnId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:56:40.000Z",
+                          "updatedAt": "2026-07-28T01:56:40.000Z",
+                          "uid": "35240-9ee82900-abe3-44d4-88e6-a292831869f7"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-462be6be-d4e0-4c35-b169-5952cc7ddf88"
+                    }
+                  ],
+                  "id": "9b5eb33d-25fa-4fd7-8649-38c056d1c47a",
+                  "createdAt": "2026-07-28T01:56:40.000Z",
+                  "updatedAt": "2026-07-28T01:56:40.000Z",
+                  "uid": "35240-9b5eb33d-25fa-4fd7-8649-38c056d1c47a"
+                },
+                {
+                  "name": "Create a Calculated Field",
+                  "id": "dc23c7c5-34c5-4ed8-bfb9-e9abc195a7af",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "derived_columns",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "c82988ee-01fa-4d9e-a9f2-ec4ac893e33f",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "Create a Calculated Field (also called a Derived Column). Calculated Fields allow you to run queries based on the value of an expression that is calculated from the fields in an event.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "33c6ff47-d545-4725-8131-5cb02ff75a11",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-33c6ff47-d545-4725-8131-5cb02ff75a11"
+                    },
+                    {
+                      "id": "94c9a641-9e26-48e1-bc36-cdc6f14d2980",
+                      "name": "The provided request body was invalid.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-94c9a641-9e26-48e1-bc36-cdc6f14d2980"
+                    },
+                    {
+                      "id": "462ca5a2-2d51-4f1e-8d52-5a64abe232a0",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-462ca5a2-2d51-4f1e-8d52-5a64abe232a0"
+                    },
+                    {
+                      "id": "6a7f42e7-951f-41e0-b6ba-70d539775dc1",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-6a7f42e7-951f-41e0-b6ba-70d539775dc1"
+                    },
+                    {
+                      "id": "e9a11c61-4a39-47ca-892e-df5069248f18",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-e9a11c61-4a39-47ca-892e-df5069248f18"
+                    },
+                    {
+                      "id": "f4d4b237-d988-4ede-bb4c-195104a9493f",
+                      "name": "Conflict",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-f4d4b237-d988-4ede-bb4c-195104a9493f"
+                    },
+                    {
+                      "id": "523d365e-0e5e-4635-9fbc-e3ea13c2d2b5",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"alias\": \"<string>\",\n  \"expression\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<string>\",\n  \"description\": \"\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-523d365e-0e5e-4635-9fbc-e3ea13c2d2b5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:40.000Z",
+                  "updatedAt": "2026-07-28T01:56:40.000Z",
+                  "uid": "35240-dc23c7c5-34c5-4ed8-bfb9-e9abc195a7af"
+                },
+                {
+                  "name": "List all Calculated Fields",
+                  "id": "fd271a27-b155-44af-837b-85d153830fef",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug?alias=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "derived_columns",
+                        ":datasetSlug"
+                      ],
+                      "query": [
+                        {
+                          "description": "The Calculated Field `alias`.",
+                          "key": "alias",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "848de26d-cb45-493a-87ef-d516de0ae4e0",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "Get all the Calculated Fields (also called Derived Columns) in a dataset or environment. With the `?alias=X` query parameter, can return a single Calculated Field by its `alias`."
+                  },
+                  "response": [
+                    {
+                      "id": "fe55e734-ef72-46d6-acd2-cc977d3724ab",
+                      "name": "When listing all columns, an array of CalculatedField objects will be returned. When using `key_name`, will return a single CalculatedField object if found.\n",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug?alias=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "The Calculated Field `alias`.",
+                              "key": "alias",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"id\": \"<string>\",\n    \"alias\": \"<string>\",\n    \"expression\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\",\n    \"description\": \"\"\n  },\n  {\n    \"id\": \"<string>\",\n    \"alias\": \"<string>\",\n    \"expression\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<string>\",\n    \"description\": \"\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-fe55e734-ef72-46d6-acd2-cc977d3724ab"
+                    },
+                    {
+                      "id": "51c54f43-a8fd-43ff-9144-82e782047146",
+                      "name": "The provided request body was invalid.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug?alias=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "The Calculated Field `alias`.",
+                              "key": "alias",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-51c54f43-a8fd-43ff-9144-82e782047146"
+                    },
+                    {
+                      "id": "d3df2c2d-d5e3-4a8d-9157-078b5038a5b3",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug?alias=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "The Calculated Field `alias`.",
+                              "key": "alias",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-d3df2c2d-d5e3-4a8d-9157-078b5038a5b3"
+                    },
+                    {
+                      "id": "519d4181-09eb-419d-8708-467d2463574a",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug?alias=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "The Calculated Field `alias`.",
+                              "key": "alias",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-519d4181-09eb-419d-8708-467d2463574a"
+                    },
+                    {
+                      "id": "69196f31-c62d-4c47-bb55-fbc14e54e899",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/derived_columns/:datasetSlug?alias=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "derived_columns",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "The Calculated Field `alias`.",
+                              "key": "alias",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:40.000Z",
+                      "updatedAt": "2026-07-28T01:56:40.000Z",
+                      "uid": "35240-69196f31-c62d-4c47-bb55-fbc14e54e899"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:40.000Z",
+                  "updatedAt": "2026-07-28T01:56:40.000Z",
+                  "uid": "35240-fd271a27-b155-44af-837b-85d153830fef"
+                }
+              ],
+              "id": "6ea544e2-6288-4294-8892-c9caceb2b82f",
+              "createdAt": "2026-07-28T01:56:40.000Z",
+              "updatedAt": "2026-07-28T01:56:40.000Z",
+              "uid": "35240-6ea544e2-6288-4294-8892-c9caceb2b82f"
+            }
+          ],
+          "id": "f9480695-80d7-4c3f-8b93-4c0523a55c15",
+          "createdAt": "2026-07-28T01:56:40.000Z",
+          "updatedAt": "2026-07-28T01:56:40.000Z",
+          "uid": "35240-f9480695-80d7-4c3f-8b93-4c0523a55c15"
+        }
+      ],
+      "id": "e0af06ed-c642-4a5a-9edd-356644c35608",
+      "createdAt": "2026-07-28T01:56:40.000Z",
+      "updatedAt": "2026-07-28T01:56:40.000Z",
+      "uid": "35240-e0af06ed-c642-4a5a-9edd-356644c35608"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

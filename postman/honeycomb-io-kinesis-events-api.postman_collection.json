@@ -1,0 +1,296 @@
+{
+  "info": {
+    "_postman_id": "af13e814-8ed0-4b7c-9a37-6bc0952e9b60",
+    "name": "Honeycomb Auth Kinesis Events API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:09.000Z",
+    "updatedAt": "2026-07-28T01:57:09.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-af13e814-8ed0-4b7c-9a37-6bc0952e9b60"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "kinesis_events",
+          "item": [
+            {
+              "name": "{datasetSlug}",
+              "item": [
+                {
+                  "name": "Create Kinesis Events",
+                  "id": "9fafa037-d957-4567-bd40-13a84f820c85",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "description": "(Required) AWS Request ID associated with the Kinesis Firehose.\n",
+                        "key": "X-Amz-Firehose-Request-Id",
+                        "value": "<string>"
+                      },
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requestId\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"records\": [\n    {\n      \"data\": \"<string>\"\n    },\n    {\n      \"data\": \"<string>\"\n    }\n  ]\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/kinesis_events/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "kinesis_events",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "23371dac-4edd-4843-8c3b-6f27a48cf64a",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug.\n"
+                        }
+                      ]
+                    },
+                    "description": "This endpoint processes events and metrics coming from AWS through Kinesis Firehose.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "51fd0f15-8e39-4157-83ab-94dc973765f7",
+                      "name": "Events queued for processing",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) AWS Request ID associated with the Kinesis Firehose.\n",
+                            "key": "X-Amz-Firehose-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"requestId\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"records\": [\n    {\n      \"data\": \"<string>\"\n    },\n    {\n      \"data\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/kinesis_events/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "kinesis_events",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"requestId\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"errorMessage\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:09.000Z",
+                      "updatedAt": "2026-07-28T01:57:09.000Z",
+                      "uid": "35240-51fd0f15-8e39-4157-83ab-94dc973765f7"
+                    },
+                    {
+                      "id": "1b636725-d4c9-4607-ac21-d404219552fa",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) AWS Request ID associated with the Kinesis Firehose.\n",
+                            "key": "X-Amz-Firehose-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"requestId\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"records\": [\n    {\n      \"data\": \"<string>\"\n    },\n    {\n      \"data\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/kinesis_events/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "kinesis_events",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:09.000Z",
+                      "updatedAt": "2026-07-28T01:57:09.000Z",
+                      "uid": "35240-1b636725-d4c9-4607-ac21-d404219552fa"
+                    },
+                    {
+                      "id": "313d1f72-f263-4955-ad6d-732a0c8672b6",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "description": "(Required) AWS Request ID associated with the Kinesis Firehose.\n",
+                            "key": "X-Amz-Firehose-Request-Id",
+                            "value": "<string>"
+                          },
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"requestId\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"records\": [\n    {\n      \"data\": \"<string>\"\n    },\n    {\n      \"data\": \"<string>\"\n    }\n  ]\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/kinesis_events/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "kinesis_events",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:09.000Z",
+                      "updatedAt": "2026-07-28T01:57:09.000Z",
+                      "uid": "35240-313d1f72-f263-4955-ad6d-732a0c8672b6"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:09.000Z",
+                  "updatedAt": "2026-07-28T01:57:09.000Z",
+                  "uid": "35240-9fafa037-d957-4567-bd40-13a84f820c85"
+                }
+              ],
+              "id": "ca3600c7-b48a-4ad2-9163-c6c256bf58d9",
+              "createdAt": "2026-07-28T01:57:09.000Z",
+              "updatedAt": "2026-07-28T01:57:09.000Z",
+              "uid": "35240-ca3600c7-b48a-4ad2-9163-c6c256bf58d9"
+            }
+          ],
+          "id": "4d633e95-356e-4113-bb43-1e2955bef9d2",
+          "createdAt": "2026-07-28T01:57:09.000Z",
+          "updatedAt": "2026-07-28T01:57:09.000Z",
+          "uid": "35240-4d633e95-356e-4113-bb43-1e2955bef9d2"
+        }
+      ],
+      "id": "0bcf3b1f-4991-47f6-8b4b-f18abe8e808c",
+      "createdAt": "2026-07-28T01:57:09.000Z",
+      "updatedAt": "2026-07-28T01:57:09.000Z",
+      "uid": "35240-0bcf3b1f-4991-47f6-8b4b-f18abe8e808c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

@@ -1,0 +1,673 @@
+{
+  "info": {
+    "_postman_id": "ac090396-68e7-4f6a-ba4e-7ca9bd9b74c6",
+    "name": "Honeycomb Auth Dataset Definitions API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:41.000Z",
+    "updatedAt": "2026-07-28T01:56:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ac090396-68e7-4f6a-ba4e-7ca9bd9b74c6"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "dataset_definitions",
+          "item": [
+            {
+              "name": "{datasetSlug}",
+              "item": [
+                {
+                  "name": "Set or Update Dataset Definitions",
+                  "id": "0f88499b-2f95-4e54-befe-abfc7c7d5cdc",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PATCH",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"span_id\": null,\n  \"trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"parent_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"name\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"service_name\": null,\n  \"duration_ms\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"span_kind\": null,\n  \"annotation_type\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"link_span_id\": null,\n  \"link_trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"error\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"status\": null,\n  \"route\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"user\": null,\n  \"log_severity\": null,\n  \"log_message\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/dataset_definitions/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "dataset_definitions",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "313aed73-cfdc-4624-bce0-c3f53d80c16f",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug.\n"
+                        }
+                      ]
+                    },
+                    "description": "Set or update one or more definitions for a Dataset.\n**Note**: While the PATCH payload can include the `column_type`, Honeycomb does not use this field when updating Dataset Definitions.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "fbce68fc-3cd7-4bb3-acb6-4e3c53b81ad7",
+                      "name": "Dataset Definitions have been updated",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"span_id\": null,\n  \"trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"parent_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"name\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"service_name\": null,\n  \"duration_ms\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"span_kind\": null,\n  \"annotation_type\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"link_span_id\": null,\n  \"link_trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"error\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"status\": null,\n  \"route\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"user\": null,\n  \"log_severity\": null,\n  \"log_message\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/dataset_definitions/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "dataset_definitions",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"span_id\": null,\n  \"trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"parent_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"name\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"service_name\": null,\n  \"duration_ms\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"span_kind\": null,\n  \"annotation_type\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"link_span_id\": null,\n  \"link_trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"error\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"status\": null,\n  \"route\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"user\": null,\n  \"log_severity\": null,\n  \"log_message\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:56:42.000Z",
+                      "updatedAt": "2026-07-28T01:56:42.000Z",
+                      "uid": "35240-fbce68fc-3cd7-4bb3-acb6-4e3c53b81ad7"
+                    },
+                    {
+                      "id": "4efd7f51-2d2c-43be-99d0-acd9121b224b",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"span_id\": null,\n  \"trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"parent_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"name\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"service_name\": null,\n  \"duration_ms\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"span_kind\": null,\n  \"annotation_type\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"link_span_id\": null,\n  \"link_trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"error\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"status\": null,\n  \"route\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"user\": null,\n  \"log_severity\": null,\n  \"log_message\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/dataset_definitions/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "dataset_definitions",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": \"<number>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:42.000Z",
+                      "updatedAt": "2026-07-28T01:56:42.000Z",
+                      "uid": "35240-4efd7f51-2d2c-43be-99d0-acd9121b224b"
+                    },
+                    {
+                      "id": "95808e23-0333-4439-bb42-2511801bd1c3",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"span_id\": null,\n  \"trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"parent_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"name\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"service_name\": null,\n  \"duration_ms\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"span_kind\": null,\n  \"annotation_type\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"link_span_id\": null,\n  \"link_trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"error\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"status\": null,\n  \"route\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"user\": null,\n  \"log_severity\": null,\n  \"log_message\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/dataset_definitions/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "dataset_definitions",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:42.000Z",
+                      "updatedAt": "2026-07-28T01:56:42.000Z",
+                      "uid": "35240-95808e23-0333-4439-bb42-2511801bd1c3"
+                    },
+                    {
+                      "id": "fabc5dcc-f205-4f34-93a6-efcf4b138f9a",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"span_id\": null,\n  \"trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"parent_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"name\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"service_name\": null,\n  \"duration_ms\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"span_kind\": null,\n  \"annotation_type\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"link_span_id\": null,\n  \"link_trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"error\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"status\": null,\n  \"route\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"user\": null,\n  \"log_severity\": null,\n  \"log_message\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/dataset_definitions/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "dataset_definitions",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:42.000Z",
+                      "updatedAt": "2026-07-28T01:56:42.000Z",
+                      "uid": "35240-fabc5dcc-f205-4f34-93a6-efcf4b138f9a"
+                    },
+                    {
+                      "id": "ffe0664a-77f8-4767-861f-fd3fc52071b0",
+                      "name": "422 Unprocessable Entity",
+                      "originalRequest": {
+                        "method": "PATCH",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"span_id\": null,\n  \"trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"parent_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"name\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"service_name\": null,\n  \"duration_ms\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"span_kind\": null,\n  \"annotation_type\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"link_span_id\": null,\n  \"link_trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"error\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"status\": null,\n  \"route\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"user\": null,\n  \"log_severity\": null,\n  \"log_message\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/dataset_definitions/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "dataset_definitions",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:42.000Z",
+                      "updatedAt": "2026-07-28T01:56:42.000Z",
+                      "uid": "35240-ffe0664a-77f8-4767-861f-fd3fc52071b0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:42.000Z",
+                  "updatedAt": "2026-07-28T01:56:42.000Z",
+                  "uid": "35240-0f88499b-2f95-4e54-befe-abfc7c7d5cdc"
+                },
+                {
+                  "name": "Get all Dataset Definitions",
+                  "id": "cf84a476-38ad-49c6-9c87-116771e19d10",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/dataset_definitions/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "dataset_definitions",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a267c752-3e61-40c3-ab87-ab44cec7926e",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug.\n"
+                        }
+                      ]
+                    },
+                    "description": "Get all definitions for a Dataset.\nThe response returns an object with a Dataset Definition for each set Dataset Definition type.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "0c3d7bf8-1cb7-409a-9792-61614e6f6504",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/dataset_definitions/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "dataset_definitions",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"span_id\": null,\n  \"trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"parent_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"name\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"service_name\": null,\n  \"duration_ms\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"span_kind\": null,\n  \"annotation_type\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"link_span_id\": null,\n  \"link_trace_id\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"error\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  },\n  \"status\": null,\n  \"route\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"column\"\n  },\n  \"user\": null,\n  \"log_severity\": null,\n  \"log_message\": {\n    \"name\": \"<string>\",\n    \"column_type\": \"derived_column\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:56:42.000Z",
+                      "updatedAt": "2026-07-28T01:56:42.000Z",
+                      "uid": "35240-0c3d7bf8-1cb7-409a-9792-61614e6f6504"
+                    },
+                    {
+                      "id": "742c0384-1d7b-4df5-ad62-780928103189",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/dataset_definitions/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "dataset_definitions",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:42.000Z",
+                      "updatedAt": "2026-07-28T01:56:42.000Z",
+                      "uid": "35240-742c0384-1d7b-4df5-ad62-780928103189"
+                    },
+                    {
+                      "id": "003cb484-19e3-452c-8f36-f4d8a9155ffc",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/dataset_definitions/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "dataset_definitions",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:56:42.000Z",
+                      "updatedAt": "2026-07-28T01:56:42.000Z",
+                      "uid": "35240-003cb484-19e3-452c-8f36-f4d8a9155ffc"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:56:42.000Z",
+                  "updatedAt": "2026-07-28T01:56:42.000Z",
+                  "uid": "35240-cf84a476-38ad-49c6-9c87-116771e19d10"
+                }
+              ],
+              "id": "4df9f758-fd14-4542-9385-a2de7a43df39",
+              "createdAt": "2026-07-28T01:56:42.000Z",
+              "updatedAt": "2026-07-28T01:56:42.000Z",
+              "uid": "35240-4df9f758-fd14-4542-9385-a2de7a43df39"
+            }
+          ],
+          "id": "b990e77b-037b-4728-8de9-a7b565d71bda",
+          "createdAt": "2026-07-28T01:56:42.000Z",
+          "updatedAt": "2026-07-28T01:56:42.000Z",
+          "uid": "35240-b990e77b-037b-4728-8de9-a7b565d71bda"
+        }
+      ],
+      "id": "ce2db8f4-93ce-4e8d-a769-31960804bc9c",
+      "createdAt": "2026-07-28T01:56:42.000Z",
+      "updatedAt": "2026-07-28T01:56:42.000Z",
+      "uid": "35240-ce2db8f4-93ce-4e8d-a769-31960804bc9c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

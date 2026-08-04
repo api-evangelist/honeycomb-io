@@ -1,0 +1,476 @@
+{
+  "info": {
+    "_postman_id": "e95bd694-aada-4467-afd3-436391c57fe7",
+    "name": "Honeycomb Auth API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:56:35.000Z",
+    "updatedAt": "2026-07-28T01:56:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e95bd694-aada-4467-afd3-436391c57fe7"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "auth",
+          "item": [
+            {
+              "name": "List Authorizations",
+              "id": "6c63eeb1-02e0-40f5-bb0e-70043a137825",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/1/auth",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "1",
+                    "auth"
+                  ]
+                },
+                "description": "Returns metadata about the API Key used to call the API.\nNote: a Honeycomb Classic API key will return an empty string for both of the `environment` values.\n"
+              },
+              "response": [
+                {
+                  "id": "9eb1b009-6306-454d-a447-9e83d30e1cbe",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "auth"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"type\": \"configuration\",\n  \"api_key_access\": {\n    \"events\": false,\n    \"markers\": false,\n    \"triggers\": false,\n    \"boards\": false,\n    \"queries\": false,\n    \"columns\": false,\n    \"createDatasets\": false,\n    \"slos\": false,\n    \"recipients\": false,\n    \"privateBoards\": false\n  },\n  \"environment\": {\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\"\n  },\n  \"team\": {\n    \"name\": \"<string>\",\n    \"slug\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-9eb1b009-6306-454d-a447-9e83d30e1cbe"
+                },
+                {
+                  "id": "1df0fe59-f7a1-4c4e-bc83-827ec516d082",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "auth"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-1df0fe59-f7a1-4c4e-bc83-827ec516d082"
+                },
+                {
+                  "id": "2bfac6e3-26d0-495d-a7c1-8f5cd16414df",
+                  "name": "Rate Limit Exceeded",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "auth"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-2bfac6e3-26d0-495d-a7c1-8f5cd16414df"
+                },
+                {
+                  "id": "79c0989c-6b15-4d23-bd21-844bafb7e33f",
+                  "name": "Error",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "auth"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-79c0989c-6b15-4d23-bd21-844bafb7e33f"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:35.000Z",
+              "updatedAt": "2026-07-28T01:56:35.000Z",
+              "uid": "35240-6c63eeb1-02e0-40f5-bb0e-70043a137825"
+            }
+          ],
+          "id": "6fb139c5-3cbc-4f8d-8d08-5446ed26a898",
+          "createdAt": "2026-07-28T01:56:35.000Z",
+          "updatedAt": "2026-07-28T01:56:35.000Z",
+          "uid": "35240-6fb139c5-3cbc-4f8d-8d08-5446ed26a898"
+        }
+      ],
+      "id": "abf84a6a-17cb-4062-bb00-d2a787decf17",
+      "createdAt": "2026-07-28T01:56:35.000Z",
+      "updatedAt": "2026-07-28T01:56:35.000Z",
+      "uid": "35240-abf84a6a-17cb-4062-bb00-d2a787decf17"
+    },
+    {
+      "name": "2",
+      "item": [
+        {
+          "name": "auth",
+          "item": [
+            {
+              "name": "List Authorizations V2",
+              "id": "bd67f784-053b-49e7-aa13-639f154256e9",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.api+json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/2/auth",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "2",
+                    "auth"
+                  ]
+                },
+                "description": "Returns metadata about the Management API Key used to call the API.\n"
+              },
+              "response": [
+                {
+                  "id": "188fa853-2fbf-4546-aee2-bd08d4071f15",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/vnd.api+json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/2/auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "2",
+                        "auth"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/vnd.api+json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"key_type\": \"management\",\n      \"disabled\": false,\n      \"scopes\": \"<array>\",\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"team\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"teams\"\n        }\n      }\n    }\n  },\n  \"included\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {}\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"<string>\",\n      \"attributes\": {}\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-188fa853-2fbf-4546-aee2-bd08d4071f15"
+                },
+                {
+                  "id": "833131a0-8580-4a78-8bc2-79649948a107",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/2/auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "2",
+                        "auth"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-833131a0-8580-4a78-8bc2-79649948a107"
+                },
+                {
+                  "id": "50fd5c47-ff66-4f27-b92d-b60e38e617f3",
+                  "name": "Rate Limit Exceeded",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/2/auth",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "2",
+                        "auth"
+                      ]
+                    }
+                  },
+                  "status": "Too Many Requests",
+                  "code": 429,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Retry-After",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:56:35.000Z",
+                  "updatedAt": "2026-07-28T01:56:35.000Z",
+                  "uid": "35240-50fd5c47-ff66-4f27-b92d-b60e38e617f3"
+                }
+              ],
+              "createdAt": "2026-07-28T01:56:35.000Z",
+              "updatedAt": "2026-07-28T01:56:35.000Z",
+              "uid": "35240-bd67f784-053b-49e7-aa13-639f154256e9"
+            }
+          ],
+          "id": "cee30d6c-715d-4a42-825d-0f36c3524c94",
+          "createdAt": "2026-07-28T01:56:35.000Z",
+          "updatedAt": "2026-07-28T01:56:35.000Z",
+          "uid": "35240-cee30d6c-715d-4a42-825d-0f36c3524c94"
+        }
+      ],
+      "id": "ed6afc2c-4ae7-4fc7-9493-d9dafbaec35c",
+      "createdAt": "2026-07-28T01:56:35.000Z",
+      "updatedAt": "2026-07-28T01:56:35.000Z",
+      "uid": "35240-ed6afc2c-4ae7-4fc7-9493-d9dafbaec35c"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

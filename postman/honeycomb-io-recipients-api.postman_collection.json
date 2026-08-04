@@ -1,0 +1,1491 @@
+{
+  "info": {
+    "_postman_id": "3ea5fba3-3c2a-4a22-a219-f689b33e60a0",
+    "name": "Honeycomb Auth Recipients API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:15.000Z",
+    "updatedAt": "2026-07-28T01:57:15.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-3ea5fba3-3c2a-4a22-a219-f689b33e60a0"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "recipients",
+          "item": [
+            {
+              "name": "{recipientId}",
+              "item": [
+                {
+                  "name": "Get a single Recipient",
+                  "id": "f8274e28-8550-4089-ab01-e8ccb3eae479",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients",
+                        ":recipientId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9eb88fde-6737-45de-9afc-0447df1a88a9",
+                          "key": "recipientId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier (ID) of a Recipient."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a Recipient by recipient ID.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "65724612-324a-4135-87b9-adc1f215097e",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-65724612-324a-4135-87b9-adc1f215097e"
+                    },
+                    {
+                      "id": "19252cc8-2976-4c07-8a65-2f275860d608",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-19252cc8-2976-4c07-8a65-2f275860d608"
+                    },
+                    {
+                      "id": "867968b3-8489-4604-b538-d4373ccd61bb",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-867968b3-8489-4604-b538-d4373ccd61bb"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-f8274e28-8550-4089-ab01-e8ccb3eae479"
+                },
+                {
+                  "name": "Update a Recipient",
+                  "id": "36c28771-2f7e-48eb-b950-8a5a42ae710f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients",
+                        ":recipientId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "f2b613e3-9623-4c4d-89d8-073f691d3a9a",
+                          "key": "recipientId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier (ID) of a Recipient."
+                        }
+                      ]
+                    },
+                    "description": "Update a Recipient by specifying the recipient ID and full recipient details. (Partial PUT is not supported.)\nUpdates to the Recipient Type is not supported. For example, changing an existing Recipient from PagerDuty to Email is not allowed.\n**Important**: Modifying an existing recipient will change the destination of all triggers/burn alerts that use that recipient.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "151439be-ab3b-4de1-ad2c-cff45e09a026",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-151439be-ab3b-4de1-ad2c-cff45e09a026"
+                    },
+                    {
+                      "id": "0d1f4f0b-6e1c-43e0-a880-f31daaeb8793",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-0d1f4f0b-6e1c-43e0-a880-f31daaeb8793"
+                    },
+                    {
+                      "id": "73a111a6-13ad-4127-b581-c1e649cb383d",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-73a111a6-13ad-4127-b581-c1e649cb383d"
+                    },
+                    {
+                      "id": "3c1dab3e-f97c-4246-ab7c-0051ccdbb56e",
+                      "name": "Conflict",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-3c1dab3e-f97c-4246-ab7c-0051ccdbb56e"
+                    },
+                    {
+                      "id": "955d975c-f49f-4b75-a74a-fc2c3814ae2d",
+                      "name": "Validation Failed",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-955d975c-f49f-4b75-a74a-fc2c3814ae2d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-36c28771-2f7e-48eb-b950-8a5a42ae710f"
+                },
+                {
+                  "name": "Delete a Recipient",
+                  "id": "893eb8aa-f216-4a74-8720-15210ce88b76",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients",
+                        ":recipientId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "53c3b50c-df57-481e-b71d-8cd2d4b1205e",
+                          "key": "recipientId",
+                          "value": "<string>",
+                          "description": "(Required) Unique identifier (ID) of a Recipient."
+                        }
+                      ]
+                    },
+                    "description": "Delete a recipient by specifying the recipient ID.\nA Recipient can only be deleted if it is NOT in use by any Triggers or Burn Alerts associated to the team.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "e1ee100d-1157-4839-9402-94cae66cc275",
+                      "name": "Success - no content",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "No Content",
+                      "code": 204,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": null,
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-e1ee100d-1157-4839-9402-94cae66cc275"
+                    },
+                    {
+                      "id": "20f9dc4b-4ac1-4e19-a60b-a3db5480fb03",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-20f9dc4b-4ac1-4e19-a60b-a3db5480fb03"
+                    },
+                    {
+                      "id": "160e8fcb-57ed-42ac-b8f0-802a9ea73dff",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-160e8fcb-57ed-42ac-b8f0-802a9ea73dff"
+                    },
+                    {
+                      "id": "cab76494-4b13-4dc2-b5c9-9fae204bc379",
+                      "name": "Conflict",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/recipients/:recipientId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "recipients",
+                            ":recipientId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "recipientId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:15.000Z",
+                      "updatedAt": "2026-07-28T01:57:15.000Z",
+                      "uid": "35240-cab76494-4b13-4dc2-b5c9-9fae204bc379"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-893eb8aa-f216-4a74-8720-15210ce88b76"
+                }
+              ],
+              "id": "265be7ee-a27f-44e6-935d-2d95c32da19f",
+              "createdAt": "2026-07-28T01:57:15.000Z",
+              "updatedAt": "2026-07-28T01:57:15.000Z",
+              "uid": "35240-265be7ee-a27f-44e6-935d-2d95c32da19f"
+            },
+            {
+              "name": "Create a Recipient",
+              "id": "f84d9078-4c61-482a-839b-130c5ffe8401",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/1/recipients",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "1",
+                    "recipients"
+                  ]
+                },
+                "description": "Unlike many resources, Recipients are not linked to a specific Environment or Dataset. The Recipient will be created for the Team associated with your API key.\nThe `details` fields will vary depending on the `type` of Recipient. Use the drop-down to view the specific fields for each `type` value.\nBefore Slack Recipients can be created, the Slack OAuth flow in the Integration Center must be completed.\n"
+              },
+              "response": [
+                {
+                  "id": "dfcc6076-6031-4528-b225-5cb92e7ef247",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-dfcc6076-6031-4528-b225-5cb92e7ef247"
+                },
+                {
+                  "id": "3404dedf-f31e-499f-900c-a590643aa514",
+                  "name": "The provided request body was invalid.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-3404dedf-f31e-499f-900c-a590643aa514"
+                },
+                {
+                  "id": "81327d47-700c-4ab4-a63e-487e94a2e0c2",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-81327d47-700c-4ab4-a63e-487e94a2e0c2"
+                },
+                {
+                  "id": "fb68ee9d-6bc0-4102-844f-251e79d2fdaa",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-fb68ee9d-6bc0-4102-844f-251e79d2fdaa"
+                },
+                {
+                  "id": "41d50d08-e0bd-43e8-9998-9f822b05bb2f",
+                  "name": "Conflict",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-41d50d08-e0bd-43e8-9998-9f822b05bb2f"
+                },
+                {
+                  "id": "a97e5676-685d-4a4c-bc38-d5cf333ef7bf",
+                  "name": "Validation Failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/problem+json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"type\": \"msteams_workflow\",\n  \"details\": {\n    \"pagerduty_integration_name\": \"<string>\",\n    \"pagerduty_integration_key\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-a97e5676-685d-4a4c-bc38-d5cf333ef7bf"
+                }
+              ],
+              "createdAt": "2026-07-28T01:57:15.000Z",
+              "updatedAt": "2026-07-28T01:57:15.000Z",
+              "uid": "35240-f84d9078-4c61-482a-839b-130c5ffe8401"
+            },
+            {
+              "name": "List all Recipients",
+              "id": "571dbb48-7652-4e72-84c0-bda4bc6f7bfb",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/1/recipients",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "1",
+                    "recipients"
+                  ]
+                },
+                "description": "Retrieve all recipients for a team.\n"
+              },
+              "response": [
+                {
+                  "id": "c6b57431-c6db-426b-81c1-f3245dfeea65",
+                  "name": "Success",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "Ratelimit",
+                      "value": ""
+                    },
+                    {
+                      "disabled": false,
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "RateLimitPolicy",
+                      "value": ""
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"type\": \"webhook\",\n    \"details\": {\n      \"pagerduty_integration_name\": \"<string>\",\n      \"pagerduty_integration_key\": \"<string>\"\n    }\n  },\n  {\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"type\": \"webhook\",\n    \"details\": {\n      \"pagerduty_integration_name\": \"<string>\",\n      \"pagerduty_integration_key\": \"<string>\"\n    }\n  }\n]",
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-c6b57431-c6db-426b-81c1-f3245dfeea65"
+                },
+                {
+                  "id": "add22ed6-32dc-49c7-8142-24a2e08af5ca",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/recipients",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "recipients"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"error\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T01:57:15.000Z",
+                  "updatedAt": "2026-07-28T01:57:15.000Z",
+                  "uid": "35240-add22ed6-32dc-49c7-8142-24a2e08af5ca"
+                }
+              ],
+              "createdAt": "2026-07-28T01:57:15.000Z",
+              "updatedAt": "2026-07-28T01:57:15.000Z",
+              "uid": "35240-571dbb48-7652-4e72-84c0-bda4bc6f7bfb"
+            }
+          ],
+          "id": "b726d3f6-b01a-4100-9f45-9f2666d60c57",
+          "createdAt": "2026-07-28T01:57:15.000Z",
+          "updatedAt": "2026-07-28T01:57:15.000Z",
+          "uid": "35240-b726d3f6-b01a-4100-9f45-9f2666d60c57"
+        }
+      ],
+      "id": "0a93b810-5127-4265-b77b-4f726e77cc5d",
+      "createdAt": "2026-07-28T01:57:15.000Z",
+      "updatedAt": "2026-07-28T01:57:15.000Z",
+      "uid": "35240-0a93b810-5127-4265-b77b-4f726e77cc5d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

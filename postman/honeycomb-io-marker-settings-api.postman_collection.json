@@ -1,0 +1,1303 @@
+{
+  "info": {
+    "_postman_id": "79901fb8-7b8b-4a05-a977-846acaa348f0",
+    "name": "Honeycomb Auth Marker Settings API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:09.000Z",
+    "updatedAt": "2026-07-28T01:57:10.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-79901fb8-7b8b-4a05-a977-846acaa348f0"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "marker_settings",
+          "item": [
+            {
+              "name": "{datasetSlug}",
+              "item": [
+                {
+                  "name": "{markerSettingId}",
+                  "item": [
+                    {
+                      "name": "Update a Marker Setting",
+                      "id": "60580e1b-0080-4668-bdc9-672112935e93",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug/:markerSettingId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "marker_settings",
+                            ":datasetSlug",
+                            ":markerSettingId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "ba048308-53de-4d7b-9e41-1fcec25c233a",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "a4c6ee57-182d-4197-80cf-9dab5baa2076",
+                              "key": "markerSettingId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of a marker setting."
+                            }
+                          ]
+                        },
+                        "description": "A marker setting's `type` may not be changed after creation.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "9d98c930-9629-4c59-b0d8-6af035c0aca4",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug/:markerSettingId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "marker_settings",
+                                ":datasetSlug",
+                                ":markerSettingId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "markerSettingId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:10.000Z",
+                          "updatedAt": "2026-07-28T01:57:10.000Z",
+                          "uid": "35240-9d98c930-9629-4c59-b0d8-6af035c0aca4"
+                        },
+                        {
+                          "id": "57a2bc17-497d-421a-aa4d-9b0cfa92530c",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug/:markerSettingId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "marker_settings",
+                                ":datasetSlug",
+                                ":markerSettingId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "markerSettingId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:10.000Z",
+                          "updatedAt": "2026-07-28T01:57:10.000Z",
+                          "uid": "35240-57a2bc17-497d-421a-aa4d-9b0cfa92530c"
+                        },
+                        {
+                          "id": "ba76bf72-1315-41ba-98b6-1adf9c43eb01",
+                          "name": "Validation Failed",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug/:markerSettingId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "marker_settings",
+                                ":datasetSlug",
+                                ":markerSettingId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "markerSettingId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:10.000Z",
+                          "updatedAt": "2026-07-28T01:57:10.000Z",
+                          "uid": "35240-ba76bf72-1315-41ba-98b6-1adf9c43eb01"
+                        },
+                        {
+                          "id": "121fc421-7796-4629-8654-1ec7683d810d",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug/:markerSettingId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "marker_settings",
+                                ":datasetSlug",
+                                ":markerSettingId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "markerSettingId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:10.000Z",
+                          "updatedAt": "2026-07-28T01:57:10.000Z",
+                          "uid": "35240-121fc421-7796-4629-8654-1ec7683d810d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:10.000Z",
+                      "updatedAt": "2026-07-28T01:57:10.000Z",
+                      "uid": "35240-60580e1b-0080-4668-bdc9-672112935e93"
+                    },
+                    {
+                      "name": "Delete a Marker Setting",
+                      "id": "1e9308c2-58ab-469c-8f5d-30601e026590",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug/:markerSettingId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "marker_settings",
+                            ":datasetSlug",
+                            ":markerSettingId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "4ab508a6-44ba-486f-9f38-4513a402c000",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "0b107f29-3ca0-48d0-a3a3-41d222924a67",
+                              "key": "markerSettingId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of a marker setting."
+                            }
+                          ]
+                        }
+                      },
+                      "response": [
+                        {
+                          "id": "f66ed687-6256-4105-9452-7e448ac88c5f",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug/:markerSettingId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "marker_settings",
+                                ":datasetSlug",
+                                ":markerSettingId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "markerSettingId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:10.000Z",
+                          "updatedAt": "2026-07-28T01:57:10.000Z",
+                          "uid": "35240-f66ed687-6256-4105-9452-7e448ac88c5f"
+                        },
+                        {
+                          "id": "cbff10b4-ce74-4322-a79e-f57f91ce57e5",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug/:markerSettingId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "marker_settings",
+                                ":datasetSlug",
+                                ":markerSettingId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "markerSettingId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:10.000Z",
+                          "updatedAt": "2026-07-28T01:57:10.000Z",
+                          "uid": "35240-cbff10b4-ce74-4322-a79e-f57f91ce57e5"
+                        },
+                        {
+                          "id": "b515b354-fbcf-47e7-a8f3-99a691474bcc",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug/:markerSettingId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "marker_settings",
+                                ":datasetSlug",
+                                ":markerSettingId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "markerSettingId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:10.000Z",
+                          "updatedAt": "2026-07-28T01:57:10.000Z",
+                          "uid": "35240-b515b354-fbcf-47e7-a8f3-99a691474bcc"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:10.000Z",
+                      "updatedAt": "2026-07-28T01:57:10.000Z",
+                      "uid": "35240-1e9308c2-58ab-469c-8f5d-30601e026590"
+                    }
+                  ],
+                  "id": "59b4adaa-0316-447e-8f0c-358a59980e9f",
+                  "createdAt": "2026-07-28T01:57:10.000Z",
+                  "updatedAt": "2026-07-28T01:57:10.000Z",
+                  "uid": "35240-59b4adaa-0316-447e-8f0c-358a59980e9f"
+                },
+                {
+                  "name": "Create a Marker Setting",
+                  "id": "be80ac53-d2bf-4266-8319-abd023b59061",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "marker_settings",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7ed98388-c05f-429f-8434-063e6835187c",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "75e6dd5e-7be0-47ad-9acb-2460751d6d9d",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "marker_settings",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:10.000Z",
+                      "updatedAt": "2026-07-28T01:57:10.000Z",
+                      "uid": "35240-75e6dd5e-7be0-47ad-9acb-2460751d6d9d"
+                    },
+                    {
+                      "id": "b67ce39e-b1db-4572-a93f-cebcaded35b6",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "marker_settings",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:10.000Z",
+                      "updatedAt": "2026-07-28T01:57:10.000Z",
+                      "uid": "35240-b67ce39e-b1db-4572-a93f-cebcaded35b6"
+                    },
+                    {
+                      "id": "1e5bd4b5-421a-4443-a8cf-5090c5f170ed",
+                      "name": "Validation Failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "marker_settings",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:10.000Z",
+                      "updatedAt": "2026-07-28T01:57:10.000Z",
+                      "uid": "35240-1e5bd4b5-421a-4443-a8cf-5090c5f170ed"
+                    },
+                    {
+                      "id": "d938bbf9-10d7-4a74-8beb-6cd272838b04",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"type\": \"<string>\",\n  \"color\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<string>\",\n  \"updated_at\": \"<null,string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "marker_settings",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:10.000Z",
+                      "updatedAt": "2026-07-28T01:57:10.000Z",
+                      "uid": "35240-d938bbf9-10d7-4a74-8beb-6cd272838b04"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:10.000Z",
+                  "updatedAt": "2026-07-28T01:57:10.000Z",
+                  "uid": "35240-be80ac53-d2bf-4266-8319-abd023b59061"
+                },
+                {
+                  "name": "Get a Marker Setting",
+                  "id": "26bb77cf-f794-48d0-ab54-559eb1f830f3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "marker_settings",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "839845ed-61fc-4930-8b3d-2f0128feb77d",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    }
+                  },
+                  "response": [
+                    {
+                      "id": "09607925-ac11-4116-ab78-dcc22ffc5525",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "marker_settings",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"type\": \"<string>\",\n    \"color\": \"<string>\",\n    \"id\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<null,string>\"\n  },\n  {\n    \"type\": \"<string>\",\n    \"color\": \"<string>\",\n    \"id\": \"<string>\",\n    \"created_at\": \"<string>\",\n    \"updated_at\": \"<null,string>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:57:10.000Z",
+                      "updatedAt": "2026-07-28T01:57:10.000Z",
+                      "uid": "35240-09607925-ac11-4116-ab78-dcc22ffc5525"
+                    },
+                    {
+                      "id": "e026dffa-86db-4fb9-9e89-33a388c282d0",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "marker_settings",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:10.000Z",
+                      "updatedAt": "2026-07-28T01:57:10.000Z",
+                      "uid": "35240-e026dffa-86db-4fb9-9e89-33a388c282d0"
+                    },
+                    {
+                      "id": "a858f853-7997-4573-92b7-592fc03cafad",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/marker_settings/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "marker_settings",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:10.000Z",
+                      "updatedAt": "2026-07-28T01:57:10.000Z",
+                      "uid": "35240-a858f853-7997-4573-92b7-592fc03cafad"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:10.000Z",
+                  "updatedAt": "2026-07-28T01:57:10.000Z",
+                  "uid": "35240-26bb77cf-f794-48d0-ab54-559eb1f830f3"
+                }
+              ],
+              "id": "9c6514ec-59a2-4c14-bf3f-c437e13d5dda",
+              "createdAt": "2026-07-28T01:57:10.000Z",
+              "updatedAt": "2026-07-28T01:57:10.000Z",
+              "uid": "35240-9c6514ec-59a2-4c14-bf3f-c437e13d5dda"
+            }
+          ],
+          "id": "b32c54fc-c5b8-45d5-8724-590ef0cd7639",
+          "createdAt": "2026-07-28T01:57:10.000Z",
+          "updatedAt": "2026-07-28T01:57:10.000Z",
+          "uid": "35240-b32c54fc-c5b8-45d5-8724-590ef0cd7639"
+        }
+      ],
+      "id": "308c04fd-a0fd-4b2c-ad33-bddfe3fd31e5",
+      "createdAt": "2026-07-28T01:57:10.000Z",
+      "updatedAt": "2026-07-28T01:57:10.000Z",
+      "uid": "35240-308c04fd-a0fd-4b2c-ad33-bddfe3fd31e5"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

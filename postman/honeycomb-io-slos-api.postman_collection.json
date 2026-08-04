@@ -1,0 +1,3545 @@
+{
+  "info": {
+    "_postman_id": "108f9fc3-2d4a-40b4-96f0-5166e253dbf9",
+    "name": "Honeycomb Auth SLOs API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:21.000Z",
+    "updatedAt": "2026-07-28T01:57:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-108f9fc3-2d4a-40b4-96f0-5166e253dbf9"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "slos",
+          "item": [
+            {
+              "name": "{datasetSlug}",
+              "item": [
+                {
+                  "name": "{sloId}",
+                  "item": [
+                    {
+                      "name": "counts",
+                      "item": [
+                        {
+                          "name": "history",
+                          "item": [
+                            {
+                              "name": "Get SLO Hourly Counts History",
+                              "id": "4a30f987-52e7-48f4-beb1-54ab825de86c",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts/history?start_time=<integer>&end_time=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "1",
+                                    "slos",
+                                    ":datasetSlug",
+                                    ":sloId",
+                                    "counts",
+                                    "history"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Start of the time range as a Unix timestamp (seconds).\n",
+                                      "key": "start_time",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time`.\n",
+                                      "key": "end_time",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "2675bd84-e5fe-4b54-84c5-9842d0aefa31",
+                                      "key": "datasetSlug",
+                                      "value": "<string>",
+                                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                                    },
+                                    {
+                                      "id": "49df971d-b451-4bb5-8ca7-2a40fe8dacf7",
+                                      "key": "sloId",
+                                      "value": "<string>",
+                                      "description": "(Required) Unique identifier (ID) of the SLO."
+                                    }
+                                  ]
+                                },
+                                "description": "Get hourly-bucketed total and error event counts for an SLO from the persistent historical store. Use this endpoint to retrieve completed historical hours; pair with the [Get SLO Realtime Counts endpoint](https://api-docs.honeycomb.io/api/slos/getslorealtimecounts/) for the current in-progress hour.\n\n**Requirements:**\n- Available on the [Enterprise plan](https://www.honeycomb.io/pricing/) only.\n- This feature must be enabled for your team. Contact your account team\n  to request access.\n\n\n**Partial buckets:** The most recent bucket may be marked `is_partial: true` if it covers the current in-progress hour. Counts for that bucket will increase until the hour completes.\n"
+                              },
+                              "response": [
+                                {
+                                  "id": "57239add-c232-4bde-ad70-b913d40d78b8",
+                                  "name": "Success",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts/history?start_time=<integer>&end_time=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "1",
+                                        "slos",
+                                        ":datasetSlug",
+                                        ":sloId",
+                                        "counts",
+                                        "history"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Start of the time range as a Unix timestamp (seconds).\n",
+                                          "key": "start_time",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time`.\n",
+                                          "key": "end_time",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "datasetSlug"
+                                        },
+                                        {
+                                          "key": "sloId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Ratelimit",
+                                      "value": ""
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "RateLimitPolicy",
+                                      "value": ""
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"slo_id\": \"<string>\",\n  \"resolution_seconds\": \"<integer>\",\n  \"buckets\": [\n    {\n      \"start_time\": \"<long>\",\n      \"end_time\": \"<long>\",\n      \"total_count\": \"<integer>\",\n      \"error_count\": \"<integer>\",\n      \"is_partial\": \"<boolean>\"\n    },\n    {\n      \"start_time\": \"<long>\",\n      \"end_time\": \"<long>\",\n      \"total_count\": \"<integer>\",\n      \"error_count\": \"<integer>\",\n      \"is_partial\": \"<boolean>\"\n    }\n  ]\n}",
+                                  "createdAt": "2026-07-28T01:57:22.000Z",
+                                  "updatedAt": "2026-07-28T01:57:22.000Z",
+                                  "uid": "35240-57239add-c232-4bde-ad70-b913d40d78b8"
+                                },
+                                {
+                                  "id": "32776368-8b57-44a0-a8ff-3df3aa744077",
+                                  "name": "The provided request body was invalid.",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/problem+json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts/history?start_time=<integer>&end_time=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "1",
+                                        "slos",
+                                        ":datasetSlug",
+                                        ":sloId",
+                                        "counts",
+                                        "history"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Start of the time range as a Unix timestamp (seconds).\n",
+                                          "key": "start_time",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time`.\n",
+                                          "key": "end_time",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "datasetSlug"
+                                        },
+                                        {
+                                          "key": "sloId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Ratelimit",
+                                      "value": ""
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "RateLimitPolicy",
+                                      "value": ""
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:57:22.000Z",
+                                  "updatedAt": "2026-07-28T01:57:22.000Z",
+                                  "uid": "35240-32776368-8b57-44a0-a8ff-3df3aa744077"
+                                },
+                                {
+                                  "id": "63318c9e-51a3-4147-a54b-4e5290d84cff",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts/history?start_time=<integer>&end_time=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "1",
+                                        "slos",
+                                        ":datasetSlug",
+                                        ":sloId",
+                                        "counts",
+                                        "history"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Start of the time range as a Unix timestamp (seconds).\n",
+                                          "key": "start_time",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time`.\n",
+                                          "key": "end_time",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "datasetSlug"
+                                        },
+                                        {
+                                          "key": "sloId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:57:22.000Z",
+                                  "updatedAt": "2026-07-28T01:57:22.000Z",
+                                  "uid": "35240-63318c9e-51a3-4147-a54b-4e5290d84cff"
+                                },
+                                {
+                                  "id": "f7ccf3f3-bad3-48e5-b162-4c6808cbc521",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts/history?start_time=<integer>&end_time=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "1",
+                                        "slos",
+                                        ":datasetSlug",
+                                        ":sloId",
+                                        "counts",
+                                        "history"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Start of the time range as a Unix timestamp (seconds).\n",
+                                          "key": "start_time",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time`.\n",
+                                          "key": "end_time",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "datasetSlug"
+                                        },
+                                        {
+                                          "key": "sloId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:57:22.000Z",
+                                  "updatedAt": "2026-07-28T01:57:22.000Z",
+                                  "uid": "35240-f7ccf3f3-bad3-48e5-b162-4c6808cbc521"
+                                },
+                                {
+                                  "id": "7b1c9e11-1fcb-40a2-9b88-52394a6a6d68",
+                                  "name": "Not Found",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts/history?start_time=<integer>&end_time=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "1",
+                                        "slos",
+                                        ":datasetSlug",
+                                        ":sloId",
+                                        "counts",
+                                        "history"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Start of the time range as a Unix timestamp (seconds).\n",
+                                          "key": "start_time",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time`.\n",
+                                          "key": "end_time",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "datasetSlug"
+                                        },
+                                        {
+                                          "key": "sloId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Ratelimit",
+                                      "value": ""
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "RateLimitPolicy",
+                                      "value": ""
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:57:22.000Z",
+                                  "updatedAt": "2026-07-28T01:57:22.000Z",
+                                  "uid": "35240-7b1c9e11-1fcb-40a2-9b88-52394a6a6d68"
+                                },
+                                {
+                                  "id": "c0b5c92d-4458-45c3-9ecf-a79fb8926058",
+                                  "name": "Rate Limit Exceeded",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts/history?start_time=<integer>&end_time=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "1",
+                                        "slos",
+                                        ":datasetSlug",
+                                        ":sloId",
+                                        "counts",
+                                        "history"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Start of the time range as a Unix timestamp (seconds).\n",
+                                          "key": "start_time",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time`.\n",
+                                          "key": "end_time",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "datasetSlug"
+                                        },
+                                        {
+                                          "key": "sloId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Too Many Requests",
+                                  "code": 429,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Retry-After",
+                                      "value": ""
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "Ratelimit",
+                                      "value": ""
+                                    },
+                                    {
+                                      "disabled": false,
+                                      "description": {
+                                        "content": "",
+                                        "type": "text/plain"
+                                      },
+                                      "key": "RateLimitPolicy",
+                                      "value": ""
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:57:22.000Z",
+                                  "updatedAt": "2026-07-28T01:57:22.000Z",
+                                  "uid": "35240-c0b5c92d-4458-45c3-9ecf-a79fb8926058"
+                                },
+                                {
+                                  "id": "f77e935d-71b2-45e4-b104-0ee04afa9c61",
+                                  "name": "Error",
+                                  "originalRequest": {
+                                    "method": "GET",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts/history?start_time=<integer>&end_time=<integer>",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "1",
+                                        "slos",
+                                        ":datasetSlug",
+                                        ":sloId",
+                                        "counts",
+                                        "history"
+                                      ],
+                                      "query": [
+                                        {
+                                          "description": "(Required) Start of the time range as a Unix timestamp (seconds).\n",
+                                          "key": "start_time",
+                                          "value": "<integer>"
+                                        },
+                                        {
+                                          "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time`.\n",
+                                          "key": "end_time",
+                                          "value": "<integer>"
+                                        }
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "datasetSlug"
+                                        },
+                                        {
+                                          "key": "sloId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"error\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T01:57:22.000Z",
+                                  "updatedAt": "2026-07-28T01:57:22.000Z",
+                                  "uid": "35240-f77e935d-71b2-45e4-b104-0ee04afa9c61"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T01:57:22.000Z",
+                              "updatedAt": "2026-07-28T01:57:22.000Z",
+                              "uid": "35240-4a30f987-52e7-48f4-beb1-54ab825de86c"
+                            }
+                          ],
+                          "id": "9e6111ca-b1af-4e76-ae66-c5b19b3e8d62",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-9e6111ca-b1af-4e76-ae66-c5b19b3e8d62"
+                        },
+                        {
+                          "name": "Get SLO Realtime Counts",
+                          "id": "ccc0d588-716c-4fca-9c28-1659bb57e131",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts?start_time=<integer>&end_time=<integer>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId",
+                                "counts"
+                              ],
+                              "query": [
+                                {
+                                  "description": "(Required) Start of the time range as a Unix timestamp (seconds). Must be within the last 24 hours and no later than `end_time`.\n",
+                                  "key": "start_time",
+                                  "value": "<integer>"
+                                },
+                                {
+                                  "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time` and within the same clock hour as `start_time`. Realtime counts accumulate from the start of each hour and reset at hour boundaries; use the [Get SLO Hourly Counts History endpoint](https://api-docs.honeycomb.io/api/slos/getSloHourlyCountsHistory/) for completed hours.\n",
+                                  "key": "end_time",
+                                  "value": "<integer>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b9ba2d86-df9b-421c-b412-55504350fde8",
+                                  "key": "datasetSlug",
+                                  "value": "<string>",
+                                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                                },
+                                {
+                                  "id": "ce2f2df7-93d0-43e0-806d-49433ec12530",
+                                  "key": "sloId",
+                                  "value": "<string>",
+                                  "description": "(Required) Unique identifier (ID) of the SLO."
+                                }
+                              ]
+                            },
+                            "description": "Get per-minute success and failure event counts for an SLO, updated approximately once per minute from a rolling 24-hour window.\n\nThis endpoint is intended for near-real-time integrations such as external SLO dashboards and alerting tools (e.g. nobl9). For weekly compliance history, use the [Get SLO History endpoint](https://api-docs.honeycomb.io/api/reporting/getSloHistory/).\n\n**Requirements:**\n- Available on the [Enterprise plan](https://www.honeycomb.io/pricing/) only.\n- This feature must be enabled for your team. Contact your account team\n  to request access.\n\n\n**Gaps:** Some minutes may have no entry in the `windows` array. The first window after a gap may contain a larger-than-usual delta. Treat missing timestamps as unavailable data, not zero-event periods.\n\n**Epoch:** The response includes an `epoch` field \u2014 a hash of the SLO's SLI expression and dataset configuration. If this value changes between responses, the underlying SLO definition has changed and any client-side cache should be invalidated.\n\n**Partial windows:** Windows marked `is_partial: true` may still receive additional events. This occurs for the most recent 10 minutes (late-arriving data settlement) or when no prior snapshot exists to compute a delta from.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "af3ea51a-d007-4e94-ac3c-1c18a6f6f69b",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts?start_time=<integer>&end_time=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "1",
+                                    "slos",
+                                    ":datasetSlug",
+                                    ":sloId",
+                                    "counts"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Start of the time range as a Unix timestamp (seconds). Must be within the last 24 hours and no later than `end_time`.\n",
+                                      "key": "start_time",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time` and within the same clock hour as `start_time`. Realtime counts accumulate from the start of each hour and reset at hour boundaries; use the [Get SLO Hourly Counts History endpoint](https://api-docs.honeycomb.io/api/slos/getSloHourlyCountsHistory/) for completed hours.\n",
+                                      "key": "end_time",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "datasetSlug"
+                                    },
+                                    {
+                                      "key": "sloId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"slo_id\": \"<string>\",\n  \"resolution_seconds\": \"<integer>\",\n  \"epoch\": \"<string>\",\n  \"period_start\": \"<long>\",\n  \"windows\": [\n    {\n      \"window_start\": \"<integer>\",\n      \"window_end\": \"<integer>\",\n      \"total_count\": \"<integer>\",\n      \"error_count\": \"<integer>\",\n      \"is_partial\": \"<boolean>\"\n    },\n    {\n      \"window_start\": \"<integer>\",\n      \"window_end\": \"<integer>\",\n      \"total_count\": \"<integer>\",\n      \"error_count\": \"<integer>\",\n      \"is_partial\": \"<boolean>\"\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:22.000Z",
+                              "updatedAt": "2026-07-28T01:57:22.000Z",
+                              "uid": "35240-af3ea51a-d007-4e94-ac3c-1c18a6f6f69b"
+                            },
+                            {
+                              "id": "9e421c8a-32e0-442b-b30c-c2a9a3d3b62b",
+                              "name": "The provided request body was invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts?start_time=<integer>&end_time=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "1",
+                                    "slos",
+                                    ":datasetSlug",
+                                    ":sloId",
+                                    "counts"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Start of the time range as a Unix timestamp (seconds). Must be within the last 24 hours and no later than `end_time`.\n",
+                                      "key": "start_time",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time` and within the same clock hour as `start_time`. Realtime counts accumulate from the start of each hour and reset at hour boundaries; use the [Get SLO Hourly Counts History endpoint](https://api-docs.honeycomb.io/api/slos/getSloHourlyCountsHistory/) for completed hours.\n",
+                                      "key": "end_time",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "datasetSlug"
+                                    },
+                                    {
+                                      "key": "sloId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:22.000Z",
+                              "updatedAt": "2026-07-28T01:57:22.000Z",
+                              "uid": "35240-9e421c8a-32e0-442b-b30c-c2a9a3d3b62b"
+                            },
+                            {
+                              "id": "aa4f306f-a306-442a-92ff-dc2dcb4762c1",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts?start_time=<integer>&end_time=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "1",
+                                    "slos",
+                                    ":datasetSlug",
+                                    ":sloId",
+                                    "counts"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Start of the time range as a Unix timestamp (seconds). Must be within the last 24 hours and no later than `end_time`.\n",
+                                      "key": "start_time",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time` and within the same clock hour as `start_time`. Realtime counts accumulate from the start of each hour and reset at hour boundaries; use the [Get SLO Hourly Counts History endpoint](https://api-docs.honeycomb.io/api/slos/getSloHourlyCountsHistory/) for completed hours.\n",
+                                      "key": "end_time",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "datasetSlug"
+                                    },
+                                    {
+                                      "key": "sloId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:22.000Z",
+                              "updatedAt": "2026-07-28T01:57:22.000Z",
+                              "uid": "35240-aa4f306f-a306-442a-92ff-dc2dcb4762c1"
+                            },
+                            {
+                              "id": "91c0032c-0f7c-49cf-8ddd-d1cce86c7a36",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts?start_time=<integer>&end_time=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "1",
+                                    "slos",
+                                    ":datasetSlug",
+                                    ":sloId",
+                                    "counts"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Start of the time range as a Unix timestamp (seconds). Must be within the last 24 hours and no later than `end_time`.\n",
+                                      "key": "start_time",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time` and within the same clock hour as `start_time`. Realtime counts accumulate from the start of each hour and reset at hour boundaries; use the [Get SLO Hourly Counts History endpoint](https://api-docs.honeycomb.io/api/slos/getSloHourlyCountsHistory/) for completed hours.\n",
+                                      "key": "end_time",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "datasetSlug"
+                                    },
+                                    {
+                                      "key": "sloId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:22.000Z",
+                              "updatedAt": "2026-07-28T01:57:22.000Z",
+                              "uid": "35240-91c0032c-0f7c-49cf-8ddd-d1cce86c7a36"
+                            },
+                            {
+                              "id": "1b66d2fc-3572-4bcf-9d4a-463a56f8b53d",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts?start_time=<integer>&end_time=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "1",
+                                    "slos",
+                                    ":datasetSlug",
+                                    ":sloId",
+                                    "counts"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Start of the time range as a Unix timestamp (seconds). Must be within the last 24 hours and no later than `end_time`.\n",
+                                      "key": "start_time",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time` and within the same clock hour as `start_time`. Realtime counts accumulate from the start of each hour and reset at hour boundaries; use the [Get SLO Hourly Counts History endpoint](https://api-docs.honeycomb.io/api/slos/getSloHourlyCountsHistory/) for completed hours.\n",
+                                      "key": "end_time",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "datasetSlug"
+                                    },
+                                    {
+                                      "key": "sloId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:22.000Z",
+                              "updatedAt": "2026-07-28T01:57:22.000Z",
+                              "uid": "35240-1b66d2fc-3572-4bcf-9d4a-463a56f8b53d"
+                            },
+                            {
+                              "id": "c054e2ce-bfbc-4643-b83f-3f7e7ea7885f",
+                              "name": "Rate Limit Exceeded",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts?start_time=<integer>&end_time=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "1",
+                                    "slos",
+                                    ":datasetSlug",
+                                    ":sloId",
+                                    "counts"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Start of the time range as a Unix timestamp (seconds). Must be within the last 24 hours and no later than `end_time`.\n",
+                                      "key": "start_time",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time` and within the same clock hour as `start_time`. Realtime counts accumulate from the start of each hour and reset at hour boundaries; use the [Get SLO Hourly Counts History endpoint](https://api-docs.honeycomb.io/api/slos/getSloHourlyCountsHistory/) for completed hours.\n",
+                                      "key": "end_time",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "datasetSlug"
+                                    },
+                                    {
+                                      "key": "sloId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:22.000Z",
+                              "updatedAt": "2026-07-28T01:57:22.000Z",
+                              "uid": "35240-c054e2ce-bfbc-4643-b83f-3f7e7ea7885f"
+                            },
+                            {
+                              "id": "3735ef01-fe81-4698-8f7c-d0f82b2d5c16",
+                              "name": "Error",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId/counts?start_time=<integer>&end_time=<integer>",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "1",
+                                    "slos",
+                                    ":datasetSlug",
+                                    ":sloId",
+                                    "counts"
+                                  ],
+                                  "query": [
+                                    {
+                                      "description": "(Required) Start of the time range as a Unix timestamp (seconds). Must be within the last 24 hours and no later than `end_time`.\n",
+                                      "key": "start_time",
+                                      "value": "<integer>"
+                                    },
+                                    {
+                                      "description": "(Required) End of the time range as a Unix timestamp (seconds). Must be greater than `start_time` and within the same clock hour as `start_time`. Realtime counts accumulate from the start of each hour and reset at hour boundaries; use the [Get SLO Hourly Counts History endpoint](https://api-docs.honeycomb.io/api/slos/getSloHourlyCountsHistory/) for completed hours.\n",
+                                      "key": "end_time",
+                                      "value": "<integer>"
+                                    }
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "datasetSlug"
+                                    },
+                                    {
+                                      "key": "sloId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:22.000Z",
+                              "updatedAt": "2026-07-28T01:57:22.000Z",
+                              "uid": "35240-3735ef01-fe81-4698-8f7c-d0f82b2d5c16"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-ccc0d588-716c-4fca-9c28-1659bb57e131"
+                        }
+                      ],
+                      "id": "cf77ebf8-0c7e-45d9-8922-3925706edd6c",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-cf77ebf8-0c7e-45d9-8922-3925706edd6c"
+                    },
+                    {
+                      "name": "Get an SLO",
+                      "id": "124b1504-3810-4d7b-91e7-85b98ca5bb41",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId?detailed=<boolean>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug",
+                            ":sloId"
+                          ],
+                          "query": [
+                            {
+                              "description": "Allows SLO reporting data (`status`, `burn_rate`, `budget_remaining` and `compliance`) to be returned when retrieving a single SLO.\n\nThis feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).\n\n**Note:** `burn_rate` is calculated based on the last 4 hours of data.\n",
+                              "key": "detailed",
+                              "value": "<boolean>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "67758531-04ae-454c-a9dd-04c3de40a124",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "b991856c-7cab-4efd-b52a-8d8e92da0d33",
+                              "key": "sloId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier (ID) of the SLO."
+                            }
+                          ]
+                        },
+                        "description": "Get an SLO by ID.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "68e15fc7-a8df-46b0-823c-76a456278e38",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId?detailed=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Allows SLO reporting data (`status`, `burn_rate`, `budget_remaining` and `compliance`) to be returned when retrieving a single SLO.\n\nThis feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).\n\n**Note:** `burn_rate` is calculated based on the last 4 hours of data.\n",
+                                  "key": "detailed",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-68e15fc7-a8df-46b0-823c-76a456278e38"
+                        },
+                        {
+                          "id": "349a33c4-5764-4442-a47c-efcfba23be69",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId?detailed=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Allows SLO reporting data (`status`, `burn_rate`, `budget_remaining` and `compliance`) to be returned when retrieving a single SLO.\n\nThis feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).\n\n**Note:** `burn_rate` is calculated based on the last 4 hours of data.\n",
+                                  "key": "detailed",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-349a33c4-5764-4442-a47c-efcfba23be69"
+                        },
+                        {
+                          "id": "0aa833a0-d5b5-416d-9e4a-ef35736c7531",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId?detailed=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Allows SLO reporting data (`status`, `burn_rate`, `budget_remaining` and `compliance`) to be returned when retrieving a single SLO.\n\nThis feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).\n\n**Note:** `burn_rate` is calculated based on the last 4 hours of data.\n",
+                                  "key": "detailed",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-0aa833a0-d5b5-416d-9e4a-ef35736c7531"
+                        },
+                        {
+                          "id": "bd89107c-b824-4d9d-8a3c-5e81597acee1",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId?detailed=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Allows SLO reporting data (`status`, `burn_rate`, `budget_remaining` and `compliance`) to be returned when retrieving a single SLO.\n\nThis feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).\n\n**Note:** `burn_rate` is calculated based on the last 4 hours of data.\n",
+                                  "key": "detailed",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-bd89107c-b824-4d9d-8a3c-5e81597acee1"
+                        },
+                        {
+                          "id": "b7e5fec2-17de-4b72-9e05-3e4efdbff609",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId?detailed=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Allows SLO reporting data (`status`, `burn_rate`, `budget_remaining` and `compliance`) to be returned when retrieving a single SLO.\n\nThis feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).\n\n**Note:** `burn_rate` is calculated based on the last 4 hours of data.\n",
+                                  "key": "detailed",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-b7e5fec2-17de-4b72-9e05-3e4efdbff609"
+                        },
+                        {
+                          "id": "eafcb52a-f4c7-40b2-889c-ee09ca9b2a4f",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId?detailed=<boolean>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Allows SLO reporting data (`status`, `burn_rate`, `budget_remaining` and `compliance`) to be returned when retrieving a single SLO.\n\nThis feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).\n\n**Note:** `burn_rate` is calculated based on the last 4 hours of data.\n",
+                                  "key": "detailed",
+                                  "value": "<boolean>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-eafcb52a-f4c7-40b2-889c-ee09ca9b2a4f"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-124b1504-3810-4d7b-91e7-85b98ca5bb41"
+                    },
+                    {
+                      "name": "Update an SLO",
+                      "id": "7b6e3ff6-5c41-4c12-8ee1-94e24241dde1",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug",
+                            ":sloId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d6e2e270-b7ba-4052-97bb-e74e00dadce8",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "bf883472-3beb-4f01-b44e-16376991938d",
+                              "key": "sloId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier (ID) of the SLO."
+                            }
+                          ]
+                        },
+                        "description": "Update an SLO by specifying its ID and full SLO details.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "83484a85-e322-4c14-8973-2645d7e51c62",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-83484a85-e322-4c14-8973-2645d7e51c62"
+                        },
+                        {
+                          "id": "b26b5de7-6714-4232-b8fb-3223d9f0fbaf",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-b26b5de7-6714-4232-b8fb-3223d9f0fbaf"
+                        },
+                        {
+                          "id": "acb48eec-21e2-4e10-85df-00a8dbf13469",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-acb48eec-21e2-4e10-85df-00a8dbf13469"
+                        },
+                        {
+                          "id": "127acb06-57ec-4a72-b5b7-399ae2d1f5ab",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-127acb06-57ec-4a72-b5b7-399ae2d1f5ab"
+                        },
+                        {
+                          "id": "eafa5ef6-e5c6-4d3f-824a-49eafd495fb8",
+                          "name": "Validation Failed",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-eafa5ef6-e5c6-4d3f-824a-49eafd495fb8"
+                        },
+                        {
+                          "id": "1da10e26-737e-45c0-9e99-ce87e03f4175",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-1da10e26-737e-45c0-9e99-ce87e03f4175"
+                        },
+                        {
+                          "id": "3ee9fb0d-dca6-4af5-a3bc-4d5ae6bb5364",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-3ee9fb0d-dca6-4af5-a3bc-4d5ae6bb5364"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-7b6e3ff6-5c41-4c12-8ee1-94e24241dde1"
+                    },
+                    {
+                      "name": "Delete an SLO",
+                      "id": "ff68542e-44dd-4fec-9e47-a6a2b7c35eaf",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug",
+                            ":sloId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "9503a4c8-575e-429c-b5f9-6cb38d625715",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "a7bf9f6c-2047-48bb-9b22-332e50bcac05",
+                              "key": "sloId",
+                              "value": "<string>",
+                              "description": "(Required) Unique identifier (ID) of the SLO."
+                            }
+                          ]
+                        },
+                        "description": "Delete an SLO by specifying its ID.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "6a4b458c-d7df-4391-8a20-c7396b6720ea",
+                          "name": "Success - no content",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-6a4b458c-d7df-4391-8a20-c7396b6720ea"
+                        },
+                        {
+                          "id": "951303f2-4956-4514-aaaa-d153fec05b36",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-951303f2-4956-4514-aaaa-d153fec05b36"
+                        },
+                        {
+                          "id": "c2f02deb-9610-4070-8762-62695554aec1",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-c2f02deb-9610-4070-8762-62695554aec1"
+                        },
+                        {
+                          "id": "da5e9c9b-50e1-4c90-a8ac-4477b0a7916e",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-da5e9c9b-50e1-4c90-a8ac-4477b0a7916e"
+                        },
+                        {
+                          "id": "0b6931b1-8253-43f8-b990-4a5fd45f7b3e",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-0b6931b1-8253-43f8-b990-4a5fd45f7b3e"
+                        },
+                        {
+                          "id": "e3ae1b0f-e5e4-486f-b419-bbf54a9f2312",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/slos/:datasetSlug/:sloId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "slos",
+                                ":datasetSlug",
+                                ":sloId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "sloId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:22.000Z",
+                          "updatedAt": "2026-07-28T01:57:22.000Z",
+                          "uid": "35240-e3ae1b0f-e5e4-486f-b419-bbf54a9f2312"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-ff68542e-44dd-4fec-9e47-a6a2b7c35eaf"
+                    }
+                  ],
+                  "id": "11884e4b-8b8a-4205-9abf-5ed005f8f50a",
+                  "createdAt": "2026-07-28T01:57:22.000Z",
+                  "updatedAt": "2026-07-28T01:57:22.000Z",
+                  "uid": "35240-11884e4b-8b8a-4205-9abf-5ed005f8f50a"
+                },
+                {
+                  "name": "Create an SLO",
+                  "id": "63a1c6be-0de4-421e-9098-87d51a0da41f",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "slos",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a9139da3-e71c-4978-8863-09e6ca954ac0",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "Create an SLO on the provided dataset.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "5c10b4eb-09f6-4d12-abe5-0bbb54070859",
+                      "name": "Success - SLO created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-5c10b4eb-09f6-4d12-abe5-0bbb54070859"
+                    },
+                    {
+                      "id": "6df5798d-2a8d-4b45-bc2a-fd3633a0f8e0",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-6df5798d-2a8d-4b45-bc2a-fd3633a0f8e0"
+                    },
+                    {
+                      "id": "6fe88c94-7801-4857-a3d3-0ff4bc69229f",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-6fe88c94-7801-4857-a3d3-0ff4bc69229f"
+                    },
+                    {
+                      "id": "c64611ca-148f-471a-aa44-452a7f148120",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-c64611ca-148f-471a-aa44-452a7f148120"
+                    },
+                    {
+                      "id": "96030cff-e606-465a-8c54-25d0dccd10a5",
+                      "name": "Validation Failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-96030cff-e606-465a-8c54-25d0dccd10a5"
+                    },
+                    {
+                      "id": "f28156ea-6633-420b-9c2b-2f91aa43aaf3",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-f28156ea-6633-420b-9c2b-2f91aa43aaf3"
+                    },
+                    {
+                      "id": "4a61119b-6c69-4a92-9eef-7d565daa13db",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"time_period_days\": \"<integer>\",\n  \"target_per_million\": \"<integer>\",\n  \"sli\": {\n    \"alias\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"reset_at\": \"<null,string-date-time>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"dataset_slugs\": \"<array>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-4a61119b-6c69-4a92-9eef-7d565daa13db"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:22.000Z",
+                  "updatedAt": "2026-07-28T01:57:22.000Z",
+                  "uid": "35240-63a1c6be-0de4-421e-9098-87d51a0da41f"
+                },
+                {
+                  "name": "Get all SLOs",
+                  "id": "6e5d5d36-3485-45cf-bb4c-ce8bc51f79b3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "slos",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e729d55d-f3f0-48d3-ad4c-fe487c168b30",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "Get all SLOs for a dataset or environment (using  `__all__`). This action returns any SLOs, including those applied with multiple datasets.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "fbd17a74-b53a-4249-9888-79b060036186",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"<string>\",\n    \"time_period_days\": \"<integer>\",\n    \"target_per_million\": \"<integer>\",\n    \"sli\": {\n      \"alias\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"reset_at\": \"<null,string-date-time>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"dataset_slugs\": \"<array>\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"time_period_days\": \"<integer>\",\n    \"target_per_million\": \"<integer>\",\n    \"sli\": {\n      \"alias\": \"<string>\"\n    },\n    \"id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"tags\": [\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      },\n      {\n        \"key\": \"<string>\",\n        \"value\": \"<string>\"\n      }\n    ],\n    \"reset_at\": \"<null,string-date-time>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"dataset_slugs\": \"<array>\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-fbd17a74-b53a-4249-9888-79b060036186"
+                    },
+                    {
+                      "id": "40ffe17c-b062-410d-8279-7d1ab0715a49",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-40ffe17c-b062-410d-8279-7d1ab0715a49"
+                    },
+                    {
+                      "id": "adce59ad-7df0-4cc6-8468-26a31fc75f33",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-adce59ad-7df0-4cc6-8468-26a31fc75f33"
+                    },
+                    {
+                      "id": "e693c0af-fc63-4359-aba4-595493a58c4d",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-e693c0af-fc63-4359-aba4-595493a58c4d"
+                    },
+                    {
+                      "id": "17d9b60c-ad76-44a6-8db2-7fcb2584c5a9",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-17d9b60c-ad76-44a6-8db2-7fcb2584c5a9"
+                    },
+                    {
+                      "id": "4da2402f-42fa-40b3-95da-a25272c44a74",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/slos/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "slos",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:22.000Z",
+                      "updatedAt": "2026-07-28T01:57:22.000Z",
+                      "uid": "35240-4da2402f-42fa-40b3-95da-a25272c44a74"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:22.000Z",
+                  "updatedAt": "2026-07-28T01:57:22.000Z",
+                  "uid": "35240-6e5d5d36-3485-45cf-bb4c-ce8bc51f79b3"
+                }
+              ],
+              "id": "d4fe5c38-fc2f-42a9-8dfc-696f5e0dffd3",
+              "createdAt": "2026-07-28T01:57:22.000Z",
+              "updatedAt": "2026-07-28T01:57:22.000Z",
+              "uid": "35240-d4fe5c38-fc2f-42a9-8dfc-696f5e0dffd3"
+            }
+          ],
+          "id": "70b07eab-a657-41b4-b0e1-9952d1c79f02",
+          "createdAt": "2026-07-28T01:57:22.000Z",
+          "updatedAt": "2026-07-28T01:57:22.000Z",
+          "uid": "35240-70b07eab-a657-41b4-b0e1-9952d1c79f02"
+        }
+      ],
+      "id": "8d048f5d-034f-4579-a3be-36af2f3c0d0d",
+      "createdAt": "2026-07-28T01:57:22.000Z",
+      "updatedAt": "2026-07-28T01:57:22.000Z",
+      "uid": "35240-8d048f5d-034f-4579-a3be-36af2f3c0d0d"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

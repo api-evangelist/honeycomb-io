@@ -1,0 +1,1905 @@
+{
+  "info": {
+    "_postman_id": "02a87957-72b4-4603-9e37-89a359498170",
+    "name": "Honeycomb Auth Query Annotations API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:12.000Z",
+    "updatedAt": "2026-07-28T01:57:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-02a87957-72b4-4603-9e37-89a359498170"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "query_annotations",
+          "item": [
+            {
+              "name": "{datasetSlug}",
+              "item": [
+                {
+                  "name": "{queryAnnotationId}",
+                  "item": [
+                    {
+                      "name": "Get a Query Annotation",
+                      "id": "182cb00c-4b45-427e-b1c4-64446c618713",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug",
+                            ":queryAnnotationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "6245d501-d718-4306-85f5-321fa64f856f",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "bdf4e5ba-cfa5-4616-a22d-3054c3dcc64e",
+                              "key": "queryAnnotationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of the annotation."
+                            }
+                          ]
+                        },
+                        "description": "Get a Query Annotation by its ID.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "f2349767-b430-4715-a717-cca72cef1539",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-f2349767-b430-4715-a717-cca72cef1539"
+                        },
+                        {
+                          "id": "98c25e01-726b-427b-9c83-6723a9867168",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-98c25e01-726b-427b-9c83-6723a9867168"
+                        },
+                        {
+                          "id": "48c429fa-8189-4fef-85ab-ecc7cb8fea5c",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-48c429fa-8189-4fef-85ab-ecc7cb8fea5c"
+                        },
+                        {
+                          "id": "c61a975f-7f93-4d0d-89af-e09c89d6a75d",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-c61a975f-7f93-4d0d-89af-e09c89d6a75d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-182cb00c-4b45-427e-b1c4-64446c618713"
+                    },
+                    {
+                      "name": "Update a Query Annotation",
+                      "id": "02cc63fc-0823-4a4a-8e70-319ad3811251",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug",
+                            ":queryAnnotationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "b5661e1f-019f-46e6-aadf-707869c535e8",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "73320eeb-7d61-4a38-993f-473136cfee5a",
+                              "key": "queryAnnotationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of the annotation."
+                            }
+                          ]
+                        },
+                        "description": "Update a Query Annotation by specifying its ID. The Query ID associated with the Query Annotation cannot be updated. Partial updates are not supported.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "040afec5-461f-43cc-961f-30d901472f69",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-040afec5-461f-43cc-961f-30d901472f69"
+                        },
+                        {
+                          "id": "10fa351a-9dd1-49ca-b8b9-ddb69c6dc245",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-10fa351a-9dd1-49ca-b8b9-ddb69c6dc245"
+                        },
+                        {
+                          "id": "519f5764-88f4-4e8e-b78b-89aebae21c3a",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-519f5764-88f4-4e8e-b78b-89aebae21c3a"
+                        },
+                        {
+                          "id": "54566b44-5ff4-4351-a453-2aae12861919",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-54566b44-5ff4-4351-a453-2aae12861919"
+                        },
+                        {
+                          "id": "425fee18-c279-4422-bddd-1c91c5af1d4c",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-425fee18-c279-4422-bddd-1c91c5af1d4c"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-02cc63fc-0823-4a4a-8e70-319ad3811251"
+                    },
+                    {
+                      "name": "Delete a Query Annotation",
+                      "id": "444e903a-f7c9-44cd-b014-0d04a92e7b90",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug",
+                            ":queryAnnotationId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "e3674bb9-3c20-481e-bfd5-54f60659782d",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "e001fe7f-4c6c-49fa-808c-4e0772dfd223",
+                              "key": "queryAnnotationId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of the annotation."
+                            }
+                          ]
+                        },
+                        "description": "Delete a Query Annotation by specifying its ID.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "2fd150f4-6faa-4cb5-9766-0163583698f4",
+                          "name": "Success - no content",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "No Content",
+                          "code": 204,
+                          "_postman_previewlanguage": "text",
+                          "header": [
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": null,
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-2fd150f4-6faa-4cb5-9766-0163583698f4"
+                        },
+                        {
+                          "id": "5e76b6ca-401b-4c5a-ac2d-f9aaf66860bf",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-5e76b6ca-401b-4c5a-ac2d-f9aaf66860bf"
+                        },
+                        {
+                          "id": "dc35f768-56f3-4c6b-b5df-a04ad9391fe5",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-dc35f768-56f3-4c6b-b5df-a04ad9391fe5"
+                        },
+                        {
+                          "id": "e629fe6a-902c-4512-ba04-77ddc788fe44",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug/:queryAnnotationId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "query_annotations",
+                                ":datasetSlug",
+                                ":queryAnnotationId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryAnnotationId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:13.000Z",
+                          "updatedAt": "2026-07-28T01:57:13.000Z",
+                          "uid": "35240-e629fe6a-902c-4512-ba04-77ddc788fe44"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-444e903a-f7c9-44cd-b014-0d04a92e7b90"
+                    }
+                  ],
+                  "id": "ff622d9c-3936-4d7b-b61a-9e6928bb428e",
+                  "createdAt": "2026-07-28T01:57:13.000Z",
+                  "updatedAt": "2026-07-28T01:57:13.000Z",
+                  "uid": "35240-ff622d9c-3936-4d7b-b61a-9e6928bb428e"
+                },
+                {
+                  "name": "Create a Query Annotation",
+                  "id": "faed74c0-2dc1-4e25-8e80-070750b986bf",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "query_annotations",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "4a9e28cb-d1d5-42ba-a888-352ca94f2378",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "Create a Query Annotation for the specified query ID.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "2904ec5f-1615-41a0-a6c1-e5578ddb6373",
+                      "name": "Created",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Created",
+                      "code": 201,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-2904ec5f-1615-41a0-a6c1-e5578ddb6373"
+                    },
+                    {
+                      "id": "fd161cdc-175d-443f-9695-0ce52217944d",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-fd161cdc-175d-443f-9695-0ce52217944d"
+                    },
+                    {
+                      "id": "452077ba-213d-4891-9d54-a48f2dcc8543",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-452077ba-213d-4891-9d54-a48f2dcc8543"
+                    },
+                    {
+                      "id": "25578d2e-38ef-4ffb-bf57-fa60d2ed2291",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-25578d2e-38ef-4ffb-bf57-fa60d2ed2291"
+                    },
+                    {
+                      "id": "7e9bd467-2879-469f-ae2f-eb92ca7f04bc",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-7e9bd467-2879-469f-ae2f-eb92ca7f04bc"
+                    },
+                    {
+                      "id": "a6eda948-8dff-4e42-aa80-ec91e4e6e04e",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"name\": \"<string>\",\n  \"query_id\": \"<string>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"created_at\": \"<dateTime>\",\n  \"updated_at\": \"<dateTime>\",\n  \"source\": \"board\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-a6eda948-8dff-4e42-aa80-ec91e4e6e04e"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:13.000Z",
+                  "updatedAt": "2026-07-28T01:57:13.000Z",
+                  "uid": "35240-faed74c0-2dc1-4e25-8e80-070750b986bf"
+                },
+                {
+                  "name": "List Query Annotations",
+                  "id": "8e1897ba-58c4-469a-9c8d-5e685a7cb582",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug?include_board_annotations=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "query_annotations",
+                        ":datasetSlug"
+                      ],
+                      "query": [
+                        {
+                          "description": "Whether to include Query Annotations that were created from boards. By default, only Query Annotations created directly from queries are returned.\n",
+                          "key": "include_board_annotations",
+                          "value": "false"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "8caf291f-bcf6-4214-86fd-a40c19c7ae96",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "List all Query Annotations in the specified dataset.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "726ab299-98b5-467b-ba3e-9eaf5ed6dc59",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug?include_board_annotations=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "Whether to include Query Annotations that were created from boards. By default, only Query Annotations created directly from queries are returned.\n",
+                              "key": "include_board_annotations",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"name\": \"<string>\",\n    \"query_id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"source\": \"query\"\n  },\n  {\n    \"name\": \"<string>\",\n    \"query_id\": \"<string>\",\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"created_at\": \"<dateTime>\",\n    \"updated_at\": \"<dateTime>\",\n    \"source\": \"board\"\n  }\n]",
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-726ab299-98b5-467b-ba3e-9eaf5ed6dc59"
+                    },
+                    {
+                      "id": "1d9bfcef-d072-4d9f-b1a8-7f4f470ea579",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug?include_board_annotations=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "Whether to include Query Annotations that were created from boards. By default, only Query Annotations created directly from queries are returned.\n",
+                              "key": "include_board_annotations",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-1d9bfcef-d072-4d9f-b1a8-7f4f470ea579"
+                    },
+                    {
+                      "id": "5951c52b-f421-4f85-aca0-faea110d9fc0",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug?include_board_annotations=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "Whether to include Query Annotations that were created from boards. By default, only Query Annotations created directly from queries are returned.\n",
+                              "key": "include_board_annotations",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-5951c52b-f421-4f85-aca0-faea110d9fc0"
+                    },
+                    {
+                      "id": "d177a2ff-7430-4cd1-a636-c52f7ce41dea",
+                      "name": "Error",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/query_annotations/:datasetSlug?include_board_annotations=false",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "query_annotations",
+                            ":datasetSlug"
+                          ],
+                          "query": [
+                            {
+                              "description": "Whether to include Query Annotations that were created from boards. By default, only Query Annotations created directly from queries are returned.\n",
+                              "key": "include_board_annotations",
+                              "value": "false"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:13.000Z",
+                      "updatedAt": "2026-07-28T01:57:13.000Z",
+                      "uid": "35240-d177a2ff-7430-4cd1-a636-c52f7ce41dea"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:13.000Z",
+                  "updatedAt": "2026-07-28T01:57:13.000Z",
+                  "uid": "35240-8e1897ba-58c4-469a-9c8d-5e685a7cb582"
+                }
+              ],
+              "id": "caf6de09-2735-43af-8bdc-f32f2f89f234",
+              "createdAt": "2026-07-28T01:57:13.000Z",
+              "updatedAt": "2026-07-28T01:57:13.000Z",
+              "uid": "35240-caf6de09-2735-43af-8bdc-f32f2f89f234"
+            }
+          ],
+          "id": "bff4de38-17c9-41c9-8244-12a3bc545afb",
+          "createdAt": "2026-07-28T01:57:13.000Z",
+          "updatedAt": "2026-07-28T01:57:13.000Z",
+          "uid": "35240-bff4de38-17c9-41c9-8244-12a3bc545afb"
+        }
+      ],
+      "id": "7c216d81-a1de-4490-ba3b-04f6bb96a35b",
+      "createdAt": "2026-07-28T01:57:13.000Z",
+      "updatedAt": "2026-07-28T01:57:13.000Z",
+      "uid": "35240-7c216d81-a1de-4490-ba3b-04f6bb96a35b"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

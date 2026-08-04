@@ -1,0 +1,803 @@
+{
+  "info": {
+    "_postman_id": "ccfa1199-3b0a-467c-b079-1bc778ec07e2",
+    "name": "Honeycomb Auth Queries API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:11.000Z",
+    "updatedAt": "2026-07-28T01:57:12.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ccfa1199-3b0a-467c-b079-1bc778ec07e2"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "queries",
+          "item": [
+            {
+              "name": "{datasetSlug}",
+              "item": [
+                {
+                  "name": "{queryId}",
+                  "item": [
+                    {
+                      "name": "Get a Query",
+                      "id": "0f35ba5e-56e2-478e-9b9f-4ee5929b75de",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/1/queries/:datasetSlug/:queryId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "queries",
+                            ":datasetSlug",
+                            ":queryId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "64ca408f-03dd-4dfb-b781-4eeb44457d86",
+                              "key": "datasetSlug",
+                              "value": "<string>",
+                              "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                            },
+                            {
+                              "id": "67d0eb1f-4d42-4de1-a14c-7e5d87165f68",
+                              "key": "queryId",
+                              "value": "<string>",
+                              "description": "(Required) The unique identifier (ID) of a query."
+                            }
+                          ]
+                        },
+                        "description": "Retrieve a query by its ID.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "2ec021ad-65dc-4b99-a599-832f349649b4",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/queries/:datasetSlug/:queryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "queries",
+                                ":datasetSlug",
+                                ":queryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"breakdowns\": [\n    \"user_agent\"\n  ],\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"not-in\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"ends-with\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    },\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"does-not-start-with\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \">=\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": \"<null>\"\n    },\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"does-not-exist\",\n      \"value\": \"<null>\"\n    }\n  ],\n  \"filter_combination\": \"AND\",\n  \"formulas\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"granularity\": \"<integer>\",\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"P95\",\n      \"order\": \"ascending\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"RATE_MAX\",\n      \"order\": \"ascending\"\n    }\n  ],\n  \"limit\": 100,\n  \"start_time\": 1676399428,\n  \"end_time\": 1676467828,\n  \"time_range\": 7200,\n  \"havings\": [\n    {\n      \"calculate_op\": \"CONCURRENCY\",\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": 10\n    },\n    {\n      \"calculate_op\": \"P05\",\n      \"column\": \"<null,string>\",\n      \"op\": \"!=\",\n      \"value\": 10\n    }\n  ],\n  \"calculated_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"compare_time_offset_seconds\": 2419200,\n  \"usage_mode\": false\n}",
+                          "createdAt": "2026-07-28T01:57:12.000Z",
+                          "updatedAt": "2026-07-28T01:57:12.000Z",
+                          "uid": "35240-2ec021ad-65dc-4b99-a599-832f349649b4"
+                        },
+                        {
+                          "id": "da2f38f1-f58b-450c-adef-b5ac456d88f2",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/queries/:datasetSlug/:queryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "queries",
+                                ":datasetSlug",
+                                ":queryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:12.000Z",
+                          "updatedAt": "2026-07-28T01:57:12.000Z",
+                          "uid": "35240-da2f38f1-f58b-450c-adef-b5ac456d88f2"
+                        },
+                        {
+                          "id": "3a7ce098-0c57-421f-9311-1af035999b0d",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/queries/:datasetSlug/:queryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "queries",
+                                ":datasetSlug",
+                                ":queryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:12.000Z",
+                          "updatedAt": "2026-07-28T01:57:12.000Z",
+                          "uid": "35240-3a7ce098-0c57-421f-9311-1af035999b0d"
+                        },
+                        {
+                          "id": "3e665a0c-ab35-4455-a16c-6f2adabfd719",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/1/queries/:datasetSlug/:queryId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "queries",
+                                ":datasetSlug",
+                                ":queryId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "datasetSlug"
+                                },
+                                {
+                                  "key": "queryId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:12.000Z",
+                          "updatedAt": "2026-07-28T01:57:12.000Z",
+                          "uid": "35240-3e665a0c-ab35-4455-a16c-6f2adabfd719"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:12.000Z",
+                      "updatedAt": "2026-07-28T01:57:12.000Z",
+                      "uid": "35240-0f35ba5e-56e2-478e-9b9f-4ee5929b75de"
+                    }
+                  ],
+                  "id": "85b527d4-399f-4ffc-b11e-664fe8f4bc98",
+                  "createdAt": "2026-07-28T01:57:12.000Z",
+                  "updatedAt": "2026-07-28T01:57:12.000Z",
+                  "uid": "35240-85b527d4-399f-4ffc-b11e-664fe8f4bc98"
+                },
+                {
+                  "name": "Create a Query",
+                  "id": "e0604ae2-dde1-492f-9562-91fc53cfaa4a",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"id\": \"<string>\",\n  \"breakdowns\": [\n    \"user_agent\"\n  ],\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"not-in\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"ends-with\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    },\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"does-not-start-with\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \">=\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": \"<null>\"\n    },\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"does-not-exist\",\n      \"value\": \"<null>\"\n    }\n  ],\n  \"filter_combination\": \"AND\",\n  \"formulas\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"granularity\": \"<integer>\",\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"P95\",\n      \"order\": \"ascending\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"RATE_MAX\",\n      \"order\": \"ascending\"\n    }\n  ],\n  \"limit\": 100,\n  \"start_time\": 1676399428,\n  \"end_time\": 1676467828,\n  \"time_range\": 7200,\n  \"havings\": [\n    {\n      \"calculate_op\": \"CONCURRENCY\",\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": 10\n    },\n    {\n      \"calculate_op\": \"P05\",\n      \"column\": \"<null,string>\",\n      \"op\": \"!=\",\n      \"value\": 10\n    }\n  ],\n  \"calculated_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"compare_time_offset_seconds\": 2419200,\n  \"usage_mode\": false\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/1/queries/:datasetSlug",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "1",
+                        "queries",
+                        ":datasetSlug"
+                      ],
+                      "variable": [
+                        {
+                          "id": "01909120-293b-4e84-8acb-20881ea3e0e2",
+                          "key": "datasetSlug",
+                          "value": "<string>",
+                          "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                        }
+                      ]
+                    },
+                    "description": "Create a query from a specification. DOES NOT run the query to retrieve results.\n"
+                  },
+                  "response": [
+                    {
+                      "id": "7b1497ef-3509-4600-9ecd-9a5e656843bd",
+                      "name": "Success",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"breakdowns\": [\n    \"user_agent\"\n  ],\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"not-in\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"ends-with\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    },\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"does-not-start-with\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \">=\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": \"<null>\"\n    },\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"does-not-exist\",\n      \"value\": \"<null>\"\n    }\n  ],\n  \"filter_combination\": \"AND\",\n  \"formulas\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"granularity\": \"<integer>\",\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"P95\",\n      \"order\": \"ascending\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"RATE_MAX\",\n      \"order\": \"ascending\"\n    }\n  ],\n  \"limit\": 100,\n  \"start_time\": 1676399428,\n  \"end_time\": 1676467828,\n  \"time_range\": 7200,\n  \"havings\": [\n    {\n      \"calculate_op\": \"CONCURRENCY\",\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": 10\n    },\n    {\n      \"calculate_op\": \"P05\",\n      \"column\": \"<null,string>\",\n      \"op\": \"!=\",\n      \"value\": 10\n    }\n  ],\n  \"calculated_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"compare_time_offset_seconds\": 2419200,\n  \"usage_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/queries/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "queries",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"breakdowns\": [\n    \"user_agent\"\n  ],\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"not-in\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"ends-with\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    },\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"does-not-start-with\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \">=\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": \"<null>\"\n    },\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"does-not-exist\",\n      \"value\": \"<null>\"\n    }\n  ],\n  \"filter_combination\": \"AND\",\n  \"formulas\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"granularity\": \"<integer>\",\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"P95\",\n      \"order\": \"ascending\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"RATE_MAX\",\n      \"order\": \"ascending\"\n    }\n  ],\n  \"limit\": 100,\n  \"start_time\": 1676399428,\n  \"end_time\": 1676467828,\n  \"time_range\": 7200,\n  \"havings\": [\n    {\n      \"calculate_op\": \"CONCURRENCY\",\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": 10\n    },\n    {\n      \"calculate_op\": \"P05\",\n      \"column\": \"<null,string>\",\n      \"op\": \"!=\",\n      \"value\": 10\n    }\n  ],\n  \"calculated_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"compare_time_offset_seconds\": 2419200,\n  \"usage_mode\": false\n}",
+                      "createdAt": "2026-07-28T01:57:12.000Z",
+                      "updatedAt": "2026-07-28T01:57:12.000Z",
+                      "uid": "35240-7b1497ef-3509-4600-9ecd-9a5e656843bd"
+                    },
+                    {
+                      "id": "1177b8bc-a1e7-44de-84ab-1575b2a48a30",
+                      "name": "The provided request body was invalid.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"breakdowns\": [\n    \"user_agent\"\n  ],\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"not-in\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"ends-with\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    },\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"does-not-start-with\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \">=\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": \"<null>\"\n    },\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"does-not-exist\",\n      \"value\": \"<null>\"\n    }\n  ],\n  \"filter_combination\": \"AND\",\n  \"formulas\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"granularity\": \"<integer>\",\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"P95\",\n      \"order\": \"ascending\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"RATE_MAX\",\n      \"order\": \"ascending\"\n    }\n  ],\n  \"limit\": 100,\n  \"start_time\": 1676399428,\n  \"end_time\": 1676467828,\n  \"time_range\": 7200,\n  \"havings\": [\n    {\n      \"calculate_op\": \"CONCURRENCY\",\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": 10\n    },\n    {\n      \"calculate_op\": \"P05\",\n      \"column\": \"<null,string>\",\n      \"op\": \"!=\",\n      \"value\": 10\n    }\n  ],\n  \"calculated_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"compare_time_offset_seconds\": 2419200,\n  \"usage_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/queries/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "queries",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:12.000Z",
+                      "updatedAt": "2026-07-28T01:57:12.000Z",
+                      "uid": "35240-1177b8bc-a1e7-44de-84ab-1575b2a48a30"
+                    },
+                    {
+                      "id": "e2732d79-9f3d-4171-9541-2b88530d9eea",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"breakdowns\": [\n    \"user_agent\"\n  ],\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"not-in\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"ends-with\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    },\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"does-not-start-with\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \">=\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": \"<null>\"\n    },\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"does-not-exist\",\n      \"value\": \"<null>\"\n    }\n  ],\n  \"filter_combination\": \"AND\",\n  \"formulas\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"granularity\": \"<integer>\",\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"P95\",\n      \"order\": \"ascending\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"RATE_MAX\",\n      \"order\": \"ascending\"\n    }\n  ],\n  \"limit\": 100,\n  \"start_time\": 1676399428,\n  \"end_time\": 1676467828,\n  \"time_range\": 7200,\n  \"havings\": [\n    {\n      \"calculate_op\": \"CONCURRENCY\",\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": 10\n    },\n    {\n      \"calculate_op\": \"P05\",\n      \"column\": \"<null,string>\",\n      \"op\": \"!=\",\n      \"value\": 10\n    }\n  ],\n  \"calculated_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"compare_time_offset_seconds\": 2419200,\n  \"usage_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/queries/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "queries",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:12.000Z",
+                      "updatedAt": "2026-07-28T01:57:12.000Z",
+                      "uid": "35240-e2732d79-9f3d-4171-9541-2b88530d9eea"
+                    },
+                    {
+                      "id": "59fe4fb0-7e05-4ecc-9364-016d22807747",
+                      "name": "Validation Failed",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/problem+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"breakdowns\": [\n    \"user_agent\"\n  ],\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"not-in\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"ends-with\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    },\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"does-not-start-with\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \">=\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": \"<null>\"\n    },\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"does-not-exist\",\n      \"value\": \"<null>\"\n    }\n  ],\n  \"filter_combination\": \"AND\",\n  \"formulas\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"granularity\": \"<integer>\",\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"P95\",\n      \"order\": \"ascending\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"RATE_MAX\",\n      \"order\": \"ascending\"\n    }\n  ],\n  \"limit\": 100,\n  \"start_time\": 1676399428,\n  \"end_time\": 1676467828,\n  \"time_range\": 7200,\n  \"havings\": [\n    {\n      \"calculate_op\": \"CONCURRENCY\",\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": 10\n    },\n    {\n      \"calculate_op\": \"P05\",\n      \"column\": \"<null,string>\",\n      \"op\": \"!=\",\n      \"value\": 10\n    }\n  ],\n  \"calculated_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"compare_time_offset_seconds\": 2419200,\n  \"usage_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/queries/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "queries",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:12.000Z",
+                      "updatedAt": "2026-07-28T01:57:12.000Z",
+                      "uid": "35240-59fe4fb0-7e05-4ecc-9364-016d22807747"
+                    },
+                    {
+                      "id": "a5067b87-56a5-464b-a9ab-822b1679b8b5",
+                      "name": "Rate Limit Exceeded",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"id\": \"<string>\",\n  \"breakdowns\": [\n    \"user_agent\"\n  ],\n  \"calculations\": [\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"not-in\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"ends-with\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    },\n    {\n      \"op\": \"COUNT\",\n      \"column\": \"<null,string>\",\n      \"name\": \"<null,string>\",\n      \"filters\": [\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \"does-not-start-with\",\n          \"value\": \"<null>\"\n        },\n        {\n          \"column\": \"<null,string>\",\n          \"op\": \">=\",\n          \"value\": \"<null>\"\n        }\n      ],\n      \"filter_combination\": \"AND\"\n    }\n  ],\n  \"filters\": [\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": \"<null>\"\n    },\n    {\n      \"column\": \"<null,string>\",\n      \"op\": \"does-not-exist\",\n      \"value\": \"<null>\"\n    }\n  ],\n  \"filter_combination\": \"AND\",\n  \"formulas\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"granularity\": \"<integer>\",\n  \"orders\": [\n    {\n      \"column\": \"<string>\",\n      \"op\": \"P95\",\n      \"order\": \"ascending\"\n    },\n    {\n      \"column\": \"<string>\",\n      \"op\": \"RATE_MAX\",\n      \"order\": \"ascending\"\n    }\n  ],\n  \"limit\": 100,\n  \"start_time\": 1676399428,\n  \"end_time\": 1676467828,\n  \"time_range\": 7200,\n  \"havings\": [\n    {\n      \"calculate_op\": \"CONCURRENCY\",\n      \"column\": \"<null,string>\",\n      \"op\": \"<\",\n      \"value\": 10\n    },\n    {\n      \"calculate_op\": \"P05\",\n      \"column\": \"<null,string>\",\n      \"op\": \"!=\",\n      \"value\": 10\n    }\n  ],\n  \"calculated_fields\": [\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"expression\": \"<string>\"\n    }\n  ],\n  \"compare_time_offset_seconds\": 2419200,\n  \"usage_mode\": false\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/queries/:datasetSlug",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "queries",
+                            ":datasetSlug"
+                          ],
+                          "variable": [
+                            {
+                              "key": "datasetSlug"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Too Many Requests",
+                      "code": 429,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Retry-After",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "Ratelimit",
+                          "value": ""
+                        },
+                        {
+                          "disabled": false,
+                          "description": {
+                            "content": "",
+                            "type": "text/plain"
+                          },
+                          "key": "RateLimitPolicy",
+                          "value": ""
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"error\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T01:57:12.000Z",
+                      "updatedAt": "2026-07-28T01:57:12.000Z",
+                      "uid": "35240-a5067b87-56a5-464b-a9ab-822b1679b8b5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T01:57:12.000Z",
+                  "updatedAt": "2026-07-28T01:57:12.000Z",
+                  "uid": "35240-e0604ae2-dde1-492f-9562-91fc53cfaa4a"
+                }
+              ],
+              "id": "6a8b8053-ce1b-4173-be32-26bf1fae4c29",
+              "createdAt": "2026-07-28T01:57:12.000Z",
+              "updatedAt": "2026-07-28T01:57:12.000Z",
+              "uid": "35240-6a8b8053-ce1b-4173-be32-26bf1fae4c29"
+            }
+          ],
+          "id": "25c08294-51d5-4639-a10e-dc0cab6860b2",
+          "createdAt": "2026-07-28T01:57:12.000Z",
+          "updatedAt": "2026-07-28T01:57:12.000Z",
+          "uid": "35240-25c08294-51d5-4639-a10e-dc0cab6860b2"
+        }
+      ],
+      "id": "fae4743a-2b9f-4250-8758-36e08453f424",
+      "createdAt": "2026-07-28T01:57:12.000Z",
+      "updatedAt": "2026-07-28T01:57:12.000Z",
+      "uid": "35240-fae4743a-2b9f-4250-8758-36e08453f424"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

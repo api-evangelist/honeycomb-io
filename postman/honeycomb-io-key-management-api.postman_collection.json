@@ -1,0 +1,3064 @@
+{
+  "info": {
+    "_postman_id": "f0f0bc34-b7bf-42bd-81e9-2140d2fe9a5b",
+    "name": "Honeycomb Auth Key Management API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:07.000Z",
+    "updatedAt": "2026-07-28T01:57:07.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f0f0bc34-b7bf-42bd-81e9-2140d2fe9a5b"
+  },
+  "item": [
+    {
+      "name": "2",
+      "item": [
+        {
+          "name": "teams",
+          "item": [
+            {
+              "name": "{teamSlug}",
+              "item": [
+                {
+                  "name": "api-keys",
+                  "item": [
+                    {
+                      "name": "{ID}",
+                      "item": [
+                        {
+                          "name": "Get an API Key",
+                          "id": "6c88e8be-48f5-488b-81d0-bf12d68d3cfc",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys",
+                                ":ID"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "b68e2da3-57f5-4fcf-8186-5a844cdaadaf",
+                                  "key": "teamSlug",
+                                  "value": "<string>",
+                                  "description": "(Required) The slug of the Team"
+                                },
+                                {
+                                  "id": "a63008ef-1c4a-4015-b92a-0983c2661b79",
+                                  "key": "ID",
+                                  "value": "<string>",
+                                  "description": "(Required) A unique identifier"
+                                }
+                              ]
+                            },
+                            "description": "Fetches an environment API Key, either a key of type `ingest` or type `configuration` based on the\nID given.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "aaeec835-2f9f-49f1-ba7a-90bc574a8aee",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      },\n      \"creator\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"users\"\n        }\n      },\n      \"editor\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"users\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-aaeec835-2f9f-49f1-ba7a-90bc574a8aee"
+                            },
+                            {
+                              "id": "d0e9aa25-a518-4f95-9f7f-9f63ab8dad61",
+                              "name": "The provided request body was invalid.",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-d0e9aa25-a518-4f95-9f7f-9f63ab8dad61"
+                            },
+                            {
+                              "id": "c22f74fb-be70-4827-8412-5ebedec00a65",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-c22f74fb-be70-4827-8412-5ebedec00a65"
+                            },
+                            {
+                              "id": "68aa07d8-aceb-461a-a261-aa498dd3731f",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-68aa07d8-aceb-461a-a261-aa498dd3731f"
+                            },
+                            {
+                              "id": "18fef410-36ad-442d-a256-6cc6920b7ab7",
+                              "name": "Rate Limit Exceeded",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-18fef410-36ad-442d-a256-6cc6920b7ab7"
+                            },
+                            {
+                              "id": "c68f095b-ae1b-4e4d-b196-473f744c36e5",
+                              "name": "InternalError",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": \"<number>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-c68f095b-ae1b-4e4d-b196-473f744c36e5"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-6c88e8be-48f5-488b-81d0-bf12d68d3cfc"
+                        },
+                        {
+                          "name": "Update an API Key",
+                          "id": "6003f096-703e-4ad1-b876-72aeab4b2faf",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PATCH",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys",
+                                ":ID"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "98fea26b-b947-4414-9d64-bb3904319f06",
+                                  "key": "teamSlug",
+                                  "value": "<string>",
+                                  "description": "(Required) The slug of the Team"
+                                },
+                                {
+                                  "id": "d09a6c25-c58f-4cc3-92f4-ad991ff0ef74",
+                                  "key": "ID",
+                                  "value": "<string>",
+                                  "description": "(Required) A unique identifier"
+                                }
+                              ]
+                            },
+                            "description": "Updates an API Key. The expected attributes depend on the key type:\n- **Ingest Keys** (prefix `hcxik_`): Support `name` and `enabled` attributes\n- **Configuration Keys** (prefix `hcxlk_`): Support `name`, `enabled`, and `permissions` attributes\n"
+                          },
+                          "response": [
+                            {
+                              "id": "60a00232-fbe4-43a8-b74a-2f83b6554d52",
+                              "name": "Success",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      },\n      \"creator\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"users\"\n        }\n      },\n      \"editor\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"users\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"<string>\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-60a00232-fbe4-43a8-b74a-2f83b6554d52"
+                            },
+                            {
+                              "id": "c2cf84d3-a286-4379-8605-00e6d59215b7",
+                              "name": "The provided request body was invalid.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-c2cf84d3-a286-4379-8605-00e6d59215b7"
+                            },
+                            {
+                              "id": "174db15b-2c31-4f72-9d96-b6383d51651a",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-174db15b-2c31-4f72-9d96-b6383d51651a"
+                            },
+                            {
+                              "id": "662dd2f5-12b4-4660-b43e-11d34a1d8445",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-662dd2f5-12b4-4660-b43e-11d34a1d8445"
+                            },
+                            {
+                              "id": "fb1c4b17-9503-438a-a502-901758358d89",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-fb1c4b17-9503-438a-a502-901758358d89"
+                            },
+                            {
+                              "id": "e35d28dd-a6c2-40a1-aef9-59f13204ad10",
+                              "name": "The provided request body was over the maximum allowed size.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Request Entity Too Large",
+                              "code": 413,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": \"<number>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-e35d28dd-a6c2-40a1-aef9-59f13204ad10"
+                            },
+                            {
+                              "id": "d6381f5b-c84c-4c4f-b4e2-009de169576e",
+                              "name": "The provided request body had an invalid Content-Type.",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/vnd.api+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unsupported Media Type",
+                              "code": 415,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/vnd.api+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"header\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"header\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-d6381f5b-c84c-4c4f-b4e2-009de169576e"
+                            },
+                            {
+                              "id": "84996747-21e4-438d-9808-03edbcc31325",
+                              "name": "Validation Failed",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                              "code": 422,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-84996747-21e4-438d-9808-03edbcc31325"
+                            },
+                            {
+                              "id": "393659fe-3650-469d-9ed5-562128a9509e",
+                              "name": "Rate Limit Exceeded",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-393659fe-3650-469d-9ed5-562128a9509e"
+                            },
+                            {
+                              "id": "1a82dbb0-c6d2-4b50-8333-6919d50d8a28",
+                              "name": "InternalError",
+                              "originalRequest": {
+                                "method": "PATCH",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/vnd.api+json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"data\": {\n    \"id\": \"hcxik_Cs0VhetTPZywLNDUDzrBGHqZFD\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"name\": \"<string>\",\n      \"disabled\": \"<boolean>\"\n    }\n  }\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": \"<number>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-1a82dbb0-c6d2-4b50-8333-6919d50d8a28"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-6003f096-703e-4ad1-b876-72aeab4b2faf"
+                        },
+                        {
+                          "name": "Delete an API Key",
+                          "id": "778b90a4-387a-4cad-83df-bbc7c6d7e567",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys",
+                                ":ID"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "ac19fd75-a6b8-4c58-86a9-6f5eb92aaadd",
+                                  "key": "teamSlug",
+                                  "value": "<string>",
+                                  "description": "(Required) The slug of the Team"
+                                },
+                                {
+                                  "id": "8733c2fb-8df5-4bd8-9c6c-df6be53bdd8c",
+                                  "key": "ID",
+                                  "value": "<string>",
+                                  "description": "(Required) A unique identifier"
+                                }
+                              ]
+                            },
+                            "description": "This deletes and immediately deactivates the API Key. This is an irreversible operation.\n"
+                          },
+                          "response": [
+                            {
+                              "id": "1030ba64-9591-47f2-b4a8-bf2a2ef42ee1",
+                              "name": "No Content",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "No Content",
+                              "code": 204,
+                              "_postman_previewlanguage": "text",
+                              "header": [
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": null,
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-1030ba64-9591-47f2-b4a8-bf2a2ef42ee1"
+                            },
+                            {
+                              "id": "2211b92f-9f27-414d-84ad-a7757dacc3c2",
+                              "name": "The provided request body was invalid.",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-2211b92f-9f27-414d-84ad-a7757dacc3c2"
+                            },
+                            {
+                              "id": "6981d40c-69ad-4db2-b36f-aad0c02977fc",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-6981d40c-69ad-4db2-b36f-aad0c02977fc"
+                            },
+                            {
+                              "id": "a1cdf9a4-c6dc-4bb2-a487-48b4ea00f98f",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-a1cdf9a4-c6dc-4bb2-a487-48b4ea00f98f"
+                            },
+                            {
+                              "id": "60e7b8bf-4c4c-4703-82dd-d727bb5eef92",
+                              "name": "Not Found",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-60e7b8bf-4c4c-4703-82dd-d727bb5eef92"
+                            },
+                            {
+                              "id": "cc7a2fc0-7fe2-4232-9ca9-0398639206b3",
+                              "name": "Rate Limit Exceeded",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Too Many Requests",
+                              "code": 429,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Retry-After",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "Ratelimit",
+                                  "value": ""
+                                },
+                                {
+                                  "disabled": false,
+                                  "description": {
+                                    "content": "",
+                                    "type": "text/plain"
+                                  },
+                                  "key": "RateLimitPolicy",
+                                  "value": ""
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-cc7a2fc0-7fe2-4232-9ca9-0398639206b3"
+                            },
+                            {
+                              "id": "5294feec-5ea2-4882-96fa-c365e24f6843",
+                              "name": "InternalError",
+                              "originalRequest": {
+                                "method": "DELETE",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/problem+json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys/:ID",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "2",
+                                    "teams",
+                                    ":teamSlug",
+                                    "api-keys",
+                                    ":ID"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "teamSlug"
+                                    },
+                                    {
+                                      "key": "ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/problem+json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": \"<number>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T01:57:08.000Z",
+                              "updatedAt": "2026-07-28T01:57:08.000Z",
+                              "uid": "35240-5294feec-5ea2-4882-96fa-c365e24f6843"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-778b90a4-387a-4cad-83df-bbc7c6d7e567"
+                        }
+                      ],
+                      "id": "774fe9f7-f22b-4f92-95b9-9f0177d20e66",
+                      "createdAt": "2026-07-28T01:57:08.000Z",
+                      "updatedAt": "2026-07-28T01:57:08.000Z",
+                      "uid": "35240-774fe9f7-f22b-4f92-95b9-9f0177d20e66"
+                    },
+                    {
+                      "name": "List all API Keys",
+                      "id": "d93cc318-84bd-4634-82da-09ca20d80b82",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys?page[after]=<string>&page[size]=20&filter[type]=configuration",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "2",
+                            "teams",
+                            ":teamSlug",
+                            "api-keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n",
+                              "key": "page[after]",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "The number of entries to include per response. Maximum value is 100.",
+                              "key": "page[size]",
+                              "value": "20"
+                            },
+                            {
+                              "description": "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted.\n",
+                              "key": "filter[type]",
+                              "value": "configuration"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "17c955de-67ad-4135-b575-5c00ee29860f",
+                              "key": "teamSlug",
+                              "value": "<string>",
+                              "description": "(Required) The slug of the Team"
+                            }
+                          ]
+                        },
+                        "description": "List all API Keys for a Team.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "cfa3a692-52f0-4a65-9222-685329a02e94",
+                          "name": "Success",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys?page[after]=<string>&page[size]=20&filter[type]=configuration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n",
+                                  "key": "page[after]",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of entries to include per response. Maximum value is 100.",
+                                  "key": "page[size]",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted.\n",
+                                  "key": "filter[type]",
+                                  "value": "configuration"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": \"api-keys\",\n      \"attributes\": {\n        \"key_type\": \"ingest\",\n        \"name\": \"<string>\",\n        \"disabled\": false,\n        \"permissions\": {\n          \"create_datasets\": false\n        },\n        \"timestamps\": {\n          \"created\": \"<dateTime>\",\n          \"updated\": \"<dateTime>\"\n        }\n      },\n      \"relationships\": {\n        \"environment\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"environments\"\n          }\n        },\n        \"creator\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"users\"\n          }\n        },\n        \"editor\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"users\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": \"api-keys\",\n      \"attributes\": {\n        \"key_type\": \"ingest\",\n        \"name\": \"<string>\",\n        \"disabled\": false,\n        \"permissions\": {\n          \"create_datasets\": false\n        },\n        \"timestamps\": {\n          \"created\": \"<dateTime>\",\n          \"updated\": \"<dateTime>\"\n        }\n      },\n      \"relationships\": {\n        \"environment\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"environments\"\n          }\n        },\n        \"creator\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"users\"\n          }\n        },\n        \"editor\": {\n          \"data\": {\n            \"id\": \"<string>\",\n            \"type\": \"users\"\n          }\n        }\n      },\n      \"links\": {\n        \"self\": \"<string>\"\n      }\n    }\n  ],\n  \"links\": {\n    \"next\": \"<string,null>\"\n  }\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-cfa3a692-52f0-4a65-9222-685329a02e94"
+                        },
+                        {
+                          "id": "7fc0e175-3f01-4c39-a89e-3d7fe6a68b97",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys?page[after]=<string>&page[size]=20&filter[type]=configuration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n",
+                                  "key": "page[after]",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of entries to include per response. Maximum value is 100.",
+                                  "key": "page[size]",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted.\n",
+                                  "key": "filter[type]",
+                                  "value": "configuration"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-7fc0e175-3f01-4c39-a89e-3d7fe6a68b97"
+                        },
+                        {
+                          "id": "c20aaacf-9edf-4135-8fdc-d0c10c842cdf",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys?page[after]=<string>&page[size]=20&filter[type]=configuration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n",
+                                  "key": "page[after]",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of entries to include per response. Maximum value is 100.",
+                                  "key": "page[size]",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted.\n",
+                                  "key": "filter[type]",
+                                  "value": "configuration"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-c20aaacf-9edf-4135-8fdc-d0c10c842cdf"
+                        },
+                        {
+                          "id": "5653fa7e-43b0-4c41-9e62-33c6fcd3dfaf",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys?page[after]=<string>&page[size]=20&filter[type]=configuration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n",
+                                  "key": "page[after]",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of entries to include per response. Maximum value is 100.",
+                                  "key": "page[size]",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted.\n",
+                                  "key": "filter[type]",
+                                  "value": "configuration"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-5653fa7e-43b0-4c41-9e62-33c6fcd3dfaf"
+                        },
+                        {
+                          "id": "ea944d8e-9ce6-4a54-95bf-ca37074bed2f",
+                          "name": "Validation Failed",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys?page[after]=<string>&page[size]=20&filter[type]=configuration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n",
+                                  "key": "page[after]",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of entries to include per response. Maximum value is 100.",
+                                  "key": "page[size]",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted.\n",
+                                  "key": "filter[type]",
+                                  "value": "configuration"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-ea944d8e-9ce6-4a54-95bf-ca37074bed2f"
+                        },
+                        {
+                          "id": "f3f59b38-2196-4e03-993e-e7d61f1c8146",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys?page[after]=<string>&page[size]=20&filter[type]=configuration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n",
+                                  "key": "page[after]",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of entries to include per response. Maximum value is 100.",
+                                  "key": "page[size]",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted.\n",
+                                  "key": "filter[type]",
+                                  "value": "configuration"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-f3f59b38-2196-4e03-993e-e7d61f1c8146"
+                        },
+                        {
+                          "id": "d493ab03-a3ef-40b2-9e32-d05771882cef",
+                          "name": "InternalError",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys?page[after]=<string>&page[size]=20&filter[type]=configuration",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The string value of the `next` attribute from a previous result page.\nThe cursor value must be empty or omitted for the first request of a cursor-paginated query.\n",
+                                  "key": "page[after]",
+                                  "value": "<string>"
+                                },
+                                {
+                                  "description": "The number of entries to include per response. Maximum value is 100.",
+                                  "key": "page[size]",
+                                  "value": "20"
+                                },
+                                {
+                                  "description": "Specifies the type of API key to return. This parameter accepts the following values:\n  - `ingest`: Returns only ingest API keys.\n  - `configuration`:  Returns only configuration API keys.\n\nThe endpoint will default to fetching all API keys regardless of type if this filter is omitted.\n",
+                                  "key": "filter[type]",
+                                  "value": "configuration"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": \"<number>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-d493ab03-a3ef-40b2-9e32-d05771882cef"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:08.000Z",
+                      "updatedAt": "2026-07-28T01:57:08.000Z",
+                      "uid": "35240-d93cc318-84bd-4634-82da-09ca20d80b82"
+                    },
+                    {
+                      "name": "Create an API Key",
+                      "id": "837b9716-9a8b-4619-bf43-92590540c6b7",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/vnd.api+json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/vnd.api+json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "2",
+                            "teams",
+                            ":teamSlug",
+                            "api-keys"
+                          ],
+                          "variable": [
+                            {
+                              "id": "20115cee-f3a9-4599-bdc3-e03416d0a00d",
+                              "key": "teamSlug",
+                              "value": "<string>",
+                              "description": "(Required) The slug of the Team"
+                            }
+                          ]
+                        },
+                        "description": "This creates an API Key, which will return the API Key components in the response. The Key ID will be found at `data.id` and\nthe Key Secret will be found at `data.attributes.secret`. For security reasons the Key Secret will only be available during creation so make sure to save it.\n\nTo use a newly-created Ingest Key it should be passed in the `X-Honeycomb-Team` header with the API Key's ID and secret\nconcatenated (and with no separator). For example, `X-Honeycomb-Team: hcxik_1234567890123456789012345612345678901234567890123456789012`\n\nCheck out our [best practices for API Keys](https://docs.honeycomb.io/get-started/best-practices/api-keys/#ingest-keys).\n"
+                      },
+                      "response": [
+                        {
+                          "id": "29dbf429-bb22-4df3-a374-2bdd32f7d11c",
+                          "name": "Created",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Created",
+                          "code": 201,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"data\": {\n    \"id\": \"<string>\",\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      },\n      \"creator\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"users\"\n        }\n      },\n      \"editor\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"users\"\n        }\n      }\n    },\n    \"links\": {\n      \"self\": \"<string>\"\n    }\n  }\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-29dbf429-bb22-4df3-a374-2bdd32f7d11c"
+                        },
+                        {
+                          "id": "6fd6e7b6-06d5-4aa9-a7bd-453e669bbbe1",
+                          "name": "The provided request body was invalid.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-6fd6e7b6-06d5-4aa9-a7bd-453e669bbbe1"
+                        },
+                        {
+                          "id": "85266ecc-a6f5-43c2-92dc-29d515bf7df7",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-85266ecc-a6f5-43c2-92dc-29d515bf7df7"
+                        },
+                        {
+                          "id": "5c1e82fb-b6e6-41dd-81ee-0964a1509036",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-5c1e82fb-b6e6-41dd-81ee-0964a1509036"
+                        },
+                        {
+                          "id": "eb5c192c-413e-4300-9e61-86aec0914c2e",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-eb5c192c-413e-4300-9e61-86aec0914c2e"
+                        },
+                        {
+                          "id": "702ed06e-8711-4cb8-9e93-6956c4131961",
+                          "name": "The provided request body was over the maximum allowed size.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Request Entity Too Large",
+                          "code": 413,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": \"<number>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-702ed06e-8711-4cb8-9e93-6956c4131961"
+                        },
+                        {
+                          "id": "5e8d8bca-8026-467c-b904-0abf8db8f6c2",
+                          "name": "The provided request body had an invalid Content-Type.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/vnd.api+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unsupported Media Type",
+                          "code": 415,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/vnd.api+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"errors\": [\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"header\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"code\": \"<string>\",\n      \"status\": \"<string>\",\n      \"title\": \"<string>\",\n      \"detail\": \"<string>\",\n      \"source\": {\n        \"pointer\": \"<string>\",\n        \"header\": \"<string>\",\n        \"parameter\": \"<string>\"\n      }\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-5e8d8bca-8026-467c-b904-0abf8db8f6c2"
+                        },
+                        {
+                          "id": "b9711de5-3369-4537-976c-ab5c0435528b",
+                          "name": "Validation Failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-b9711de5-3369-4537-976c-ab5c0435528b"
+                        },
+                        {
+                          "id": "1f779ecd-f22f-4c13-8b5a-0de747a8523a",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-1f779ecd-f22f-4c13-8b5a-0de747a8523a"
+                        },
+                        {
+                          "id": "46db906c-1e7b-4cc0-870e-708cbdf255d9",
+                          "name": "InternalError",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/vnd.api+json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"data\": {\n    \"type\": \"api-keys\",\n    \"attributes\": {\n      \"key_type\": \"ingest\",\n      \"name\": \"<string>\",\n      \"disabled\": false,\n      \"permissions\": {\n        \"create_datasets\": false\n      },\n      \"timestamps\": {\n        \"created\": \"<dateTime>\",\n        \"updated\": \"<dateTime>\"\n      }\n    },\n    \"relationships\": {\n      \"environment\": {\n        \"data\": {\n          \"id\": \"<string>\",\n          \"type\": \"environments\"\n        }\n      }\n    }\n  }\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/2/teams/:teamSlug/api-keys",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "2",
+                                "teams",
+                                ":teamSlug",
+                                "api-keys"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "teamSlug"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": \"<number>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:08.000Z",
+                          "updatedAt": "2026-07-28T01:57:08.000Z",
+                          "uid": "35240-46db906c-1e7b-4cc0-870e-708cbdf255d9"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:08.000Z",
+                      "updatedAt": "2026-07-28T01:57:08.000Z",
+                      "uid": "35240-837b9716-9a8b-4619-bf43-92590540c6b7"
+                    }
+                  ],
+                  "id": "7005008c-f52e-4062-a6ce-d0c0ea722143",
+                  "createdAt": "2026-07-28T01:57:08.000Z",
+                  "updatedAt": "2026-07-28T01:57:08.000Z",
+                  "uid": "35240-7005008c-f52e-4062-a6ce-d0c0ea722143"
+                }
+              ],
+              "id": "f7558f88-1fee-4482-a4a9-53abb5e2dc2b",
+              "createdAt": "2026-07-28T01:57:08.000Z",
+              "updatedAt": "2026-07-28T01:57:08.000Z",
+              "uid": "35240-f7558f88-1fee-4482-a4a9-53abb5e2dc2b"
+            }
+          ],
+          "id": "c99f0995-ed26-4d85-90ac-fedb8248e1ad",
+          "createdAt": "2026-07-28T01:57:08.000Z",
+          "updatedAt": "2026-07-28T01:57:08.000Z",
+          "uid": "35240-c99f0995-ed26-4d85-90ac-fedb8248e1ad"
+        }
+      ],
+      "id": "71f885dd-a657-4aa4-bc13-60bb9f947702",
+      "createdAt": "2026-07-28T01:57:08.000Z",
+      "updatedAt": "2026-07-28T01:57:08.000Z",
+      "uid": "35240-71f885dd-a657-4aa4-bc13-60bb9f947702"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}

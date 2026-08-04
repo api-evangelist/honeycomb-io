@@ -1,0 +1,545 @@
+{
+  "info": {
+    "_postman_id": "ac9a4e02-11e8-4e74-98f5-c03d18a9ad3f",
+    "name": "Honeycomb Auth Reporting API",
+    "description": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T01:57:16.000Z",
+    "updatedAt": "2026-07-28T01:57:16.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-ac9a4e02-11e8-4e74-98f5-c03d18a9ad3f"
+  },
+  "item": [
+    {
+      "name": "1",
+      "item": [
+        {
+          "name": "reporting",
+          "item": [
+            {
+              "name": "slos",
+              "item": [
+                {
+                  "name": "historical",
+                  "item": [
+                    {
+                      "name": "Get SLO History",
+                      "id": "1af07b01-dee1-483d-a660-be6789c896b0",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"ids\": \"<array>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/1/reporting/slos/historical",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "1",
+                            "reporting",
+                            "slos",
+                            "historical"
+                          ]
+                        },
+                        "description": "Get a weekly breakdown of historical data for a list of SLOs for a given time range.\n"
+                      },
+                      "response": [
+                        {
+                          "id": "b44464f8-3ba7-43fc-b93c-3332b273023d",
+                          "name": "A mapping from SLO IDs (e.g., \"2LBq9LckbcA\") to their historical data. Each SLO ID maps to an array of compliance and budget intervals.\n\n **Note**: An empty array indicates that no historical data was found for the given time range for that SLO.\n",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ids\": \"<array>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/reporting/slos/historical",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "reporting",
+                                "slos",
+                                "historical"
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"proident_6\": [\n    {\n      \"timestamp\": \"<integer>\",\n      \"compliance\": \"<double>\",\n      \"budget_remaining\": \"<double>\"\n    },\n    {\n      \"timestamp\": \"<integer>\",\n      \"compliance\": \"<double>\",\n      \"budget_remaining\": \"<double>\"\n    }\n  ],\n  \"aliquipda9\": [\n    {\n      \"timestamp\": \"<integer>\",\n      \"compliance\": \"<double>\",\n      \"budget_remaining\": \"<double>\"\n    },\n    {\n      \"timestamp\": \"<integer>\",\n      \"compliance\": \"<double>\",\n      \"budget_remaining\": \"<double>\"\n    }\n  ]\n}",
+                          "createdAt": "2026-07-28T01:57:17.000Z",
+                          "updatedAt": "2026-07-28T01:57:17.000Z",
+                          "uid": "35240-b44464f8-3ba7-43fc-b93c-3332b273023d"
+                        },
+                        {
+                          "id": "7b892698-41fc-47d4-9c90-2370f21b2cbe",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ids\": \"<array>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/reporting/slos/historical",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "reporting",
+                                "slos",
+                                "historical"
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:17.000Z",
+                          "updatedAt": "2026-07-28T01:57:17.000Z",
+                          "uid": "35240-7b892698-41fc-47d4-9c90-2370f21b2cbe"
+                        },
+                        {
+                          "id": "cef1a143-fa82-46e1-85ee-9b358e7af230",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ids\": \"<array>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/reporting/slos/historical",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "reporting",
+                                "slos",
+                                "historical"
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:17.000Z",
+                          "updatedAt": "2026-07-28T01:57:17.000Z",
+                          "uid": "35240-cef1a143-fa82-46e1-85ee-9b358e7af230"
+                        },
+                        {
+                          "id": "09907b75-6b6c-4460-97f6-e4ec0201555e",
+                          "name": "Validation Failed",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ids\": \"<array>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/reporting/slos/historical",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "reporting",
+                                "slos",
+                                "historical"
+                              ]
+                            }
+                          },
+                          "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                          "code": 422,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:17.000Z",
+                          "updatedAt": "2026-07-28T01:57:17.000Z",
+                          "uid": "35240-09907b75-6b6c-4460-97f6-e4ec0201555e"
+                        },
+                        {
+                          "id": "b8ffbfd0-f940-4b96-abd1-64828fc9d740",
+                          "name": "Rate Limit Exceeded",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ids\": \"<array>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/reporting/slos/historical",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "reporting",
+                                "slos",
+                                "historical"
+                              ]
+                            }
+                          },
+                          "status": "Too Many Requests",
+                          "code": 429,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Retry-After",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "Ratelimit",
+                              "value": ""
+                            },
+                            {
+                              "disabled": false,
+                              "description": {
+                                "content": "",
+                                "type": "text/plain"
+                              },
+                              "key": "RateLimitPolicy",
+                              "value": ""
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:17.000Z",
+                          "updatedAt": "2026-07-28T01:57:17.000Z",
+                          "uid": "35240-b8ffbfd0-f940-4b96-abd1-64828fc9d740"
+                        },
+                        {
+                          "id": "bb41891a-eead-49e4-8a53-d1ac3670cff5",
+                          "name": "InternalError",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/problem+json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ids\": \"<array>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/reporting/slos/historical",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "reporting",
+                                "slos",
+                                "historical"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/problem+json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": \"<number>\",\n  \"type\": \"<string>\",\n  \"title\": \"<string>\",\n  \"detail\": \"<string>\",\n  \"instance\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:17.000Z",
+                          "updatedAt": "2026-07-28T01:57:17.000Z",
+                          "uid": "35240-bb41891a-eead-49e4-8a53-d1ac3670cff5"
+                        },
+                        {
+                          "id": "37c2653a-4a9d-48e0-be2d-9067a89982ba",
+                          "name": "Error",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"ids\": \"<array>\",\n  \"start_time\": \"<integer>\",\n  \"end_time\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/1/reporting/slos/historical",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "1",
+                                "reporting",
+                                "slos",
+                                "historical"
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"error\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T01:57:17.000Z",
+                          "updatedAt": "2026-07-28T01:57:17.000Z",
+                          "uid": "35240-37c2653a-4a9d-48e0-be2d-9067a89982ba"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T01:57:16.000Z",
+                      "updatedAt": "2026-07-28T01:57:16.000Z",
+                      "uid": "35240-1af07b01-dee1-483d-a660-be6789c896b0"
+                    }
+                  ],
+                  "id": "963c58e8-4c59-46f8-b9ed-ddbf29c72c64",
+                  "createdAt": "2026-07-28T01:57:16.000Z",
+                  "updatedAt": "2026-07-28T01:57:16.000Z",
+                  "uid": "35240-963c58e8-4c59-46f8-b9ed-ddbf29c72c64"
+                }
+              ],
+              "id": "9284192f-4b7e-40a7-bc8d-c82cf2af37da",
+              "createdAt": "2026-07-28T01:57:16.000Z",
+              "updatedAt": "2026-07-28T01:57:16.000Z",
+              "uid": "35240-9284192f-4b7e-40a7-bc8d-c82cf2af37da"
+            }
+          ],
+          "id": "7cff40ef-c311-4af8-99c7-6a917f6216fb",
+          "createdAt": "2026-07-28T01:57:16.000Z",
+          "updatedAt": "2026-07-28T01:57:16.000Z",
+          "uid": "35240-7cff40ef-c311-4af8-99c7-6a917f6216fb"
+        }
+      ],
+      "id": "11e4ded8-6b7f-49ce-baaa-6cc0aa5affb1",
+      "createdAt": "2026-07-28T01:57:16.000Z",
+      "updatedAt": "2026-07-28T01:57:16.000Z",
+      "uid": "35240-11e4ded8-6b7f-49ce-baaa-6cc0aa5affb1"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.honeycomb.io"
+    }
+  ]
+}
