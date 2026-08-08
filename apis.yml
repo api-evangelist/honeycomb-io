@@ -1548,4 +1548,4 @@ common:
     type: Integrations
   - url: https://github.com/honeycombio/honeycomb-mcp
     name: Honeycomb MCP
-    type: MCP
+    type: Documentation
