@@ -1,0 +1,114 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Auth Marker Settings API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Marker Settings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a Marker Setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/marker_settings/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ]
+          },
+          "docs": "Get a Marker Setting"
+        },
+        {
+          "info": {
+            "name": "Create a Marker Setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/marker_settings/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Marker Setting"
+        },
+        {
+          "info": {
+            "name": "Update a Marker Setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/marker_settings/:datasetSlug/:markerSettingId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "markerSettingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a marker setting."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A marker setting's `type` may not be changed after creation.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Marker Setting",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/marker_settings/:datasetSlug/:markerSettingId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "markerSettingId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a marker setting."
+              }
+            ]
+          },
+          "docs": "Delete a Marker Setting"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

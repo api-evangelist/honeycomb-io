@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Auth Recipients API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recipients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Recipients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/recipients"
+          },
+          "docs": "Retrieve all recipients for a team.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/recipients",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Unlike many resources, Recipients are not linked to a specific Environment or Dataset. The Recipient will be created for the Team associated with your API key.\nThe `details` fields will vary depending on the `type` of Recipient. Use the drop-down to view the specific fields for each `type` value.\nBefore Slack Recipients can be created, the Slack OAuth flow in the Integration Center must be completed.\n"
+        },
+        {
+          "info": {
+            "name": "Get a single Recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/recipients/:recipientId",
+            "params": [
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a Recipient."
+              }
+            ]
+          },
+          "docs": "Retrieve a Recipient by recipient ID.\n"
+        },
+        {
+          "info": {
+            "name": "Update a Recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/recipients/:recipientId",
+            "params": [
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a Recipient."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Recipient by specifying the recipient ID and full recipient details. (Partial PUT is not supported.)\nUpdates to the Recipient Type is not supported. For example, changing an existing Recipient from PagerDuty to Email is not allowed.\n**Important**: Modifying an existing recipient will change the destination of all triggers/burn alerts that use that recipient.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Recipient",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/recipients/:recipientId",
+            "params": [
+              {
+                "name": "recipientId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a Recipient."
+              }
+            ]
+          },
+          "docs": "Delete a recipient by specifying the recipient ID.\nA Recipient can only be deleted if it is NOT in use by any Triggers or Burn Alerts associated to the team.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

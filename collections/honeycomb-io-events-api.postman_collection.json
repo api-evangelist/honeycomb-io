@@ -1,0 +1,928 @@
+{
+  "item": [
+    {
+      "id": "913ff830-3010-4e74-8895-ebe5c06949a9",
+      "name": "Events",
+      "description": {
+        "content": "The Events API endpoints are the lowest-level way to send Events to Honeycomb. **This should be your last resort!**\n\n\n\nIf unsure where to start when instrumenting an application, read about how to [Send Data to Honeycomb](https://docs.honeycomb.io/send-data/).\n\n\nIf you are building a tracing or metrics library, we recommend using [OpenTelemetry](https://docs.honeycomb.io/send-data/opentelemetry/).\n\n## Authorization\n\nIt is recommended that an Ingest API key is used for sending events.\n\nA Configuration API key will work, and must have the **Send Events** permission.\nLearn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d14eca3e-f45b-48ed-a74c-5a15b0902781",
+          "name": "Create Events",
+          "request": {
+            "name": "Create Events",
+            "description": {
+              "content": "Supports batch creation of events.\n\nDataset names are case insensitive. `POST` requests to \"MyDatasET\" will land in the same dataset as \"mydataset\". Names may contain URL-encoded spaces or other special characters, but not URL-encoded slashes. For example, \"My%20Dataset\" will show up in the UI as \"My Dataset\".\n\nThe first event received for a dataset determines the casing of the displayed name. All subsequent variations in casing will use the originally specified case.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "batch",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "Included when sending events in a file. Size limitations may be addressed by compressing request bodies with gzip or zstd compression. Be sure to set the Content-Encoding to `gzip` or `zstd` when compressing the request body. If sending plaintext, omit this header; \"plaintext\" is included to simplify the example with curl.\n",
+                "key": "Content-Encoding",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"data\": \"<object>\",\n    \"time\": \"<string>\",\n    \"samplerate\": \"<integer>\"\n  },\n  {\n    \"data\": \"<object>\",\n    \"time\": \"<string>\",\n    \"samplerate\": \"<integer>\"\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "78a35382-5d79-4e40-8286-017cd481505e",
+              "name": "Enqueued for processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "batch",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Included when sending events in a file. Size limitations may be addressed by compressing request bodies with gzip or zstd compression. Be sure to set the Content-Encoding to `gzip` or `zstd` when compressing the request body. If sending plaintext, omit this header; \"plaintext\" is included to simplify the example with curl.\n",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"samplerate\": 1,\n    \"data\": {\n      \"method\": \"GET\",\n      \"endpoint\": \"/foo\",\n      \"shard\": \"users\",\n      \"duration_ms\": 32\n    }\n  },\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"data\": {\n      \"some_other_key\": \"value\",\n      \"duration_ms\": 40\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"status\": 202\n  },\n  {\n    \"status\": 400,\n    \"error\": \"Request body should not be empty.\"\n  },\n  {\n    \"status\": 400,\n    \"error\": \"Event has too many columns.\"\n  },\n  {\n    \"status\": 400,\n    \"error\": \"Request body is malformed and cannot be read.\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01490f49-9a92-4d26-9892-c5ffa17c209b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "batch",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Included when sending events in a file. Size limitations may be addressed by compressing request bodies with gzip or zstd compression. Be sure to set the Content-Encoding to `gzip` or `zstd` when compressing the request body. If sending plaintext, omit this header; \"plaintext\" is included to simplify the example with curl.\n",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"samplerate\": 1,\n    \"data\": {\n      \"method\": \"GET\",\n      \"endpoint\": \"/foo\",\n      \"shard\": \"users\",\n      \"duration_ms\": 32\n    }\n  },\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"data\": {\n      \"some_other_key\": \"value\",\n      \"duration_ms\": 40\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Request body should not be empty.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "258bfde8-5268-4ab2-9143-be34b1a730c8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "batch",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Included when sending events in a file. Size limitations may be addressed by compressing request bodies with gzip or zstd compression. Be sure to set the Content-Encoding to `gzip` or `zstd` when compressing the request body. If sending plaintext, omit this header; \"plaintext\" is included to simplify the example with curl.\n",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"samplerate\": 1,\n    \"data\": {\n      \"method\": \"GET\",\n      \"endpoint\": \"/foo\",\n      \"shard\": \"users\",\n      \"duration_ms\": 32\n    }\n  },\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"data\": {\n      \"some_other_key\": \"value\",\n      \"duration_ms\": 40\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69b0e1be-3616-480f-a07e-efb5ef7fadc1",
+              "name": "Dropped due to administrative throttling",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "batch",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Included when sending events in a file. Size limitations may be addressed by compressing request bodies with gzip or zstd compression. Be sure to set the Content-Encoding to `gzip` or `zstd` when compressing the request body. If sending plaintext, omit this header; \"plaintext\" is included to simplify the example with curl.\n",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"samplerate\": 1,\n    \"data\": {\n      \"method\": \"GET\",\n      \"endpoint\": \"/foo\",\n      \"shard\": \"users\",\n      \"duration_ms\": 32\n    }\n  },\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"data\": {\n      \"some_other_key\": \"value\",\n      \"duration_ms\": 40\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Event dropped due to administrative throttling\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01059948-2d42-4501-b4df-289456f88d38",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "batch",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Included when sending events in a file. Size limitations may be addressed by compressing request bodies with gzip or zstd compression. Be sure to set the Content-Encoding to `gzip` or `zstd` when compressing the request body. If sending plaintext, omit this header; \"plaintext\" is included to simplify the example with curl.\n",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"samplerate\": 1,\n    \"data\": {\n      \"method\": \"GET\",\n      \"endpoint\": \"/foo\",\n      \"shard\": \"users\",\n      \"duration_ms\": 32\n    }\n  },\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"data\": {\n      \"some_other_key\": \"value\",\n      \"duration_ms\": 40\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "494874bb-5440-4751-9edc-d726c7653dba",
+              "name": "Dropped due to rate limiting",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "batch",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "Included when sending events in a file. Size limitations may be addressed by compressing request bodies with gzip or zstd compression. Be sure to set the Content-Encoding to `gzip` or `zstd` when compressing the request body. If sending plaintext, omit this header; \"plaintext\" is included to simplify the example with curl.\n",
+                    "key": "Content-Encoding",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"samplerate\": 1,\n    \"data\": {\n      \"method\": \"GET\",\n      \"endpoint\": \"/foo\",\n      \"shard\": \"users\",\n      \"duration_ms\": 32\n    }\n  },\n  {\n    \"time\": \"2006-01-02T15:04:05.99Z\",\n    \"data\": {\n      \"some_other_key\": \"value\",\n      \"duration_ms\": 40\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Request dropped due to rate limiting.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "59b3000a-015c-4a3c-8aa1-c1eeb8e035ea",
+          "name": "Create an Event",
+          "request": {
+            "name": "Create an Event",
+            "description": {
+              "content": "Using this endpoint for anything more than testing is highly discouraged.\n\nSending events in batches will be much more efficient and should be preferred if at all possible.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "events",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "The Event's timestamp. Optional. Defaults to server time.",
+                "key": "X-Honeycomb-Event-Time",
+                "value": "<integer>"
+              },
+              {
+                "disabled": false,
+                "description": "Optional. Defaults to 1.",
+                "key": "X-Honeycomb-Samplerate",
+                "value": "<integer>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"key_0\": \"<string,number,boolean>\",\n  \"key_1\": \"<string,number,boolean>\",\n  \"key_2\": \"<string,number,boolean>\",\n  \"key_3\": \"<string,number,boolean>\",\n  \"key_4\": \"<string,number,boolean>\",\n  \"key_5\": \"<string,number,boolean>\",\n  \"key_6\": \"<string,number,boolean>\",\n  \"key_7\": \"<string,number,boolean>\",\n  \"key_8\": \"<string,number,boolean>\",\n  \"key_9\": \"<string,number,boolean>\",\n  \"key_10\": \"<string,number,boolean>\",\n  \"key_11\": \"<string,number,boolean>\",\n  \"key_12\": \"<string,number,boolean>\",\n  \"key_13\": \"<string,number,boolean>\",\n  \"key_14\": \"<string,number,boolean>\",\n  \"key_15\": \"<string,number,boolean>\",\n  \"key_16\": \"<string,number,boolean>\",\n  \"key_17\": \"<string,number,boolean>\",\n  \"key_18\": \"<string,number,boolean>\",\n  \"key_19\": \"<string,number,boolean>\",\n  \"key_20\": \"<string,number,boolean>\",\n  \"key_21\": \"<string,number,boolean>\",\n  \"key_22\": \"<string,number,boolean>\",\n  \"key_23\": \"<string,number,boolean>\",\n  \"key_24\": \"<string,number,boolean>\",\n  \"key_25\": \"<string,number,boolean>\",\n  \"key_26\": \"<string,number,boolean>\",\n  \"key_27\": \"<string,number,boolean>\",\n  \"key_28\": \"<string,number,boolean>\",\n  \"key_29\": \"<string,number,boolean>\",\n  \"key_30\": \"<string,number,boolean>\",\n  \"key_31\": \"<string,number,boolean>\",\n  \"key_32\": \"<string,number,boolean>\",\n  \"key_33\": \"<string,number,boolean>\",\n  \"key_34\": \"<string,number,boolean>\",\n  \"key_35\": \"<string,number,boolean>\",\n  \"key_36\": \"<string,number,boolean>\",\n  \"key_37\": \"<string,number,boolean>\",\n  \"key_38\": \"<string,number,boolean>\",\n  \"key_39\": \"<string,number,boolean>\",\n  \"key_40\": \"<string,number,boolean>\",\n  \"key_41\": \"<string,number,boolean>\",\n  \"key_42\": \"<string,number,boolean>\",\n  \"key_43\": \"<string,number,boolean>\",\n  \"key_44\": \"<string,number,boolean>\",\n  \"key_45\": \"<string,number,boolean>\",\n  \"key_46\": \"<string,number,boolean>\",\n  \"key_47\": \"<string,number,boolean>\",\n  \"key_48\": \"<string,number,boolean>\",\n  \"key_49\": \"<string,number,boolean>\",\n  \"key_50\": \"<string,number,boolean>\",\n  \"key_51\": \"<string,number,boolean>\",\n  \"key_52\": \"<string,number,boolean>\",\n  \"key_53\": \"<string,number,boolean>\",\n  \"key_54\": \"<string,number,boolean>\",\n  \"key_55\": \"<string,number,boolean>\",\n  \"key_56\": \"<string,number,boolean>\",\n  \"key_57\": \"<string,number,boolean>\",\n  \"key_58\": \"<string,number,boolean>\",\n  \"key_59\": \"<string,number,boolean>\",\n  \"key_60\": \"<string,number,boolean>\",\n  \"key_61\": \"<string,number,boolean>\",\n  \"key_62\": \"<string,number,boolean>\",\n  \"key_63\": \"<string,number,boolean>\",\n  \"key_64\": \"<string,number,boolean>\",\n  \"key_65\": \"<string,number,boolean>\",\n  \"key_66\": \"<string,number,boolean>\",\n  \"key_67\": \"<string,number,boolean>\",\n  \"key_68\": \"<string,number,boolean>\",\n  \"key_69\": \"<string,number,boolean>\",\n  \"key_70\": \"<string,number,boolean>\",\n  \"key_71\": \"<string,number,boolean>\",\n  \"key_72\": \"<string,number,boolean>\",\n  \"key_73\": \"<string,number,boolean>\",\n  \"key_74\": \"<string,number,boolean>\",\n  \"key_75\": \"<string,number,boolean>\",\n  \"key_76\": \"<string,number,boolean>\",\n  \"key_77\": \"<string,number,boolean>\",\n  \"key_78\": \"<string,number,boolean>\",\n  \"key_79\": \"<string,number,boolean>\",\n  \"key_80\": \"<string,number,boolean>\",\n  \"key_81\": \"<string,number,boolean>\",\n  \"key_82\": \"<string,number,boolean>\",\n  \"key_83\": \"<string,number,boolean>\",\n  \"key_84\": \"<string,number,boolean>\",\n  \"key_85\": \"<string,number,boolean>\",\n  \"key_86\": \"<string,number,boolean>\",\n  \"key_87\": \"<string,number,boolean>\",\n  \"key_88\": \"<string,number,boolean>\",\n  \"key_89\": \"<string,number,boolean>\",\n  \"key_90\": \"<string,number,boolean>\",\n  \"key_91\": \"<string,number,boolean>\",\n  \"key_92\": \"<string,number,boolean>\",\n  \"key_93\": \"<string,number,boolean>\",\n  \"key_94\": \"<string,number,boolean>\",\n  \"key_95\": \"<string,number,boolean>\",\n  \"key_96\": \"<string,number,boolean>\",\n  \"key_97\": \"<string,number,boolean>\",\n  \"key_98\": \"<string,number,boolean>\",\n  \"key_99\": \"<string,number,boolean>\",\n  \"key_100\": \"<string,number,boolean>\",\n  \"key_101\": \"<string,number,boolean>\",\n  \"key_102\": \"<string,number,boolean>\",\n  \"key_103\": \"<string,number,boolean>\",\n  \"key_104\": \"<string,number,boolean>\",\n  \"key_105\": \"<string,number,boolean>\",\n  \"key_106\": \"<string,number,boolean>\",\n  \"key_107\": \"<string,number,boolean>\",\n  \"key_108\": \"<string,number,boolean>\",\n  \"key_109\": \"<string,number,boolean>\",\n  \"key_110\": \"<string,number,boolean>\",\n  \"key_111\": \"<string,number,boolean>\",\n  \"key_112\": \"<string,number,boolean>\",\n  \"key_113\": \"<string,number,boolean>\",\n  \"key_114\": \"<string,number,boolean>\",\n  \"key_115\": \"<string,number,boolean>\",\n  \"key_116\": \"<string,number,boolean>\",\n  \"key_117\": \"<string,number,boolean>\",\n  \"key_118\": \"<string,number,boolean>\",\n  \"key_119\": \"<string,number,boolean>\",\n  \"key_120\": \"<string,number,boolean>\",\n  \"key_121\": \"<string,number,boolean>\",\n  \"key_122\": \"<string,number,boolean>\",\n  \"key_123\": \"<string,number,boolean>\",\n  \"key_124\": \"<string,number,boolean>\",\n  \"key_125\": \"<string,number,boolean>\",\n  \"key_126\": \"<string,number,boolean>\",\n  \"key_127\": \"<string,number,boolean>\",\n  \"key_128\": \"<string,number,boolean>\",\n  \"key_129\": \"<string,number,boolean>\",\n  \"key_130\": \"<string,number,boolean>\",\n  \"key_131\": \"<string,number,boolean>\",\n  \"key_132\": \"<string,number,boolean>\",\n  \"key_133\": \"<string,number,boolean>\",\n  \"key_134\": \"<string,number,boolean>\",\n  \"key_135\": \"<string,number,boolean>\",\n  \"key_136\": \"<string,number,boolean>\",\n  \"key_137\": \"<string,number,boolean>\",\n  \"key_138\": \"<string,number,boolean>\",\n  \"key_139\": \"<string,number,boolean>\",\n  \"key_140\": \"<string,number,boolean>\",\n  \"key_141\": \"<string,number,boolean>\",\n  \"key_142\": \"<string,number,boolean>\",\n  \"key_143\": \"<string,number,boolean>\",\n  \"key_144\": \"<string,number,boolean>\",\n  \"key_145\": \"<string,number,boolean>\",\n  \"key_146\": \"<string,number,boolean>\",\n  \"key_147\": \"<string,number,boolean>\",\n  \"key_148\": \"<string,number,boolean>\",\n  \"key_149\": \"<string,number,boolean>\",\n  \"key_150\": \"<string,number,boolean>\",\n  \"key_151\": \"<string,number,boolean>\",\n  \"key_152\": \"<string,number,boolean>\",\n  \"key_153\": \"<string,number,boolean>\",\n  \"key_154\": \"<string,number,boolean>\",\n  \"key_155\": \"<string,number,boolean>\",\n  \"key_156\": \"<string,number,boolean>\",\n  \"key_157\": \"<string,number,boolean>\",\n  \"key_158\": \"<string,number,boolean>\",\n  \"key_159\": \"<string,number,boolean>\",\n  \"key_160\": \"<string,number,boolean>\",\n  \"key_161\": \"<string,number,boolean>\",\n  \"key_162\": \"<string,number,boolean>\",\n  \"key_163\": \"<string,number,boolean>\",\n  \"key_164\": \"<string,number,boolean>\",\n  \"key_165\": \"<string,number,boolean>\",\n  \"key_166\": \"<string,number,boolean>\",\n  \"key_167\": \"<string,number,boolean>\",\n  \"key_168\": \"<string,number,boolean>\",\n  \"key_169\": \"<string,number,boolean>\",\n  \"key_170\": \"<string,number,boolean>\",\n  \"key_171\": \"<string,number,boolean>\",\n  \"key_172\": \"<string,number,boolean>\",\n  \"key_173\": \"<string,number,boolean>\",\n  \"key_174\": \"<string,number,boolean>\",\n  \"key_175\": \"<string,number,boolean>\",\n  \"key_176\": \"<string,number,boolean>\",\n  \"key_177\": \"<string,number,boolean>\",\n  \"key_178\": \"<string,number,boolean>\",\n  \"key_179\": \"<string,number,boolean>\",\n  \"key_180\": \"<string,number,boolean>\",\n  \"key_181\": \"<string,number,boolean>\",\n  \"key_182\": \"<string,number,boolean>\",\n  \"key_183\": \"<string,number,boolean>\",\n  \"key_184\": \"<string,number,boolean>\",\n  \"key_185\": \"<string,number,boolean>\",\n  \"key_186\": \"<string,number,boolean>\",\n  \"key_187\": \"<string,number,boolean>\",\n  \"key_188\": \"<string,number,boolean>\",\n  \"key_189\": \"<string,number,boolean>\",\n  \"key_190\": \"<string,number,boolean>\",\n  \"key_191\": \"<string,number,boolean>\",\n  \"key_192\": \"<string,number,boolean>\",\n  \"key_193\": \"<string,number,boolean>\",\n  \"key_194\": \"<string,number,boolean>\",\n  \"key_195\": \"<string,number,boolean>\",\n  \"key_196\": \"<string,number,boolean>\",\n  \"key_197\": \"<string,number,boolean>\",\n  \"key_198\": \"<string,number,boolean>\",\n  \"key_199\": \"<string,number,boolean>\",\n  \"key_200\": \"<string,number,boolean>\",\n  \"key_201\": \"<string,number,boolean>\",\n  \"key_202\": \"<string,number,boolean>\",\n  \"key_203\": \"<string,number,boolean>\",\n  \"key_204\": \"<string,number,boolean>\",\n  \"key_205\": \"<string,number,boolean>\",\n  \"key_206\": \"<string,number,boolean>\",\n  \"key_207\": \"<string,number,boolean>\",\n  \"key_208\": \"<string,number,boolean>\",\n  \"key_209\": \"<string,number,boolean>\",\n  \"key_210\": \"<string,number,boolean>\",\n  \"key_211\": \"<string,number,boolean>\",\n  \"key_212\": \"<string,number,boolean>\",\n  \"key_213\": \"<string,number,boolean>\",\n  \"key_214\": \"<string,number,boolean>\",\n  \"key_215\": \"<string,number,boolean>\",\n  \"key_216\": \"<string,number,boolean>\",\n  \"key_217\": \"<string,number,boolean>\",\n  \"key_218\": \"<string,number,boolean>\",\n  \"key_219\": \"<string,number,boolean>\",\n  \"key_220\": \"<string,number,boolean>\",\n  \"key_221\": \"<string,number,boolean>\",\n  \"key_222\": \"<string,number,boolean>\",\n  \"key_223\": \"<string,number,boolean>\",\n  \"key_224\": \"<string,number,boolean>\",\n  \"key_225\": \"<string,number,boolean>\",\n  \"key_226\": \"<string,number,boolean>\",\n  \"key_227\": \"<string,number,boolean>\",\n  \"key_228\": \"<string,number,boolean>\",\n  \"key_229\": \"<string,number,boolean>\",\n  \"key_230\": \"<string,number,boolean>\",\n  \"key_231\": \"<string,number,boolean>\",\n  \"key_232\": \"<string,number,boolean>\",\n  \"key_233\": \"<string,number,boolean>\",\n  \"key_234\": \"<string,number,boolean>\",\n  \"key_235\": \"<string,number,boolean>\",\n  \"key_236\": \"<string,number,boolean>\",\n  \"key_237\": \"<string,number,boolean>\",\n  \"key_238\": \"<string,number,boolean>\",\n  \"key_239\": \"<string,number,boolean>\",\n  \"key_240\": \"<string,number,boolean>\",\n  \"key_241\": \"<string,number,boolean>\",\n  \"key_242\": \"<string,number,boolean>\",\n  \"key_243\": \"<string,number,boolean>\",\n  \"key_244\": \"<string,number,boolean>\",\n  \"key_245\": \"<string,number,boolean>\",\n  \"key_246\": \"<string,number,boolean>\",\n  \"key_247\": \"<string,number,boolean>\",\n  \"key_248\": \"<string,number,boolean>\",\n  \"key_249\": \"<string,number,boolean>\",\n  \"key_250\": \"<string,number,boolean>\",\n  \"key_251\": \"<string,number,boolean>\",\n  \"key_252\": \"<string,number,boolean>\",\n  \"key_253\": \"<string,number,boolean>\",\n  \"key_254\": \"<string,number,boolean>\",\n  \"key_255\": \"<string,number,boolean>\",\n  \"key_256\": \"<string,number,boolean>\",\n  \"key_257\": \"<string,number,boolean>\",\n  \"key_258\": \"<string,number,boolean>\",\n  \"key_259\": \"<string,number,boolean>\",\n  \"key_260\": \"<string,number,boolean>\",\n  \"key_261\": \"<string,number,boolean>\",\n  \"key_262\": \"<string,number,boolean>\",\n  \"key_263\": \"<string,number,boolean>\",\n  \"key_264\": \"<string,number,boolean>\",\n  \"key_265\": \"<string,number,boolean>\",\n  \"key_266\": \"<string,number,boolean>\",\n  \"key_267\": \"<string,number,boolean>\",\n  \"key_268\": \"<string,number,boolean>\",\n  \"key_269\": \"<string,number,boolean>\",\n  \"key_270\": \"<string,number,boolean>\",\n  \"key_271\": \"<string,number,boolean>\",\n  \"key_272\": \"<string,number,boolean>\",\n  \"key_273\": \"<string,number,boolean>\",\n  \"key_274\": \"<string,number,boolean>\",\n  \"key_275\": \"<string,number,boolean>\",\n  \"key_276\": \"<string,number,boolean>\",\n  \"key_277\": \"<string,number,boolean>\",\n  \"key_278\": \"<string,number,boolean>\",\n  \"key_279\": \"<string,number,boolean>\",\n  \"key_280\": \"<string,number,boolean>\",\n  \"key_281\": \"<string,number,boolean>\",\n  \"key_282\": \"<string,number,boolean>\",\n  \"key_283\": \"<string,number,boolean>\",\n  \"key_284\": \"<string,number,boolean>\",\n  \"key_285\": \"<string,number,boolean>\",\n  \"key_286\": \"<string,number,boolean>\",\n  \"key_287\": \"<string,number,boolean>\",\n  \"key_288\": \"<string,number,boolean>\",\n  \"key_289\": \"<string,number,boolean>\",\n  \"key_290\": \"<string,number,boolean>\",\n  \"key_291\": \"<string,number,boolean>\",\n  \"key_292\": \"<string,number,boolean>\",\n  \"key_293\": \"<string,number,boolean>\",\n  \"key_294\": \"<string,number,boolean>\",\n  \"key_295\": \"<string,number,boolean>\",\n  \"key_296\": \"<string,number,boolean>\",\n  \"key_297\": \"<string,number,boolean>\",\n  \"key_298\": \"<string,number,boolean>\",\n  \"key_299\": \"<string,number,boolean>\",\n  \"key_300\": \"<string,number,boolean>\",\n  \"key_301\": \"<string,number,boolean>\",\n  \"key_302\": \"<string,number,boolean>\",\n  \"key_303\": \"<string,number,boolean>\",\n  \"key_304\": \"<string,number,boolean>\",\n  \"key_305\": \"<string,number,boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7e4d9bc4-8a9b-48f8-b97d-b3258136732c",
+              "name": "Enqueued for processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "events",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Event's timestamp. Optional. Defaults to server time.",
+                    "key": "X-Honeycomb-Event-Time",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional. Defaults to 1.",
+                    "key": "X-Honeycomb-Samplerate",
+                    "value": "<integer>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"GET\",\n  \"endpoint\": \"/foo\",\n  \"shard\": \"users\",\n  \"duration_ms\": 32\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "1d510b0b-f976-462a-bad1-50390c00ca07",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "events",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Event's timestamp. Optional. Defaults to server time.",
+                    "key": "X-Honeycomb-Event-Time",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional. Defaults to 1.",
+                    "key": "X-Honeycomb-Samplerate",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"GET\",\n  \"endpoint\": \"/foo\",\n  \"shard\": \"users\",\n  \"duration_ms\": 32\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Request body should not be empty.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "14c787bd-3e24-4eff-b180-da2b732e6214",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "events",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Event's timestamp. Optional. Defaults to server time.",
+                    "key": "X-Honeycomb-Event-Time",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional. Defaults to 1.",
+                    "key": "X-Honeycomb-Samplerate",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"GET\",\n  \"endpoint\": \"/foo\",\n  \"shard\": \"users\",\n  \"duration_ms\": 32\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4eaf8030-c790-4302-a9c1-b109153c8668",
+              "name": "Dropped due to administrative throttling",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "events",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Event's timestamp. Optional. Defaults to server time.",
+                    "key": "X-Honeycomb-Event-Time",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional. Defaults to 1.",
+                    "key": "X-Honeycomb-Samplerate",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"GET\",\n  \"endpoint\": \"/foo\",\n  \"shard\": \"users\",\n  \"duration_ms\": 32\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Event dropped due to administrative throttling\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3fbc48a0-cbb9-4dc8-b7ed-54db6f0333af",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "events",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Event's timestamp. Optional. Defaults to server time.",
+                    "key": "X-Honeycomb-Event-Time",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional. Defaults to 1.",
+                    "key": "X-Honeycomb-Samplerate",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"GET\",\n  \"endpoint\": \"/foo\",\n  \"shard\": \"users\",\n  \"duration_ms\": 32\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "496fd345-db11-47f8-ac4d-d2027a6d470f",
+              "name": "Dropped due to rate limiting",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "events",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "The Event's timestamp. Optional. Defaults to server time.",
+                    "key": "X-Honeycomb-Event-Time",
+                    "value": "<integer>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "Optional. Defaults to 1.",
+                    "key": "X-Honeycomb-Samplerate",
+                    "value": "<integer>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"method\": \"GET\",\n  \"endpoint\": \"/foo\",\n  \"shard\": \"users\",\n  \"duration_ms\": 32\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Request dropped due to rate limiting.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.honeycomb.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8dac9dbb-bc2e-4481-9305-367dc42dd438",
+    "name": "Honeycomb Auth Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+      "type": "text/plain"
+    }
+  }
+}

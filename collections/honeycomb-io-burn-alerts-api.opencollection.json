@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Auth Burn Alerts API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Burn Alerts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List All Burn Alerts for an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "slo_id",
+                "value": "",
+                "type": "query",
+                "description": "For use with the list endpoint to retrieve all burn alerts for a specified SLO."
+              }
+            ]
+          },
+          "docs": "Get all burn alerts associated with the SLO specified in the `slo_id` query param. It is not currently possible to retrieve all burn alerts for a dataset, environment, or team.\n"
+        },
+        {
+          "info": {
+            "name": "Create a Burn Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Burn Alert against a specified SLO.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Burn Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "burnAlertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Burn Alert."
+              }
+            ]
+          },
+          "docs": "Get a single Burn Alert by ID.\n"
+        },
+        {
+          "info": {
+            "name": "Update a Burn Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "burnAlertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Burn Alert."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Burn Alert by specifying its ID and full details.\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Burn Alert",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/burn_alerts/:datasetSlug/:burnAlertId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "burnAlertId",
+                "value": "",
+                "type": "path",
+                "description": "The unique identifier (ID) of a Burn Alert."
+              }
+            ]
+          },
+          "docs": "Delete a Burn Alert by specifying its ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

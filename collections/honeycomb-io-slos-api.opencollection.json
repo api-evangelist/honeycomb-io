@@ -1,0 +1,219 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Auth SLOs API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "SLOs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all SLOs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ]
+          },
+          "docs": "Get all SLOs for a dataset or environment (using  `__all__`). This action returns any SLOs, including those applied with multiple datasets.\n"
+        },
+        {
+          "info": {
+            "name": "Create an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an SLO on the provided dataset.\n"
+        },
+        {
+          "info": {
+            "name": "Get an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the SLO."
+              },
+              {
+                "name": "detailed",
+                "value": "",
+                "type": "query",
+                "description": "Allows SLO reporting data (`status`, `burn_rate`, `budget_remaining` and `compliance`) to be returned when retrieving a single SLO.\n\nThis feature is available as part of the [Honeycomb Enterprise plan](https://www.honeycomb.io/pricing/).\n\n**Note:** `burn_rate` is calculated based on the last 4 hours of data.\n"
+              }
+            ]
+          },
+          "docs": "Get an SLO by ID.\n"
+        },
+        {
+          "info": {
+            "name": "Update an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the SLO."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an SLO by specifying its ID and full SLO details.\n"
+        },
+        {
+          "info": {
+            "name": "Delete an SLO",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the SLO."
+              }
+            ]
+          },
+          "docs": "Delete an SLO by specifying its ID.\n"
+        },
+        {
+          "info": {
+            "name": "Get SLO Realtime Counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId/counts",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the SLO."
+              },
+              {
+                "name": "start_time",
+                "value": "1745251200",
+                "type": "query",
+                "description": "Start of the time range as a Unix timestamp (seconds). Must be within the last 24 hours and no later than `end_time`.\n"
+              },
+              {
+                "name": "end_time",
+                "value": "1745254740",
+                "type": "query",
+                "description": "End of the time range as a Unix timestamp (seconds). Must be greater than `start_time` and within the same clock hour as `start_time`. Realtime counts accumulate from the start of each hour and reset at hour boundaries; use the [Get SLO Hourly Counts History endpoint](https://api-docs.honeycomb.io/api/slos/getSloHourlyCountsHistory/) for completed hours.\n"
+              }
+            ]
+          },
+          "docs": "Get per-minute success and failure event counts for an SLO, updated approximately once per minute from a rolling 24-hour window.\n\nThis endpoint is intended for near-real-time integrations such as external SLO dashboards and alerting tools (e.g. nobl9). For weekly compliance history, use the [Get SLO History endpoint](https://api-docs.honeycomb.io/api/reporting/getSloHistory/).\n\n**Requirements:**\n- Available on the [Enterprise plan](https://www.honeycomb.io/pricing/) only.\n- This feature must be "
+        },
+        {
+          "info": {
+            "name": "Get SLO Hourly Counts History",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/slos/:datasetSlug/:sloId/counts/history",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "sloId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of the SLO."
+              },
+              {
+                "name": "start_time",
+                "value": "1745168400",
+                "type": "query",
+                "description": "Start of the time range as a Unix timestamp (seconds).\n"
+              },
+              {
+                "name": "end_time",
+                "value": "1745254800",
+                "type": "query",
+                "description": "End of the time range as a Unix timestamp (seconds). Must be greater than `start_time`.\n"
+              }
+            ]
+          },
+          "docs": "Get hourly-bucketed total and error event counts for an SLO from the persistent historical store. Use this endpoint to retrieve completed historical hours; pair with the [Get SLO Realtime Counts endpoint](https://api-docs.honeycomb.io/api/slos/getslorealtimecounts/) for the current in-progress hour.\n\n**Requirements:**\n- Available on the [Enterprise plan](https://www.honeycomb.io/pricing/) only.\n- This feature must be enabled for your team. Contact your account team\n  to request access.\n\n\n**Parti"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,272 @@
+{
+  "item": [
+    {
+      "id": "83b3c1ab-6503-4507-82b5-f648e5624bb1",
+      "name": "Kinesis Events",
+      "description": {
+        "content": "The Kinesis Events API endpoints allow Honeycomb to process streaming events from Amazon Kinesis.\n\nRefer to the [Honeycomb AWS integrations](https://docs.honeycomb.io/integrations/aws/how-aws-integrations-work/) documentation for more information.\n\n## Authorization\n\nIt is recommended that an Ingest API key is used for sending events.\n\nA Configuration API key will work, and must have the **Send Events** permission.\nLearn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "43300662-4f67-41e4-bf00-3c033d0a68ab",
+          "name": "Create Kinesis Events",
+          "request": {
+            "name": "Create Kinesis Events",
+            "description": {
+              "content": "This endpoint processes events and metrics coming from AWS through Kinesis Firehose.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "kinesis_events",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) AWS Request ID associated with the Kinesis Firehose.\n",
+                "key": "X-Amz-Firehose-Request-Id",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"requestId\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"records\": [\n    {\n      \"data\": \"<string>\"\n    },\n    {\n      \"data\": \"<string>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ae3a3a8-0341-4f29-97df-3cd3c51eb762",
+              "name": "Events queued for processing",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "kinesis_events",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) AWS Request ID associated with the Kinesis Firehose.\n",
+                    "key": "X-Amz-Firehose-Request-Id",
+                    "value": "33658b45-a8f1-4007-92e8-f601ae33db14"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"records\": [\n    {\n      \"data\": \"string\"\n    },\n    {\n      \"data\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"requestId\": \"string\",\n  \"timestamp\": 3264,\n  \"errorMessage\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d1a6732b-e8e2-42f3-89da-885938d4d30c",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "kinesis_events",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) AWS Request ID associated with the Kinesis Firehose.\n",
+                    "key": "X-Amz-Firehose-Request-Id",
+                    "value": "33658b45-a8f1-4007-92e8-f601ae33db14"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"records\": [\n    {\n      \"data\": \"string\"\n    },\n    {\n      \"data\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11821a1a-7f70-4e51-bae0-62cadb22a11e",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "kinesis_events",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "disabled": false,
+                    "description": "(Required) AWS Request ID associated with the Kinesis Firehose.\n",
+                    "key": "X-Amz-Firehose-Request-Id",
+                    "value": "33658b45-a8f1-4007-92e8-f601ae33db14"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"requestId\": \"<string>\",\n  \"timestamp\": \"<integer>\",\n  \"records\": [\n    {\n      \"data\": \"string\"\n    },\n    {\n      \"data\": \"string\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.honeycomb.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "1d3fcc7a-9cd7-4822-a3a1-806b0a7258fb",
+    "name": "Honeycomb Auth Kinesis Events API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+      "type": "text/plain"
+    }
+  }
+}

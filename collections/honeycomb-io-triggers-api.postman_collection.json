@@ -1,0 +1,2463 @@
+{
+  "item": [
+    {
+      "id": "0acc47e7-eb9d-4165-ba93-e5ea43edb818",
+      "name": "Triggers",
+      "description": {
+        "content": "Triggers let you receive notifications when your data in Honeycomb crosses the thresholds that you configure.\nThe graph on which to alert is as flexible as a Honeycomb query, which helps reduce false positives due to known errors.\n\nTriggers support both standard event-based datasets and metrics datasets. Metrics triggers have additional capabilities\nsuch as granularity control.\nLearn more in the [Triggers documentation](https://docs.honeycomb.io/notify/alert/triggers/).\n\nThis API allows you to list, create, update, and delete Triggers.\n\n## Authorization\n\nThe API key must have the **Manage Triggers** permission. Learn more about [API keys here](https://docs.honeycomb.io/configure/environments/manage-api-keys/).\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e76eb1f3-ee61-456f-a4ce-a9aa9bdaa984",
+          "name": "List All Triggers",
+          "request": {
+            "name": "List All Triggers",
+            "description": {
+              "content": "List all triggers on the provided dataset or environment.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "triggers",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "956ad9fa-2647-4db5-8dab-34dbf7ce5675",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"dataset_slug\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"tags\": [\n      {\n        \"key\": \"team\",\n        \"value\": \"blue\"\n      }\n    ],\n    \"threshold\": {\n      \"op\": \">\",\n      \"value\": 5100.003660935718,\n      \"exceeded_limit\": 1\n    },\n    \"frequency\": 6230,\n    \"alert_type\": \"on_change\",\n    \"disabled\": false,\n    \"triggered\": true,\n    \"recipients\": [\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"evaluation_schedule_type\": \"window\",\n    \"evaluation_schedule\": {\n      \"window\": {\n        \"days_of_week\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"start_time\": \"01:37\",\n        \"end_time\": \"19:33\"\n      }\n    },\n    \"created_at\": \"1997-03-19T12:31:08.453Z\",\n    \"updated_at\": \"1992-06-28T22:08:00.358Z\",\n    \"baseline_details\": {\n      \"offset_minutes\": 60,\n      \"type\": \"percentage\"\n    },\n    \"auto_investigate\": false,\n    \"query\": {},\n    \"query_id\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"dataset_slug\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"tags\": [\n      {\n        \"key\": \"team\",\n        \"value\": \"blue\"\n      }\n    ],\n    \"threshold\": {\n      \"op\": \"<\",\n      \"value\": 1255.7682573610373,\n      \"exceeded_limit\": 1\n    },\n    \"frequency\": 1195,\n    \"alert_type\": \"on_change\",\n    \"disabled\": false,\n    \"triggered\": true,\n    \"recipients\": [\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"evaluation_schedule_type\": \"window\",\n    \"evaluation_schedule\": {\n      \"window\": {\n        \"days_of_week\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"start_time\": \"23:55\",\n        \"end_time\": \"22:38\"\n      }\n    },\n    \"created_at\": \"1973-03-31T19:17:50.585Z\",\n    \"updated_at\": \"1978-05-08T22:09:17.389Z\",\n    \"baseline_details\": {\n      \"offset_minutes\": 60,\n      \"type\": \"percentage\"\n    },\n    \"auto_investigate\": false,\n    \"query\": {},\n    \"query_id\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "837c36f9-a5b7-4c7e-86ab-114b5ff4305e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bc22942c-852d-4a01-9890-2820b92dbc65",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eef4b162-bb2c-412f-bd5b-ef6bb13b80b5",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "58ae85aa-7d10-44a2-a165-3733a6a32429",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b8c55b01-f892-4d78-90f6-46458d3be1f4",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2aeb9e69-39ce-4cad-8897-a17e29807c74",
+          "name": "Create a Trigger",
+          "request": {
+            "name": "Create a Trigger",
+            "description": {
+              "content": "Create a trigger on the provided dataset or environment.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "triggers",
+                ":datasetSlug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<string>\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"<string>\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"<string>\"\n      ],\n      \"start_time\": \"<string>\",\n      \"end_time\": \"<string>\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": \"<integer>\",\n    \"type\": \"<string>\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ff11ef14-e0c4-4d41-bb89-e6aa36cd06a0",
+              "name": "Success - trigger created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 894.7720265715286,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4982,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"6:05\",\n      \"end_time\": \"19:35\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "Relative path to fetch this trigger via API.",
+                  "key": "Location",
+                  "value": "string"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"dataset_slug\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">\",\n    \"value\": 3803.2133327530414,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 8713,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": true,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"22:17\",\n      \"end_time\": \"23:00\"\n    }\n  },\n  \"created_at\": \"1967-04-25T11:59:09.225Z\",\n  \"updated_at\": \"1987-04-08T16:52:34.124Z\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fae1f695-6b65-4dd7-8ba6-46079f90e22f",
+              "name": "The provided request body was invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 894.7720265715286,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4982,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"6:05\",\n      \"end_time\": \"19:35\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"status\": 400,\n  \"type\": \"https://api.honeycomb.io/problems/unparseable\",\n  \"title\": \"The request body could not be parsed.\",\n  \"error\": \"invalid gzip data\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cd66b72-34c5-480f-bac3-a4cd7df19ef8",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 894.7720265715286,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4982,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"6:05\",\n      \"end_time\": \"19:35\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb9306a3-17b0-4204-b0a2-64e3e66e3b46",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 894.7720265715286,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4982,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"6:05\",\n      \"end_time\": \"19:35\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1063226-b336-4f9f-a8d9-491749648cc2",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 894.7720265715286,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4982,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"6:05\",\n      \"end_time\": \"19:35\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "01dbd50e-3d12-43fd-9e06-f7e92fc85147",
+              "name": "The provided request body was over the maximum allowed size.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 894.7720265715286,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4982,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"6:05\",\n      \"end_time\": \"19:35\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Request Entity Too Large",
+              "code": 413,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": 413,\n  \"type\": \"https://api.honeycomb.io/problems/payload-too-large\",\n  \"title\": \"Request body is too large.\",\n  \"error\": \"Body size is larger than maximum size of 100000 bytes\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1015c804-b657-4f51-9950-02d30d8d2570",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 894.7720265715286,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4982,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"6:05\",\n      \"end_time\": \"19:35\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"title\": \"The provided input is invalid.\",\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"type_detail\": [\n    {\n      \"field\": \"string\",\n      \"code\": \"already_exists\",\n      \"description\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"code\": \"already_exists\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f8d8f52a-fe1d-492b-936e-9bf48998b8db",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 894.7720265715286,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4982,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"window\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"saturday\"\n      ],\n      \"start_time\": \"6:05\",\n      \"end_time\": \"19:35\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "322b9cba-d092-4d25-95cf-b8a5bf93b9ab",
+          "name": "Get a Trigger",
+          "request": {
+            "name": "Get a Trigger",
+            "description": {
+              "content": "Fetch details for a single Trigger by Trigger ID.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "triggers",
+                ":datasetSlug",
+                ":triggerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "triggerId",
+                  "description": "(Required) The unique identifier (ID) of a Trigger."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "d270fdf5-1a62-4982-83fa-647ca8d45362",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"dataset_slug\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">\",\n    \"value\": 3803.2133327530414,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 8713,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": true,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"22:17\",\n      \"end_time\": \"23:00\"\n    }\n  },\n  \"created_at\": \"1967-04-25T11:59:09.225Z\",\n  \"updated_at\": \"1987-04-08T16:52:34.124Z\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "688ece6d-e417-458f-9db5-0256b6bc8012",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "31febf2f-8827-400d-937a-83a075cf1bb7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86de9698-92a5-430c-b05c-32b1d50de71a",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da0e9f24-f451-4fa8-9272-243df3e736eb",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf488268-3684-4806-bbc4-d6294ffa890d",
+          "name": "Update a Trigger",
+          "request": {
+            "name": "Update a Trigger",
+            "description": {
+              "content": "Update a trigger by specifying the trigger ID and the same fields used when creating a new trigger.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "triggers",
+                ":datasetSlug",
+                ":triggerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "triggerId",
+                  "description": "(Required) The unique identifier (ID) of a Trigger."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"tags\": [\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    },\n    {\n      \"key\": \"<string>\",\n      \"value\": \"<string>\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<string>\",\n    \"value\": \"<number>\",\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": \"<integer>\",\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"<string>\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"<string>\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"<string>\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"<string>\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"<string>\"\n      ],\n      \"start_time\": \"<string>\",\n      \"end_time\": \"<string>\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": \"<integer>\",\n    \"type\": \"<string>\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4e0f11be-c7ec-4830-bc07-f249a70ce433",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 5913.56439275993,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4875,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"monday\"\n      ],\n      \"start_time\": \"20:05\",\n      \"end_time\": \"8:34\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"dataset_slug\": \"string\",\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \">\",\n    \"value\": 3803.2133327530414,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 8713,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"triggered\": true,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"friday\"\n      ],\n      \"start_time\": \"22:17\",\n      \"end_time\": \"23:00\"\n    }\n  },\n  \"created_at\": \"1967-04-25T11:59:09.225Z\",\n  \"updated_at\": \"1987-04-08T16:52:34.124Z\",\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e5c097c-4f41-4f59-8642-5a5474753dcf",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 5913.56439275993,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4875,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"monday\"\n      ],\n      \"start_time\": \"20:05\",\n      \"end_time\": \"8:34\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "48071804-e987-46c9-bfe1-b50d8270a188",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 5913.56439275993,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4875,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"monday\"\n      ],\n      \"start_time\": \"20:05\",\n      \"end_time\": \"8:34\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ab86cd4-b79b-4526-8419-6594aa0087e8",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 5913.56439275993,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4875,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"monday\"\n      ],\n      \"start_time\": \"20:05\",\n      \"end_time\": \"8:34\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Your team has been denied access to Management APIs, please contact support to be unblocked.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77bed8cc-eefb-40d4-96b5-36d3d415301d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 5913.56439275993,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4875,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"monday\"\n      ],\n      \"start_time\": \"20:05\",\n      \"end_time\": \"8:34\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a39dd04-be14-4c8c-a0cb-c6b18791af99",
+              "name": "Invalid request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/problem+json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 5913.56439275993,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4875,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"monday\"\n      ],\n      \"start_time\": \"20:05\",\n      \"end_time\": \"8:34\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/problem+json"
+                }
+              ],
+              "body": "{\n  \"error\": \"something went wrong!\",\n  \"status\": 422,\n  \"type\": \"https://api.honeycomb.io/problems/validation-failed\",\n  \"title\": \"The provided input is invalid.\",\n  \"detail\": \"string\",\n  \"instance\": \"string\",\n  \"type_detail\": [\n    {\n      \"field\": \"string\",\n      \"code\": \"already_exists\",\n      \"description\": \"string\"\n    },\n    {\n      \"field\": \"string\",\n      \"code\": \"already_exists\",\n      \"description\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fda3705d-3ba9-4dbe-a5a0-6938d571978c",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"string\",\n  \"description\": \"string\",\n  \"tags\": [\n    {\n      \"key\": \"team\",\n      \"value\": \"blue\"\n    }\n  ],\n  \"threshold\": {\n    \"op\": \"<=\",\n    \"value\": 5913.56439275993,\n    \"exceeded_limit\": 1\n  },\n  \"frequency\": 4875,\n  \"alert_type\": \"on_change\",\n  \"disabled\": false,\n  \"recipients\": [\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    {\n      \"id\": \"string\",\n      \"type\": {\n        \"deprecated\": true,\n        \"description\": \"One of the allowed Recipient types.\\nDeprecated: Use the Recipients API first, then pass the Recipient ID.\\n\",\n        \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n      },\n      \"target\": \"string\",\n      \"details\": {\n        \"pagerduty_severity\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"variables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  ],\n  \"evaluation_schedule_type\": \"frequency\",\n  \"evaluation_schedule\": {\n    \"window\": {\n      \"days_of_week\": [\n        \"monday\"\n      ],\n      \"start_time\": \"20:05\",\n      \"end_time\": \"8:34\"\n    }\n  },\n  \"baseline_details\": {\n    \"offset_minutes\": 60,\n    \"type\": \"percentage\"\n  },\n  \"auto_investigate\": false,\n  \"query\": {},\n  \"query_id\": \"string\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b961e2e4-d974-48d7-9590-5ddf661b7dc8",
+          "name": "Delete a Trigger",
+          "request": {
+            "name": "Delete a Trigger",
+            "description": {
+              "content": "Delete a trigger by specifying the trigger ID. The body of the DELETE request should be empty.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "triggers",
+                ":datasetSlug",
+                ":triggerId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "datasetSlug",
+                  "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "triggerId",
+                  "description": "(Required) The unique identifier (ID) of a Trigger."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE"
+          },
+          "response": [
+            {
+              "id": "5aa3ed17-5adb-447c-a69e-3011a02bd50f",
+              "name": "Success - no content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b902b763-422e-4cec-9f24-32c38ea773dc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dbf6418e-1c0e-4a43-bedc-7da29c4fc483",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2aeb6e41-9c60-4549-af05-05c31554b940",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "triggers",
+                    ":datasetSlug",
+                    ":triggerId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "datasetSlug",
+                      "description": "(Required) The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "triggerId",
+                      "description": "(Required) The unique identifier (ID) of a Trigger."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc1f9d02-4508-45ef-b671-3dfe01e5918f",
+          "name": "Get Triggers Associated with a Recipient",
+          "request": {
+            "name": "Get Triggers Associated with a Recipient",
+            "description": {
+              "content": "List all triggers that will alert a given Recipient. **Important:** This request will return all Triggers associated with the specific Recipient across your entire Honeycomb team rather than being scoped to a dataset or environment.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "1",
+                "recipients",
+                ":recipientId",
+                "triggers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "recipientId",
+                  "description": "(Required) Unique identifier (ID) of a Recipient."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "3ab92f6c-22c3-4bd3-9d37-e22c104a02c3",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "recipients",
+                    ":recipientId",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recipientId",
+                      "description": "(Required) Unique identifier (ID) of a Recipient."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": \"string\",\n    \"dataset_slug\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"tags\": [\n      {\n        \"key\": \"team\",\n        \"value\": \"blue\"\n      }\n    ],\n    \"threshold\": {\n      \"op\": \">\",\n      \"value\": 5100.003660935718,\n      \"exceeded_limit\": 1\n    },\n    \"frequency\": 6230,\n    \"alert_type\": \"on_change\",\n    \"disabled\": false,\n    \"triggered\": true,\n    \"recipients\": [\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"evaluation_schedule_type\": \"window\",\n    \"evaluation_schedule\": {\n      \"window\": {\n        \"days_of_week\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"start_time\": \"01:37\",\n        \"end_time\": \"19:33\"\n      }\n    },\n    \"created_at\": \"1997-03-19T12:31:08.453Z\",\n    \"updated_at\": \"1992-06-28T22:08:00.358Z\",\n    \"baseline_details\": {\n      \"offset_minutes\": 60,\n      \"type\": \"percentage\"\n    },\n    \"auto_investigate\": false,\n    \"query\": {},\n    \"query_id\": \"string\"\n  },\n  {\n    \"id\": \"string\",\n    \"dataset_slug\": \"string\",\n    \"name\": \"string\",\n    \"description\": \"string\",\n    \"tags\": [\n      {\n        \"key\": \"team\",\n        \"value\": \"blue\"\n      }\n    ],\n    \"threshold\": {\n      \"op\": \"<\",\n      \"value\": 1255.7682573610373,\n      \"exceeded_limit\": 1\n    },\n    \"frequency\": 1195,\n    \"alert_type\": \"on_change\",\n    \"disabled\": false,\n    \"triggered\": true,\n    \"recipients\": [\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      {\n        \"id\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"type\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"target\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"details\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    ],\n    \"evaluation_schedule_type\": \"window\",\n    \"evaluation_schedule\": {\n      \"window\": {\n        \"days_of_week\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"start_time\": \"23:55\",\n        \"end_time\": \"22:38\"\n      }\n    },\n    \"created_at\": \"1973-03-31T19:17:50.585Z\",\n    \"updated_at\": \"1978-05-08T22:09:17.389Z\",\n    \"baseline_details\": {\n      \"offset_minutes\": 60,\n      \"type\": \"percentage\"\n    },\n    \"auto_investigate\": false,\n    \"query\": {},\n    \"query_id\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8c9bb9be-ed96-42d7-a5b5-d7ba29fceac3",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "recipients",
+                    ":recipientId",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recipientId",
+                      "description": "(Required) Unique identifier (ID) of a Recipient."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unknown API key - check your credentials\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c1eb4ca6-cc6f-41c0-a53c-b0615e709451",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "recipients",
+                    ":recipientId",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recipientId",
+                      "description": "(Required) Unique identifier (ID) of a Recipient."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"dataset not found\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3630b56d-2e31-4ffa-a8d6-44481c1d01dd",
+              "name": "Rate Limit Exceeded",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "recipients",
+                    ":recipientId",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recipientId",
+                      "description": "(Required) Unique identifier (ID) of a Recipient."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "The RFC7231 header used to indicate when a client should retry requests.\n",
+                  "key": "Retry-After",
+                  "value": "Fri, 22 Mar 2024 18:37:53 GMT"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"limit=X, remaining=Y, reset=Z\".\nWhere:\n  - X is the maximum number of requests allowed in the window\n  - Y is the number of requests remaining in the window\n  - Z is the number of seconds until the limit resets\n",
+                  "key": "Ratelimit",
+                  "value": "limit=100, remaining=50, reset=60"
+                },
+                {
+                  "disabled": false,
+                  "description": "The (draft07) recommended header from the IETF on rate limiting.\nThe value of the header is formatted \"X;w=Y\".\nWhere:\n - X is the maximum number of requests allowed in a window\n - Y is the size of the window in seconds\n",
+                  "key": "RateLimitPolicy",
+                  "value": "100;w=60"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Rate Limited\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "392e8552-896d-4270-a415-d9ccd7b4dce7",
+              "name": "Error",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "1",
+                    "recipients",
+                    ":recipientId",
+                    "triggers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "recipientId",
+                      "description": "(Required) Unique identifier (ID) of a Recipient."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.honeycomb.io",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "142b0f4f-8015-469f-b1bb-c62e48f7c33f",
+    "name": "Honeycomb Auth Triggers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The API allows programmatic management of many resources within Honeycomb.\n\nPlease report any discrepancies with actual API behavior in <a href=\"https://docs.honeycomb.io/troubleshoot/community/\">Pollinators Slack</a> or to <a href=\"https://support.honeycomb.io/\">Honeycomb Support</a>.\n\n\nContact Support:\n Email: support@honeycomb.io",
+      "type": "text/plain"
+    }
+  }
+}

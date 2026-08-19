@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Auth Dataset Definitions API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dataset Definitions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get all Dataset Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/dataset_definitions/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ]
+          },
+          "docs": "Get all definitions for a Dataset.\nThe response returns an object with a Dataset Definition for each set Dataset Definition type.\n"
+        },
+        {
+          "info": {
+            "name": "Set or Update Dataset Definitions",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api.honeycomb.io/1/dataset_definitions/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set or update one or more definitions for a Dataset.\n**Note**: While the PATCH payload can include the `column_type`, Honeycomb does not use this field when updating Dataset Definitions.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

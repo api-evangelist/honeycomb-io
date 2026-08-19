@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Auth Kinesis Events API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Kinesis Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Kinesis Events",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/kinesis_events/:datasetSlug",
+            "headers": [
+              {
+                "name": "X-Amz-Firehose-Request-Id",
+                "value": "33658b45-a8f1-4007-92e8-f601ae33db14"
+              }
+            ],
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint processes events and metrics coming from AWS through Kinesis Firehose.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

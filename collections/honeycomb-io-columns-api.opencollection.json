@@ -1,0 +1,145 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Honeycomb Auth Columns API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Columns",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List all Columns",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              },
+              {
+                "name": "key_name",
+                "value": "",
+                "type": "query",
+                "description": "the column key name"
+              }
+            ]
+          },
+          "docs": "Get all the Columns in a dataset or environment.\nUse `__all__`  as the dataset slug to retrieve all Columns across all datasets in the environment (not available for classic environments).\n"
+        },
+        {
+          "info": {
+            "name": "Create a Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug or use `__all__` for endpoints that support environment-wide operations.\n"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a column by providing corresponding details for that type.\n"
+        },
+        {
+          "info": {
+            "name": "Get a Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a column."
+              }
+            ]
+          },
+          "docs": "Get a Column"
+        },
+        {
+          "info": {
+            "name": "Update a Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a column."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a column\n"
+        },
+        {
+          "info": {
+            "name": "Delete a Column",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.honeycomb.io/1/columns/:datasetSlug/:columnId",
+            "params": [
+              {
+                "name": "datasetSlug",
+                "value": "",
+                "type": "path",
+                "description": "The dataset slug.\n"
+              },
+              {
+                "name": "columnId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier (ID) of a column."
+              }
+            ]
+          },
+          "docs": "Delete a column. **Note**: Deleted columns are no longer queryable, but data in existing permalinks (query results and trace views) will remain stored and available at those links.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
