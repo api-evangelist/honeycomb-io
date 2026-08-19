@@ -1,5 +1,6 @@
 aid: honeycomb-io
 url: https://raw.githubusercontent.com/api-evangelist/honeycomb-io/refs/heads/main/apis.yml
+specificationVersion: '0.23'
 apis:
 - aid: honeycomb-io:honeycomb-io-auth-api
   name: Honeycomb Auth API
