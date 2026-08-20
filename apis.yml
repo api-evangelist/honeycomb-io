@@ -19,6 +19,8 @@ apis:
   humanURL: https://docs.honeycomb.io/api/tag/Events
   baseURL: https://api.honeycomb.io
   tags:
+  - Authentication
+  tags_raw:
   - Auth
   properties:
   - type: OpenAPI
@@ -538,6 +540,8 @@ apis:
   humanURL: https://docs.honeycomb.io/api/tag/Events
   baseURL: https://api.honeycomb.io
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -848,6 +852,8 @@ apis:
   humanURL: https://docs.honeycomb.io/api/tag/Events
   baseURL: https://api.honeycomb.io
   tags:
+  - Query
+  tags_raw:
   - Queries
   properties:
   - type: OpenAPI
@@ -1280,6 +1286,8 @@ apis:
   humanURL: https://docs.honeycomb.io/api/tag/Events
   baseURL: https://api.honeycomb.io
   tags:
+  - SLO
+  tags_raw:
   - SLOs
   properties:
   - type: OpenAPI
@@ -1398,6 +1406,18 @@ apis:
     url: https://docs.honeycomb.io/api/tag/Environments
 name: Honeycomb
 tags:
+  - Observability
+  - Tracing
+  - Distributed Tracing
+  - Telemetry
+  - OpenTelemetry
+  - Event
+  - Logs
+  - Metrics
+  - SLO
+  - AIOps
+  - AI Observability
+tags_raw:
   - Observability
   - Tracing
   - Distributed Tracing
