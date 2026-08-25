@@ -1445,6 +1445,8 @@ accessModel:
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/honeycomb-io.png
 access: 3rd-Party
 common:
+  - type: Authentication
+    url: authentication/honeycomb-io-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/honeycomb/overview
   - type: AgenticAccess
