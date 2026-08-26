@@ -25,6 +25,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-auth-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-auth-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-auth-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-auth-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -101,6 +107,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-boards-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-boards-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-boards-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-boards-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -164,6 +176,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-burn-alerts-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-burn-alerts-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-burn-alerts-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-burn-alerts-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -227,6 +245,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-calculated-fields-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-calculated-fields-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-calculated-fields-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-calculated-fields-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -287,6 +311,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-columns-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-columns-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-columns-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-columns-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -353,6 +383,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-dataset-definitions-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-dataset-definitions-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-dataset-definitions-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-dataset-definitions-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -414,6 +450,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-datasets-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-datasets-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-datasets-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-datasets-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -472,6 +514,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-environments-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-environments-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-environments-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-environments-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -546,6 +594,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-events-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-events-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-events-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-events-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -607,6 +661,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-key-management-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-key-management-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-key-management-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-key-management-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -673,6 +733,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-kinesis-events-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-kinesis-events-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-kinesis-events-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-kinesis-events-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -735,6 +801,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-marker-settings-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-marker-settings-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-marker-settings-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-marker-settings-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -795,6 +867,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-markers-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-markers-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-markers-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-markers-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -858,6 +936,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-queries-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-queries-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-queries-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-queries-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -919,6 +1003,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-query-annotations-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-query-annotations-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-query-annotations-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-query-annotations-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -1038,6 +1128,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-query-data-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-query-data-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-query-data-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-query-data-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -1105,6 +1201,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-recipients-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-recipients-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-recipients-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-recipients-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -1162,6 +1264,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-reporting-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-reporting-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-reporting-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-reporting-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -1223,6 +1331,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-service-maps-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-service-maps-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-service-maps-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-service-maps-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -1292,6 +1406,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-slos-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-slos-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-slos-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-slos-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -1364,6 +1484,12 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/honeycomb-io-triggers-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-triggers-api-overlay.yaml
+  - type: Postman
+    url: postman/honeycomb-io-triggers-api.postman_collection.json
+  - type: OpenCollection
+    url: collections/honeycomb-io-triggers-api.opencollection.json
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Events
   - type: Documentation
@@ -1404,7 +1530,53 @@ apis:
     url: https://docs.honeycomb.io/api/tag/Key-Management
   - type: Documentation
     url: https://docs.honeycomb.io/api/tag/Environments
+- aid: honeycomb-io:honeycomb-io-anomaly-detection-api
+  name: Honeycomb Anomaly Detection API
+  description: >-
+    The Anomaly Detection API exposes Honeycomb Signals - the anomaly detection profiles
+    Honeycomb maintains per service - and their historical anomalies. List and retrieve
+    Signals, update a Signal's configuration and recipients, and read the historical anomalies
+    a Signal has recorded. Requires anomaly detection to be enabled for the team.
+  humanURL: https://docs.honeycomb.io/api/anomaly-detection
+  baseURL: https://api.honeycomb.io
+  tags:
+  - Anomaly Detection
+  tags_raw:
+  - Anomaly Detection
+  properties:
+  - type: OpenAPI
+    url: openapi/honeycomb-io-anomaly-detection-api-openapi.yml
+  - type: Overlay
+    url: overlays/honeycomb-io-anomaly-detection-api-overlay.yaml
+  - type: Documentation
+    url: https://docs.honeycomb.io/api/anomaly-detection
+  - type: Documentation
+    url: https://docs.honeycomb.io/notify/anomaly-detection/
+
 name: Honeycomb
+description: >-
+  Honeycomb is an observability platform for understanding complex distributed systems through
+  high-cardinality, high-dimensional telemetry. Founded in 2016 by Charity Majors and Christine
+  Yen and headquartered in San Francisco, it stores traces, logs and metrics as wide events and
+  lets engineers query arbitrarily across every field at interactive speed, rather than
+  pre-defining dashboards and thresholds. Honeycomb is OpenTelemetry-native: OTLP is the
+  documented ingest path and the company has moved its own proprietary Beelines and
+  distributions to End of Life in favour of upstream OpenTelemetry SDKs. The public REST API is
+  described by a single OpenAPI 3.1 contract covering 89 operations across 22 resource groups -
+  events, datasets, columns, calculated fields, queries, query data, boards, triggers, SLOs,
+  burn alerts, markers, recipients, service maps, environments, API keys and anomaly detection
+  signals - split across US and EU regions. Honeycomb also runs a first-party OAuth-protected
+  Model Context Protocol server at mcp.honeycomb.io, publishes A2A and Agent Skills discovery
+  documents from its docs host, and ships an official agent-skills plugin, making it one of the
+  more complete agent-facing surfaces in the observability category. Products include the core
+  observability platform, Refinery tail-based sampling, Telemetry Pipeline, and Canvas
+  AI-assisted investigations.
+created: '2026-05-25'
+modified: '2026-08-24'
+maintainers:
+  - FN: API Evangelist
+    email: info@apievangelist.com
+    url: https://apievangelist.com
 tags:
   - Observability
   - Tracing
@@ -1473,9 +1645,6 @@ common:
   - url: https://www.honeycomb.io/blog
     name: Honeycomb Blog
     type: Blog
-  - url: https://www.honeycomb.io/changelog
-    name: Honeycomb Changelog
-    type: ChangeLog
   - url: https://www.honeycomb.io/pricing
     name: Honeycomb Pricing
     type: Pricing
@@ -1485,9 +1654,6 @@ common:
   - url: https://support.honeycomb.io/
     name: Honeycomb Support
     type: Support
-  - url: https://www.linkedin.com/company/honeycomb-io/
-    name: Honeycomb LinkedIn
-    type: LinkedIn
   - url: https://twitter.com/honeycombio
     name: Honeycomb X / Twitter
     type: Twitter
@@ -1497,12 +1663,6 @@ common:
   - url: https://www.honeycomb.io/
     name: Honeycomb
     type: Website
-  - url: https://www.honeycomb.io/product/honeycomb-intelligence
-    name: Honeycomb Intelligence
-    type: Documentation
-  - url: https://www.honeycomb.io/product/telemetry-pipeline
-    name: Telemetry Pipeline
-    type: Documentation
   - url: https://opentelemetry.io/
     name: OpenTelemetry
     type: Standards
@@ -1572,3 +1732,125 @@ common:
   - url: https://github.com/honeycombio/honeycomb-mcp
     name: Honeycomb MCP
     type: Documentation
+  - type: ChangeLog
+    name: Honeycomb API Changelog
+    url: https://api-changelog.honeycomb.io/
+  - type: ChangeLog
+    name: Honeycomb Product Changelog
+    url: https://changelog.honeycomb.io/
+  - type: LinkedIn
+    name: Honeycomb LinkedIn
+    url: https://www.linkedin.com/company/honeycomb.io
+  - type: Documentation
+    name: Telemetry Pipeline
+    url: https://www.honeycomb.io/platform/telemetry-pipeline
+  - type: DeveloperPortal
+    name: Honeycomb Developer Documentation
+    url: https://docs.honeycomb.io/
+  - type: APIReference
+    name: Honeycomb API Reference
+    url: https://docs.honeycomb.io/api/introduction
+  - type: GettingStarted
+    name: Get Started with Honeycomb
+    url: https://docs.honeycomb.io/get-started/
+  - type: GitHubOrganization
+    name: honeycombio on GitHub
+    url: https://github.com/honeycombio
+  - type: SignUp
+    name: Sign Up
+    url: https://ui.honeycomb.io/signup
+  - type: Login
+    name: Log In
+    url: https://ui.honeycomb.io/login
+  - type: TermsOfService
+    name: Terms of Service
+    url: https://www.honeycomb.io/terms
+  - type: PrivacyPolicy
+    name: Privacy Policy
+    url: https://www.honeycomb.io/privacy
+  - type: Sandbox
+    name: Honeycomb Sandbox
+    url: sandbox/honeycomb-io-sandbox.yml
+  - type: Security
+    name: Honeycomb Bug Bounty and Vulnerability Disclosure
+    url: security/honeycomb-io-vulnerability-disclosure.yml
+  - type: VulnerabilityDisclosure
+    name: Honeycomb Bug Bounty Program
+    url: https://docs.honeycomb.io/security-compliance/bug-bounty-program/
+  - type: Compliance
+    name: Honeycomb Security and Compliance
+    url: https://docs.honeycomb.io/security-compliance/
+  - type: WellKnown
+    name: Honeycomb well-known discovery documents
+    url: well-known/honeycomb-io-well-known.yml
+  - type: AgentCard
+    name: Honeycomb A2A Agent Card
+    url: a2a/honeycomb-io-a2a.yml
+  - type: MCPServer
+    name: Honeycomb MCP
+    url: mcp/honeycomb-io-mcp.yml
+  - type: ToolCrosswalk
+    name: Honeycomb MCP to REST crosswalk
+    url: mcp/honeycomb-io-tool-crosswalk.yml
+  - type: AgentSkill
+    name: Honeycomb Agent Skills
+    url: skills/_index.yml
+  - type: LLMsTxt
+    name: Honeycomb docs llms.txt
+    url: llms/honeycomb-io-llms.txt
+  - type: Packages
+    name: Honeycomb client libraries and packages
+    url: packages/honeycomb-io-packages.yml
+  - type: SDKs
+    name: Honeycomb SDK inventory
+    url: packages/honeycomb-io-packages.yml
+  - type: CLI
+    name: Honeycomb command line tooling
+    url: cli/honeycomb-io-cli.yml
+  - type: Conventions
+    name: Honeycomb API conventions and runtime semantics
+    url: conventions/honeycomb-io-conventions.yml
+  - type: Conformance
+    name: Honeycomb standards conformance
+    url: conformance/honeycomb-io-conformance.yml
+  - type: ErrorCatalog
+    name: Honeycomb problem types and error catalog
+    url: errors/honeycomb-io-problem-types.yml
+  - type: Lifecycle
+    name: Honeycomb product and API lifecycle
+    url: lifecycle/honeycomb-io-lifecycle.yml
+  - type: Deprecation
+    name: Honeycomb release stages and deprecation policy
+    url: https://docs.honeycomb.io/troubleshoot/product-lifecycle/release-stages/
+  - type: OAuthScopes
+    name: Honeycomb scopes and permissions
+    url: scopes/honeycomb-io-scopes.yml
+  - type: ChangeLog
+    name: Honeycomb changelog artifact
+    url: changelog/honeycomb-io-changelog.yml
+  - type: DataModel
+    name: Honeycomb data model
+    url: data-model/honeycomb-io-data-model.yml
+  - type: Webhooks
+    name: Honeycomb webhook catalog
+    url: asyncapi/honeycomb-io-webhooks.yml
+  - type: Documentation
+    name: Honeycomb Webhooks
+    url: https://docs.honeycomb.io/notify/webhooks/
+  - type: Documentation
+    name: Honeycomb MCP
+    url: https://docs.honeycomb.io/integrations/mcp/
+  - type: Documentation
+    name: Honeycomb Agent Skills
+    url: https://docs.honeycomb.io/integrations/agent-skills/
+  - type: SourceCode
+    name: Honeycomb Agent Skills repository
+    url: https://github.com/honeycombio/agent-skill
+  - type: TrustCenter
+    name: Honeycomb Trust Center
+    url: https://trust.honeycomb.io/
+x-enrichment:
+  date: '2026-08-24'
+  status: enriched
+  artifacts_added: 51
+  pass: local-v1
