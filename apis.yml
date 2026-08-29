@@ -1,5 +1,18 @@
 aid: honeycomb-io
 url: https://raw.githubusercontent.com/api-evangelist/honeycomb-io/refs/heads/main/apis.yml
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 specificationVersion: '0.23'
 apis:
 - aid: honeycomb-io:honeycomb-io-auth-api
