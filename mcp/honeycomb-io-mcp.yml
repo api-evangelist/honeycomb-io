@@ -1,0 +1,244 @@
+generated: '2026-08-24'
+method: probed
+source: https://docs.honeycomb.io/integrations/mcp/ and live probes of https://mcp.honeycomb.io/mcp and https://docs.honeycomb.io/mcp
+provider: Honeycomb
+providerId: honeycomb-io
+status: published
+description: >-
+  Honeycomb operates a first-party hosted Model Context Protocol server at
+  https://mcp.honeycomb.io/mcp (EU: https://mcp.eu1.honeycomb.io/mcp). It is OAuth-protected:
+  an unauthenticated POST returns 401 with a WWW-Authenticate challenge pointing at
+  /.well-known/oauth-protected-resource, which names https://ui.honeycomb.io as the
+  authorization server and mcp:read / mcp:write as the supported scopes. A separate,
+  anonymous documentation MCP server runs on the docs host at https://docs.honeycomb.io/mcp
+  and answers tools/list without credentials.
+deployment:
+  mode: remote
+  endpoint: https://mcp.honeycomb.io/mcp
+  auth: oauth
+  verified: probed
+servers:
+  - name: Honeycomb MCP (US)
+    endpoint: https://mcp.honeycomb.io/mcp
+    mode: remote
+    auth: oauth
+    alternate_auth: >-
+      Management API key formatted KEY_ID:SECRET_KEY passed as a Bearer token, for headless
+      agents that cannot complete an interactive OAuth flow. The key needs the
+      "Model Context Protocol" scope (Read, plus Write for mutating tools) and Environments.
+    authorization_server: https://ui.honeycomb.io
+    protected_resource_metadata: https://mcp.honeycomb.io/.well-known/oauth-protected-resource
+    scopes:
+      - mcp:read
+      - mcp:write
+    verified: probed
+    probe:
+      url: https://mcp.honeycomb.io/mcp
+      method: POST
+      body: '{"jsonrpc":"2.0","id":1,"method":"initialize"}'
+      http_status: 401
+      www_authenticate: Bearer resource_metadata="https://mcp.honeycomb.io/.well-known/oauth-protected-resource"
+      note: >-
+        The 401 is the expected, correct behaviour for an OAuth-protected MCP resource; it
+        proves the endpoint is live and standards-compliant (RFC 9728). The live tool schemas
+        require an authenticated introspection, so the tools below are transcribed from the
+        provider's own published tools reference.
+  - name: Honeycomb MCP (EU)
+    endpoint: https://mcp.eu1.honeycomb.io/mcp
+    mode: remote
+    auth: oauth
+    verified: searched
+    source: https://docs.honeycomb.io/integrations/mcp/
+  - name: Honeycomb Docs MCP
+    endpoint: https://docs.honeycomb.io/mcp
+    mode: remote
+    auth: none
+    verified: probed
+    scope: documentation search and retrieval over the published docs site only
+    probe:
+      url: https://docs.honeycomb.io/mcp
+      method: POST
+      http_status: 200
+      server_info: 'Honeycomb Docs 1.0.0, protocolVersion 2024-11-05'
+    tools:
+      - name: search_honeycomb_docs
+        input: [query]
+        read_only: true
+      - name: query_docs_filesystem_honeycomb_docs
+        input: [command]
+        read_only: true
+        note: >-
+          Read-only virtual filesystem over the docs corpus and OpenAPI specs; supports rg,
+          grep, find, tree, ls, cat, head, tail, jq and similar text utilities.
+      - name: submit_feedback
+        input: [path, feedback]
+        read_only: false
+deprecated_deployments:
+  - name: honeycomb-mcp (self-hosted stdio)
+    mode: local-stdio
+    package: https://github.com/honeycombio/honeycomb-mcp
+    status: deprecated
+    archived: true
+    archived_source: 'GitHub repository archived; last push 2025-08-21'
+    note: >-
+      The repository README states plainly that the self-hosted MCP server is deprecated and
+      directs users to the hosted server. Recorded here so the local-stdio history is not
+      confused with the current remote surface.
+tools:
+  source: https://docs.honeycomb.io/integrations/mcp/tools/
+  method: searched
+  note: >-
+    Transcribed from Honeycomb's published MCP tools reference. Input schemas are not
+    reproduced because the live server requires authenticated introspection.
+  catalog:
+    - category: Workspace discovery
+      read:
+        - name: get_workspace_context
+          description: Returns the team name, current time, and environments with slugs and dataset counts. Takes no parameters.
+          rate_limit_per_minute: 200
+        - name: get_environment
+          description: Returns details for a single environment, including datasets and calculated fields. Up to 100 datasets per call.
+          rate_limit_per_minute: 200
+        - name: get_dataset
+          description: Returns metadata and the full column schema for a single dataset. Up to 100 columns per call by default.
+          rate_limit_per_minute: 200
+        - name: get_dataset_columns
+          description: Returns the full column schema for a dataset, with optional sample values; for metrics datasets returns metric names.
+          rate_limit_per_minute: 100
+    - category: Query and analysis
+      read:
+        - name: run_query
+          description: Runs a time-series aggregation query against a dataset and returns computed results. Supports query math, per-calculation filters, formulas, breakdowns, calculated fields and relational trace prefixes.
+          rate_limit_per_minute: 100
+        - name: get_query_results
+          description: Retrieves results and metadata from a previously executed query run by URL, run primary key, or query ID.
+          rate_limit_per_minute: 150
+        - name: find_queries
+          description: Searches query history and saved queries by intent and returns matching queries with their run primary keys.
+          rate_limit_per_minute: 150
+        - name: find_columns
+          description: Searches columns and calculated fields by intent across one or all datasets in an environment.
+          rate_limit_per_minute: 200
+        - name: run_bubbleup
+          description: Runs a BubbleUp analysis on an existing query result to identify what makes a selected subset different from the baseline.
+          rate_limit_per_minute: 50
+    - category: Traces and spans
+      read:
+        - name: get_trace
+          description: Retrieves all spans for a trace ID and renders them as a waterfall.
+          rate_limit_per_minute: 100
+        - name: list_spans
+          description: Lists span names in trace data ranked by count, with root frequency and source dataset.
+          rate_limit_per_minute: 50
+        - name: get_span_details
+          description: Returns a summary of attributes and common values observed on spans with a specific name.
+          rate_limit_per_minute: 50
+    - category: Service map and anomalies
+      read:
+        - name: get_service_map
+          description: Returns a snapshot of service-to-service call dependencies for a time range. Enterprise tier.
+          rate_limit_per_minute: 10
+          tier: Enterprise
+        - name: get_anomaly_service_profiles
+          description: Returns anomaly detection service profiles for the current team. Requires anomaly detection to be enabled.
+          rate_limit_per_minute: 150
+    - category: Semantic conventions
+      read:
+        - name: search_semconv
+          description: Searches the OpenTelemetry semantic convention registry for attributes matching a query.
+          rate_limit_per_minute: 300
+        - name: get_semconv_attribute
+          description: Returns full definitions of one or more semantic convention attributes by exact name.
+          rate_limit_per_minute: 300
+        - name: list_semconv_namespaces
+          description: Lists top-level semantic convention namespaces available in the team's registry.
+          rate_limit_per_minute: 300
+    - category: Boards
+      read:
+        - name: list_boards
+          description: Lists Boards in an environment, or returns the full contents of a single Board by ID.
+          rate_limit_per_minute: 200
+      write:
+        - name: create_board
+          description: Creates a Board with query panels, SLO panels and Markdown text panels, with optional preset filters.
+          scope: mcp:write
+          rate_limit_per_minute: 50
+        - name: update_board
+          description: Updates an existing Board - rename, add/remove/update/reorder panels, replace preset filters and tags.
+          scope: mcp:write
+          rate_limit_per_minute: 50
+    - category: Triggers
+      read:
+        - name: get_triggers
+          description: Lists Triggers for the team, or returns detailed configuration for a single Trigger including recipients.
+          rate_limit_per_minute: 150
+      write:
+        - name: create_trigger
+          description: Creates a Trigger that fires alerts when query results cross a threshold.
+          scope: mcp:write
+          rate_limit_per_minute: 20
+        - name: update_trigger
+          description: Updates an existing Trigger.
+          scope: mcp:write
+          rate_limit_per_minute: 30
+    - category: SLOs
+      read:
+        - name: get_slos
+          description: Lists SLOs for the team, or returns detailed status and graphs for a single SLO.
+          rate_limit_per_minute: 100
+      write:
+        - name: create_slo
+          description: Creates an SLO with an auto-created SLI derived column; validates the expression before creating.
+          scope: mcp:write
+          rate_limit_per_minute: 20
+        - name: update_slo
+          description: Updates an existing SLO with partial-update semantics. Dataset associations are fixed at creation.
+          scope: mcp:write
+          rate_limit_per_minute: 30
+    - category: Notification recipients
+      read:
+        - name: list_recipients
+          description: Lists pre-registered notification recipients for the team - email, Slack, PagerDuty and webhooks - with IDs.
+          rate_limit_per_minute: 200
+      write:
+        - name: create_recipient
+          description: Creates a notification recipient that can be attached to Triggers and SLO burn alerts.
+          scope: mcp:write
+          rate_limit_per_minute: 20
+    - category: Canvas investigations
+      read:
+        - name: canvas_agent_poll_response
+          description: Polls for the result of a previously issued canvas_agent_invoke call.
+          rate_limit_per_minute: 300
+      write:
+        - name: canvas_agent_invoke
+          description: Sends a message to the Canvas agent, routed into an existing investigation or creating a new one.
+          scope: mcp:write
+          rate_limit_per_minute: 20
+    - category: AI conversation analysis
+      read:
+        - name: list_aiconversations
+          description: Lists recent AI agent conversations (gen_ai.conversation.id) in an environment with agents, services, event counts, errors and token usage.
+          rate_limit_per_minute: 50
+        - name: get_aiconversation
+          description: Returns the full event timeline for a single AI conversation, including every LLM call, tool call and related agent event.
+          rate_limit_per_minute: 50
+    - category: Other
+      read:
+        - name: refinery_docs
+          description: Reads from Honeycomb Refinery documentation so an agent can answer Refinery configuration questions inline.
+          rate_limit_per_minute: 200
+      write:
+        - name: feedback
+          description: Submits feedback about the Honeycomb MCP server experience to the maintaining team.
+          scope: mcp:write
+          rate_limit_per_minute: 100
+rate_limits:
+  default_per_minute: 50
+  note: Rate-limit responses include the time at which the caller may retry. Limits are documented as subject to change.
+agent_skills:
+  repository: https://github.com/honeycombio/agent-skill
+  docs: https://docs.honeycomb.io/integrations/agent-skills/
+  note: >-
+    Honeycomb ships an official skills/agents/hooks plugin that wires the MCP server into
+    Claude Code, Cursor, Augment and GitHub Copilot CLI. See skills/_index.yml.

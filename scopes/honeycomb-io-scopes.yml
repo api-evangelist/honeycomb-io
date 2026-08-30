@@ -1,0 +1,121 @@
+generated: '2026-08-24'
+method: searched
+source: >-
+  https://docs.honeycomb.io/api/permissions, https://docs.honeycomb.io/api/authentication,
+  https://docs.honeycomb.io/integrations/mcp/tools/, and the RFC 8414 authorization server
+  metadata probed at https://ui.honeycomb.io/.well-known/oauth-authorization-server
+  (saved at well-known/honeycomb-io-oauth-authorization-server.json).
+docs: https://docs.honeycomb.io/api/permissions
+provider: Honeycomb
+providerId: honeycomb-io
+description: >-
+  Honeycomb runs three distinct authorization vocabularies. Environment-scoped Configuration
+  Keys carry named permissions. Team-scoped Management Keys carry resource:action scopes. The
+  hosted MCP server is a full OAuth 2.0 protected resource whose authorization server
+  advertises its own scope set. The OpenAPI declares only apiKey/http securitySchemes and no
+  oauth2 scheme, so none of this is derivable from the contract - it was read from the docs
+  and probed from the /.well-known/ metadata.
+oauth:
+  authorization_server: https://ui.honeycomb.io
+  metadata_url: https://ui.honeycomb.io/.well-known/oauth-authorization-server
+  metadata_http_status: 200
+  protected_resource: https://mcp.honeycomb.io/mcp
+  protected_resource_metadata: https://mcp.honeycomb.io/.well-known/oauth-protected-resource
+  protected_resource_metadata_http_status: 200
+  authorization_endpoint: https://ui.honeycomb.io/oauth/authorize
+  token_endpoint: https://ui.honeycomb.io/oauth/token
+  registration_endpoint: https://ui.honeycomb.io/oauth/register
+  introspection_endpoint: https://ui.honeycomb.io/oauth/introspect
+  grant_types: [authorization_code, refresh_token]
+  response_types: [code]
+  pkce: [S256]
+  dynamic_client_registration: true
+  client_id_metadata_document_supported: true
+  scopes:
+    - name: 'mcp:read'
+      description: >-
+        Read access through the Model Context Protocol server - workspace discovery, queries,
+        traces, service map, semantic conventions, boards, triggers, SLOs, recipients and AI
+        conversation analysis.
+      advertised_by: [authorization server, protected resource]
+    - name: 'mcp:write'
+      description: >-
+        Write access through the MCP server. Required by create_board, update_board,
+        create_trigger, update_trigger, create_slo, update_slo, create_recipient,
+        canvas_agent_invoke and feedback. No delete tool exists at any scope.
+      advertised_by: [authorization server, protected resource]
+    - name: 'autobots:use'
+      description: >-
+        Advertised by the authorization server but not by the MCP protected resource and not
+        documented in the public docs. Recorded verbatim from the metadata document; its
+        purpose is not stated publicly, so none is asserted here.
+      advertised_by: [authorization server]
+      documented: false
+management_key_scopes:
+  key_type: Management Key
+  header: 'Authorization: Bearer'
+  scope_style: 'resource:action'
+  source: https://docs.honeycomb.io/api/permissions
+  scopes:
+    - name: 'environments:read'
+      description: Read operations on the V2 Environments API.
+      operations: [listEnvironments, getEnvironment]
+    - name: 'environments:write'
+      description: Create, update and delete operations on the V2 Environments API.
+      operations: [createEnvironment, updateEnvironment, deleteEnvironment]
+    - name: 'api-keys:read'
+      description: Read operations on the V2 Key Management API. Covers both Ingest and Configuration keys.
+      operations: [listApiKeys, getApiKey]
+    - name: 'api-keys:write'
+      description: Create, update and delete operations on the V2 Key Management API.
+      operations: [createApiKey, updateApiKey, deleteApiKey]
+  note: >-
+    The V2 Auth endpoint (getV2Auth) requires only a valid Management Key and no particular
+    scope. Management Keys can only be created through the Honeycomb UI.
+configuration_key_permissions:
+  key_type: Configuration Key
+  header: X-Honeycomb-Team
+  scope_style: named permission
+  source: https://docs.honeycomb.io/api/permissions
+  permissions:
+    - name: Manage Public Boards
+      endpoint_groups: [Boards, Board Views]
+    - name: Manage SLOs
+      endpoint_groups: [SLOs, Burn Alerts, Reporting]
+    - name: Manage Queries and Columns
+      endpoint_groups: [Queries, Query Annotations, Columns, Calculated Fields]
+    - name: Run Queries
+      endpoint_groups: [Query Data]
+      note: Query Data requires BOTH "Manage Queries and Columns" and "Run Queries".
+    - name: Create Datasets
+      endpoint_groups: [Datasets, Dataset Definitions]
+    - name: Send Events
+      endpoint_groups: [Events, Kinesis Events]
+      note: An Ingest Key is recommended; a Configuration Key with Send Events also works.
+    - name: Manage Markers
+      endpoint_groups: [Markers, Marker Settings]
+    - name: Manage Recipients
+      endpoint_groups: [Recipients]
+      note: >-
+        Recipients are team-wide, not environment-specific. A key with this permission can
+        modify recipients across every environment in the team - the widest blast radius of
+        any Configuration Key permission.
+    - name: Manage Triggers
+      endpoint_groups: [Triggers]
+    - name: Read Service Maps
+      endpoint_groups: [Service Maps]
+  note: >-
+    The V1 Auth endpoint (getAuth) requires any valid Ingest or Configuration Key and no
+    specific permission. Honeycomb marks the permissions page as a temporary reference while
+    per-endpoint requirements are moved onto individual endpoint pages.
+openapi_declared_schemes:
+  - configuration_key (apiKey, header X-Honeycomb-Team)
+  - ingest_key (apiKey, header X-Honeycomb-Team)
+  - firehose_access_key (apiKey, header X-Amz-Firehose-Access-Key)
+  - bearerAuth (http bearer)
+gap:
+  summary: >-
+    None of the permissions or scopes above appear in the OpenAPI. The spec declares four flat
+    securitySchemes with no scopes attached, so a code generator or agent reading only the
+    contract cannot tell that Query Data needs two permissions, or that Recipients is
+    team-wide. This is the clearest contract-quality gap in Honeycomb's surface.

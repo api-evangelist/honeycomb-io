@@ -1,0 +1,78 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Honeycomb Auth Reporting API
+  version: 0.1.0
+extends: ../openapi/honeycomb-io-reporting-api-openapi.yml
+x-provenance:
+  generated: '2026-08-24'
+  method: generated
+  source: 'Generated from repo artifacts: conventions/, errors/, scopes/, authentication/, lifecycle/, rate-limits/
+    and conformance/. Captures API Evangelist enhancements without mutating the provider OpenAPI.'
+  provider: Honeycomb
+  providerId: honeycomb-io
+  operations: 1
+  tags:
+  - Reporting
+actions:
+- target: $.info
+  update:
+    x-api-evangelist:
+      providerId: honeycomb-io
+      apiChangelog: https://api-changelog.honeycomb.io/
+      lifecyclePolicy: https://docs.honeycomb.io/troubleshoot/product-lifecycle/release-stages/
+      statusPage: https://status.honeycomb.io/
+      permissionsReference: https://docs.honeycomb.io/api/permissions
+      domainStandard: OpenTelemetry (OTLP + semantic conventions)
+- target: $.info
+  update:
+    x-runtime-semantics:
+      idempotency:
+        supported: false
+        note: No idempotency key is documented; creates are not safe to blind-retry and duplicate names can return
+          409.
+      reversibility:
+        graded: none
+        note: No cancel, undo or restore operation exists. Dataset, Environment and API Key deletes are documented
+          as irreversible.
+      dryRun:
+        supported: false
+      pagination:
+        style: cursor
+        appliesTo: V2 endpoints only
+        params:
+        - page[size]
+        - page[after]
+        responseField: links.next
+      rateLimitHeaders:
+      - RateLimit
+      - RateLimit-Policy
+      - Retry-After
+      maxRequestBodyBytes: 100000
+- target: $.servers
+  update:
+  - url: https://api.honeycomb.io
+    description: US region
+  - url: https://api.eu1.honeycomb.io
+    description: EU region
+- target: $.paths.*.*.responses['429']
+  update:
+    headers:
+      RateLimit:
+        description: 'Current window status: limit=X, remaining=Y, reset=Z.'
+        schema:
+          type: string
+      RateLimit-Policy:
+        description: 'Window policy: X;w=Y.'
+        schema:
+          type: string
+      Retry-After:
+        description: HTTP-date after which the request may be retried. Absent on Events, Batch Events and Query
+          Data.
+        schema:
+          type: string
+- target: $.paths.*.*
+  update:
+    x-agentic-access:
+      source: agentic-access/honeycomb-io-agentic-access.yml
+      note: Per-operation action-class and consequence classifications are held in the repo artifact rather than
+        inlined here.

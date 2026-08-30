@@ -1,0 +1,79 @@
+generated: '2026-08-24'
+method: searched
+source: >-
+  https://docs.honeycomb.io/notify/webhooks/, /notify/webhooks/variables/,
+  /notify/webhooks/functions/, /notify/webhooks/example-templates/, /notify/triggers/,
+  /notify/slos/, and the Recipients API in
+  https://docs.honeycomb.io/api/openapi-public.yaml
+provider: Honeycomb
+providerId: honeycomb-io
+type: Webhooks
+asyncapi_published: false
+description: >-
+  Honeycomb ships an outbound webhook surface: Triggers and SLO burn alerts deliver JSON to
+  any HTTP endpoint you register as a Recipient, with a fully customisable payload, headers
+  and variables. There is no AsyncAPI document describing it, and no inbound event stream or
+  subscription API - Honeycomb ingests telemetry over OTLP and emits alerts over webhooks.
+  Recorded as a webhook catalog rather than a fabricated AsyncAPI spec.
+delivery:
+  transport: HTTPS POST
+  content_type: application/json
+  timeout_seconds: 10
+  timeout_behaviour: 'If no response arrives within 10 seconds the request fails.'
+  retries: 'Honeycomb may automatically retry after a transient failure.'
+  deduplication_header: X-Honeycomb-Webhook-Delivery-ID
+  deduplication_note: >-
+    The delivery ID stays the same across retries of the same delivery, so a receiver can
+    de-duplicate. This is the only de-duplication primitive anywhere in Honeycomb's surface -
+    the request path has no idempotency key.
+  authentication:
+    - method: Shared Secret
+      description: Optional shared secret configured on the webhook integration, sent as an authentication header.
+    - method: Custom headers
+      description: Arbitrary header key/value pairs can be attached per integration.
+events:
+  - name: trigger.fired
+    source: Triggers
+    description: A Trigger's query result crossed its configured threshold.
+    docs: https://docs.honeycomb.io/notify/triggers/
+  - name: trigger.resolved
+    source: Triggers
+    description: A previously firing Trigger returned below its threshold.
+    docs: https://docs.honeycomb.io/notify/triggers/
+  - name: slo.burn_alert
+    source: SLO Burn Alerts
+    description: >-
+      An SLO's error budget is projected to be exhausted within the configured exhaustion
+      time, at the configured severity (Critical by default).
+    docs: https://docs.honeycomb.io/notify/slos/
+events_note: >-
+  Honeycomb does not publish machine-readable event type names for these deliveries; the
+  names above describe the two documented alert sources and are labelled as such rather than
+  presented as wire values.
+customization:
+  payload: >-
+    The JSON body is templated. Fields can be added, removed and reordered to match the target
+    system.
+  variables: https://docs.honeycomb.io/notify/webhooks/variables/
+  functions: https://docs.honeycomb.io/notify/webhooks/functions/
+  templates: https://docs.honeycomb.io/notify/webhooks/example-templates/
+  alert_level_variables: Alert context such as severity is injected automatically.
+management:
+  api: 'Recipients API'
+  operations: [createRecipient, listRecipients, getRecipient, updateRecipient, deleteRecipient]
+  docs: https://docs.honeycomb.io/api/recipients/
+  scope_warning: >-
+    Recipients are team-wide, not environment-specific. A Configuration Key with the "Manage
+    Recipients" permission can modify recipients across every environment in the team.
+  mcp_tools: [list_recipients, create_recipient]
+native_integrations:
+  - Slack
+  - PagerDuty
+  - Microsoft Teams
+  - Email
+  - Webhook (generic)
+inbound_events:
+  supported: false
+  note: >-
+    Honeycomb has no inbound event subscription or streaming API. Data arrives by ingest -
+    OTLP, the Events API, Kinesis Firehose or the Telemetry Pipeline.

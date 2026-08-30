@@ -1,0 +1,94 @@
+generated: '2026-08-24'
+method: searched
+docs: https://docs.honeycomb.io/api/authentication
+source: >-
+  https://docs.honeycomb.io/api/authentication and
+  https://docs.honeycomb.io/get-started/best-practices/api-keys/, reconciled against the
+  securitySchemes declared in https://docs.honeycomb.io/api/openapi-public.yaml and the OAuth
+  metadata probed at https://ui.honeycomb.io/.well-known/oauth-authorization-server.
+provider: Honeycomb
+providerId: honeycomb-io
+description: >-
+  Honeycomb authenticates the REST API with three types of API key that differ in scope, in
+  the header they travel in and in how their value is assembled. The hosted MCP server is
+  separately protected by OAuth 2.0 with PKCE and dynamic client registration. Upgraded from
+  the derived spec-only profile, which saw only one of the four schemes.
+summary:
+  types: [apiKey, http, oauth2]
+  api_key_in: [header]
+  oauth_flows: [authorization_code]
+  mtls: false
+  openid_connect: false
+schemes:
+  - name: ingest_key
+    type: apiKey
+    in: header
+    parameter: X-Honeycomb-Team
+    scope: environment
+    key_id_prefix: 'hc[x]ik_'
+    value_construction: >-
+      Key ID and Secret concatenated with no separator. The UI shows the complete value at
+      creation; via the API it is data.id + data.attributes.secret.
+    used_by: [createEvent, createEvents, createKinesisEvents, getAuth]
+    note: >-
+      Ingest Keys can optionally be granted permission to create new datasets automatically.
+      The concatenated value is shown only once at creation.
+  - name: configuration_key
+    type: apiKey
+    in: header
+    parameter: X-Honeycomb-Team
+    scope: environment
+    key_id_prefix: 'hc[x]lk_'
+    value_construction: >-
+      The Token, retrievable from the Honeycomb UI at any time. Via the API it is
+      data.attributes.secret - the same value as the Token.
+    used_by: Most V1 configuration endpoints - datasets, columns, calculated fields, queries, boards, triggers, SLOs, burn alerts, markers, recipients, service maps, anomaly detection.
+    permissions: scopes/honeycomb-io-scopes.yml
+  - name: bearerAuth
+    type: http
+    scheme: bearer
+    parameter: 'Authorization: Bearer'
+    scope: team
+    key_id_prefix: 'hc[x]mk_'
+    value_construction: 'Key ID and Secret joined with a colon: hc[x]mk_<id>:<secret>.'
+    used_by: 'All V2 endpoints - Environments, Key Management, getV2Auth.'
+    creation: Management Keys can only be created through the Honeycomb UI, not via the API.
+    scopes: ['environments:read', 'environments:write', 'api-keys:read', 'api-keys:write']
+  - name: firehose_access_key
+    type: apiKey
+    in: header
+    parameter: X-Amz-Firehose-Access-Key
+    scope: environment
+    used_by: [createKinesisEvents]
+    note: >-
+      Used by AWS Kinesis Data Firehose HTTP delivery, which puts the Honeycomb key in the
+      Firehose-specific header rather than X-Honeycomb-Team.
+  - name: mcp_oauth
+    type: oauth2
+    flow: authorization_code
+    pkce: S256
+    authorization_endpoint: https://ui.honeycomb.io/oauth/authorize
+    token_endpoint: https://ui.honeycomb.io/oauth/token
+    registration_endpoint: https://ui.honeycomb.io/oauth/register
+    scopes: ['mcp:read', 'mcp:write']
+    protects: https://mcp.honeycomb.io/mcp
+    declared_in_openapi: false
+    note: >-
+      Not present in the OpenAPI. Discovered by probing the MCP endpoint (401 with a
+      WWW-Authenticate resource_metadata pointer) and following RFC 9728 / RFC 8414 metadata.
+      Headless agents may substitute a Management Key formatted KEY_ID:SECRET_KEY as a Bearer
+      token with the Model Context Protocol scope.
+validation:
+  operation: getAuth (V1) / getV2Auth (V2)
+  description: >-
+    Confirms which key is in use, its permissions, and the team and environment it belongs to.
+    On Honeycomb Classic accounts environment.name and environment.slug return empty strings.
+  docs: https://docs.honeycomb.io/api/authentication
+best_practices:
+  url: https://docs.honeycomb.io/get-started/best-practices/api-keys/
+  topics: [rotation, least privilege, key type selection, secret storage]
+regions:
+  - region: US
+    api: https://api.honeycomb.io
+  - region: EU
+    api: https://api.eu1.honeycomb.io
