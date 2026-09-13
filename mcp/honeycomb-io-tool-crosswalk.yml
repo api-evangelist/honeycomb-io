@@ -1,0 +1,249 @@
+generated: '2026-08-24'
+method: derived
+source: >-
+  Derived by binding the published Honeycomb MCP tool catalog
+  (https://docs.honeycomb.io/integrations/mcp/tools/) to operationIds in the Honeycomb
+  OpenAPI 3.1 contract (https://docs.honeycomb.io/api/openapi-public.yaml, saved at
+  openapi/_original/honeycomb-io-openapi-public-2026-08-24.yaml).
+provider: Honeycomb
+providerId: honeycomb-io
+description: >-
+  Crosswalk between the tools Honeycomb's hosted MCP server exposes to agents and the REST
+  operations in its public OpenAPI. Where a tool maps to a REST operation, the tool inherits
+  that operation's parameters and requestBody as its real input schema. Confidence is recorded
+  honestly: the live MCP schemas are OAuth-gated, so bindings are made by name and documented
+  semantics, not by comparing live schemas.
+surfaces:
+  openapi:
+    url: https://docs.honeycomb.io/api/openapi-public.yaml
+    local: openapi/_original/honeycomb-io-openapi-public-2026-08-24.yaml
+    operations: 89
+    gated: false
+  mcp:
+    url: https://mcp.honeycomb.io/mcp
+    gated: true
+    gate: OAuth 2.0 (RFC 9728 protected resource); anonymous POST returns 401
+    tools_documented: 30
+  mcp_docs:
+    url: https://docs.honeycomb.io/mcp
+    gated: false
+    tools_live: 3
+  graphql:
+    present: false
+    note: Honeycomb publishes no GraphQL endpoint.
+crosswalk:
+  - tool: get_environment
+    category: Workspace discovery
+    rest: [getEnvironment, listEnvironments]
+    binding: read
+    confidence: high
+    note: V2 Environments API; the tool also folds in calculated fields for the environment.
+  - tool: get_dataset
+    category: Workspace discovery
+    rest: [getDataset, listColumns, listCalculatedFields]
+    binding: composite-read
+    confidence: high
+    note: One tool call returns dataset metadata plus a unified column + calculated-field list.
+  - tool: get_dataset_columns
+    category: Workspace discovery
+    rest: [listColumns]
+    binding: read
+    confidence: high
+  - tool: find_columns
+    category: Query and analysis
+    rest: [listColumns]
+    binding: search-over-read
+    confidence: medium
+    note: Intent search across one or all datasets; no REST equivalent for the ranking step.
+  - tool: run_query
+    category: Query and analysis
+    rest: [createQuery, createQueryResult, getQueryResult]
+    binding: composite-write-then-poll
+    confidence: high
+    note: >-
+      Collapses the REST create-query / create-query-result / poll-result sequence into a
+      single call. createQueryResult is Enterprise-only over REST.
+  - tool: get_query_results
+    category: Query and analysis
+    rest: [getQueryResult, getQuery]
+    binding: read
+    confidence: high
+  - tool: find_queries
+    category: Query and analysis
+    rest: []
+    binding: none
+    confidence: high
+    note: No REST endpoint lists or searches query history; see mcp_only.
+  - tool: run_bubbleup
+    category: Query and analysis
+    rest: []
+    binding: none
+    confidence: high
+  - tool: get_trace
+    category: Traces and spans
+    rest: [createQueryResult, getQueryResult]
+    binding: composite-read
+    confidence: low
+    note: >-
+      Trace waterfalls are not a first-class REST resource; the equivalent over REST is a
+      Query Data API query filtered on trace.trace_id, which is Enterprise-only.
+  - tool: list_spans
+    category: Traces and spans
+    rest: [createQueryResult, getQueryResult]
+    binding: composite-read
+    confidence: low
+  - tool: get_span_details
+    category: Traces and spans
+    rest: [createQueryResult, getQueryResult]
+    binding: composite-read
+    confidence: low
+  - tool: get_service_map
+    category: Service map and anomalies
+    rest: [createMapDependencyRequest, getMapDependencies]
+    binding: composite-read
+    confidence: high
+    note: Enterprise tier on both surfaces.
+  - tool: get_anomaly_service_profiles
+    category: Service map and anomalies
+    rest: [listSignals, getSignal]
+    binding: read
+    confidence: medium
+    note: >-
+      Maps to the Anomaly Detection (Signals) tag added to the OpenAPI in 2026; see
+      openapi/honeycomb-io-anomaly-detection-api-openapi.yml.
+  - tool: list_boards
+    category: Boards
+    rest: [listBoards, getBoard]
+    binding: read
+    confidence: high
+  - tool: create_board
+    category: Boards
+    rest: [createBoard]
+    binding: write
+    confidence: high
+    scope: mcp:write
+  - tool: update_board
+    category: Boards
+    rest: [updateBoard, createBoardView, updateBoardView, deleteBoardView]
+    binding: write
+    confidence: high
+    scope: mcp:write
+  - tool: get_triggers
+    category: Triggers
+    rest: [listTriggers, getTrigger]
+    binding: read
+    confidence: high
+  - tool: create_trigger
+    category: Triggers
+    rest: [createTrigger]
+    binding: write
+    confidence: high
+    scope: mcp:write
+  - tool: update_trigger
+    category: Triggers
+    rest: [updateTrigger]
+    binding: write
+    confidence: high
+    scope: mcp:write
+  - tool: get_slos
+    category: SLOs
+    rest: [listSlos, getSlo, getSloRealtimeCounts, getSloHourlyCountsHistory]
+    binding: read
+    confidence: high
+  - tool: create_slo
+    category: SLOs
+    rest: [createSlo, createCalculatedField]
+    binding: composite-write
+    confidence: high
+    scope: mcp:write
+    note: The tool creates the SLI derived column via the Calculated Fields API before creating the SLO.
+  - tool: update_slo
+    category: SLOs
+    rest: [updateSlo]
+    binding: write
+    confidence: high
+    scope: mcp:write
+  - tool: list_recipients
+    category: Notification recipients
+    rest: [listRecipients, getRecipient]
+    binding: read
+    confidence: high
+  - tool: create_recipient
+    category: Notification recipients
+    rest: [createRecipient]
+    binding: write
+    confidence: high
+    scope: mcp:write
+  - tool: get_workspace_context
+    category: Workspace discovery
+    rest: [getV2Auth, listEnvironments]
+    binding: composite-read
+    confidence: medium
+    note: Team identity comes from the Auth endpoint; environment/dataset counts from Environments.
+mcp_only:
+  - tool: find_queries
+    reason: No public REST endpoint exposes query history or intent search over saved queries.
+  - tool: run_bubbleup
+    reason: BubbleUp is a UI/analysis capability with no public REST operation.
+  - tool: search_semconv
+    reason: OpenTelemetry semantic-convention registry lookup; not part of the Honeycomb REST API.
+  - tool: get_semconv_attribute
+    reason: Semantic-convention attribute lookup; no REST equivalent.
+  - tool: list_semconv_namespaces
+    reason: Semantic-convention namespace listing; no REST equivalent.
+  - tool: canvas_agent_invoke
+    reason: Canvas investigations have no public REST surface.
+  - tool: canvas_agent_poll_response
+    reason: Canvas investigations have no public REST surface.
+  - tool: list_aiconversations
+    reason: gen_ai.* conversation rollups are an MCP-side aggregation over query results.
+  - tool: get_aiconversation
+    reason: gen_ai.* conversation timeline is an MCP-side aggregation over query results.
+  - tool: refinery_docs
+    reason: Documentation retrieval tool; not an API operation.
+  - tool: feedback
+    reason: Feedback channel to the MCP maintainers; not an API operation.
+  - tool: search_honeycomb_docs
+    reason: Docs-MCP tool over published documentation only.
+  - tool: query_docs_filesystem_honeycomb_docs
+    reason: Docs-MCP virtual filesystem over published documentation only.
+  - tool: submit_feedback
+    reason: Docs-MCP feedback channel.
+rest_only:
+  - operations: [createEvent, createEvents, createKinesisEvents]
+    reason: Telemetry ingest. Deliberately not exposed as an agent tool - agents read data, they do not write events.
+  - operations: [createDataset, updateDataset, deleteDataset, listDatasets]
+    reason: Dataset lifecycle management is REST/Terraform-only; deleteDataset is documented as irreversible.
+  - operations: [patchDatasetDefinitions, listDatasetDefinitions]
+    reason: Dataset definitions have no MCP tool.
+  - operations: [createColumn, updateColumn, deleteColumn, getColumn]
+    reason: Column mutation is REST/Terraform-only; MCP exposes column reads.
+  - operations: [createCalculatedField, updateCalculatedField, deleteCalculatedField, getCalculatedField, listCalculatedFields]
+    reason: Calculated fields are only reached indirectly, via create_slo.
+  - operations: [createMarker, getMarker, updateMarker, deleteMarker, createMarkerSetting, listMarkerSettings, updateMarkerSettings, deleteMarkerSettings]
+    reason: Markers and marker settings have no MCP tool; use the REST API, honeymarker CLI or Terraform provider.
+  - operations: [createQueryAnnotation, listQueryAnnotations, getQueryAnnotation, updateQueryAnnotation, deleteQueryAnnotation]
+    reason: Query annotations have no MCP tool.
+  - operations: [listApiKeys, createApiKey, getApiKey, updateApiKey, deleteApiKey]
+    reason: Credential management is deliberately excluded from the agent surface.
+  - operations: [createEnvironment, updateEnvironment, deleteEnvironment]
+    reason: Environment mutation is excluded from the agent surface; MCP reads environments only.
+  - operations: [createBurnAlert, listBurnAlertsBySlo, getBurnAlert, updateBurnAlert, deleteBurnAlert]
+    reason: Burn alerts have no dedicated MCP tool; SLO tools cover the parent object.
+  - operations: [getSloHistory]
+    reason: SLO Reporting API is Enterprise-only and has no MCP tool.
+  - operations: [deleteBoard, deleteTrigger, deleteSlo, deleteRecipient]
+    reason: >-
+      Every destructive delete is withheld from the MCP surface. The MCP write scope covers
+      create and update only - a deliberate blast-radius decision worth noting.
+  - operations: [getAuth]
+    reason: V1 key introspection; MCP identity comes from the OAuth session.
+  - operations: [updateSignal, listSignalHistoricalAnomalies]
+    reason: Anomaly Detection signal mutation and history have no MCP tool.
+coverage:
+  openapi_operations: 89
+  mcp_tools_documented: 30
+  mcp_tools_bound_to_rest: 19
+  mcp_only_tools: 11
+  rest_operations_with_no_tool: 63
+  destructive_rest_operations_exposed_via_mcp: 0
